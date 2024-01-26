@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\web\HomeController;
+use PhpParser\Node\Expr\FuncCall;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,18 @@ use App\Http\Controllers\web\HomeController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('web.index');
+// Route::get('/', [HomeController::class, 'index'])->name('web.index');
+Route::get('/', function(){
+    return view('admin.pages.dashboard');
+});
+
+
+
+
+
+
+
+
+
 
 include __DIR__.'/admin.php';
