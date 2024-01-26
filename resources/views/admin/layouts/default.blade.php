@@ -6,13 +6,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>@yield('title' , 'Castnet')</title>
+<title>@yield('title' , 'My WeightLoss')</title>
 
     @include('admin.includes.head')
 </head>
 
-<body class="hold-transition sidebar-mini">
+<body>
     @include('admin.includes.header')
+    @include('admin.includes.sidebar')
     @yield('content')
     @include('admin.includes.footer')
     @include('admin.includes.script')
