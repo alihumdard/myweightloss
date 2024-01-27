@@ -1231,3 +1231,64 @@ h6 {
   font-size: 13px;
   color: #012970;
 }
+
+/* add product styling start */
+
+.main .product-sec .row .colors-sec .box .color-div-1{
+    background: #28A745;
+    width: 30px;
+    height: 28px;
+    border-radius: 50%;
+    margin-left: 8px;
+}
+
+.main .product-sec .row .colors-sec .box .color-div-2{
+    background: #007BFF;
+    width: 30px;
+    height: 28px;
+    border-radius: 50%;
+    margin-left: 8px;
+}
+.main .product-sec .row .colors-sec .box .color-div-3{
+    background: #6F42C1;
+    width: 30px;
+    height: 28px;
+    border-radius: 50%;
+    margin-left: 8px;
+}
+.main .product-sec .row .colors-sec .box .color-div-4{
+    background: #DC3545;
+    width: 30px;
+    height: 28px;
+    border-radius: 50%;
+    margin-left: 8px;
+}
+.main .product-sec .row .colors-sec .box .color-div-5{
+    background: #FD7E14;
+    width: 30px;
+    height: 28px;
+    border-radius: 50%;
+    margin-left: 8px;
+}
+.main .product-sec .row .color-box-main{
+    border-radius: 10px;
+    flex-wrap: wrap;
+}
+.main .product-sec .row .colors-sec .box{
+    border: 1px solid #dad8d8;
+    padding: 10px;
+
+}
+
+.pricing .dolor{
+    width: 75px;
+    font-size: 14px;
+}
+
+.product-btns button{
+    background: #0079FB;
+    color: white;
+    padding: 5px 24px;
+    margin-top: 10px;
+    border: none;
+}
