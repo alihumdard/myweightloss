@@ -19,7 +19,7 @@
             <div class="col-sm-6 col-md-6 col-lg-3">
                 <div class="product-item">
                     <div class="product__img">
-                        <img src="assets/images/products/1.jpg" alt="Product" loading="lazy">
+                        <img src="{{ asset('/assets/web/images/products/1.jpg') }}" alt="Product" loading="lazy">
                         <div class="product__action">
                             <a href="#" class="btn btn__primary btn__rounded">
                                 <i class="icon-cart"></i> <span>Add To Cart</span>
@@ -36,7 +36,7 @@
             <div class="col-sm-6 col-md-6 col-lg-3">
                 <div class="product-item">
                     <div class="product__img">
-                        <img src="assets/images/products/2.jpg" alt="Product" loading="lazy">
+                        <img src="{{ asset('/assets/web/images/products/2.jpg') }}" alt="Product" loading="lazy">
                         <div class="product__action">
                             <a href="#" class="btn btn__primary btn__rounded">
                                 <i class="icon-cart"></i> <span>Add To Cart</span>
@@ -53,7 +53,7 @@
             <div class="col-sm-6 col-md-6 col-lg-3">
                 <div class="product-item">
                     <div class="product__img">
-                        <img src="assets/images/products/3.jpg" alt="Product" loading="lazy">
+                        <img src="{{ asset('/assets/web/images/products/3.jpg') }}" alt="Product" loading="lazy">
                         <div class="product__action">
                             <a href="#" class="btn btn__primary btn__rounded">
                                 <i class="icon-cart"></i> <span>Add To Cart</span>
@@ -70,7 +70,7 @@
             <div class="col-sm-6 col-md-6 col-lg-3">
                 <div class="product-item">
                     <div class="product__img">
-                        <img src="assets/images/products/4.jpg" alt="Product" loading="lazy">
+                        <img src="{{ asset('/assets/web/images/products/4.jpg') }}" alt="Product" loading="lazy">
                         <div class="product__action">
                             <a href="#" class="btn btn__primary btn__rounded">
                                 <i class="icon-cart"></i> <span>Add To Cart</span>
@@ -87,7 +87,7 @@
             <div class="col-sm-6 col-md-6 col-lg-3">
                 <div class="product-item">
                     <div class="product__img">
-                        <img src="assets/images/products/5.jpg" alt="Product" loading="lazy">
+                        <img src="{{ asset('/assets/web/images/products/5.jpg') }}" alt="Product" loading="lazy">
                         <div class="product__action">
                             <a href="#" class="btn btn__primary btn__rounded">
                                 <i class="icon-cart"></i> <span>Add To Cart</span>
@@ -104,7 +104,7 @@
             <div class="col-sm-6 col-md-6 col-lg-3">
                 <div class="product-item">
                     <div class="product__img">
-                        <img src="assets/images/products/6.jpg" alt="Product" loading="lazy">
+                        <img src="{{ asset('/assets/web/images/products/6.jpg') }}" alt="Product" loading="lazy">
                         <div class="product__action">
                             <a href="#" class="btn btn__primary btn__rounded">
                                 <i class="icon-cart"></i> <span>Add To Cart</span>
@@ -121,7 +121,7 @@
             <div class="col-sm-6 col-md-6 col-lg-3">
                 <div class="product-item">
                     <div class="product__img">
-                        <img src="assets/images/products/7.jpg" alt="Product" loading="lazy">
+                        <img src="{{ asset('/assets/web/images/products/7.jpg') }}" alt="Product" loading="lazy">
                         <div class="product__action">
                             <a href="#" class="btn btn__primary btn__rounded">
                                 <i class="icon-cart"></i> <span>Add To Cart</span>
@@ -138,7 +138,7 @@
             <div class="col-sm-6 col-md-6 col-lg-3">
                 <div class="product-item">
                     <div class="product__img">
-                        <img src="assets/images/products/8.jpg" alt="Product" loading="lazy">
+                        <img src="{{ asset('/assets/web/images/products/8.jpg') }}" alt="Product" loading="lazy">
                         <div class="product__action">
                             <a href="#" class="btn btn__primary btn__rounded">
                                 <i class="icon-cart"></i> <span>Add To Cart</span>
@@ -167,7 +167,7 @@
      Banner Layout 2
     =========================== -->
 <section class="banner-layout2 py-0">
-    <div class="bg-img"><img src="assets/images/backgrounds/8.jpg" alt="backgrounds"></div>
+    <div class="bg-img"><img src="{{ asset('/assets/web/images/backgrounds/8.jpg') }}" alt="backgrounds"></div>
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-6">
@@ -198,7 +198,7 @@
             </div><!-- /.col-lg-6 -->
             <div class="col-sm-12 col-md-12 col-lg-6 banner-img">
                 <div class="bg-img">
-                    <img src="assets/images/banners/9.jpg" alt="backgrounds">
+                    <img src="{{ asset('/assets/web/images/banners/9.jpg') }}" alt="backgrounds">
                 </div>
             </div><!-- /.col-lg-6 -->
         </div><!-- /.row -->
@@ -224,7 +224,7 @@
                 <div class="post-item">
                     <div class="post__img">
                         <a href="blog-single-post.html">
-                            <img src="assets/images/blog/grid/1.jpg" alt="post image" loading="lazy">
+                            <img src="{{ asset('/assets/web/images/blog/grid/1.jpg') }}" alt="post image" loading="lazy">
                         </a>
                     </div><!-- /.post__img -->
                     <div class="post__body">
@@ -252,7 +252,7 @@
                 <div class="post-item">
                     <div class="post__img">
                         <a href="blog-single-post.html">
-                            <img src="assets/images/blog/grid/2.jpg" alt="post image" loading="lazy">
+                            <img src="{{ asset('/assets/web/images/blog/grid/2.jpg') }}" alt="post image" loading="lazy">
                         </a>
                     </div><!-- /.post__img -->
                     <div class="post__body">
@@ -279,7 +279,7 @@
                 <div class="post-item">
                     <div class="post__img">
                         <a href="blog-single-post.html">
-                            <img src="assets/images/blog/grid/3.jpg" alt="post image" loading="lazy">
+                            <img src="{{ asset('/assets/web/images/blog/grid/3.jpg') }}" alt="post image" loading="lazy">
                         </a>
                     </div><!-- /.post__img -->
                     <div class="post__body">

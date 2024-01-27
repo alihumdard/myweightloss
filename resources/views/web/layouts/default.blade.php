@@ -18,6 +18,7 @@
         @include('web.includes.sidebar')
         @yield('content')
         @include('web.includes.footer')
+        @include('web.includes.script')
         @stack('scripts')
     </div><!-- /.wrapper -->
 </body>
