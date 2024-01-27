@@ -15,17 +15,4 @@ use PhpParser\Node\Expr\FuncCall;
 */
 
 // Route::get('/', [HomeController::class, 'index'])->name('web.index');
-Route::get('/', function(){
-    return view('admin.pages.dashboard');
-});
-
-
-
-
-
-
-
-
-
-
 include __DIR__.'/admin.php';

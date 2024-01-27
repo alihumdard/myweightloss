@@ -1,114 +1,97 @@
-<!-- Footer Start -->
-<footer class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-lg-3">
-                <a href="index.html">
-                    <img src="{{ asset($mediumlogo) }}" alt="Footer logo" class="footer_logo">
-                </a>
-                <p class="footer_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</p>
-                <div class="d-flex gap-3">
-                    <a href="#" class="social_link">
-                        <img src="assets/web/images/icon_fb.png" alt="social icons" class="img-icon">
-                    </a>
-                    <a href="#" class="social_link">
-                        <img src="assets/web/images/icon_tw.png" alt="social icons" class="img-icon">
-                    </a>
-                    <a href="#" class="social_link">
-                        <img src="assets/web/images/icon_li.png" alt="social icons" class="img-icon">
-                    </a>
-                    <a href="#" class="social_link">
-                        <img src="assets/web/images/icon_ig.png" alt="social icons" class="img-icon">
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 mt-lg-5">
-                <div class="ms-lg-5">
-                    <div class="footer_heading">main links</div>
-                    <div class="footer_links">
-                        <a href="index.html" class="footer_link">home</a>
-                        <a href="#" class="footer_link">membership</a>
-                        <a href="#" class="footer_link">volunteers</a>
-                        <a href="#" class="footer_link">sectors</a>
-                        <a href="#" class="footer_link">impact page</a>
-                        <a href="#" class="footer_link">financial support</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 mt-lg-5">
-                <div class="footer_heading">contact</div>
-                <div class="footer_links">
-                    <div class="contact_media">
-                        <div class="icon">
-                            <img src="assets/web/images/icon_phone.png" alt="phone" class="img-fluid">
-                        </div>
-                        <div class="text">
-                            <a href="tel:4065550120">(406) 555-0120</a>
-                        </div>
-                    </div>
-                    <div class="contact_media">
-                        <div class="icon">
-                            <img src="assets/web/images/icon_email.png" alt="phone" class="img-fluid">
-                        </div>
-                        <div class="text">
-                            <a href="mailto:castnetdummy@gmail.com">castnetdummy@gmail.com</a>
-                        </div>
-                    </div>
-                    <div class="contact_media">
-                        <div class="icon">
-                            <img src="assets/web/images/icon_map.png" alt="phone" class="img-fluid">
-                        </div>
-                        <div class="text">11580 State Route 44 #1016 Mantua, OH 44255 United States</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 mt-lg-5">
-                <div class="footer_heading text-uppercase">our newsletter</div>
-                <form action="#">
-                    <input type="text" class="form-control" placeholder="Your Email Address">
-                    <button type="submit" class="btn btn-submit">subscribe</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="footer-bottom">
+<!-- ========================
+      Footer
+    ========================== -->
+    <footer class="footer">
+      <div class="footer-primary">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <p class="text-center text-lg-start fw-light fs-5">&copy; Copyright 2023 international chamber of Commerce. All rights reserved</p>
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-3">
+              <div class="footer-widget-about">
+                <img src="assets/images/logo/logo-light.png" alt="logo" class="mb-30">
+                <p class="color-gray">Our goal is to deliver quality of care in a courteous, respectful, and
+                  compassionate manner. We hope you will allow us to care for you and strive to be the first and best
+                  choice for your family healthcare.
+                </p>
+                <a href="appointment.html" class="btn btn__primary btn__primary-style2 btn__link">
+                  <span>Make Appointment</span> <i class="icon-arrow-right"></i>
+                </a>
+              </div><!-- /.footer-widget__content -->
+            </div><!-- /.col-xl-2 -->
+            <div class="col-sm-6 col-md-6 col-lg-2 offset-lg-1">
+              <div class="footer-widget-nav">
+                <h6 class="footer-widget__title">Departments</h6>
+                <nav>
+                  <ul class="list-unstyled">
+                    <li><a href="#">Neurology Clinic</a></li>
+                    <li><a href="#">Cardiology Clinic</a></li>
+                    <li><a href="#">Pathology Clinic</a></li>
+                    <li><a href="#">Laboratory Analysis</a></li>
+                    <li><a href="#">Pediatric Clinic</a></li>
+                    <li><a href="#">Cardiac Clinic</a></li>
+                  </ul>
+                </nav>
+              </div><!-- /.footer-widget__content -->
+            </div><!-- /.col-lg-2 -->
+            <div class="col-sm-6 col-md-6 col-lg-2">
+              <div class="footer-widget-nav">
+                <h6 class="footer-widget__title">Links</h6>
+                <nav>
+                  <ul class="list-unstyled">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our CLinic</a></li>
+                    <li><a href="#">Our Doctors</a></li>
+                    <li><a href="#">News & Media</a></li>
+                    <li><a href="#">Appointments</a></li>
+                  </ul>
+                </nav>
+              </div><!-- /.footer-widget__content -->
+            </div><!-- /.col-lg-2 -->
+            <div class="col-sm-12 col-md-6 col-lg-4">
+              <div class="footer-widget-contact">
+                <h6 class="footer-widget__title color-heading">Quick Contacts</h6>
+                <ul class="contact-list list-unstyled">
+                  <li>If you have any questions or need help, feel free to contact with our team.</li>
+                  <li>
+                    <a href="tel:01061245741" class="phone__number">
+                      <i class="icon-phone"></i> <span>01061245741</span>
+                    </a>
+                  </li>
+                  <li class="color-body">2307 Beverley Rd Brooklyn, New York 11226 United States.</li>
+                </ul>
+                <div class="d-flex align-items-center">
+                  <a href="contact-us.html" class="btn btn__primary btn__link mr-30">
+                    <i class="icon-arrow-right"></i> <span>Get Directions</span>
+                  </a>
+                  <ul class="social-icons list-unstyled mb-0">
+                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                  </ul><!-- /.social-icons -->
                 </div>
-                <div class="col-lg-6">
-                    <p class="text-center text-lg-end fw-light fs-5">Designed &amp; Developed by <a href="https://leadconcept.com/" target="_blank">LEADconcept</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-
-<!-- Modal Start -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="row gx-4">
-                    <div class="col-lg-5 text-center text-lg-start">
-                        <img src="{{ asset($largelogo) }}" alt="logo" class="img-logo">
-                    </div>
-                    <div class="col-lg-7">
-                        <h2 class="modal-title">castnet purpose</h2>
-                        <p class="modal-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                        <p class="modal-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.</p>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                            <span>get started</span>
-                            <img src="assets/web/images/icon_arrow_alt.png" alt="arrow">
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Modal End -->
-<!-- REQUIRED SCRIPTS -->
-
-@include('web.includes.script')
+              </div><!-- /.footer-widget__content -->
+            </div><!-- /.col-lg-2 -->
+          </div><!-- /.row -->
+        </div><!-- /.container -->
+      </div><!-- /.footer-primary -->
+      <div class="footer-secondary">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-sm-12 col-md-6 col-lg-6">
+              <span class="fz-14">&copy; 2020 DataSoft, All Rights Reserved. With Love by</span>
+              <a class="fz-14 color-primary" href="http://themeforest.net/user/7oroof">7oroof.com</a>
+            </div><!-- /.col-lg-6 -->
+            <div class="col-sm-12 col-md-6 col-lg-6">
+              <nav>
+                <ul class="list-unstyled footer__copyright-links d-flex flex-wrap justify-content-end mb-0">
+                  <li><a href="#">Terms & Conditions</a></li>
+                  <li><a href="#">Privacy Policy</a></li>
+                  <li><a href="#">Cookies</a></li>
+                </ul>
+              </nav>
+            </div><!-- /.col-lg-6 -->
+          </div><!-- /.row -->
+        </div><!-- /.container -->
+      </div><!-- /.footer-secondary -->
+    </footer><!-- /.Footer -->
+    <button id="scrollTopBtn"><i class="fas fa-long-arrow-alt-up"></i></button>
+    
