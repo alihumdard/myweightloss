@@ -4,7 +4,7 @@
     <section class="slider slider-centerd">
         <div class="slick-carousel m-slides-0 carousel-arrows-light carousel-dots-light" data-slick='{"slidesToShow": 1, "arrows": true, "dots": false, "speed": 700,"fade": true,"cssEase": "linear"}'>
             <div class="slide-item align-v-h">
-                <div class="bg-img"><img src="assets/images/sliders/8.jpg" alt="slide img"></div>
+                <div class="bg-img"><img src="{{ asset('/assets/web/images/sliders/8.jpg') }}" alt="slide img"></div>
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 offset-xl-2">
@@ -31,7 +31,7 @@
                 </div><!-- /.container -->
             </div><!-- /.slide-item -->
             <div class="slide-item align-v-h">
-                <div class="bg-img"><img src="assets/images/sliders/9.jpg" alt="slide img"></div>
+                <div class="bg-img"><img src="{{ asset('/assets/web/images/sliders/9.jpg') }}" alt="slide img"></div>
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 offset-xl-2">

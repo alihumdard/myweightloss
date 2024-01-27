@@ -1,7 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\web\HomeController;
-use PhpParser\Node\Expr\FuncCall;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +13,9 @@ use PhpParser\Node\Expr\FuncCall;
 |
 */
 
-// Route::get('/', [HomeController::class, 'index'])->name('web.index');
+Route::get('/', [HomeController::class, 'index'])->name('web.index');
+Route::get('/aboutUs', [HomeController::class, 'about_us'])->name('web.aboutUs');
+Route::get('/contactUs', [HomeController::class, 'contact_us'])->name('web.contactUs');
+Route::get('/blogs', [HomeController::class, 'blogs'])->name('web.blogs');
+
 include __DIR__.'/admin.php';
