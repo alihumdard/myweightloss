@@ -182,8 +182,9 @@
                         </div>
                         <div class="row">
                             <div class="d-grid mt-2">
-                                <a class="btn btn-primary" type="button"><i class=" me-3 bi bi-eye-fill"></i>View Profile</a>
-                              </div>
+                                <a class="btn btn-primary" type="button"><i class=" me-3 bi bi-eye-fill"></i>View
+                                    Profile</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -200,8 +201,9 @@
                         </div>
                         <div class="row">
                             <div class="d-grid mt-2">
-                                <a class="btn btn-primary" type="button"><i class=" me-3 bi bi-eye-fill"></i>View Profile</a>
-                              </div>
+                                <a class="btn btn-primary" type="button"><i class=" me-3 bi bi-eye-fill"></i>View
+                                    Profile</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -218,8 +220,9 @@
                         </div>
                         <div class="row">
                             <div class="d-grid mt-2">
-                                <a class="btn btn-primary" type="button"><i class=" me-3 bi bi-eye-fill"></i>View Profile</a>
-                              </div>
+                                <a class="btn btn-primary" type="button"><i class=" me-3 bi bi-eye-fill"></i>View
+                                    Profile</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -236,8 +239,9 @@
                         </div>
                         <div class="row">
                             <div class="d-grid mt-2">
-                                <a class="btn btn-primary" type="button"><i class=" me-3 bi bi-eye-fill"></i>View Profile</a>
-                              </div>
+                                <a class="btn btn-primary" type="button"><i class=" me-3 bi bi-eye-fill"></i>View
+                                    Profile</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -254,8 +258,9 @@
                         </div>
                         <div class="row">
                             <div class="d-grid mt-2">
-                                <a class="btn btn-primary" type="button"><i class=" me-3 bi bi-eye-fill"></i>View Profile</a>
-                              </div>
+                                <a class="btn btn-primary" type="button"><i class=" me-3 bi bi-eye-fill"></i>View
+                                    Profile</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -272,8 +277,9 @@
                         </div>
                         <div class="row">
                             <div class="d-grid mt-2">
-                                <a class="btn btn-primary" type="button"><i class=" me-3 bi bi-eye-fill"></i>View Profile</a>
-                              </div>
+                                <a class="btn btn-primary" type="button"><i class=" me-3 bi bi-eye-fill"></i>View
+                                    Profile</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -290,8 +296,9 @@
                         </div>
                         <div class="row">
                             <div class="d-grid mt-2">
-                                <a class="btn btn-primary" type="button"><i class=" me-3 bi bi-eye-fill"></i>View Profile</a>
-                              </div>
+                                <a class="btn btn-primary" type="button"><i class=" me-3 bi bi-eye-fill"></i>View
+                                    Profile</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -308,8 +315,9 @@
                         </div>
                         <div class="row">
                             <div class="d-grid mt-2">
-                                <a class="btn btn-primary" type="button"><i class=" me-3 bi bi-eye-fill"></i>View Profile</a>
-                              </div>
+                                <a class="btn btn-primary" type="button"><i class=" me-3 bi bi-eye-fill"></i>View
+                                    Profile</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -326,8 +334,9 @@
                         </div>
                         <div class="row">
                             <div class="d-grid mt-2">
-                                <a class="btn btn-primary" type="button"><i class=" me-3 bi bi-eye-fill"></i>View Profile</a>
-                              </div>
+                                <a class="btn btn-primary" type="button"><i class=" me-3 bi bi-eye-fill"></i>View
+                                    Profile</a>
+                            </div>
                         </div>
                     </div>
                 </div>

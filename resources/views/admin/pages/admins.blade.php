@@ -4,6 +4,24 @@
 <!-- main stated -->
 <main id="main" class="main">
 
+    <style>
+        .edit i{
+            color: #4154F1;
+    font-size: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+        }
+        .delete i{
+            color: #E34724;
+    font-size: 20px;
+    margin-left: 10px;
+        }
+        .card-body table tr{
+            background-color: #E34724 !important;
+        }
+
+    </style>
+
     <div class="pagetitle">
         <h1>Admins</h1>
         <nav>
@@ -28,10 +46,10 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>Rendering engine</th>
-                                    <th>Browser</th>
-                                    <th>Platform(s)</th>
-                                    <th>Engine version</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Address</th>
+                                    <th>Actions</th>
                                     <th>CSS grade</th>
                                 </tr>
                             </thead>
@@ -90,63 +108,113 @@
                                     <td>Gecko</td>
                                     <td>Firefox 1.0</td>
                                     <td>Win 98+ / OSX.2+</td>
-                                    <td>1.7</td>
+                                    <td>
+                                        <a class="edit" title="Edit" data-toggle="tooltip">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
+                                        <a class="delete" title="Delete" data-toggle="tooltip">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </a>
+                                    </td>
+
+
+
                                     <td>A</td>
                                 </tr>
                                 <tr>
                                     <td>Gecko</td>
                                     <td>Firefox 1.5</td>
                                     <td>Win 98+ / OSX.2+</td>
-                                    <td>1.8</td>
+                                    <td>  <a class="edit" title="Edit" data-toggle="tooltip">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <a class="delete" title="Delete" data-toggle="tooltip">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </a></td>
                                     <td>A</td>
                                 </tr>
                                 <tr>
                                     <td>Gecko</td>
                                     <td>Firefox 2.0</td>
                                     <td>Win 98+ / OSX.2+</td>
-                                    <td>1.8</td>
+                                    <td>  <a class="edit" title="Edit" data-toggle="tooltip">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <a class="delete" title="Delete" data-toggle="tooltip">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </a></td>
                                     <td>A</td>
                                 </tr>
                                 <tr>
                                     <td>Gecko</td>
                                     <td>Firefox 3.0</td>
                                     <td>Win 2k+ / OSX.3+</td>
-                                    <td>1.9</td>
+                                    <td>  <a class="edit" title="Edit" data-toggle="tooltip">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <a class="delete" title="Delete" data-toggle="tooltip">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </a></td>
                                     <td>A</td>
                                 </tr>
                                 <tr>
                                     <td>Gecko</td>
                                     <td>Camino 1.0</td>
                                     <td>OSX.2+</td>
-                                    <td>1.8</td>
+                                    <td>  <a class="edit" title="Edit" data-toggle="tooltip">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <a class="delete" title="Delete" data-toggle="tooltip">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </a></td>
                                     <td>A</td>
                                 </tr>
                                 <tr>
                                     <td>Gecko</td>
                                     <td>Camino 1.5</td>
                                     <td>OSX.3+</td>
-                                    <td>1.8</td>
+                                    <td>  <a class="edit" title="Edit" data-toggle="tooltip">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <a class="delete" title="Delete" data-toggle="tooltip">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </a></td>
                                     <td>A</td>
                                 </tr>
                                 <tr>
                                     <td>Gecko</td>
                                     <td>Netscape 7.2</td>
                                     <td>Win 95+ / Mac OS 8.6-9.2</td>
-                                    <td>1.7</td>
+                                    <td>  <a class="edit" title="Edit" data-toggle="tooltip">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <a class="delete" title="Delete" data-toggle="tooltip">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </a></td>
                                     <td>A</td>
                                 </tr>
                                 <tr>
                                     <td>Gecko</td>
                                     <td>Netscape Browser 8</td>
                                     <td>Win 98SE+</td>
-                                    <td>1.7</td>
+                                    <td>  <a class="edit" title="Edit" data-toggle="tooltip">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <a class="delete" title="Delete" data-toggle="tooltip">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </a></td>
                                     <td>A</td>
                                 </tr>
                                 <tr>
                                     <td>Gecko</td>
                                     <td>Netscape Navigator 9</td>
                                     <td>Win 98+ / OSX.2+</td>
-                                    <td>1.8</td>
+                                    <td>  <a class="edit" title="Edit" data-toggle="tooltip">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <a class="delete" title="Delete" data-toggle="tooltip">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </a></td>
                                     <td>A</td>
                                 </tr>
                                 <tr>
