@@ -6,20 +6,21 @@
 <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
     <style>
 .dropzone{
-  width: 100%%
-  margin: 1%
-  border: 2px dashed #3498db !important
-  border-radius: 5px
+    min-height: 150px;
+    border: 2px dotted rgba(0, 0, 0, 0.3) !important;
+    background: white;
+    padding: 20px 20px;
+  width: 100%;
   transition: .2s
   height: 20vh !important;
+  background: #ffff !important;
+  /* box-shadow: 0px 0px 49px -11px rgba(0.78,0,0,0.43);
+-webkit-box-shadow: 0px 0px 49px -11px rgba(0,0,0,0.55);
+-moz-box-shadow: 0px 0px 49px -11px rgba(0,0,0,0.62); */
 }
 
-.dropzone.dz-drag-hover{
-  border: 2px solid #3498db !important
 
-}
-.dz-message.needsclick{
-      img
+.dz-message.needsclick img{
     width: 50px
     display: block
     margin: auto
@@ -29,26 +30,35 @@
 
 
 span.plus{
+    left: 36%;
+    top: -2%;
+    padding: 33px 50px;
+    position: absolute;
+    color: white;
+    font-weight: 900;
+    border-radius: 50%;
+    opacity: 0;
+    z-index: 999;
+    background: #4154F1;
+    font-size: 35px;
+}
 
-
-  display: none
-.dropzone.dz-started .dz-message
+span.plus:hover{
+    opacity: 0.6;
+    transition: 0.5s
+}
+.dropzone.dz-started .dz-message{
   display: inline-block !important
-  width: 120px
   float: right
   border: 1px solid rgba(238, 238, 238, 0.36)
   border-radius: 30px
   height: 120px
   margin: 16px
   transition: .2s
-  span.text
-    display: none
-  span.plus
-    display: block
-    font-size: 70px
-    color: #AAA
-    line-height: 110px
 }
+  span.text{
+        display: block;
+  }
     </style>
 
     <!-- main stated -->
@@ -65,24 +75,24 @@ span.plus{
             </nav>
         </div><!-- End Page Title -->
 
-        <section class="product-sec" style="position: relative;">
-            <div class="row">
+        <section class="product-sec">
+            <div class="row gy-4">
                 <div class=" col-md-6">
-                    <div class="row gy-3">
-                        <div class="col-sm-4  col-md-12">
+                    <div class="row">
+                        <div class="col-sm-12  col-md-12">
                                 <div classs="dropzone">
                                     <form action="/upload" class="dropzone needsclick" id="demo-upload">
-                                      <div class="dz-message needsclick">
+                                      <div class="dz-message needsclick" style="position: relative;">
                                         <span class="text">
-                                        <img class="img-fluid" src="http://www.freeiconspng.com/uploads/------------------------------iconpngm--22.png" alt="Camera" />
-                                        Drop files here or click to upload.
+                                        <img class="img-fluid" style="width: 100px; height: auto;" src="http://www.freeiconspng.com/uploads/------------------------------iconpngm--22.png" alt="Camera" />
                                         </span>
+                                       <p class="mt-3 fw-bold"> Upload Image</p>
                                         <span class="plus">+</span>
                                       </div>
                                     </form>
                                   </div>
                         </div>
-                        <div class="col-sm-4 col-md-2">
+                        {{-- <div class="col-sm-4 col-md-2">
                             <img class="img-fluid product-image-thumb"
                                 src="{{ asset('assets/admin/img/productsssss.jpg') }}" alt="" >
 
@@ -111,7 +121,7 @@ span.plus{
                             <img class="img-fluid product-image-thumb"
                                 src="{{ asset('assets/admin/img/productsssss.jpg') }}" alt="">
 
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="col-lg-12">
                     </div>
@@ -315,15 +325,7 @@ span.plus{
 
 @pushOnce('scripts')
     <script>
-        $(document).ready(function() {
-            $('.product-image-thumb').on('click', function() {
-                var image_element = $(this).attr('src')
 
-                $('.product-image').prop('src', image_element)
-                //   $('.product-image-thumb.active').removeClass('active')
-                //   $(this).addClass('active')
-            })
-        })
 
 
     </script>
