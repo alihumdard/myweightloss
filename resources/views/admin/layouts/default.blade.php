@@ -17,8 +17,8 @@
     @yield('content')
     @include('admin.includes.footer')
     @include('admin.includes.script')
-    @include('admin.pages.apicall')
     @stack('scripts')
+    @include('admin.pages.apicall')
 </body>
 
 </html>

@@ -21,30 +21,38 @@
 
                 <div class="card vh-100">
                     <div class="card-body">
-                        <form class="row apiform g-3 mt-3" method="post" action="userStore">
+                        <form class="row apiform g-3 mt-3 needs-validation" method="post" action="userStore" novalidate>
+
                             <div class="col-md-6">
-                                <label for="inputName5" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="inputName5">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" name="name"  class="form-control" id="name" required>
+                                <div class="invalid-feedback">Please enter your name!</div>
                             </div>
+
                             <div class="col-md-6">
-                                <label for="inputEmail5" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="inputEmail5">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" name="email" class="form-control" id="email" required>
+                                <div class="invalid-feedback">Please enter valid email!</div>
                             </div>
+
                             <div class="col-md-6">
-                                <label for="inputEmail5" class="form-label">Phone</label>
-                                <input type="number" class="form-control" id="inputEmail5">
+                                <label for="phone" class="form-label">Phone</label>
+                                <input type="number" name="phone" class="form-control" id="phone">
                             </div>
+
                             <div class="col-md-6">
-                                <label for="inputPassword5" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="inputPassword5">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" name="password" class="form-control" id="password">
                             </div>
+
                             <div class="col-md-6">
-                                <label for="inputCity" class="form-label">City</label>
-                                <input type="text" class="form-control" id="inputCity">
+                                <label for="city" class="form-label">City</label>
+                                <input type="text" name="city" class="form-control" id="city">
                             </div>
+
                             <div class="col-md-4">
-                                <label for="inputState" class="form-label">State</label>
-                                <select id="inputState" class="form-select">
+                                <label for="state" class="form-label">State</label>
+                                <select id="state"  name="state" class="form-select">
                                     <option selected>Choose...</option>
                                     <option value="LND">London, City of</option>
                                     <option value="ABE">Aberdeen City</option>
@@ -264,14 +272,15 @@
                                     <option value="YOR">York</option>
                                 </select>
                             </div>
+                            
                             <div class="col-md-2">
-                                <label for="inputZip" class="form-label">Zip</label>
-                                <input type="text" class="form-control" id="inputZip">
+                                <label for="zip_code" class="form-label">Zip</label>
+                                <input type="text" name="zip_code" class="form-control" id="zip_code">
                             </div>
 
                             <div class="col-12">
-                                <label for="inputAddress5" class="form-label">Address</label>
-                                <input type="text" class="form-control" id="inputAddres5s" placeholder="1234 Main St">
+                                <label for="address" class="form-label">Address</label>
+                                <input type="text" name="address" class="form-control" id="address" placeholder="1234 Main St">
                             </div>
 
                             <div class="text-center">

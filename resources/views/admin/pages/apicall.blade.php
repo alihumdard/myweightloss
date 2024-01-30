@@ -6,9 +6,9 @@ $user = auth()->user();
         var user = @json($user);
 
         // Adding  data in through the api...
-        $('.apiform').on('submit', function(e) {
+        $('body').on('submit','.apiform', function(e) {
             e.preventDefault();
-alert();
+            alert();
             var form = $(this);
             var apiname = form.attr('action');
             var apiurl = "{{ end_url('') }}" + apiname;
@@ -24,8 +24,7 @@ alert();
                 },
                 contentType: false,
                 processData: false,
-                beforeSend: function() {
-                },
+                beforeSend: function() {},
                 success: function(response) {
 
                     if (response.status === 'success') {
