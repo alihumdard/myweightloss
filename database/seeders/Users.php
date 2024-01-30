@@ -46,6 +46,9 @@ class Users extends Seeder
         User::factory()->create([
             'name'         => 'Admin',
             'email'        => 'admin@gmail.com',
+            'phone'        => '+923394030',
+            'address'      => 'gernal texi stand.',
+            'email'        => 'admin@gmail.com',
             'password'     => Hash::make('12345'),
             'role'         => 'Admin',
             'status'       => '1',
@@ -56,6 +59,8 @@ class Users extends Seeder
         User::factory()->create([
             'name'         => 'Doctor',
             'email'        => 'doctor@gmail.com',
+            'phone'        => '+923394030',
+            'address'      => 'gernal texi stand.',
             'password'     => Hash::make('12345'),
             'role'         => 'Doctor',
             'status'       => '1',
@@ -66,6 +71,8 @@ class Users extends Seeder
         User::factory()->create([
             'name'      => 'User',
             'email'     => 'user@gmail.com',
+            'phone'        => '+923394030',
+            'address'      => 'gernal texi stand.',
             'password'  => Hash::make('12345'),
             'role'      => 'User',
             'status'    => '1',
