@@ -43,7 +43,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table id="example1" class="table table-bordered table-striped" style="--bs-table-striped-bg: #rgba(65, 84, 241, 1) !important;">
                             <thead>
                                 <tr>
                                     <th>Name</th>

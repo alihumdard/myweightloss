@@ -2,63 +2,195 @@
 @section('title', 'Add Product')
 @section('content')
 
-<link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css" />
-<script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+    <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css" />
+    <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
     <style>
-.dropzone{
-    min-height: 150px;
-    border: 2px dotted rgba(0, 0, 0, 0.3) !important;
-    background: white;
-    padding: 20px 20px;
-  width: 100%;
-  transition: .2s
-  height: 20vh !important;
-  background: #ffff !important;
-  /* box-shadow: 0px 0px 49px -11px rgba(0.78,0,0,0.43);
--webkit-box-shadow: 0px 0px 49px -11px rgba(0,0,0,0.55);
--moz-box-shadow: 0px 0px 49px -11px rgba(0,0,0,0.62); */
-}
+        html * {
+            box-sizing: border-box;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        .upload__box {
+            padding: 50px 0;
+            min-height: 342px;
+            border: 1px dotted;
+            position: relative;
+            background: white;
+        }
+
+        .upload__inputfile {
+            width: .1px;
+            height: .1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
+
+        .upload__btn {
+            color: #fff;
+            text-align: center;
+            min-width: 65px;
+            height: 65px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 2px solid;
+            background-color: #4045ba;
+            border-color: #4045ba;
+            border-radius: 56px;
+            line-height: 26px;
+            font-size: 35px;
+            position: absolute;
+            top: 37%;
+            font-weight: 900;
+            left: 43%;
+        }
+
+        .uploaded__btn {
+            color: #fff;
+            text-align: center;
+            min-width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 2px solid;
+            background-color: #4045ba;
+            border-color: #4045ba;
+            border-radius: 56px;
+            line-height: 26px;
+            font-size: 35px;
+            position: absolute;
+            font-weight: 900 bottom: 5%;
+            right: 6%;
+            bottom: 9%;
+        }
 
 
-.dz-message.needsclick img{
-    width: 50px
-    display: block
-    margin: auto
-    opacity: .6
-    margin-bottom: 15px
-}
+        .upload__btn:hover {
+            background-color: unset;
+            color: #4045ba;
+            transition: all .3s ease;
+        }
+
+        .upload__btn-box {
+            margin-bottom: 10px;
+        }
+
+        .upload__img-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px;
+        }
+
+        .upload__img-box {
+            width: 200px;
+            padding: 0 10px;
+            margin-bottom: 12px;
+        }
+
+        .upload__img-close {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            text-align: center;
+            line-height: 24px;
+            z-index: 1;
+            cursor: pointer;
+        }
+
+        .upload__img-close:after {
+            content: '\2716';
+            font-size: 14px;
+            color: white;
+        }
+
+        .img-bg {
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            position: relative;
+            padding-bottom: 100%;
+        }
 
 
-span.plus{
-    left: 36%;
-    top: -2%;
-    padding: 33px 50px;
-    position: absolute;
-    color: white;
-    font-weight: 900;
-    border-radius: 50%;
-    opacity: 0;
-    z-index: 999;
-    background: #4154F1;
-    font-size: 35px;
-}
 
-span.plus:hover{
-    opacity: 0.6;
-    transition: 0.5s
-}
-.dropzone.dz-started .dz-message{
-  display: inline-block !important
-  float: right
-  border: 1px solid rgba(238, 238, 238, 0.36)
-  border-radius: 30px
-  height: 120px
-  margin: 16px
-  transition: .2s
-}
-  span.text{
-        display: block;
-  }
+
+
+
+
+
+
+
+
+
+
+
+
+        /* .dropzone{
+                            min-height: 150px;
+                            border: 2px dotted rgba(0, 0, 0, 0.3) !important;
+                            background: white;
+                            padding: 20px 20px;
+                          width: 100%;
+                          transition: .2s
+                          height: 20vh !important;
+                          background: #ffff !important; */
+        /* box-shadow: 0px 0px 49px -11px rgba(0.78,0,0,0.43);
+                        -webkit-box-shadow: 0px 0px 49px -11px rgba(0,0,0,0.55);
+                        -moz-box-shadow: 0px 0px 49px -11px rgba(0,0,0,0.62); */
+        /* }
+
+
+                        .dz-message.needsclick img{
+                            width: 50px
+                            display: block
+                            margin: auto
+                            opacity: .6
+                            margin-bottom: 15px
+                        }
+
+
+                        span.plus{
+                            left: 36%;
+                            top: -2%;
+                            padding: 33px 50px;
+                            position: absolute;
+                            color: white;
+                            font-weight: 900;
+                            border-radius: 50%;
+                            opacity: 0;
+                            z-index: 999;
+                            background: #4154F1;
+                            font-size: 35px;
+                        }
+
+                        span.plus:hover{
+                            opacity: 0.6;
+                            transition: 0.5s
+                        }
+                        .dropzone.dz-started .dz-message{
+                          display: inline-block !important
+                          float: right
+                          border: 1px solid rgba(238, 238, 238, 0.36)
+                          border-radius: 30px
+                          height: 120px
+                          margin: 16px
+                          transition: .2s
+                        }
+                          span.text{
+                                display: block;
+                          } */
     </style>
 
     <!-- main stated -->
@@ -80,17 +212,40 @@ span.plus:hover{
                 <div class=" col-md-6">
                     <div class="row">
                         <div class="col-sm-12  col-md-12">
-                                <div classs="dropzone">
+
+
+
+
+
+
+
+
+
+
+                            {{-- <div classs="dropzone">
                                     <form action="/upload" class="dropzone needsclick" id="demo-upload">
                                       <div class="dz-message needsclick" style="position: relative;">
                                         <span class="text">
                                         <img class="img-fluid" style="width: 100px; height: auto;" src="http://www.freeiconspng.com/uploads/------------------------------iconpngm--22.png" alt="Camera" />
                                         </span>
-                                       <p class="mt-3 fw-bold"> Upload Image</p>
+                                       <p class="mt-3 fw-bold">Upload Image</p>
                                         <span class="plus">+</span>
                                       </div>
                                     </form>
-                                  </div>
+                                  </div> --}}
+                            <div class="upload__box">
+                                <div class="upload__btn-box">
+                                    <div class="upload__img-wrap">
+
+                                        <label class="upload__btn" id="uploadbtn">
+                                            <p>+</p>
+                                            <input type="file" multiple="" data-max_length="20"
+                                                class="upload__inputfile">
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
                         {{-- <div class="col-sm-4 col-md-2">
                             <img class="img-fluid product-image-thumb"
@@ -325,8 +480,78 @@ span.plus:hover{
 
 @pushOnce('scripts')
     <script>
+        jQuery(document).ready(function() {
+            ImgUpload();
+        });
 
+        function ImgUpload() {
+            var imgWrap = "";
+            var imgArray = [];
 
+            $('.upload__inputfile').each(function() {
+                $(this).on('change', function(e) {
+                    imgWrap = $(this).closest('.upload__box').find('.upload__img-wrap');
+                    var maxLength = $(this).attr('data-max_length');
 
+                    var files = e.target.files;
+                    var filesArr = Array.prototype.slice.call(files);
+                    var iterator = 0;
+                    filesArr.forEach(function(f, index) {
+
+                        if (!f.type.match('image.*')) {
+                            return;
+                        }
+
+                        if (imgArray.length > maxLength) {
+                            return false
+                        } else {
+                            var len = 0;
+                            for (var i = 0; i < imgArray.length; i++) {
+                                if (imgArray[i] !== undefined) {
+                                    len++;
+                                }
+                            }
+                            if (len > maxLength) {
+                                return false;
+                            } else {
+                                imgArray.push(f);
+
+                                var reader = new FileReader();
+                                reader.onload = function(e) {
+                                    var html =
+                                        "<div class='upload__img-box'><div style='background-image: url(" +
+                                        e.target.result + ")' data-number='" + $(
+                                            ".upload__img-close").length + "' data-file='" + f
+                                        .name +
+                                        "' class='img-bg'><div class='upload__img-close'></div></div></div>";
+                                    $('#uploadbtn').removeClass('upload__btn').addClass(
+                                        'uploaded__btn');
+                                    imgWrap.prepend(html);
+                                    iterator++;
+                                }
+                                reader.readAsDataURL(f);
+                            }
+                        }
+                    });
+                });
+            });
+
+            $('body').on('click', ".upload__img-close", function(e) {
+                var file = $(this).parent().data("file");
+                for (var i = 0; i < imgArray.length; i++) {
+                    if (imgArray[i].name === file) {
+                        imgArray.splice(i, 1);
+                        break;
+                    }
+                }
+                $(this).parent().parent().remove();
+            });
+        }
+
+        document.getElementById('changposition');
+
+        function goimage() {
+            style.upload_box.style.display = "none";
+        }
     </script>
 @endPushOnce
