@@ -60,104 +60,41 @@
         <div class="row">
             <div class="col-lg-12">
 
-                <div class="card"  >
-                    <div class="card-header mt-3" id="tbl_buttons" style="border: 0 !important; border-color: transparent !important;">
+                <div class="card">
+                    <div class="card-header mt-3" id="tbl_button" style="border: 0 !important; border-color: transparent !important;">
                     </div>
-                    <div class="card-body" >
-                        <table id="tbl_categories" class="table table-striped">
+                    <div class="card-body">
+                        <table id="tbl_categories" class="table table-bordered table-striped">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Address</th>
-                                    <th>Actions</th>
+                                    <th style="vertical-align: middle; text-align: center;">#</th>
+                                    <th style="vertical-align: middle; text-align: center;">Category Name</th>
+                                    <th style="vertical-align: middle; text-align: center;">Status</th>
+                                    <th style="vertical-align: middle; text-align: center;">Active/Inactive</th>
+                                    <th style="vertical-align: middle; text-align: center;">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($categories as $key => $value)
                                 <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 4.0
+                                    <th style="vertical-align: middle; text-align: center;">{{ ++$key }}</th>
+                                    <td style="vertical-align: middle; text-align: center;">{{$value['name'] ?? '' }}</td>
+                                    <td style="vertical-align: middle; text-align: center; font-weight: bold;">{{$value['publish'] ?? '' }} </td>
+                                    <td style="vertical-align: middle; text-align: center;">
+                                        <div class="form-check form-switch d-flex justify-content-center ">
+                                            <input class="form-check-input"  style="width: 3.3rem; height: 1.3rem;" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked />
+                                        </div>
                                     </td>
-                                    <td>Win 95+</td>
-                                    <td> <a class="edit" title="Edit" data-toggle="tooltip">
+                                    <td style="vertical-align: middle; text-align: center;">
+                                        <a class="edit" style="cursor: pointer;" title="Edit" data-id="{{$value['id']}}"  data-toggle="tooltip">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
-                                        <a class="delete" title="Delete" data-toggle="tooltip">
+                                        <a class="delete" style="cursor: pointer;" title="Delete" data-id="{{$value['id']}}"  data-toggle="tooltip">
                                             <i class="bi bi-trash-fill"></i>
                                         </a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 4.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td> <a class="edit" title="Edit" data-toggle="tooltip">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </a>
-                                        <a class="delete" title="Delete" data-toggle="tooltip">
-                                            <i class="bi bi-trash-fill"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 4.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td> <a class="edit" title="Edit" data-toggle="tooltip">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </a>
-                                        <a class="delete" title="Delete" data-toggle="tooltip">
-                                            <i class="bi bi-trash-fill"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 4.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td> <a class="edit" title="Edit" data-toggle="tooltip">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </a>
-                                        <a class="delete" title="Delete" data-toggle="tooltip">
-                                            <i class="bi bi-trash-fill"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 4.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td> <a class="edit" title="Edit" data-toggle="tooltip">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </a>
-                                        <a class="delete" title="Delete" data-toggle="tooltip">
-                                            <i class="bi bi-trash-fill"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 4.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td> <a class="edit" title="Edit" data-toggle="tooltip">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </a>
-                                        <a class="delete" title="Delete" data-toggle="tooltip">
-                                            <i class="bi bi-trash-fill"></i>
-                                        </a>
-                                    </td>
-                                </tr>
+                                @endforeach
                             </tbody>
 
                         </table>
@@ -169,6 +106,12 @@
     </section>
 
 </main>
+<!-- End #main -->
+
+<form  id="edit_form" action="{{route('admin.addCategory')}}" method="post">
+    @csrf
+    <input id="edit_form_id_input" type="hidden" value="" name="id">
+</form>
 <!-- End #main -->
 
 @stop
@@ -202,7 +145,20 @@
                     className: 'btn-blue',
                 }
             ]
-        }).buttons().container().appendTo('#tbl_buttons');
+        }).buttons().container();
+    });
+    $(document).ready(function () {
+        $('.edit').click(function () {
+            var id = $(this).data('id'); 
+            $('#edit_form_id_input').val(id); 
+            $('#edit_form').submit(); 
+        });
+
+        $('.delete').click(function () {
+            var id = $(this).data('id'); 
+            $('#edit_form_id_input').val(id); 
+            $('#edit_form').submit();
+        });
     });
 </script>
 @endPushOnce
