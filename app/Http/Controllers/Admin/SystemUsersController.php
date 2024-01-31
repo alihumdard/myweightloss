@@ -4,6 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Mail\otpVerifcation;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+
+// models ...
+use App\Models\User;
 
 class SystemUsersController extends Controller
 {
@@ -15,7 +29,20 @@ class SystemUsersController extends Controller
 
     public function admins()
     {
-        return view('admin.pages.admins');
+        $user = auth()->user();
+        $page_name = 'admins';
+        if (!view_permission($page_name)) {
+            return redirect()->back();
+        }
+
+        $data['user'] = auth()->user();
+        $data['add_as_user'] = user_roles('2');
+
+        if (isset($user->role) && $user->role == user_roles('1')) {
+            $data['admins'] = User::where(['role' => user_roles('2')])->latest('id')->get()->toArray();
+        }
+
+        return view('admin.pages.admins', $data);
     }
 
     public function categories()

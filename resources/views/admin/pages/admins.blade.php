@@ -3,23 +3,45 @@
 @section('content')
 <!-- main stated -->
 <main id="main" class="main">
-
     <style>
-        .edit i{
+        .edit i {
             color: #4154F1;
-    font-size: 20px;
-    margin-right: 10px;
-    margin-left: 10px;
+            font-size: 20px;
+            margin-right: 10px;
+            margin-left: 10px;
         }
-        .delete i{
+
+        .delete i {
             color: #E34724;
-    font-size: 20px;
-    margin-left: 10px;
+            font-size: 20px;
+            margin-left: 10px;
         }
-        .card-body table tr{
+
+        .card-body table tr {
             background-color: #E34724 !important;
         }
 
+        /* Custom CSS for DataTables buttons */
+        .btn-blue {
+            background-color: blue !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 5px !important;
+            margin-right: 5px;
+            font-weight: bold;
+        }
+
+        .btn-blue:hover {
+            background-color: darkblue !important;
+        }
+
+        .table-stripe tbody tr:nth-child(odd) {
+            background-color: lightblue;
+        }
+
+        .table-stripe tbody tr:nth-child(even) {
+            background-color: deepskyblue;
+        }
     </style>
 
     <div class="pagetitle">
@@ -38,489 +60,54 @@
             <div class="col-lg-12">
 
                 <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">DataTable with default features</h3>
+                    <div class="card-header mt-3" id="tbl_buttons" style="border: 0 !important; border-color: transparent !important;">
                     </div>
-                    <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped" style="--bs-table-striped-bg: #rgba(65, 84, 241, 1) !important;">
+                        <table id="tbl_admins" class="table table-bordered table-striped" style="--bs-table-striped-bg: #rgba(65, 84, 241, 1) !important;">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
+                                    <th>#</th>
+                                    <th>Details</th>
+                                    <th>Phone</th>
                                     <th>Address</th>
+                                    <th>Status</th>
                                     <th>Actions</th>
-                                    <th>CSS grade</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($admins as $key => $value)
                                 <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 4.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td> 4</td>
-                                    <td>X</td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 5.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td>5</td>
-                                    <td>C</td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 5.5
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td>5.5</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 6
-                                    </td>
-                                    <td>Win 98+</td>
-                                    <td>6</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 7</td>
-                                    <td>Win XP SP2+</td>
-                                    <td>7</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>AOL browser (AOL desktop)</td>
-                                    <td>Win XP</td>
-                                    <td>6</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Gecko</td>
-                                    <td>Firefox 1.0</td>
-                                    <td>Win 98+ / OSX.2+</td>
+                                    <td>{{ ++$key ?? ''}}</td>
                                     <td>
-                                        <a class="edit" title="Edit" data-toggle="tooltip">
+                                        <div class="d-flex align-items-center">
+                                            <img src="https://mdbootstrap.com/img/new/avatars/6.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" />
+                                            <div class="ms-3">
+                                                <p class="fw-bold mb-1">{{ $value['name'] ?? ''}}</p>
+                                                <p class="text-muted mb-0">{{ $value['email'] ?? ''}}</p>
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                    <td>
+                                        <p class="fw-normal mb-1">{{ $value['phone'] ?? ''}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-muted mb-0">{{ $value['address'] ?? ''}}</p>
+                                    </td>
+                                    <td>
+                                        <span class="badge  {{($value['status'] == 1) ? 'bg-success' : 'bg-danger'; }}  rounded-pill d-inline">{{ ($value['status'] == 1) ? 'Active' : 'Deactive'; }} </span>
+                                    </td>
+                                    <td> <a class="edit" title="Edit" data-toggle="tooltip">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
                                         <a class="delete" title="Delete" data-toggle="tooltip">
                                             <i class="bi bi-trash-fill"></i>
                                         </a>
                                     </td>
-
-
-
-                                    <td>A</td>
                                 </tr>
-                                <tr>
-                                    <td>Gecko</td>
-                                    <td>Firefox 1.5</td>
-                                    <td>Win 98+ / OSX.2+</td>
-                                    <td>  <a class="edit" title="Edit" data-toggle="tooltip">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </a>
-                                    <a class="delete" title="Delete" data-toggle="tooltip">
-                                        <i class="bi bi-trash-fill"></i>
-                                    </a></td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Gecko</td>
-                                    <td>Firefox 2.0</td>
-                                    <td>Win 98+ / OSX.2+</td>
-                                    <td>  <a class="edit" title="Edit" data-toggle="tooltip">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </a>
-                                    <a class="delete" title="Delete" data-toggle="tooltip">
-                                        <i class="bi bi-trash-fill"></i>
-                                    </a></td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Gecko</td>
-                                    <td>Firefox 3.0</td>
-                                    <td>Win 2k+ / OSX.3+</td>
-                                    <td>  <a class="edit" title="Edit" data-toggle="tooltip">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </a>
-                                    <a class="delete" title="Delete" data-toggle="tooltip">
-                                        <i class="bi bi-trash-fill"></i>
-                                    </a></td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Gecko</td>
-                                    <td>Camino 1.0</td>
-                                    <td>OSX.2+</td>
-                                    <td>  <a class="edit" title="Edit" data-toggle="tooltip">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </a>
-                                    <a class="delete" title="Delete" data-toggle="tooltip">
-                                        <i class="bi bi-trash-fill"></i>
-                                    </a></td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Gecko</td>
-                                    <td>Camino 1.5</td>
-                                    <td>OSX.3+</td>
-                                    <td>  <a class="edit" title="Edit" data-toggle="tooltip">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </a>
-                                    <a class="delete" title="Delete" data-toggle="tooltip">
-                                        <i class="bi bi-trash-fill"></i>
-                                    </a></td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Gecko</td>
-                                    <td>Netscape 7.2</td>
-                                    <td>Win 95+ / Mac OS 8.6-9.2</td>
-                                    <td>  <a class="edit" title="Edit" data-toggle="tooltip">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </a>
-                                    <a class="delete" title="Delete" data-toggle="tooltip">
-                                        <i class="bi bi-trash-fill"></i>
-                                    </a></td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Gecko</td>
-                                    <td>Netscape Browser 8</td>
-                                    <td>Win 98SE+</td>
-                                    <td>  <a class="edit" title="Edit" data-toggle="tooltip">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </a>
-                                    <a class="delete" title="Delete" data-toggle="tooltip">
-                                        <i class="bi bi-trash-fill"></i>
-                                    </a></td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Gecko</td>
-                                    <td>Netscape Navigator 9</td>
-                                    <td>Win 98+ / OSX.2+</td>
-                                    <td>  <a class="edit" title="Edit" data-toggle="tooltip">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </a>
-                                    <a class="delete" title="Delete" data-toggle="tooltip">
-                                        <i class="bi bi-trash-fill"></i>
-                                    </a></td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Gecko</td>
-                                    <td>Mozilla 1.0</td>
-                                    <td>Win 95+ / OSX.1+</td>
-                                    <td>1</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Gecko</td>
-                                    <td>Mozilla 1.1</td>
-                                    <td>Win 95+ / OSX.1+</td>
-                                    <td>1.1</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Gecko</td>
-                                    <td>Mozilla 1.2</td>
-                                    <td>Win 95+ / OSX.1+</td>
-                                    <td>1.2</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Gecko</td>
-                                    <td>Mozilla 1.3</td>
-                                    <td>Win 95+ / OSX.1+</td>
-                                    <td>1.3</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Gecko</td>
-                                    <td>Mozilla 1.4</td>
-                                    <td>Win 95+ / OSX.1+</td>
-                                    <td>1.4</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Gecko</td>
-                                    <td>Mozilla 1.5</td>
-                                    <td>Win 95+ / OSX.1+</td>
-                                    <td>1.5</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Gecko</td>
-                                    <td>Mozilla 1.6</td>
-                                    <td>Win 95+ / OSX.1+</td>
-                                    <td>1.6</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Gecko</td>
-                                    <td>Mozilla 1.7</td>
-                                    <td>Win 98+ / OSX.1+</td>
-                                    <td>1.7</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Gecko</td>
-                                    <td>Mozilla 1.8</td>
-                                    <td>Win 98+ / OSX.1+</td>
-                                    <td>1.8</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Gecko</td>
-                                    <td>Seamonkey 1.1</td>
-                                    <td>Win 98+ / OSX.2+</td>
-                                    <td>1.8</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Gecko</td>
-                                    <td>Epiphany 2.20</td>
-                                    <td>Gnome</td>
-                                    <td>1.8</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Webkit</td>
-                                    <td>Safari 1.2</td>
-                                    <td>OSX.3</td>
-                                    <td>125.5</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Webkit</td>
-                                    <td>Safari 1.3</td>
-                                    <td>OSX.3</td>
-                                    <td>312.8</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Webkit</td>
-                                    <td>Safari 2.0</td>
-                                    <td>OSX.4+</td>
-                                    <td>419.3</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Webkit</td>
-                                    <td>Safari 3.0</td>
-                                    <td>OSX.4+</td>
-                                    <td>522.1</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Webkit</td>
-                                    <td>OmniWeb 5.5</td>
-                                    <td>OSX.4+</td>
-                                    <td>420</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Webkit</td>
-                                    <td>iPod Touch / iPhone</td>
-                                    <td>iPod</td>
-                                    <td>420.1</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Webkit</td>
-                                    <td>S60</td>
-                                    <td>S60</td>
-                                    <td>413</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Presto</td>
-                                    <td>Opera 7.0</td>
-                                    <td>Win 95+ / OSX.1+</td>
-                                    <td>-</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Presto</td>
-                                    <td>Opera 7.5</td>
-                                    <td>Win 95+ / OSX.2+</td>
-                                    <td>-</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Presto</td>
-                                    <td>Opera 8.0</td>
-                                    <td>Win 95+ / OSX.2+</td>
-                                    <td>-</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Presto</td>
-                                    <td>Opera 8.5</td>
-                                    <td>Win 95+ / OSX.2+</td>
-                                    <td>-</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Presto</td>
-                                    <td>Opera 9.0</td>
-                                    <td>Win 95+ / OSX.3+</td>
-                                    <td>-</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Presto</td>
-                                    <td>Opera 9.2</td>
-                                    <td>Win 88+ / OSX.3+</td>
-                                    <td>-</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Presto</td>
-                                    <td>Opera 9.5</td>
-                                    <td>Win 88+ / OSX.3+</td>
-                                    <td>-</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Presto</td>
-                                    <td>Opera for Wii</td>
-                                    <td>Wii</td>
-                                    <td>-</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Presto</td>
-                                    <td>Nokia N800</td>
-                                    <td>N800</td>
-                                    <td>-</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Presto</td>
-                                    <td>Nintendo DS browser</td>
-                                    <td>Nintendo DS</td>
-                                    <td>8.5</td>
-                                    <td>C/A<sup>1</sup></td>
-                                </tr>
-                                <tr>
-                                    <td>KHTML</td>
-                                    <td>Konqureror 3.1</td>
-                                    <td>KDE 3.1</td>
-                                    <td>3.1</td>
-                                    <td>C</td>
-                                </tr>
-                                <tr>
-                                    <td>KHTML</td>
-                                    <td>Konqureror 3.3</td>
-                                    <td>KDE 3.3</td>
-                                    <td>3.3</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>KHTML</td>
-                                    <td>Konqureror 3.5</td>
-                                    <td>KDE 3.5</td>
-                                    <td>3.5</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Tasman</td>
-                                    <td>Internet Explorer 4.5</td>
-                                    <td>Mac OS 8-9</td>
-                                    <td>-</td>
-                                    <td>X</td>
-                                </tr>
-                                <tr>
-                                    <td>Tasman</td>
-                                    <td>Internet Explorer 5.1</td>
-                                    <td>Mac OS 7.6-9</td>
-                                    <td>1</td>
-                                    <td>C</td>
-                                </tr>
-                                <tr>
-                                    <td>Tasman</td>
-                                    <td>Internet Explorer 5.2</td>
-                                    <td>Mac OS 8-X</td>
-                                    <td>1</td>
-                                    <td>C</td>
-                                </tr>
-                                <tr>
-                                    <td>Misc</td>
-                                    <td>NetFront 3.1</td>
-                                    <td>Embedded devices</td>
-                                    <td>-</td>
-                                    <td>C</td>
-                                </tr>
-                                <tr>
-                                    <td>Misc</td>
-                                    <td>NetFront 3.4</td>
-                                    <td>Embedded devices</td>
-                                    <td>-</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Misc</td>
-                                    <td>Dillo 0.8</td>
-                                    <td>Embedded devices</td>
-                                    <td>-</td>
-                                    <td>X</td>
-                                </tr>
-                                <tr>
-                                    <td>Misc</td>
-                                    <td>Links</td>
-                                    <td>Text only</td>
-                                    <td>-</td>
-                                    <td>X</td>
-                                </tr>
-                                <tr>
-                                    <td>Misc</td>
-                                    <td>Lynx</td>
-                                    <td>Text only</td>
-                                    <td>-</td>
-                                    <td>X</td>
-                                </tr>
-                                <tr>
-                                    <td>Misc</td>
-                                    <td>IE Mobile</td>
-                                    <td>Windows Mobile 6</td>
-                                    <td>-</td>
-                                    <td>C</td>
-                                </tr>
-                                <tr>
-                                    <td>Misc</td>
-                                    <td>PSP browser</td>
-                                    <td>PSP</td>
-                                    <td>-</td>
-                                    <td>C</td>
-                                </tr>
-                                <tr>
-                                    <td>Other browsers</td>
-                                    <td>All others</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>U</td>
-                                </tr>
+                                @endforeach
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Rendering engine</th>
-                                    <th>Browser</th>
-                                    <th>Platform(s)</th>
-                                    <th>Engine version</th>
-                                    <th>CSS grade</th>
-                                </tr>
-                            </tfoot>
+
                         </table>
                     </div>
                     <!-- /.card-body -->
@@ -537,20 +124,14 @@
 @pushOnce('scripts')
 <script>
     $(function() {
-        $("#example1").DataTable({
+        $("#tbl_admins").DataTable({
+            "paging": true,
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
+            "searching": true,
             "ordering": true,
             "info": true,
-            "autoWidth": false,
-            "responsive": true,
         });
     });
 </script>

@@ -18,6 +18,7 @@
     @include('admin.includes.footer')
     @include('admin.includes.script')
     @stack('scripts')
+    @include('admin.pages.apicall')
 </body>
 
 </html>
