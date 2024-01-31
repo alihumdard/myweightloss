@@ -63,8 +63,8 @@
                     <div class="card-header mt-3" id="tbl_buttons" style="border: 0 !important; border-color: transparent !important;">
                     </div>
                     <div class="card-body">
-                        <table id="tbl_admins" class="table table-stripe">
-                            <thead class="thead-dark">
+                        <table id="tbl_admins" class="table table-bordered table-striped" style="--bs-table-striped-bg: #rgba(65, 84, 241, 1) !important;">
+                            <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>Details</th>
