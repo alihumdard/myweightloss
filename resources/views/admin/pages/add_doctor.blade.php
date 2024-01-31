@@ -21,50 +21,88 @@
 
                 <div class="card vh-100">
                     <div class="card-body">
-                        <form class="row g-3 mt-3">
-                            <div class="col-md-12">
-                                <label for="inputName5" class="form-label">Your Name</label>
-                                <input type="text" class="form-control" id="inputName5">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="inputEmail5" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="inputEmail5">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="inputPassword5" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="inputPassword5">
-                            </div>
-                            <div class="col-12">
-                                <label for="inputAddress5" class="form-label">Address</label>
-                                <input type="text" class="form-control" id="inputAddres5s" placeholder="1234 Main St">
-                            </div>
-                            <div class="col-12">
-                                <label for="inputAddress2" class="form-label">Address 2</label>
-                                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="inputCity" class="form-label">City</label>
-                                <input type="text" class="form-control" id="inputCity">
-                            </div>
+                        <form class="row g-3 mt-3 needs-validation" method="post" action="{{ route('admin.storeDoctor') }}" novalidate>
+                            @csrf
+                            <input type="hidden" name="role" required value="{{ user_roles('3')}}">
+                            <input type="hidden" name="id" value="{{ $doctor['id'] ?? ''}}">
+
                             <div class="col-md-4">
-                                <label for="inputState" class="form-label">State</label>
-                                <select id="inputState" class="form-select">
-                                    <option selected>Choose...</option>
-                                    <option>...</option>
-                                </select>
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" name="name" value="{{  $doctor['name'] ?? old('name') }}" class="form-control" id="name" required>
+                                <div class="invalid-feedback">Please enter your name!</div>
+                                @error('name')
+                                <div class="alert-danger text-danger ">{{ $message }}</div>
+                                @enderror
                             </div>
-                            <div class="col-md-2">
-                                <label for="inputZip" class="form-label">Zip</label>
-                                <input type="text" class="form-control" id="inputZip">
+
+                            <div class="col-md-4">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" name="email" value="{{ $doctor['email'] ?? old('email') }}" class="form-control" id="email" required>
+                                <div class="invalid-feedback">Please enter valid email!</div>
+                                @error('email')
+                                <div class="alert-danger text-danger ">{{ $message }}</div>
+                                @enderror
                             </div>
+
+                            <div class="col-md-4">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" name="password" class="form-control" id="password" required>
+                                <div class="invalid-feedback">Please enter password!</div>
+                                @error('password')
+                                <div class="alert-danger text-danger ">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="speciality" class="form-label">speciality</label>
+                                <input type="text" name="speciality" class="form-control" id="speciality" required>
+                                <div class="invalid-feedback">Please enter Sepcialization!</div>
+                                @error('speciality')
+                                <div class="alert-danger text-danger ">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="phone" class="form-label">Phone</label>
+                                <input type="number" name="phone" value="{{  $doctor['phone'] ?? old('phone') }}" class="form-control" id="phone" required>
+                                <div class="invalid-feedback">Please enter valid Phone No!</div>
+                                @error('phone')
+                                <div class="alert-danger text-danger ">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="city" class="form-label">City</label>
+                                <input type="text" name="city" class="form-control" value="{{  $doctor['city'] ?? '' }}" id="city" required>
+                                <div class="invalid-feedback">Please enter city name!</div>
+
+                            </div>
+
+                            <!-- <div class="col-md-4">
+                                <label for="inputPassword5" class="form-label">Date of Birth</label>
+                                <input type="date" class="form-control" id="inputPassword5">
+                            </div> -->
+
+                            <div class="col-md-8">
+                                <label for="address" class="form-label">Address</label>
+                                <input type="text" name="address" value="{{ $doctor['address'] ?? old('address') }}" class="form-control" id="address" placeholder="enter your addess" required>
+                                <div class="invalid-feedback">Please enter address</div>
+                                @error('address')
+                                <div class="alert-danger text-danger ">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="zip_code" class="form-label">Zip</label>
+                                <input type="text" name="zip_code" value="{{  $doctor['zip_code'] ?? '' }}" class="form-control" id="zip_code" required>
+                                <div class="invalid-feedback">Please enter zip code.</div>
+                            </div>
+
                             <div class="col-12">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                                    <label class="form-check-label" for="gridCheck">
-                                        Check me out
-                                    </label>
-                                </div>
+                                <label for="short_bio" class="form-label">Short Bio</label>
+                                <textarea rows="4" name="short_bio" class="form-control" id="short_bio" placeholder="write short bio"> </textarea>
                             </div>
+
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary">Submit</button>
                                 <button type="reset" class="btn btn-secondary">Reset</button>

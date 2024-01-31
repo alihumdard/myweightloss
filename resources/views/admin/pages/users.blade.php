@@ -46,12 +46,12 @@
     </style>
 
     <div class="pagetitle">
-        <h1>Orders Confirmed</h1>
+        <h1>Users</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                 <li class="breadcrumb-item">Pages</li>
-                <li class="breadcrumb-item active">Orders Confirmed</li>
+                <li class="breadcrumb-item active">Users</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -60,104 +60,55 @@
         <div class="row">
             <div class="col-lg-12">
 
-                <div class="card"  >
-                    <div class="card-header mt-3" id="tbl_buttons" style="border: 0 !important; border-color: transparent !important;">
+                <div class="card">
+                    <div class="card-header mt-3 d-none" id="tbl_buttons" style="border: 0 !important; border-color: transparent !important;">
                     </div>
-                    <div class="card-body" >
+                    <div class="card-body mt-5">
                         <table id="tbl_data" class="table table-striped">
                             <thead class="thead-dark">
-                                <tr>
-                                    <th>Name</th>
+                                <tr style="vertical-align: middle; text-align: center;">
+                                    <th>details</th>
                                     <th>Email</th>
+                                    <th>Phone</th>
                                     <th>Address</th>
+                                    <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
+
+                                @foreach($users as $key => $value)
                                 <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 4.0
+                                    <th style="vertical-align: middle; text-align: center;">{{ ++$key ?? ''}}</th>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img src="https://mdbootstrap.com/img/new/avatars/6.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" />
+                                            <div class="ms-3">
+                                                <p class="fw-bold mb-1">{{ $value['name'] ?? ''}}</p>
+                                                <p class="text-muted mb-0">{{ $value['email'] ?? ''}}</p>
+                                            </div>
+                                        </div>
+
                                     </td>
-                                    <td>Win 95+</td>
-                                    <td> <a class="edit" title="Edit" data-toggle="tooltip">
+                                    <td style="vertical-align: middle; text-align: center;">
+                                        <p class="fw-normal mb-1">{{ $value['phone'] ?? ''}}</p>
+                                    </td>
+                                    <td style="vertical-align: middle; text-align: center;">
+                                        <p class="text-muted mb-0">{{ $value['address'] ?? ''}}</p>
+                                    </td>
+                                    <td style="vertical-align: middle; text-align: center;">
+                                        <span class="badge  {{($value['status'] == 1) ? 'bg-success' : 'bg-danger'; }}  rounded-pill d-inline">{{ ($value['status'] == 1) ? 'Active' : 'Deactive'; }} </span>
+                                    </td>
+                                    <td style="vertical-align: middle; text-align: center;">
+                                        <!-- <a class="edit" style="cursor: pointer;" title="Edit" data-id="{{$value['id']}}" data-toggle="tooltip">
                                             <i class="bi bi-pencil-square"></i>
-                                        </a>
-                                        <a class="delete" title="Delete" data-toggle="tooltip">
+                                        </a> -->
+                                        <a class="delete" style="cursor: pointer;" title="Delete" data-id="{{$value['id']}} data-toggle=" tooltip">
                                             <i class="bi bi-trash-fill"></i>
                                         </a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 4.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td> <a class="edit" title="Edit" data-toggle="tooltip">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </a>
-                                        <a class="delete" title="Delete" data-toggle="tooltip">
-                                            <i class="bi bi-trash-fill"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 4.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td> <a class="edit" title="Edit" data-toggle="tooltip">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </a>
-                                        <a class="delete" title="Delete" data-toggle="tooltip">
-                                            <i class="bi bi-trash-fill"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 4.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td> <a class="edit" title="Edit" data-toggle="tooltip">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </a>
-                                        <a class="delete" title="Delete" data-toggle="tooltip">
-                                            <i class="bi bi-trash-fill"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 4.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td> <a class="edit" title="Edit" data-toggle="tooltip">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </a>
-                                        <a class="delete" title="Delete" data-toggle="tooltip">
-                                            <i class="bi bi-trash-fill"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 4.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td> <a class="edit" title="Edit" data-toggle="tooltip">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </a>
-                                        <a class="delete" title="Delete" data-toggle="tooltip">
-                                            <i class="bi bi-trash-fill"></i>
-                                        </a>
-                                    </td>
-                                </tr>
+                                @endforeach
                             </tbody>
 
                         </table>

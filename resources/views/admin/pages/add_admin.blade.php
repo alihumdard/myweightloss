@@ -21,39 +21,57 @@
 
                 <div class="card vh-100">
                     <div class="card-body">
-                        <form class="row apiform g-3 mt-3 needs-validation" method="post" action="userStore" novalidate>
-
+                        <form class="row g-3 mt-3 needs-validation" method="post" action="{{ route('admin.storeAdmin') }}" novalidate>
+                            @csrf
+                            <input type="hidden" name="role" required value="{{ user_roles('2')}}">
+                            <input type="hidden" name="id"  value="{{ $admin['id'] ?? ''}}">
                             <div class="col-md-6">
                                 <label for="name" class="form-label">Name</label>
-                                <input type="text" name="name"  class="form-control" id="name" required>
+                                <input type="text" name="name" value="{{  $admin['name'] ?? old('name') }}" class="form-control" id="name" required >
                                 <div class="invalid-feedback">Please enter your name!</div>
+                                @error('name')
+                                    <div class="alert-danger text-danger ">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="col-md-6">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" name="email" class="form-control" id="email" required>
+                                <input type="email" name="email" value="{{ $admin['email'] ?? old('email') }}" class="form-control" id="email" required>
                                 <div class="invalid-feedback">Please enter valid email!</div>
+                                @error('email')
+                                    <div class="alert-danger text-danger ">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="col-md-6">
                                 <label for="phone" class="form-label">Phone</label>
-                                <input type="number" name="phone" class="form-control" id="phone">
+                                <input type="number" name="phone" value="{{  $admin['phone'] ?? old('phone') }}" class="form-control" id="phone" required>
+                                <div class="invalid-feedback">Please enter valid Phone No!</div>
+                                @error('phone')
+                                    <div class="alert-danger text-danger ">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="col-md-6">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" name="password" class="form-control" id="password">
+                                <input type="password" name="password" class="form-control" id="password" required >
+                                <div class="invalid-feedback">Please enter password!</div>
+                                @error('password')
+                                    <div class="alert-danger text-danger ">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="col-md-6">
                                 <label for="city" class="form-label">City</label>
-                                <input type="text" name="city" class="form-control" id="city">
+                                <input type="text" name="city" class="form-control" value="{{  $admin['city'] ?? '' }}" id="city" required>
+                                <div class="invalid-feedback">Please enter city name!</div>
+
                             </div>
 
                             <div class="col-md-4">
                                 <label for="state" class="form-label">State</label>
-                                <select id="state"  name="state" class="form-select">
-                                    <option selected>Choose...</option>
+                                <select id="state"  name="state" class="form-select" >
+                                    <option value="" selected>Choose...</option>
                                     <option value="LND">London, City of</option>
                                     <option value="ABE">Aberdeen City</option>
                                     <option value="ABD">Aberdeenshire</option>
@@ -271,16 +289,22 @@
                                     <option value="WRX">Wrexham [Wrecsam GB-WRC]</option>
                                     <option value="YOR">York</option>
                                 </select>
+                                <div class="invalid-feedback">Please select state!</div>
                             </div>
                             
                             <div class="col-md-2">
                                 <label for="zip_code" class="form-label">Zip</label>
-                                <input type="text" name="zip_code" class="form-control" id="zip_code">
+                                <input type="text" name="zip_code" value="{{  $admin['zip_code'] ?? '' }}" class="form-control" id="zip_code" required>
+                                <div class="invalid-feedback">Please enter  zip code.</div>
                             </div>
 
                             <div class="col-12">
                                 <label for="address" class="form-label">Address</label>
-                                <input type="text" name="address" class="form-control" id="address" placeholder="1234 Main St">
+                                <input type="text" name="address" value="{{ $admin['address'] ?? old('address') }}" class="form-control" id="address" placeholder="enter your addess" required>
+                                <div class="invalid-feedback">Please enter address</div>
+                                @error('address')
+                                    <div class="alert-danger text-danger ">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="text-center">

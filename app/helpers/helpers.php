@@ -69,6 +69,13 @@ function view_permission($page_name)
             switch ($page_name) {
                 case 'index':
                 case 'admins':
+                case 'add_admin':
+                case 'add_doctor':
+                case 'users':
+                case 'categories':
+                case 'add_category':
+                case 'questions':
+                case 'add_question':
                     return true;
                 default:
                     return false;

@@ -22,49 +22,53 @@
                 <div class="card vh-100">
                     <div class="card-body">
                         <!-- Multi Columns Form -->
-                        <form class="row g-3 mt-3">
+                        <form class="row g-3 mt-3 needs-validation" method="post" action="{{ route('admin.storeQuestion') }}" novalidate>
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $question['id'] ?? ''}}">
+
                             <div class="col-md-12">
-                                <label for="inputName5" class="form-label">Your Name</label>
-                                <input type="text" class="form-control" id="inputName5">
+                                <label for="name" class="form-label">Question Title</label>
+                                <input type="text" name="title" value="{{  $question['title'] ?? old('title') }}" class="form-control" id="title" required>
+                                <div class="invalid-feedback">Please enter question title!</div>
+                                @error('name')
+                                <div class="alert-danger text-danger ">{{ $message }}</div>
+                                @enderror
                             </div>
+
                             <div class="col-md-6">
-                                <label for="inputEmail5" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="inputEmail5">
+                                <label for="optA" class="form-label">Option A</label>
+                                <input type="text" name="optA" value="{{  $question['optA'] ?? old('optA') }}" class="form-control" id="optA" required>
+                                <div class="invalid-feedback">Please enter option A title!</div>
+                                @error('optA')
+                                <div class="alert-danger text-danger ">{{ $message }}</div>
+                                @enderror
                             </div>
+
                             <div class="col-md-6">
-                                <label for="inputPassword5" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="inputPassword5">
+                                <label for="optB" class="form-label">Option B</label>
+                                <input type="text" name="optB" value="{{  $question['optB'] ?? old('optB') }}" class="form-control" id="optB" required>
+                                <div class="invalid-feedback">Please enter option B!</div>
+                                @error('optB')
+                                <div class="alert-danger text-danger ">{{ $message }}</div>
+                                @enderror
                             </div>
-                            <div class="col-12">
-                                <label for="inputAddress5" class="form-label">Address</label>
-                                <input type="text" class="form-control" id="inputAddres5s" placeholder="1234 Main St">
-                            </div>
-                            <div class="col-12">
-                                <label for="inputAddress2" class="form-label">Address 2</label>
-                                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-                            </div>
+
                             <div class="col-md-6">
-                                <label for="inputCity" class="form-label">City</label>
-                                <input type="text" class="form-control" id="inputCity">
+                                <label for="optC" class="form-label">Option C</label>
+                                <input type="text" name="optC" value="{{  $question['optC'] ?? old('optC') }}" class="form-control" id="optC" required>
+                                <div class="invalid-feedback">Please enter option C!</div>
+                                @error('optC')
+                                <div class="alert-danger text-danger ">{{ $message }}</div>
+                                @enderror
                             </div>
-                            <div class="col-md-4">
-                                <label for="inputState" class="form-label">State</label>
-                                <select id="inputState" class="form-select">
-                                    <option selected>Choose...</option>
-                                    <option>...</option>
-                                </select>
-                            </div>
-                            <div class="col-md-2">
-                                <label for="inputZip" class="form-label">Zip</label>
-                                <input type="text" class="form-control" id="inputZip">
-                            </div>
-                            <div class="col-12">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                                    <label class="form-check-label" for="gridCheck">
-                                        Check me out
-                                    </label>
-                                </div>
+
+                            <div class="col-md-6">
+                                <label for="optD" class="form-label">Option D</label>
+                                <input type="text" name="optD" value="{{  $question['optD'] ?? old('optD') }}" class="form-control" id="optD" required>
+                                <div class="invalid-feedback">Please enter option D!</div>
+                                @error('optD')
+                                <div class="alert-danger text-danger ">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary">Submit</button>

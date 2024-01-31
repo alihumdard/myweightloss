@@ -63,7 +63,7 @@
                     <div class="card-header mt-3" id="tbl_buttons" style="border: 0 !important; border-color: transparent !important;">
                     </div>
                     <div class="card-body">
-                        <table id="tbl_admins" class="table table-bordered table-striped" style="--bs-table-striped-bg: #rgba(65, 84, 241, 1) !important;">
+                        <table id="tbl_admins" class="table table-bordered table-striped" >
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -77,7 +77,7 @@
                             <tbody>
                                 @foreach($admins as $key => $value)
                                 <tr>
-                                    <td>{{ ++$key ?? ''}}</td>
+                                    <th style="vertical-align: middle; text-align: center;" >{{ ++$key ?? ''}}</th>
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <img src="https://mdbootstrap.com/img/new/avatars/6.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" />
@@ -88,19 +88,20 @@
                                         </div>
 
                                     </td>
-                                    <td>
+                                    <td style="vertical-align: middle; text-align: center;" >
                                         <p class="fw-normal mb-1">{{ $value['phone'] ?? ''}}</p>
                                     </td>
-                                    <td>
+                                    <td style="vertical-align: middle; text-align: center;" >
                                         <p class="text-muted mb-0">{{ $value['address'] ?? ''}}</p>
                                     </td>
-                                    <td>
+                                    <td style="vertical-align: middle; text-align: center;" >
                                         <span class="badge  {{($value['status'] == 1) ? 'bg-success' : 'bg-danger'; }}  rounded-pill d-inline">{{ ($value['status'] == 1) ? 'Active' : 'Deactive'; }} </span>
                                     </td>
-                                    <td> <a class="edit" title="Edit" data-toggle="tooltip">
+                                    <td style="vertical-align: middle; text-align: center;" > 
+                                        <a class="edit" style="cursor: pointer;" title="Edit" data-id="{{$value['id']}}" data-toggle="tooltip">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
-                                        <a class="delete" title="Delete" data-toggle="tooltip">
+                                        <a class="delete" style="cursor: pointer;" title="Delete" data-id="{{$value['id']}} data-toggle="tooltip">
                                             <i class="bi bi-trash-fill"></i>
                                         </a>
                                     </td>
@@ -117,6 +118,11 @@
     </section>
 
 </main>
+
+<form  id="edit_form" action="{{route('admin.addCategory')}}" method="post">
+    @csrf
+    <input id="edit_form_id_input" type="hidden" value="" name="id">
+</form>
 <!-- End #main -->
 
 @stop
@@ -132,6 +138,19 @@
             "searching": true,
             "ordering": true,
             "info": true,
+        });
+    });
+    $(document).ready(function () {
+        $('.edit').click(function () {
+            var id = $(this).data('id'); 
+            $('#edit_form_id_input').val(id); 
+            $('#edit_form').submit(); 
+        });
+
+        $('.delete').click(function () {
+            var id = $(this).data('id'); 
+            $('#edit_form_id_input').val(id); 
+            $('#edit_form').submit();
         });
     });
 </script>
