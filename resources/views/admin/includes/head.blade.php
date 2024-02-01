@@ -6,6 +6,8 @@
 <!-- Favicons -->
 <link href="{{asset('assets/admin/img/favicon.png')}}" rel="icon">
 <link href="{{asset('assets/admin/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+<!-- jQuery -->
+<script src="{{asset('/assets/admin/plugins/jquery/jquery.min.js') }}"></script>
 
 <!-- Google Fonts -->
 <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -19,7 +21,7 @@
 <link rel="stylesheet" href="{{asset('/assets/admin/plugins/quill/quill.snow.css')}}"></link>
 <link rel="stylesheet" href="{{asset('/assets/admin/plugins/quill/quill.bubble.css')}}"></link>
 <link rel="stylesheet" href="{{asset('/assets/admin/plugins/remixicon/remixicon.css')}}"></link>
- 
+
 <!-- Font Awesome Icons -->
 <link rel="stylesheet" href="{{ asset('/assets/admin/plugins/fontawesome-free/css/all.min.css') }}">
 
@@ -34,3 +36,6 @@
 
 <!-- custome styling -->
 <link rel="stylesheet" href="{{ asset('/assets/admin/dist/css/style.css') }}">
+
+{{-- select2 libarary --}}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
