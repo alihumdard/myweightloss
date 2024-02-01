@@ -283,10 +283,10 @@
                 </div>
                 <div class="col-md-6">
 
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control me-2" type="search" placeholder="product title" aria-label="Search">
                     <div class="form-floating mt-3">
-                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-                        <label for="floatingTextarea">Comments</label>
+                        <textarea class="form-control" cols="10" rows="10" placeholder="product Description" id="floatingTextarea"></textarea>
+                        <label for="floatingTextarea">product Description</label>
                     </div>
 
                     <hr>
@@ -424,7 +424,7 @@
                                     <input type="text" id="inputPassword6" class="form-control">
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="inputPassword6" class="col-form-label">Price</label>
+                                    <label for="inputPassword6" class="col-form-label">qty</label>
                                 </div>
                                 <div class="col-md-4">
                                     <input type="text" id="inputPassword6" class="form-control">
@@ -432,7 +432,7 @@
                             </div>
                             <div class="row mt-2">
                                 <div class="col-md-2">
-                                    <label for="inputPassword6" class="col-form-label">Price</label>
+                                    <label for="inputPassword6" class="col-form-label">stock</label>
                                 </div>
                                 <div class="col-md-4">
                                     <input type="text" id="inputPassword6" class="form-control">

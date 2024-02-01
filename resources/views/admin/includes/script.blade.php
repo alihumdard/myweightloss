@@ -1,6 +1,5 @@
-<!-- jQuery -->
-<script src="{{asset('/assets/admin/plugins/jquery/jquery.min.js') }}"></script>
-<!-- costume js -->
+{{-- select2 libarary --}}
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <!-- Bootstrap v5.3.2-->
 <script src="{{asset('/assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
@@ -25,7 +24,7 @@
   <script src="{{asset('/assets/admin/plugins/quill/quill.min.js') }}"></script>
   <script src="{{asset('/assets/admin/plugins/tinymce/tinymce.min.js') }}"></script>
   <script src="{{asset('/assets/admin/plugins/php-email-form/validate.js') }}"></script>
-  
+
 <!-- jquery-validation -->
 <!-- <script src="{{asset('/assets/admin/plugins/jquery-validation/jquery.validate.min.js')}}"></script> -->
 <!-- <script src="{{asset('/assets/admin/plugins/jquery-validation/additional-methods.min.js')}}"></script> -->
