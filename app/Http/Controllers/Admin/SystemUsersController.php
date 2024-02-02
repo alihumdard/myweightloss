@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Config;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Question;
+use App\Models\AssignQuestion;
 
 class SystemUsersController extends Controller
 {
@@ -138,7 +139,9 @@ class SystemUsersController extends Controller
         $data['user'] = auth()->user();
 
         if (isset($user->role) && $user->role == user_roles('1')) {
-            $data['questions'] = Question::latest('id')->get()->toArray();
+            $data['questions'] = Question::with(['assignments' => function ($query) {
+                $query->select('category_id', 'category_title', 'question_id');
+            }])->latest('id')->get()->toArray();
         }
 
         return view('admin.pages.questions', $data);
@@ -155,9 +158,18 @@ class SystemUsersController extends Controller
         }
 
         $data['user'] = auth()->user();
+        $data['categories'] = Category::latest('id')->get()->toArray();
         if ($request->has('id')) {
-            $data['question'] = Question::findOrFail($request->id)->toArray();
+            $data['question'] = Question::with(['assignments' => function ($query) {
+                $query->select('category_id', 'category_title', 'question_id');
+            }])->findOrFail($request->id)->toArray();
+            $categoryIds = [];
+            foreach ($data['question']['assignments'] as $assignment) {
+                $categoryIds[] = $assignment['category_id'];
+            }
+            $data['question']['assignments'] = $categoryIds;
         }
+
         return view('admin.pages.add_question', $data);
     }
 
@@ -198,8 +210,24 @@ class SystemUsersController extends Controller
                 'created_by' => $user->id,
             ]
         );
-        $message = "Question " . ($request->id ? "Updated" : "Saved") . " Successfully";
-        if ($saved) {
+        if ($saved->id) {
+
+            if ($request->id) {
+                AssignQuestion::where('question_id', $saved->id)->delete();
+            }
+            if ($request->category_id) {
+                foreach ($request->category_id as $categoryId) {
+                    AssignQuestion::create([
+                        'category_id' => $categoryId,
+                        'category_title' => Category::findOrFail($categoryId)->name,
+                        'question_title' => $saved->title,
+                        'question_id' => $saved->id,
+                        'status'      => $this->status['Active'],
+                        'created_by'  => $user->id,
+                    ]);
+                }
+            }
+            $message = "Question " . ($request->id ? "Updated" : "Saved") . " Successfully";
             return redirect()->route('admin.questions')->with(['msg' => $message]);
         }
     }
@@ -207,7 +235,7 @@ class SystemUsersController extends Controller
     public function assign_question(Request $request)
     {
         $user = auth()->user();
-        $page_name = 'add_question';
+        $page_name = 'assign_question';
         if (!view_permission($page_name)) {
             return redirect()->back();
         }
@@ -217,8 +245,69 @@ class SystemUsersController extends Controller
             $data['categories'] = Category::latest('id')->get()->toArray();
         }
 
-        return view('admin.pages.assign_question',$data);
+        return view('admin.pages.assign_question', $data);
     }
+
+    public function get_assign_quest(Request $request)
+    {
+        $user = auth()->user();
+        $page_name = 'assign_question';
+        
+        if (!view_permission($page_name)) {
+            return response()->json(['status' => 'error', 'message' => 'Unauthorized']);
+        }
+    
+        $questions = [];
+    
+        if (isset($user->role) && $user->role == user_roles('1') && $request->has('id')) {
+            $questions = AssignQuestion::select('question_id', 'question_title')
+                ->where('category_id', $request->id)
+                ->pluck('question_title', 'question_id')
+                ->toArray();
+        }
+    
+        return response()->json(['status' => 'success', 'questions' => $questions]);
+    }
+    
+
+    public function store_assign_quest(Request $request)
+    {
+        $user = auth()->user();
+        $page_name = 'assign_question';
+
+        if (!view_permission($page_name)) {
+            return redirect()->back();
+        }
+
+        $validator = Validator::make($request->all(), [
+            'category_id'   => 'required',
+            'question_id.*' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $data['user'] = auth()->user();
+
+        // Delete previous records for the given category_id
+        AssignQuestion::where('category_id', $request->category_id)->delete();
+
+        // Loop through each question_id and insert new records
+        foreach ($request->question_id as $questionId) {
+            AssignQuestion::create([
+                'category_id' => $request->category_id,
+                'question_id' => $questionId,
+                'status'      => $this->status['Active'],
+                'created_by'  => $user->id,
+            ]);
+        }
+
+        $message = "Data Updated Successfully";
+        return redirect()->route('admin.doctors')->with(['msg' => $message]);
+    }
+
+
 
     public function doctors(Request $request)
     {

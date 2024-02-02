@@ -73,6 +73,7 @@
                                     <th style="vertical-align: middle; text-align: center;">Option B</th>
                                     <th style="vertical-align: middle; text-align: center;">Option C</th>
                                     <th style="vertical-align: middle; text-align: center;">Option D</th>
+                                    <th style="vertical-align: middle; text-align: center;">Categories</th>
                                     <th style="vertical-align: middle; text-align: center;">Status</th>
                                     <th style="vertical-align: middle; text-align: center;">Action</th>
                                 </tr>
@@ -86,6 +87,11 @@
                                     <td style="vertical-align: middle; text-align: center;">{{$value['optB'] ?? '' }}</td>
                                     <td style="vertical-align: middle; text-align: center;">{{$value['optC'] ?? '' }}</td>
                                     <td style="vertical-align: middle; text-align: center;">{{$value['optD'] ?? '' }}</td>
+                                    <td style="vertical-align: middle; text-align: center;">
+                                        @foreach($value['assignments'] as $key => $val)
+                                        <p class="text-muted mb-0 font-weight-semibold" style="font-size: smaller; display:flex;" >{{ $val['category_title'] ?? ''}}</p>
+                                        @endforeach
+                                    </td>
                                     <td style="vertical-align: middle; text-align: center;">
                                         <div class="form-check form-switch d-flex justify-content-center ">
                                             <input class="form-check-input" style="width: 3.3rem; height: 1.3rem;" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked />
@@ -153,16 +159,16 @@
             ]
         }).buttons().container();
     });
-    $(document).ready(function () {
-        $('.edit').click(function () {
-            var id = $(this).data('id'); 
-            $('#edit_form_id_input').val(id); 
-            $('#edit_form').submit(); 
+    $(document).ready(function() {
+        $('.edit').click(function() {
+            var id = $(this).data('id');
+            $('#edit_form_id_input').val(id);
+            $('#edit_form').submit();
         });
 
-        $('.delete').click(function () {
-            var id = $(this).data('id'); 
-            $('#edit_form_id_input').val(id); 
+        $('.delete').click(function() {
+            var id = $(this).data('id');
+            $('#edit_form_id_input').val(id);
             $('#edit_form').submit();
         });
     });

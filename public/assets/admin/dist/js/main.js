@@ -354,3 +354,23 @@ $(function() {
  $('.summernote').summernote({
   height:200,
 });
+
+$('.select2').select2({
+  placeholder: function() {
+      return $(this).data('placeholder') ? $(this).data('placeholder') : 'Choose...';
+  },
+  // width: '100%',
+  // border: '1px solid #e4e5e7',
+});
+
+$('.select2').on("select2:select", function(e) {
+  var selectedOption = e.params.data.text;
+
+  if (selectedOption == 'all') {
+      $(".select2 option[value='all']").prop("selected", false);
+      $(".select2 option").not('[value="all"]').prop("selected", true);
+      $(".select2").trigger("change");
+  }
+});
+
+

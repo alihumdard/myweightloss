@@ -76,6 +76,7 @@ function view_permission($page_name)
                 case 'add_category':
                 case 'questions':
                 case 'add_question':
+                case 'assign_question':
                     return true;
                 default:
                     return false;

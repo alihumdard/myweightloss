@@ -40,16 +40,16 @@
                         <i class="bi bi-circle"></i><span>All Questions</span>
                     </a>
                 </li>
-
+  
                 <li>
-                    <a class="{{(request()->routeIs(['admin.assignQuestion'])) ? 'nav-link ' : ''}}" href="{{route('admin.assignQuestion')}}">
-                        <i class="bi bi-circle"></i><span>Assign Questions</span>
+                    <a class="{{(request()->routeIs(['admin.addQuestion'])) ? 'nav-link ' : ''}}" href="{{route('admin.addQuestion')}}">
+                        <i class="bi bi-circle"></i><span>Add Question</span>
                     </a>
                 </li>
 
                 <li>
-                    <a class="{{(request()->routeIs(['admin.addQuestion'])) ? 'nav-link ' : ''}}" href="{{route('admin.addQuestion')}}">
-                        <i class="bi bi-circle"></i><span>Add Question</span>
+                    <a class="{{(request()->routeIs(['admin.assignQuestion'])) ? 'nav-link ' : ''}}" href="{{route('admin.assignQuestion')}}">
+                        <i class="bi bi-circle"></i><span>Assign Bulk</span>
                     </a>
                 </li>
 

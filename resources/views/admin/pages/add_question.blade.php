@@ -70,6 +70,16 @@
                                 <div class="alert-danger text-danger ">{{ $message }}</div>
                                 @enderror
                             </div>
+                            <div class="col-md-12">
+                                <label for="category_id" class="form-label">Select Category</label>
+                                    <select id="category_id" name="category_id[]" class="form-select select2" data-placeholder="choose categories ..."  multiple="multiple">
+                                        <option value="all">all</option>
+                        
+                                        @foreach ($categories as $key => $value)
+                                        <option {{ (in_array($value['id'],$question['assignments'])) ? 'selected' : '' }} value="{{ $value['id'] ?? '' }}">{{ $value['name'] ?? '' }}</option>
+                                        @endforeach
+                                    </select>
+                            </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary">Submit</button>
                                 <button type="reset" class="btn btn-secondary">Reset</button>
@@ -90,6 +100,6 @@
 
 @pushOnce('scripts')
 <script>
-
+  
 </script>
 @endPushOnce
