@@ -103,43 +103,46 @@
 
 @pushOnce('scripts')
 <script>
-    $(document).ready(function() {
-        $('#category_id').on('change', function() {
-          $('#message').text('');
-            var categoryId = $(this).val();
+  $(document).ready(function() {
+    $('#category_id').on('change', function() {
+        $('#message').text('');
+        var categoryId = $(this).val();
 
-            // Make AJAX request
-            $.ajax({
-                url: '{{ route("admin.getAssignQuestion") }}',
-                type: 'GET',
-                data: {id: categoryId},
-                success: function(response) {
-                    if (response.status === 'success') {
-                        if (response.data.questions.length > 0) {
-                            updateQuestionsDropdown(response.data.questions);
-                            $('#message').text('');
-                        } else {
-                            $('#message').text('No questions available for this category.');
-                        }
+        // Make AJAX request
+        $.ajax({
+            url: '{{ route("admin.getAssignQuestion") }}',
+            type: 'GET',
+            data: { id: categoryId },
+            success: function(response) {
+                if (response.status === 'success') {
+                    if (Object.keys(response.questions).length > 0) {
+                        updateQuestionsDropdown(response.questions);
+                        $('#message').text('');
                     } else {
-                        console.error('Error:', response.message);
+                        $('#message').text('No questions available for this category.');
                     }
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error:', error);
+                } else {
+                    console.error('Error:', response.message);
                 }
-            });
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+    });
+
+    function updateQuestionsDropdown(questions) {
+        var questionDropdown = $('#question_id');
+
+        // Select the options based on the response
+        $.each(questions, function(key, value) {
+            questionDropdown.find('option[value="' + key + '"]').prop('selected', true);
         });
 
-        function updateQuestionsDropdown(questions) {
-            var questionDropdown = $('#question_id');
-            questionDropdown.html('<option value="all">all</option>');
+        // Trigger change event to update Select2
+        questionDropdown.trigger('change');
+    }
+});
 
-            $.each(questions, function(key, value) {
-                var option = $('<option>', {value: value.id, text: value.title});
-                questionDropdown.append(option);
-            });
-        }
-    });
 </script>
 @endPushOnce
