@@ -30,6 +30,8 @@ Route::prefix('admin')->group(function () {
     Route::match(['get','post'],'/addQuestion', [SystemUsersController::class, 'add_question'])->name('admin.addQuestion');
     Route::match(['get','post'],'/storeQuestion', [SystemUsersController::class, 'store_question'])->name('admin.storeQuestion');
     Route::get('/assignQuestion', [SystemUsersController::class, 'assign_question'])->name('admin.assignQuestion');
+    Route::match(['get','post'], '/getAssignQuestion', [SystemUsersController::class, 'get_assign_quest'])->name('admin.getAssignQuestion');
+    Route::match(['get','post'], '/storeAssignQuestion', [SystemUsersController::class, 'store_assign_quest'])->name('admin.storeAssignQuestion');
 
     Route::get('/addProduct', [SystemUsersController::class, 'add_product'])->name('admin.addProduct');
 
