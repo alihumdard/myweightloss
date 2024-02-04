@@ -156,7 +156,7 @@ class SystemUsersController extends Controller
         if (!view_permission($page_name)) {
             return redirect()->back();
         }
-
+        $data['question']['assignments'] = [];
         $data['user'] = auth()->user();
         $data['categories'] = Category::latest('id')->get()->toArray();
         if ($request->has('id')) {

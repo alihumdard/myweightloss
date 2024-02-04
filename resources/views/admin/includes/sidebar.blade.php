@@ -15,10 +15,15 @@
                 <span>Categories</span>
                 <i class="bi bi-chevron-down ms-auto"></i>
             </a>
-            <ul id="siderbar-cat" class="nav-content {{ (request()->routeIs(['admin.categories','admin.addCategory'])) ? '' : 'collapse'}} " data-bs-parent="#sidebar-nav">
+            <ul id="siderbar-cat" class="nav-content {{ (request()->routeIs(['admin.categories','admin.assignQuestion', 'admin.addCategory'])) ? '' : 'collapse'}} " data-bs-parent="#sidebar-nav">
                 <li>
                     <a class="{{(request()->routeIs(['admin.categories'])) ? 'nav-link ' : ''}}" href="{{route('admin.categories')}}">
                         <i class="bi bi-circle"></i><span>All Categories</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="{{(request()->routeIs(['admin.assignQuestion'])) ? 'nav-link ' : ''}}" href="{{route('admin.assignQuestion')}}">
+                        <i class="bi bi-circle"></i><span>Assign Questions</span>
                     </a>
                 </li>
                 <li>
@@ -26,11 +31,12 @@
                         <i class="bi bi-circle"></i><span>New Add</span>
                     </a>
                 </li>
+
             </ul>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link {{ (request()->routeIs(['admin.questions','admin.assignQuestion', 'admin.addQuestion'])) ? '' : 'collapsed'}} " data-bs-target="#siderbar-contsult" data-bs-toggle="collapse">
+            <a class="nav-link {{ (request()->routeIs(['admin.questions','admin.addQuestion'])) ? '' : 'collapsed'}} " data-bs-target="#siderbar-contsult" data-bs-toggle="collapse">
                 <i class="bi bi-menu-button-wide"></i><span>Consultations</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="siderbar-contsult" class="nav-content {{ (request()->routeIs(['admin.questions','admin.assignQuestion', 'admin.addQuestion'])) ? '' : 'collapse'}} " data-bs-parent="#sidebar-nav">
@@ -44,12 +50,6 @@
                 <li>
                     <a class="{{(request()->routeIs(['admin.addQuestion'])) ? 'nav-link ' : ''}}" href="{{route('admin.addQuestion')}}">
                         <i class="bi bi-circle"></i><span>Add Question</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a class="{{(request()->routeIs(['admin.assignQuestion'])) ? 'nav-link ' : ''}}" href="{{route('admin.assignQuestion')}}">
-                        <i class="bi bi-circle"></i><span>Assign Bulk</span>
                     </a>
                 </li>
 
