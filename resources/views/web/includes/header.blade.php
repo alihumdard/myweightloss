@@ -17,23 +17,23 @@
                             <li>
                                 <i class="icon-clock"></i><a href="contact-us.html">Mon - Fri: 8:00 am - 7:00 pm</a>
                             </li>
-                        </ul><!-- /.contact__list -->
+                        </ul>
                         <div class="d-flex">
                             <ul class="social-icons list-unstyled mb-0 mr-30">
                                 <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                                 <li><a href="#"><i class="fab fa-instagram"></i></a></li>
                                 <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                            </ul><!-- /.social-icons -->
+                            </ul>
                             <form class="header-topbar__search">
                                 <input type="text" class="form-control" placeholder="Search...">
                                 <button class="header-topbar__search-btn"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
                     </div>
-                </div><!-- /.col-12 -->
-            </div><!-- /.row -->
-        </div><!-- /.container -->
-    </div><!-- /.header-top -->
+                </div>
+            </div>
+        </div>
+    </div>
     <nav class="navbar navbar-expand-lg sticky-navbar">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.html">
@@ -50,63 +50,74 @@
                         <ul class="dropdown-menu">
                             <li class="nav__item">
                                 <a href="{{ route('web.index') }}" class="nav__item-link">Home Main</a>
-                            </li><!-- /.nav-item -->
-                        </ul><!-- /.dropdown-menu -->
-                    </li><!-- /.nav-item -->
+                            </li>
+                        </ul>
+                    </li>
                     <li class="nav__item has-dropdown">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle nav__item-link">About Us</a>
                         <ul class="dropdown-menu">
                             <li class="nav__item">
                                 <a href="{{ route('web.aboutUs') }}" class="nav__item-link">About Us</a>
-                            </li><!-- /.nav-item -->
+                            </li>
 
-                        </ul><!-- /.dropdown-menu -->
-                    </li><!-- /.nav-item -->
+                        </ul>
+                    </li>
 
                     <li class="nav__item has-dropdown">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle nav__item-link">Blog</a>
                         <ul class="dropdown-menu">
                             <li class="nav__item">
                                 <a href="{{ route('web.blogs') }}" class="nav__item-link">Blog Grid</a>
-                            </li><!-- /.nav-item -->
-                        </ul><!-- /.dropdown-menu -->
-                    </li><!-- /.nav-item -->
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav__item has-dropdown">
+                        <a  data-toggle="dropdown" class="dropdown-toggle nav__item-link active">Shop</a>
+                        <ul class="dropdown-menu">
+                            <li class="nav__item">
+                                <a href="{{ route('web.products') }}" class="nav__item-link">Our Products</a>
+                            </li>
+                            <li class="nav__item">
+                                <a href="cart.html" class="nav__item-link">Cart</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="nav__item">
                         <a href="{{ route('web.contactUs') }}" class="nav__item-link">Contacts</a>
-                    </li><!-- /.nav-item -->
-                </ul><!-- /.navbar-nav -->
+                    </li>
+                </ul>
                 <button class="close-mobile-menu d-block d-lg-none"><i class="fas fa-times"></i></button>
-            </div><!-- /.navbar-collapse -->
+            </div>
             <div class="d-none d-xl-flex align-items-center position-relative ml-30">
                 <div class="miniPopup-departments-trigger">
-                    <span  style="cursor:pointer" class="menu-lines" id="miniPopup-departments-trigger-icon"><span></span></span>
+                    <span style="cursor:pointer" class="menu-lines" id="miniPopup-departments-trigger-icon"><span></span></span>
                 </div>
                 <ul id="miniPopup-departments" class="miniPopup miniPopup-departments dropdown-menu">
                     <li class="nav__item">
                         <a href="department-single.html" class="nav__item-link">Neurology Clinic</a>
-                    </li><!-- /.nav-item -->
+                    </li>
                     <li class="nav__item">
                         <a href="department-single.html" class="nav__item-link">Cardiology Clinic</a>
-                    </li><!-- /.nav-item -->
+                    </li>
                     <li class="nav__item">
                         <a href="department-single.html" class="nav__item-link">Pathology Clinic</a>
-                    </li><!-- /.nav-item -->
+                    </li>
                     <li class="nav__item">
                         <a href="department-single.html" class="nav__item-link">Laboratory Clinic</a>
-                    </li><!-- /.nav-item -->
+                    </li>
                     <li class="nav__item">
                         <a href="department-single.html" class="nav__item-link">Pediatric Clinic</a>
-                    </li><!-- /.nav-item -->
+                    </li>
                     <li class="nav__item">
                         <a href="department-single.html" class="nav__item-link">Cardiac Clinic</a>
-                    </li><!-- /.nav-item -->
-                </ul> <!-- /.miniPopup-departments -->
+                    </li>
+                </ul>
                 <a href="appointment.html" class="btn btn__primary btn__rounded ml-30">
                     <i class="icon-calendar"></i>
                     <span>Contsultations</span>
                 </a>
             </div>
-        </div><!-- /.container -->
-    </nav><!-- /.navabr -->
+        </div>
+    </nav>
 </header>
 <!-- /.Header -->

@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\web\HomeController;
+use App\Http\Controllers\web\WebController;
 use App\Http\Controllers\Admin\DefualtController;
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +21,7 @@ Route::match(['get','post'],'/logout', [DefualtController::class, 'logout'])->na
 Route::get('/aboutUs', [HomeController::class, 'about_us'])->name('web.aboutUs');
 Route::get('/contactUs', [HomeController::class, 'contact_us'])->name('web.contactUs');
 Route::get('/blogs', [HomeController::class, 'blogs'])->name('web.blogs');
+Route::get('/products', [WebController::class, 'products'])->name('web.products');
+Route::get('/product/{id}', [WebController::class, 'product'])->name('web.product')->where('id', '[0-9]+');
 
 include __DIR__.'/admin.php';
