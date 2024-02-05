@@ -452,7 +452,13 @@ class SystemUsersController extends Controller
         $validator = Validator::make($request->all(), [
             'price'      => 'required',
             'category_id'=> 'required',
-            'main_image' => 'required',
+            'main_image' => [
+                'required',
+                'image', 
+                'mimes:jpeg,png,jpg,gif', 
+                'max:1024', 
+                'dimensions:max_width=1000,max_height=1000', 
+            ],
             'qty'        => 'required',
             'stock'      => 'required',
             'cnn'        => 'required',
