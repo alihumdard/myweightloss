@@ -19,7 +19,9 @@ Route::prefix('admin')->group(function () {
     Route::match(['get','post'],'/addCategory', [SystemUsersController::class, 'add_category'])->name('admin.addCategory');
     Route::match(['get','post'],'/storeCategory', [SystemUsersController::class, 'store_category'])->name('admin.storeCategory');
 
-    Route::get('/prodcuts', [SystemUsersController::class, 'prodcuts'])->name('admin.prodcuts');
+    Route::match(['get','post'],'/prodcuts', [SystemUsersController::class, 'prodcuts'])->name('admin.prodcuts');
+    Route::match(['get','post'],'/addProduct', [SystemUsersController::class, 'add_product'])->name('admin.addProduct');
+    Route::match(['get','post'],'/storeProduct', [SystemUsersController::class, 'store_product'])->name('admin.storeProduct');
     
     Route::get('/admins', [SystemUsersController::class, 'admins'])->name('admin.admins');
     Route::match(['get','post'],'/addAdmin',   [SystemUsersController::class, 'add_admin'])->name('admin.addAdmin');
@@ -33,7 +35,6 @@ Route::prefix('admin')->group(function () {
     Route::match(['get','post'], '/getAssignQuestion', [SystemUsersController::class, 'get_assign_quest'])->name('admin.getAssignQuestion');
     Route::match(['get','post'], '/storeAssignQuestion', [SystemUsersController::class, 'store_assign_quest'])->name('admin.storeAssignQuestion');
 
-    Route::get('/addProduct', [SystemUsersController::class, 'add_product'])->name('admin.addProduct');
 
     Route::get('/ordersRecieved', [SystemUsersController::class, 'orders_recieved'])->name('admin.ordersRecieved');
     Route::get('/doctorsApproval', [SystemUsersController::class, 'doctors_approval'])->name('admin.doctorsApproval');

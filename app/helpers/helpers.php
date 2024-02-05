@@ -77,6 +77,8 @@ function view_permission($page_name)
                 case 'questions':
                 case 'add_question':
                 case 'assign_question':
+                case 'prodcuts':
+                case 'add_product':
                     return true;
                 default:
                     return false;

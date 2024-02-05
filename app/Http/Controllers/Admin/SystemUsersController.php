@@ -18,11 +18,14 @@ use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Config;
+
 // models ...
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Question;
 use App\Models\AssignQuestion;
+use App\Models\Product;
+use App\Models\ProductAttribute;
 
 class SystemUsersController extends Controller
 {
@@ -147,8 +150,6 @@ class SystemUsersController extends Controller
         return view('admin.pages.questions', $data);
     }
 
-
-
     public function add_question(Request $request)
     {
         $user = auth()->user();
@@ -172,7 +173,6 @@ class SystemUsersController extends Controller
 
         return view('admin.pages.add_question', $data);
     }
-
 
     public function store_question(Request $request)
     {
@@ -252,23 +252,23 @@ class SystemUsersController extends Controller
     {
         $user = auth()->user();
         $page_name = 'assign_question';
-        
+
         if (!view_permission($page_name)) {
             return response()->json(['status' => 'error', 'message' => 'Unauthorized']);
         }
-    
+
         $questions = [];
-    
+
         if (isset($user->role) && $user->role == user_roles('1') && $request->has('id')) {
             $questions = AssignQuestion::select('question_id', 'question_title')
                 ->where('category_id', $request->id)
                 ->pluck('question_title', 'question_id')
                 ->toArray();
         }
-    
+
         return response()->json(['status' => 'success', 'questions' => $questions]);
     }
-    
+
 
     public function store_assign_quest(Request $request)
     {
@@ -297,14 +297,16 @@ class SystemUsersController extends Controller
         foreach ($request->question_id as $questionId) {
             AssignQuestion::create([
                 'category_id' => $request->category_id,
-                'question_id' => $questionId,
+                'category_title' => Category::findOrFail($request->category_id)->name,
+                'question_id'    => $questionId,
+                'question_title' => Question::findOrFail($questionId)->title,
                 'status'      => $this->status['Active'],
                 'created_by'  => $user->id,
             ]);
         }
 
         $message = "Data Updated Successfully";
-        return redirect()->route('admin.doctors')->with(['msg' => $message]);
+        return redirect()->route('admin.categories')->with(['msg' => $message]);
     }
 
 
@@ -409,11 +411,104 @@ class SystemUsersController extends Controller
         return view('admin.pages.users', $data);
     }
 
-    public function prodcuts()
+    public function prodcuts(Request $request)
     {
+        $user = auth()->user();
+        $page_name = 'prodcuts';
+        if (!view_permission($page_name)) {
+            return redirect()->back();
+        }
+
+
         return view('admin.pages.prodcuts');
     }
 
+    public function add_product(Request $request)
+    {
+        $user = auth()->user();
+        $page_name = 'add_product';
+        if (!view_permission($page_name)) {
+            return redirect()->back();
+        }
+
+        if ($request->has('id')) {
+            $data['product'] = User::findOrFail($request->id)->toArray();
+        }
+
+        return view('admin.pages.add_product');
+    }
+
+    public function store_product(Request $request)
+    {
+        $user = auth()->user();
+        $page_name = 'add_product';
+        if (!view_permission($page_name)) {
+            return redirect()->back();
+        }
+
+        $validator = Validator::make($request->all(), [
+            'price'      => 'required',
+            'qty'        => 'required',
+            'stock'      => 'required',
+            'cnn'        => 'required',
+            'images.*'   => 'required',
+            'ext_tax'    => 'required',
+            'desc'       => 'required',
+            'title'      => [
+                'required',
+                Rule::unique('products')->ignore($request->id),
+            ],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $data['user'] = auth()->user();
+
+        // Create or update product
+        $product = Product::updateOrCreate(
+            ['id' => $request->id ?? NULL],
+            [
+                'title'      => ucwords($request->title),
+                'desc'       => $request->desc,
+                'ext_tax'    => $request->ext_tax,
+                'cnn'        => $request->cnn,
+                'stock'      => $request->stock,
+                'qty'        => $request->qty,
+                'price'      => $request->price,
+                'status'     => $this->status['Active'],
+                'created_by' => $user->id,
+            ]
+        );
+
+        // Handle image uploads
+        $uploadedImages = [];
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imageName = time() . '_' . $image->getClientOriginalName();
+                $image->storeAs('product_images', $imageName, 'public'); // Change 'product_images' to your storage folder
+
+                $uploadedImages[] = $imageName;
+            }
+        }
+
+        // Associate product attributes
+        $productAttributesData = [];
+        foreach ($uploadedImages as $uploadedImage) {
+            $productAttributesData[] = [
+                'product_id' => $product->id,
+                'image'     => $uploadedImage,
+                'status'     => $this->status['Active'],
+                'created_by' => $user->id,
+            ];
+        }
+
+        ProductAttribute::insert($productAttributesData);
+
+        $message = "Product " . ($request->id ? "Updated" : "Saved") . " Successfully";
+        return redirect()->route('admin.prodcuts')->with(['msg' => $message]);
+    }
 
     public function add_admin(Request $request)
     {
@@ -479,14 +574,6 @@ class SystemUsersController extends Controller
             return redirect()->route('admin.admins')->with(['msg' => $message]);
         }
     }
-
-
-
-    public function add_product()
-    {
-        return view('admin.pages.add_product');
-    }
-
 
 
     public function orders_recieved()
