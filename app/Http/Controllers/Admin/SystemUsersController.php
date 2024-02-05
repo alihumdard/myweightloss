@@ -419,8 +419,11 @@ class SystemUsersController extends Controller
             return redirect()->back();
         }
 
-
-        return view('admin.pages.prodcuts');
+        if (isset($user->role) && $user->role == user_roles('1')) {
+            $data['products'] = Product::with('category:id,name')->latest('id')->get()->toArray();
+        }
+        // dd($data['products']);
+        return view('admin.pages.prodcuts',$data);
     }
 
     public function add_product(Request $request)
@@ -430,12 +433,12 @@ class SystemUsersController extends Controller
         if (!view_permission($page_name)) {
             return redirect()->back();
         }
-
+        $data['categories'] = Category::latest('id')->get()->toArray();
         if ($request->has('id')) {
-            $data['product'] = User::findOrFail($request->id)->toArray();
+            $data['product'] = Product::findOrFail($request->id)->toArray();
         }
 
-        return view('admin.pages.add_product');
+        return view('admin.pages.add_product',$data);
     }
 
     public function store_product(Request $request)
@@ -448,10 +451,11 @@ class SystemUsersController extends Controller
 
         $validator = Validator::make($request->all(), [
             'price'      => 'required',
+            'category_id'=> 'required',
+            'main_image' => 'required',
             'qty'        => 'required',
             'stock'      => 'required',
             'cnn'        => 'required',
-            'images.*'   => 'required',
             'ext_tax'    => 'required',
             'desc'       => 'required',
             'title'      => [
@@ -461,17 +465,25 @@ class SystemUsersController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
+            return response()->json(['status' => 'error', 'message' => $validator->errors()]);
         }
 
         $data['user'] = auth()->user();
-
+        if ($request->hasFile('main_image')) {
+            $mainImage = $request->file('main_image');
+            $mainImageName = time() . '_' . uniqid('', true) . '.' . $mainImage->getClientOriginalExtension();
+            $mainImage->storeAs('product_images/main_images', $mainImageName, 'public'); 
+            $mainImagePath = 'product_images/main_images/' . $mainImageName;
+        }
+        
         // Create or update product
         $product = Product::updateOrCreate(
-            ['id' => $request->id ?? NULL],
+            ['id' => $request->id ?? null],
             [
                 'title'      => ucwords($request->title),
                 'desc'       => $request->desc,
+                'main_image' => $mainImagePath ?? Product::findOrFail($request->id)->main_image,
+                'category_id'=> $request->category_id,
                 'ext_tax'    => $request->ext_tax,
                 'cnn'        => $request->cnn,
                 'stock'      => $request->stock,
@@ -481,6 +493,7 @@ class SystemUsersController extends Controller
                 'created_by' => $user->id,
             ]
         );
+        
 
         // Handle image uploads
         $uploadedImages = [];
@@ -488,8 +501,9 @@ class SystemUsersController extends Controller
             foreach ($request->file('images') as $image) {
                 $imageName = time() . '_' . $image->getClientOriginalName();
                 $image->storeAs('product_images', $imageName, 'public'); // Change 'product_images' to your storage folder
+                $extImagePath = 'product_images/' . $imageName;
 
-                $uploadedImages[] = $imageName;
+                $uploadedImages[] = $extImagePath;
             }
         }
 
@@ -507,7 +521,7 @@ class SystemUsersController extends Controller
         ProductAttribute::insert($productAttributesData);
 
         $message = "Product " . ($request->id ? "Updated" : "Saved") . " Successfully";
-        return redirect()->route('admin.prodcuts')->with(['msg' => $message]);
+        return response()->json(['status' => 'success', 'message' => $message, 'data' => []]);
     }
 
     public function add_admin(Request $request)

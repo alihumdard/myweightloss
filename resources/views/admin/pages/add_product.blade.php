@@ -139,37 +139,64 @@
     </div><!-- End Page Title -->
 
     <section class="product-sec">
-        <form class="row g-3 mt-3 needs-validation" method="post" action="{{ route('admin.storeProduct') }}" novalidate>
+        <form class="row g-3 mt-3 needs-validation" id="product_detail_from" method="post" action="{{ route('admin.storeProduct') }}" novalidate enctype="multipart/form-data">
             @csrf
+            <input type="hidden" name="id" value="{{  $product['id'] ?? '' }}">
             <div class="row gy-4">
                 <div class=" col-md-6">
                     <div class="row">
+
                         <div class="col-sm-12  col-md-12">
+                            <label class="form-label">Extra Images</label>
                             <div class="upload__box">
                                 <div class="upload__btn-box">
                                     <div class="upload__img-wrap">
                                         <label class="upload__btn" id="uploadbtn" for="product_images">
                                             <p>+</p>
-                                            <input type="file" multiple data-max_length="5" id="product_images" name="images[]" class="upload__inputfile" required>
+                                            <input type="file" multiple data-max_length="5" id="product_images" name="images[]" class="upload__inputfile">
                                         </label>
                                     </div>
                                 </div>
                             </div>
-                            <div class="invalid-feedback">Please select product image!</div>
+                            <!-- <div class="invalid-feedback">Please select product image!</div> -->
                             @error('images')
                             <div class="alert-danger text-danger ">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <input class="form-control me-2" type="text" name="title" id="pro_id" value="{{  $product['title'] ?? old('title') }}" placeholder="product title" aria-label="Search" required>
-                    <div class="invalid-feedback">Please write product title!</div>
-                    @error('title')
-                    <div class="alert-danger text-danger ">{{ $message }}</div>
-                    @enderror
+                <div class="col-md-6 ">
+                    <div class="col-12 ">
+                        <label for="category_id" class="form-label">Select Product Category</label>
+                        <select id="category_id" name="category_id" class="form-select" required>
+                            <option value="" selected>Choose...</option>
+                            @foreach ($categories as $key => $value)
+                            <option value="{{ $value['id'] ?? '' }}" {{ ($product['category_id'] ?? NULL == $value['id'] ) ? 'selected' : '' }}>{{ $value['name'] ?? '' }}</option>
+                            @endforeach
+                        </select>
+                        <div class="invalid-feedback">* Please select product category</div>
+                    </div>
+                    <div class="col-12 mt-1">
+                        <label for="product_main_image" class="form-label">Upload Main Image</label>
+                        <input type="file" class="form-control" id="product_main_image" name="main_image" value="{{ ($product['main_image'] ?? NULL) ? 'required' : '' }}" onchange="previewMainImage(this)">
+                        @php
+                        $path = $product['main_image'] ?? '';
+                        @endphp
+                        <img id="mainImage_preview" 
+                        src="{{ asset('storage/'.$path) ?? '' }}"
+                         class="rounded-circle mt-1 ms-auto d-block" alt="no image" style="width: 45px; height: 45px">
+                        <div class="invalid-feedback">* Upload product main Image!</div>
+                    </div>
+
+                    <div class="col-12 mt-3">
+                        <input class="form-control me-2" type="text" name="title" id="pro_id" value="{{  $product['title'] ?? old('title') }}" placeholder="product title" aria-label="Search" required>
+                        <div class="invalid-feedback">Please write product title!</div>
+                        @error('title')
+                        <div class="alert-danger text-danger ">{{ $message }}</div>
+                        @enderror
+                    </div>
                     <div class="form-floating col-12  mt-3">
-                        <textarea class="form-control h-50" name="desc" id="pro_desc" cols="10" rows="10" placeholder="product Description" required=''> {{ $product['desc'] ?? old('desc') }} </textarea>
+                        <textarea class="form-control h-50" name="desc" id="pro_desc" cols="10" rows="10" placeholder="product Description" required=''>{{$product['desc'] ?? ''}}</textarea>
                         <div class="invalid-feedback">Please write product desc!</div>
                         @error('desc')
                         <div class="alert-danger text-danger ">{{ $message }}</div>
@@ -298,11 +325,12 @@
             $(this).parent().parent().remove();
         });
 
-        $('form').on('submit', function(e) {
+        $('body').on('submit', '#product_detail_from', function(e) {
             e.preventDefault();
 
             // Create FormData object
             var formData = new FormData();
+            formData.append('main_image', $('#product_main_image')[0].files[0]);
 
             // Append images to the FormData object
             for (var i = 0; i < imgArray.length; i++) {
@@ -322,13 +350,55 @@
                 processData: false,
                 contentType: false,
                 success: function(response) {
-                    alert('success')
+                    if (response.status === 'success') {
+                        window.location.href = "{{ route('admin.prodcuts') }}";
+                    } else if (response.status === 'error') {
+
+                        console.log(response.message);
+                        $('.error-label').remove();
+
+                        $.each(response.message, function(field, errorMessages) {
+                            var inputField = $('input[name="' + field + '"]');
+
+                            $.each(errorMessages, function(index, errorMessage) {
+                                var errorLabel = $('<label class="error-label text-danger">* ' + errorMessage + '</label>');
+                                inputField.addClass('error');
+                                inputField.after(errorLabel);
+                            });
+                        });
+                    }
+
                 },
                 error: function(error) {
-                    // Handle error
+                    alert('technical error occur')
                 }
             });
         });
+
+        $('input').on('input', function() {
+            $(this).removeClass('error');
+            $(this).next('.error-label').remove();
+        });
+
+        $('select').on('change', function() {
+            $(this).removeClass('error');
+            $(this).next('.error-label').remove();
+        });
+
+    }
+
+    function previewMainImage(input) {
+        var preview = $('#mainImage_preview');
+        var file = input.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            preview.attr('src', e.target.result);
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
     }
 </script>
 @endPushOnce
