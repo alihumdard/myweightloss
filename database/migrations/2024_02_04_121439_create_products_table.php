@@ -17,12 +17,14 @@ return new class extends Migration
             $table->id();
             $table->text('title')->unique();
             $table->text('desc');
+            $table->text('main_image');
             $table->integer('price');
             $table->string('qty');
             $table->string('stock');
             $table->string('cnn');
             $table->string('ext_tax');
             $table->string('status')->default('1');
+            $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable()->default(null);
             $table->timestamps();
