@@ -62,8 +62,12 @@
                                 <input type="number" value="1" class="qty-input">
                                 <i class="increase-qty fa fa-plus"></i>
                             </div>
-                            <a class="btn btn__secondary btn__rounded" href="#">add to cart</a>
-                        </div><!-- /.product-quantity -->
+                            <!-- <a class="btn btn__secondary btn__rounded" href="#">add to cart</a> -->
+                            <a href="{{ route('web.bmiForm')}}" class="btn btn__primary btn__rounded ml-30">
+                                <i class="icon-calendar"></i>
+                                <span>Contsultations</span>
+                            </a>
+                        </div>
                         <div class="product__meta-details">
                             <ul class="list-unstyled mb-30">
                                 <li>

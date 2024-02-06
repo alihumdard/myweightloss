@@ -46,4 +46,16 @@ class WebController extends Controller
         return view('web.pages.product',$data);
     }
 
+    public function bmi_form(Request $request)
+    {
+        $data['user'] = auth()->user() ?? [];
+        return view('web.pages.bmi_form',$data);
+    }
+
+    public function consultation_form(Request $request)
+    {
+        $data['user'] = auth()->user() ?? [];
+        return view('web.pages.consultation_form',$data);
+    }
+
 }

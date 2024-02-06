@@ -72,7 +72,7 @@
                         </ul>
                     </li>
                     <li class="nav__item has-dropdown">
-                        <a  data-toggle="dropdown" class="dropdown-toggle nav__item-link active">Shop</a>
+                        <a href="{{ route('web.products') }}" data-toggle="dropdown" class="dropdown-toggle nav__item-link active">Products</a>
                         <ul class="dropdown-menu">
                             <li class="nav__item">
                                 <a href="{{ route('web.products') }}" class="nav__item-link">Our Products</a>
@@ -112,7 +112,7 @@
                         <a href="department-single.html" class="nav__item-link">Cardiac Clinic</a>
                     </li>
                 </ul>
-                <a href="appointment.html" class="btn btn__primary btn__rounded ml-30">
+                <a href="{{ route('web.bmiForm')}}" class="btn btn__primary btn__rounded ml-30">
                     <i class="icon-calendar"></i>
                     <span>Contsultations</span>
                 </a>
