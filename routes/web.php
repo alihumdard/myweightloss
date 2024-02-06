@@ -23,5 +23,7 @@ Route::get('/contactUs', [HomeController::class, 'contact_us'])->name('web.conta
 Route::get('/blogs', [HomeController::class, 'blogs'])->name('web.blogs');
 Route::get('/products', [WebController::class, 'products'])->name('web.products');
 Route::get('/product/{id}', [WebController::class, 'product'])->name('web.product')->where('id', '[0-9]+');
+Route::get('/bmiForm', [WebController::class, 'bmi_form'])->name('web.bmiForm');
+Route::get('/consultationForm', [WebController::class, 'consultation_form'])->name('web.consultationForm');
 
 include __DIR__.'/admin.php';

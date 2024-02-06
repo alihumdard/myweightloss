@@ -85,8 +85,9 @@
                             <img src="{{ asset('storage/'.$value['main_image'])}}" alt="Product img" loading="lazy">
                         </a>
                         <div class="product__action">
-                            <a href="#" class="btn btn__primary btn__rounded">
-                                <i class="icon-cart"></i> <span>Add To Cart</span>
+                            <a href="{{ route('web.bmiForm')}}" class="btn btn__primary btn__rounded">
+                                <!-- <i class="icon-cart"></i> <span>Add To Cart</span> -->
+                                <i class="icon-calendar"></i> <span>Contsultations</span>
                             </a>
                         </div>
                     </div>
@@ -104,7 +105,7 @@
         </div>
         <div class="row">
             <div class="col-12 text-center">
-                <a href="shop.html" class="btn btn__secondary btn__rounded">
+                <a href="{{ route('web.products') }}" class="btn btn__secondary btn__rounded">
                     <span>Explore All</span>
                     <i class="icon-arrow-right"></i>
                 </a>
