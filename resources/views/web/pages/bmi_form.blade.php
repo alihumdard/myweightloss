@@ -313,7 +313,7 @@
                                     <div class="items">
                                         <img src="{{ asset('/assets/web/bmi/img/weightloss/25.png') }}" alt="">
                                     </div>
-                                    <a href="{{ route('web.consultationForm')}}">
+                                    <a href="{{ route('web.regisrationFrom')}}">
                                         <button type="button" class="btn btn-info next-step">Continue</button>
                                     </a>
                                 </div>
