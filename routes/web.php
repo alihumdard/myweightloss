@@ -22,8 +22,9 @@ Route::get('/aboutUs', [HomeController::class, 'about_us'])->name('web.aboutUs')
 Route::get('/contactUs', [HomeController::class, 'contact_us'])->name('web.contactUs');
 Route::get('/blogs', [HomeController::class, 'blogs'])->name('web.blogs');
 Route::get('/products', [WebController::class, 'products'])->name('web.products');
-Route::get('/product/{id}', [WebController::class, 'product'])->name('web.product')->where('id', '[0-9]+');
-Route::get('/bmiForm', [WebController::class, 'bmi_form'])->name('web.bmiForm');
-Route::get('/consultationForm', [WebController::class, 'consultation_form'])->name('web.consultationForm');
+Route::match(['get','post'],'/product/{id}', [WebController::class, 'product'])->name('web.product')->where('id', '[0-9]+');
+Route::match(['get','post'],'/bmiForm', [WebController::class, 'bmi_form'])->name('web.bmiForm');
+Route::match(['get','post'],'/consultationForm', [WebController::class, 'consultation_form'])->name('web.consultationForm');
+Route::match(['get','post'],'/regisrationFrom', [WebController::class, 'regisration_from'])->name('web.regisrationFrom');
 
 include __DIR__.'/admin.php';

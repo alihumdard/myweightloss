@@ -58,4 +58,14 @@ class WebController extends Controller
         return view('web.pages.consultation_form',$data);
     }
 
+    public function regisration_from(Request $request)
+    {
+        $data['user'] = auth()->user() ?? [];
+        if(auth()->user()){
+            return view('web.pages.consultation_form',$data);
+        }else{
+            return view('web.pages.regisration_from',$data);
+        }
+    }
+
 }
