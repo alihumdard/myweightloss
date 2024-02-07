@@ -27,7 +27,7 @@ use App\Models\AssignQuestion;
 use App\Models\Product;
 use App\Models\ProductAttribute;
 
-class SystemUsersController extends Controller
+class SystemController extends Controller
 {
     protected $status;
     protected $user;
@@ -43,6 +43,7 @@ class SystemUsersController extends Controller
         // return view('admin.pages.dashboard');
     }
 
+    // system roles .... Super Admin, Admin, Doctor,User, 
     public function admins(Request $request)
     {
         $user = auth()->user();
@@ -60,6 +61,174 @@ class SystemUsersController extends Controller
         return view('admin.pages.admins', $data);
     }
 
+    public function add_admin(Request $request)
+    {
+        $user = auth()->user();
+        $page_name = 'add_admin';
+        if (!view_permission($page_name)) {
+            return redirect()->back();
+        }
+
+        $data['user'] = auth()->user();
+        if ($request->has('id')) {
+            $data['admin'] = User::findOrFail($request->id)->toArray();
+        }
+
+        return view('admin.pages.add_admin', $data);
+    }
+
+    public function store_admin(Request $request)
+    {
+        $user = auth()->user();
+        $page_name = 'add_admin';
+        if (!view_permission($page_name)) {
+            return redirect()->back();
+        }
+
+        $validator = Validator::make($request->all(), [
+            'name'     => 'required',
+            'phone'    => 'required',
+            'address'  => 'required',
+            'role'     => 'required',
+            'email'    => [
+                'required',
+                'email',
+                Rule::unique('users')->ignore($request->id),
+            ],
+            'password' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $data['user'] = auth()->user();
+
+        $saved = User::updateOrCreate(
+            ['id' => $request->id ?? NULL],
+            [
+                'name'       => ucwords($request->name),
+                'email'      => $request->email,
+                'role'       =>  $request->role,
+                'phone'      => $request->phone,
+                'address'    => $request->address,
+                'zip_code'   => $request->zip_code,
+                'city'       => $request->city,
+                'state'      => $request->state,
+                'password'   => Hash::make($request->password),
+                'status'     => $this->status['Active'],
+                'created_by' => $user->id,
+            ]
+        );
+        $message = "Admin " . ($request->id ? "Updated" : "Saved") . " Successfully";
+        if ($saved) {
+            return redirect()->route('admin.admins')->with(['msg' => $message]);
+        }
+    }
+
+    // doctors managment ...
+    public function doctors(Request $request)
+    {
+        $user = auth()->user();
+        $page_name = 'admins';
+        if (!view_permission($page_name)) {
+            return redirect()->back();
+        }
+
+        $data['user'] = auth()->user();
+
+        if (isset($user->role) && $user->role == user_roles('1')) {
+            $data['doctors'] = User::where(['role' => user_roles('3')])->latest('id')->get()->toArray();
+        }
+
+        return view('admin.pages.doctors', $data);
+    }
+    public function add_doctor(Request $request)
+    {
+        $user = auth()->user();
+        $page_name = 'add_doctor';
+        if (!view_permission($page_name)) {
+            return redirect()->back();
+        }
+
+        $data['user'] = auth()->user();
+        if ($request->has('id')) {
+            $data['doctor'] = User::findOrFail($request->id)->toArray();
+        }
+
+        return view('admin.pages.add_doctor', $data);
+    }
+
+    public function store_doctor(Request $request)
+    {
+        $user = auth()->user();
+        $page_name = 'add_doctor';
+        if (!view_permission($page_name)) {
+            return redirect()->back();
+        }
+
+        $validator = Validator::make($request->all(), [
+            'name'       => 'required',
+            'phone'      => 'required',
+            'address'    => 'required',
+            'speciality' => 'required',
+            'role'       => 'required',
+            'email'      => [
+                'required',
+                'email',
+                Rule::unique('users')->ignore($request->id),
+            ],
+            'password' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $data['user'] = auth()->user();
+
+        $saved = User::updateOrCreate(
+            ['id' => $request->id ?? NULL],
+            [
+                'name'       => ucwords($request->name),
+                'email'      => $request->email,
+                'role'       =>  $request->role,
+                'phone'      => $request->phone,
+                'address'    => $request->address,
+                'speciality' => $request->speciality,
+                'short_bio'  => $request->short_bio,
+                'zip_code'   => $request->zip_code,
+                'city'       => $request->city,
+                'password'   => Hash::make($request->password),
+                'status'     => $this->status['Active'],
+                'created_by' => $user->id,
+            ]
+        );
+        $message = "Doctor " . ($request->id ? "Updated" : "Saved") . " Successfully";
+        if ($saved) {
+            return redirect()->route('admin.doctors')->with(['msg' => $message]);
+        }
+    }
+
+    //users management ...
+    public function users(Request $request)
+    {
+        $user = auth()->user();
+        $page_name = 'users';
+        if (!view_permission($page_name)) {
+            return redirect()->back();
+        }
+
+        $data['user'] = auth()->user();
+
+        if (isset($user->role) && $user->role == user_roles('1')) {
+            $data['users'] = User::where(['role' => user_roles('4')])->latest('id')->get()->toArray();
+        }
+
+        return view('admin.pages.users', $data);
+    }
+
+    // categories managment ...
     public function categories()
     {
         $user = auth()->user();
@@ -130,7 +299,7 @@ class SystemUsersController extends Controller
         }
     }
 
-
+    // question management ...
     public function questions(Request $request)
     {
         $user = auth()->user();
@@ -232,6 +401,7 @@ class SystemUsersController extends Controller
         }
     }
 
+    // question assignment manament...
     public function assign_question(Request $request)
     {
         $user = auth()->user();
@@ -268,7 +438,6 @@ class SystemUsersController extends Controller
 
         return response()->json(['status' => 'success', 'questions' => $questions]);
     }
-
 
     public function store_assign_quest(Request $request)
     {
@@ -309,108 +478,7 @@ class SystemUsersController extends Controller
         return redirect()->route('admin.categories')->with(['msg' => $message]);
     }
 
-
-
-    public function doctors(Request $request)
-    {
-        $user = auth()->user();
-        $page_name = 'admins';
-        if (!view_permission($page_name)) {
-            return redirect()->back();
-        }
-
-        $data['user'] = auth()->user();
-
-        if (isset($user->role) && $user->role == user_roles('1')) {
-            $data['doctors'] = User::where(['role' => user_roles('3')])->latest('id')->get()->toArray();
-        }
-
-        return view('admin.pages.doctors', $data);
-    }
-    public function add_doctor(Request $request)
-    {
-        $user = auth()->user();
-        $page_name = 'add_doctor';
-        if (!view_permission($page_name)) {
-            return redirect()->back();
-        }
-
-        $data['user'] = auth()->user();
-        if ($request->has('id')) {
-            $data['doctor'] = User::findOrFail($request->id)->toArray();
-        }
-
-        return view('admin.pages.add_doctor', $data);
-    }
-
-    public function store_doctor(Request $request)
-    {
-        $user = auth()->user();
-        $page_name = 'add_doctor';
-        if (!view_permission($page_name)) {
-            return redirect()->back();
-        }
-
-        $validator = Validator::make($request->all(), [
-            'name'       => 'required',
-            'phone'      => 'required',
-            'address'    => 'required',
-            'speciality' => 'required',
-            'role'       => 'required',
-            'email'      => [
-                'required',
-                'email',
-                Rule::unique('users')->ignore($request->id),
-            ],
-            'password' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
-        $data['user'] = auth()->user();
-
-        $saved = User::updateOrCreate(
-            ['id' => $request->id ?? NULL],
-            [
-                'name'       => ucwords($request->name),
-                'email'      => $request->email,
-                'role'       =>  $request->role,
-                'phone'      => $request->phone,
-                'address'    => $request->address,
-                'speciality' => $request->speciality,
-                'short_bio'  => $request->short_bio,
-                'zip_code'   => $request->zip_code,
-                'city'       => $request->city,
-                'password'   => Hash::make($request->password),
-                'status'     => $this->status['Active'],
-                'created_by' => $user->id,
-            ]
-        );
-        $message = "Doctor " . ($request->id ? "Updated" : "Saved") . " Successfully";
-        if ($saved) {
-            return redirect()->route('admin.doctors')->with(['msg' => $message]);
-        }
-    }
-
-    public function users(Request $request)
-    {
-        $user = auth()->user();
-        $page_name = 'users';
-        if (!view_permission($page_name)) {
-            return redirect()->back();
-        }
-
-        $data['user'] = auth()->user();
-
-        if (isset($user->role) && $user->role == user_roles('1')) {
-            $data['users'] = User::where(['role' => user_roles('4')])->latest('id')->get()->toArray();
-        }
-
-        return view('admin.pages.users', $data);
-    }
-
+    // products managment...
     public function prodcuts(Request $request)
     {
         $user = auth()->user();
@@ -423,7 +491,7 @@ class SystemUsersController extends Controller
             $data['products'] = Product::with('category:id,name')->latest('id')->get()->toArray();
         }
         // dd($data['products']);
-        return view('admin.pages.prodcuts',$data);
+        return view('admin.pages.prodcuts', $data);
     }
 
     public function add_product(Request $request)
@@ -438,7 +506,7 @@ class SystemUsersController extends Controller
             $data['product'] = Product::findOrFail($request->id)->toArray();
         }
 
-        return view('admin.pages.add_product',$data);
+        return view('admin.pages.add_product', $data);
     }
 
     public function store_product(Request $request)
@@ -451,13 +519,13 @@ class SystemUsersController extends Controller
 
         $validator = Validator::make($request->all(), [
             'price'      => 'required',
-            'category_id'=> 'required',
+            'category_id' => 'required',
             'main_image' => [
                 'required',
-                'image', 
-                'mimes:jpeg,png,jpg,gif', 
-                'max:1024', 
-                'dimensions:max_width=1000,max_height=1000', 
+                'image',
+                'mimes:jpeg,png,jpg,gif',
+                'max:1024',
+                'dimensions:max_width=1000,max_height=1000',
             ],
             'qty'        => 'required',
             'stock'      => 'required',
@@ -478,10 +546,10 @@ class SystemUsersController extends Controller
         if ($request->hasFile('main_image')) {
             $mainImage = $request->file('main_image');
             $mainImageName = time() . '_' . uniqid('', true) . '.' . $mainImage->getClientOriginalExtension();
-            $mainImage->storeAs('product_images/main_images', $mainImageName, 'public'); 
+            $mainImage->storeAs('product_images/main_images', $mainImageName, 'public');
             $mainImagePath = 'product_images/main_images/' . $mainImageName;
         }
-        
+
         // Create or update product
         $product = Product::updateOrCreate(
             ['id' => $request->id ?? null],
@@ -489,7 +557,7 @@ class SystemUsersController extends Controller
                 'title'      => ucwords($request->title),
                 'desc'       => $request->desc,
                 'main_image' => $mainImagePath ?? Product::findOrFail($request->id)->main_image,
-                'category_id'=> $request->category_id,
+                'category_id' => $request->category_id,
                 'ext_tax'    => $request->ext_tax,
                 'cnn'        => $request->cnn,
                 'stock'      => $request->stock,
@@ -499,7 +567,7 @@ class SystemUsersController extends Controller
                 'created_by' => $user->id,
             ]
         );
-        
+
 
         // Handle image uploads
         $uploadedImages = [];
@@ -530,72 +598,7 @@ class SystemUsersController extends Controller
         return response()->json(['status' => 'success', 'message' => $message, 'data' => []]);
     }
 
-    public function add_admin(Request $request)
-    {
-        $user = auth()->user();
-        $page_name = 'add_admin';
-        if (!view_permission($page_name)) {
-            return redirect()->back();
-        }
-
-        $data['user'] = auth()->user();
-        if ($request->has('id')) {
-            $data['admin'] = User::findOrFail($request->id)->toArray();
-        }
-
-        return view('admin.pages.add_admin', $data);
-    }
-
-    public function store_admin(Request $request)
-    {
-        $user = auth()->user();
-        $page_name = 'add_admin';
-        if (!view_permission($page_name)) {
-            return redirect()->back();
-        }
-
-        $validator = Validator::make($request->all(), [
-            'name'     => 'required',
-            'phone'    => 'required',
-            'address'  => 'required',
-            'role'     => 'required',
-            'email'    => [
-                'required',
-                'email',
-                Rule::unique('users')->ignore($request->id),
-            ],
-            'password' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
-        $data['user'] = auth()->user();
-
-        $saved = User::updateOrCreate(
-            ['id' => $request->id ?? NULL],
-            [
-                'name'       => ucwords($request->name),
-                'email'      => $request->email,
-                'role'       =>  $request->role,
-                'phone'      => $request->phone,
-                'address'    => $request->address,
-                'zip_code'   => $request->zip_code,
-                'city'       => $request->city,
-                'state'      => $request->state,
-                'password'   => Hash::make($request->password),
-                'status'     => $this->status['Active'],
-                'created_by' => $user->id,
-            ]
-        );
-        $message = "Admin " . ($request->id ? "Updated" : "Saved") . " Successfully";
-        if ($saved) {
-            return redirect()->route('admin.admins')->with(['msg' => $message]);
-        }
-    }
-
-
+    // orders managment ...
     public function orders_recieved()
     {
         return view('admin.pages.orders_recieved');
