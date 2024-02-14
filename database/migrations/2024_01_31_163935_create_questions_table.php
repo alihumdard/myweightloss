@@ -16,6 +16,10 @@ return new class extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->text('title')->unique();
+            $table->string('anwser_set');
+            $table->text('openbox')->nullable();
+            $table->text('yes_lable')->nullable();
+            $table->text('no_lable')->nullable();
             $table->text('optA')->nullable();
             $table->text('optB')->nullable();
             $table->text('optC')->nullable();

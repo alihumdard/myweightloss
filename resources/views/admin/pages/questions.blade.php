@@ -69,6 +69,10 @@
                                 <tr>
                                     <th style="vertical-align: middle; text-align: center;">#</th>
                                     <th style="vertical-align: middle; text-align: center;">Question Title</th>
+                                    <th style="vertical-align: middle; text-align: center;">Question Type</th>
+                                    <th style="vertical-align: middle; text-align: center;">Reply Instructions </th>
+                                    <th style="vertical-align: middle; text-align: center;">Option Lable</th>
+                                    <th style="vertical-align: middle; text-align: center;">Option Lable</th>
                                     <th style="vertical-align: middle; text-align: center;">Option A</th>
                                     <th style="vertical-align: middle; text-align: center;">Option B</th>
                                     <th style="vertical-align: middle; text-align: center;">Option C</th>
@@ -82,14 +86,18 @@
                                 @foreach($questions as $key => $value)
                                 <tr>
                                     <td style="vertical-align: middle; text-align: center;"> {{ ++$key }} </td>
-                                    <td style="vertical-align: middle; text-align: center;">{{$value['title'] ?? '' }}</td>
-                                    <td style="vertical-align: middle; text-align: center;"> {{$value['optA'] ?? '' }}</td>
-                                    <td style="vertical-align: middle; text-align: center;">{{$value['optB'] ?? '' }}</td>
-                                    <td style="vertical-align: middle; text-align: center;">{{$value['optC'] ?? '' }}</td>
-                                    <td style="vertical-align: middle; text-align: center;">{{$value['optD'] ?? '' }}</td>
+                                    <td style="vertical-align: middle; text-align: center; width:50% !important; " > {{ $value['title'] ?? '' }}</td>
+                                    <td style="vertical-align: middle; text-align: center;"> {{ ($value['anwser_set']  == 'mt_choice') ? 'Multiple Choice' : (($value['anwser_set'] == 'yes_no') ? 'True/Fasle' : (($value['anwser_set'] == 'openbox') ? 'Input Reply' : '')) }}</td>
+                                    <td style="vertical-align: middle; text-align: center; width: 50% !important;"><p class="font-weight-bold text-justify">{{ $value['openbox'] ?? '--------' }}</p></td>
+                                    <td style="vertical-align: middle; text-align: center;"> {{ ($value['yes_lable']?? FALSE) ? $value['yes_lable'] : '--------' }}</td>
+                                    <td style="vertical-align: middle; text-align: center;"> {{ ($value['no_lable']?? FALSE) ? $value['no_lable'] : '--------' }}</td>
+                                    <td style="vertical-align: middle; text-align: center;"> {{ ($value['optA']?? FALSE) ? $value['optA']  : '--------' }}</td>
+                                    <td style="vertical-align: middle; text-align: center;"> {{ ($value['optB']?? FALSE) ? $value['optB']  : '--------' }}</td>
+                                    <td style="vertical-align: middle; text-align: center;"> {{ ($value['optC']?? FALSE) ? $value['optC']  : '--------' }}</td>
+                                    <td style="vertical-align: middle; text-align: center;"> {{ ($value['optD']?? FALSE) ? $value['optD']  : '--------' }}</td>
                                     <td style="vertical-align: middle; text-align: center;">
                                         @foreach($value['assignments'] as $key => $val)
-                                        <p class="text-muted mb-0 font-weight-semibold" style="font-size: smaller; display:flex;" >{{ $val['category_title'] ?? ''}}</p>
+                                        <p class="text-muted mb-0 font-weight-semibold" style="font-size: smaller; display:flex;"><b>{{++$key.'. '}}</b> {{ $val['category_title'] ?? ''}} </p>
                                         @endforeach
                                     </td>
                                     <td style="vertical-align: middle; text-align: center;">

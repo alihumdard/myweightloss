@@ -49,10 +49,9 @@
                             <div class="col-md-6 ">
                                 <label for="anwser_set" class="form-label">Anwser Set</label>
                                 <select class="form-select" name="anwser_set" id="anwser_set" required>
-                                    <option value="">choose ..</option>
-                                    <option value="yes_no">Yes or No</option>
-                                    <option value="openbox">Input Box</option>
-                                    <option value="mt_choice">Multiple Choice</option>
+                                    <option value="mt_choice" {{ ($question['anwser_set'] ?? old('anwser_set')) == 'mt_choice' ? 'selected' : '' }}>Multiple Choice</option>
+                                    <option value="yes_no" {{ (($question['anwser_set'] ?? old('anwser_set')) == 'yes_no') ? 'selected' : '' }}>Yes or No</option>
+                                    <option value="openbox" {{ ($question['anwser_set'] ?? old('anwser_set')) == 'openbox' ? 'selected' : '' }}>Input Box</option>
                                 </select>
                                 <div class="invalid-feedback">Please enter anser Set!</div>
                                 @error('anwser_set')
@@ -60,73 +59,7 @@
                                 @enderror
                             </div>
 
-                            <div class="mt_choice d-none row my-2">
-                                <div class="col-md-6">
-                                    <label for="optA" class="form-label">Option A</label>
-                                    <input type="text" name="optA" value="{{  $question['optA'] ?? old('optA') }}" class="form-control" id="optA" required>
-                                    <div class="invalid-feedback">Please enter option A title!</div>
-                                    @error('optA')
-                                    <div class="alert-danger text-danger ">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label for="optB" class="form-label">Option B</label>
-                                    <input type="text" name="optB" value="{{  $question['optB'] ?? old('optB') }}" class="form-control" id="optB" required>
-                                    <div class="invalid-feedback">Please enter option B!</div>
-                                    @error('optB')
-                                    <div class="alert-danger text-danger ">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label for="optC" class="form-label">Option C</label>
-                                    <input type="text" name="optC" value="{{  $question['optC'] ?? old('optC') }}" class="form-control" id="optC" required>
-                                    <div class="invalid-feedback">Please enter option C!</div>
-                                    @error('optC')
-                                    <div class="alert-danger text-danger ">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label for="optD" class="form-label">Option D</label>
-                                    <input type="text" name="optD" value="{{  $question['optD'] ?? old('optD') }}" class="form-control" id="optD" required>
-                                    <div class="invalid-feedback">Please enter option D!</div>
-                                    @error('optD')
-                                    <div class="alert-danger text-danger ">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="yes_no d-none row my-2">
-                                <div class="col-md-6">
-                                    <label for="yes_lable" class="form-label">Yes Anwser Lable</label>
-                                    <input type="text" name="yes_lable" class="form-control" id="yes_lable" required>
-                                    <div class="invalid-feedback">Please write Yes lable!</div>
-                                    @error('yes_lable')
-                                    <div class="alert-danger text-danger ">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label for="no_lable" class="form-label">No Anwser Lable</label>
-                                    <input type="text" name="no_lable" class="form-control" id="no_lable" required>
-                                    <div class="invalid-feedback">Please write No lable!</div>
-                                    @error('no_lable')
-                                    <div class="alert-danger text-danger ">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="openbox d-none row my-2">
-                                <div class="col-md-12">
-                                    <label for="yes_lable" class="form-label">Write Placeholder</label>
-                                    <textarea name="openbox" class="form-control" cols="10" rows="7" id="openbox"> </textarea>
-                                    @error('openbox')
-                                    <div class="alert-danger text-danger ">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
+                            <div class="ansewers row my-2"></div>
 
                             <div class="text-center mt-3">
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -149,30 +82,88 @@
 @pushOnce('scripts')
 <script>
     $(document).ready(function() {
+        var anserset = $('#anwser_set').val();
+        getoptions(anserset);
 
         $('#anwser_set').on('change', function() {
-            let anserset = $(this).val();
-            if(anserset =='mt_choice'){
-                $('.openbox').addClass('d-none');
-                $('.yes_no').addClass('d-none');
-                $('.mt_choice').removeClass('d-none');
-            }
-            else if(anserset =='openbox'){
-                $('.yes_no').addClass('d-none');
-                $('.mt_choice').addClass('d-none');
-                $('.openbox').removeClass('d-none');
-            }
-            else if(anserset == 'yes_no'){
-                $('.mt_choice').addClass('d-none');
-                $('.openbox').addClass('d-none');
-                $('.yes_no').removeClass('d-none');
-            }
-            else{
-
-                alert('select write anwser set');
-            }
+            anserset = $(this).val();
+            getoptions(anserset);
         });
 
+        function getoptions(anserset='mt_choice') {
+            let optAValue = "{{ $question['optA'] ?? old('optA') }}";
+            let optBValue = "{{ $question['optB'] ?? old('optB') }}";
+            let optCValue = "{{ $question['optC'] ?? old('optC') }}";
+            let optDValue = "{{ $question['optD'] ?? old('optD') }}";
+            let openboxValue = "{{ $question['openbox'] ?? old('openbox') }}";
+            let yesLableValue = "{{ $question['yes_lable'] ?? old('yes_lable') }}";
+            let noLableValue = "{{ $question['no_lable'] ?? old('no_lable') }}";
+            if (anserset == 'mt_choice') {
+                $('.ansewers').html('<div class="col-md-6">' +
+                    '<label for="optA" class="form-label">Option A</label>' +
+                    '<input type="text" name="optA" value="' + optAValue + '" class="form-control" id="optA" required>' +
+                    '<div class="invalid-feedback">Please enter option A title!</div>' +
+                    '@error("optA")' +
+                    '<div class="alert-danger text-danger ">{{ $message }}</div>' +
+                    '@enderror' +
+                    '</div>' +
+
+                    '<div class="col-md-6">' +
+                    '<label for="optB" class="form-label">Option B</label>' +
+                    '<input type="text" name="optB" value="' + optBValue + '" class="form-control" id="optB" required>' +
+                    '<div class="invalid-feedback">Please enter option B!</div>' +
+                    '@error("optB")' +
+                    '<div class="alert-danger text-danger ">{{ $message }}</div>' +
+                    '@enderror' +
+                    '</div>' +
+
+                    '<div class="col-md-6">' +
+                    '<label for="optC" class="form-label">Option C</label>' +
+                    '<input type="text" name="optC" value="' + optCValue + '" class="form-control" id="optC" required>' +
+                    '<div class="invalid-feedback">Please enter option C!</div>' +
+                    '@error("optC")' +
+                    '<div class="alert-danger text-danger ">{{ $message }}</div>' +
+                    '@enderror' +
+                    '</div>' +
+
+                    '<div class="col-md-6">' +
+                    '<label for="optD" class="form-label">Option D</label>' +
+                    '<input type="text" name="optD" value="' + optDValue + '" class="form-control" id="optD" required>' +
+                    '<div class="invalid-feedback">Please enter option D!</div>' +
+                    '@error("optD")' +
+                    '<div class="alert-danger text-danger ">{{ $message }}</div>' +
+                    '@enderror' +
+                    '</div>');
+            } else if (anserset == 'openbox') {
+                $('.ansewers').html('<div class="col-md-12">' +
+                    '<label for="openbox" class="form-label">Reply Instructions? </label>' +
+                    '<textarea name="openbox" class="form-control" cols="10" rows="7" id="openbox">' + openboxValue + '</textarea>' +
+                    '@error("openbox")' +
+                    '<div class="alert-danger text-danger ">{{ $message }}</div>' +
+                    '@enderror' +
+                    '</div>');
+            } else if (anserset == 'yes_no') {
+                $('.ansewers').html('<div class="col-md-6">' +
+                    '<label for="yes_lable" class="form-label">Yes Answer Label</label>' +
+                    '<input type="text" name="yes_lable" value="' + yesLableValue + '" class="form-control" id="yes_lable" required>' +
+                    '<div class="invalid-feedback">Please write Yes label!</div>' +
+                    '@error("yes_lable")' +
+                    '<div class="alert-danger text-danger ">{{ $message }}</div>' +
+                    '@enderror' +
+                    '</div>' +
+
+                    '<div class="col-md-6">' +
+                    '<label for="no_lable" class="form-label">No Answer Label</label>' +
+                    '<input type="text" name="no_lable" value="' + noLableValue + '" class="form-control" id="no_lable" required>' +
+                    '<div class="invalid-feedback">Please write No label!</div>' +
+                    '@error("no_lable")' +
+                    '<div class="alert-danger text-danger ">{{ $message }}</div>' +
+                    '@enderror' +
+                    '</div>');
+            } else {
+                alert('Select the correct answer set');
+            }
+        }
     });
 </script>
 @endPushOnce
