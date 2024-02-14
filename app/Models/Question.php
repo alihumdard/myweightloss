@@ -11,6 +11,10 @@ class Question extends Model
 
     protected $fillable = [
         'title',
+        'anwser_set',
+        'openbox',
+        'yes_lable',
+        'no_lable',
         'optA',
         'optB',
         'optC',

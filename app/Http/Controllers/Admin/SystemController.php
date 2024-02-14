@@ -352,10 +352,7 @@ class SystemController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'optA'    => 'required',
-            'optB'    => 'required',
-            'optC'    => 'required',
-            'optD'    => 'required',
+            'anwser_set' => 'required',
             'title'   => [
                 'required',
                 Rule::unique('questions')->ignore($request->id),
@@ -372,10 +369,14 @@ class SystemController extends Controller
             ['id' => $request->id ?? NULL],
             [
                 'title'      => ucwords($request->title),
-                'optA'       => ucwords($request->optB),
-                'optB'       => ucwords($request->optB),
-                'optC'       => ucwords($request->optB),
-                'optD'       => ucwords($request->optB),
+                'anwser_set' => $request->anwser_set,
+                'openbox'    => $request->openbox ?? NULL,
+                'yes_lable'  => ucwords($request->yes_lable) ?? NULL,
+                'no_lable'   => ucwords($request->no_lable) ?? NULL,
+                'optA'       => ucwords($request->optA) ?? NULL,
+                'optB'       => ucwords($request->optB) ?? NULL,
+                'optC'       => ucwords($request->optC) ?? NULL,
+                'optD'       => ucwords($request->optD) ?? NULL,
                 'created_by' => $user->id,
             ]
         );
