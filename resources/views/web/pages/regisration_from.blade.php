@@ -5,20 +5,17 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>login</title>
+    <title>Regiration/Login</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
     <!-- Favicons -->
     <link href="{{ asset('assets/admin/img/favicon.png') }}" rel="icon">
     <link href="{{ asset('assets/admin/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
-    <script src="{{ asset('/assets/web/js/jquery-3.5.1.min.js') }}"></script>
     {{-- font-Awesome --}}
     <link rel="stylesheet" href=https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css>
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
 
     <link rel="stylesheet" type="text/css" media="all" href="{{ asset('/assets/web/css/modul.css') }}" />
@@ -26,9 +23,12 @@
     <!-- Vendor CSS Files -->
     <link rel="stylesheet" href="{{ asset('/assets/admin/plugins/bootstrap/css/bootstrap.min.css') }}">
     </link>
+    <!-- <script src="{{ asset('/assets/web/js/jquery-3.5.1.min.js') }}"></script> -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="{{ asset('/assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
     <!-- custome styling -->
     <link rel="stylesheet" href="{{ asset('/assets/admin/dist/css/style.css') }}">
-    {{-- <link rel="stylesheet" href="{{ asset('/assets/web/consultation/css/style.css') }}"> --}}
 
 
 </head>
@@ -40,8 +40,13 @@
     <main>
         <div class="text-center bg-white p-3">
             <a href="#" style="margin: auto; width: 200px">
+<<<<<<< .mine
                 <img class="align-top" width="200"
                     src="{{ asset('/assets/web/consultation/img/Weighloss_final_logo.png')}}">
+=======
+                <img class="align-top" width="200" src="http://127.0.0.1:8000/assets/web/consultation/img/Weighloss_final_logo.png">
+
+>>>>>>> .theirs
             </a>
         </div>
         <div class="container">
@@ -63,8 +68,7 @@
                                 </div>
                             </div>
                             <div class="step-item">
-                                <div class="step-marker" style="background: #4DC4D8;"><span
-                                        class="step-number-text">2</span><span class="icon-consultation-icon"></span>
+                                <div class="step-marker" style="background: #4DC4D8;"><span class="step-number-text">2</span><span class="icon-consultation-icon"></span>
                                 </div>
                                 <div class="step-details">
                                     <p class="step-title" style="color: #4DC4D8;">Consultation</p>
@@ -72,9 +76,6 @@
                             </div>
                             <div class="step-item">
                                 <div class="step-marker" style="background: #4DC4D8;">
-                                    {{-- <span
-                                        class="step-number-text">3
-                                    </span> --}}
                                     <span class="icon-your-treatment-icon">
                                         <i class="fa fa-plus text-white"></i>
                                     </span>
@@ -85,9 +86,6 @@
                             </div>
                             <div class="step-item">
                                 <div class="step-marker" style="background: #4DC4D8;">
-                                    {{-- <span
-                                        class="step-number-text">4
-                                    </span> --}}
                                     <span class="icon-checkout-icon">
                                         <i class="fa fa-cart-plus text-white"></i>
                                     </span>
@@ -106,8 +104,7 @@
                     <div class="col-md-5 left-boxs" style=" border-right: 1px solid #e5eef3;">
                         <div class="text-center mt-5">
                             <a href="#">
-                                <img class="img-fluid"
-                                    src="{{ asset('/assets/web/images/logo/reviews-title.png') }}">
+                                <img class="img-fluid" src="{{ asset('/assets/web/images/logo/reviews-title.png') }}">
                             </a>
                         </div>
                         <div class="d-flex flex-column review-description">
@@ -138,9 +135,7 @@
                         <div class="testimonial-section mt-4">
                             <div class="testimonial-content d-flex">
                                 <div class="testimonial-img">
-                                    <img class="img-fluid"
-                                        src="https://consultation.my-bmi.co.uk/static/version1707364664/frontend/MyBMI/child/en_GB/images/jamesO-new-photo_cutout.png"
-                                        alt="info">
+                                    <img class="img-fluid" src="https://consultation.my-bmi.co.uk/static/version1707364664/frontend/MyBMI/child/en_GB/images/jamesO-new-photo_cutout.png" alt="info">
                                 </div>
                                 <div class="testimonial-right-content" style="font-style: italic;">
                                     <p class="has-text-white its-font-w--600 mb-2">"myBMI has access to the market
@@ -164,23 +159,20 @@
                         <div class="full-form">
                             <div class="user-text mt-2">
                                 <button><i class="fa fa-check"></i>I'm new</button> &nbsp; &nbsp;
-                                <button class="account-btn">ٰI have an account</button>
+                                <button id="btnlogin" class="account-btn" data-toggle="modal" data-target="#loginModal">ٰI have an account</button>
+
                             </div>
                             <div>
                                 <label class="label d-md-block mt-3">Email</label>
-                                <input class="form-control" type="email" name="user_email" value=""
-                                    placeholder="Email">
+                                <input class="form-control" type="email" name="user_email" value="" placeholder="Email">
 
                                 <label class="label d-md-block mt-3">Name</label>
                                 <div class="d-flex gap-3">
-                                    <input class="form-control" type="text" name="user_first_name" value=""
-                                        placeholder="First name">
-                                    <input class="form-control" type="text" name="user_last_name" value=""
-                                        placeholder="Last name">
+                                    <input class="form-control" type="text" name="user_first_name" value="" placeholder="First name">
+                                    <input class="form-control" type="text" name="user_last_name" value="" placeholder="Last name">
                                 </div>
                                 <label class="label d-md-block mt-3">Password</label>
-                                <input class="form-control" type="password" name="user_password" value=""
-                                    placeholder="password">
+                                <input class="form-control" type="password" name="user_password" value="" placeholder="password">
                                 <div class="mt-2">
                                     <p style="color: #00e5d2;">Password Strength: No Password</p>
                                 </div>
@@ -340,57 +332,43 @@
                                     </select>
                                 </div>
                                 <label class="label d-md-block mt-3">Phone Number</label>
-                                <input class="form-control" type="number" name="user_contact_number" value=""
-                                    placeholder="Contact number">
-                                    <label class="label d-md-block mt-3">Address</label>
-                                    <div class="d-flex gap-4">
-                                        <input class="form-control" type="number" name="user_Address" value=""
-                                            placeholder="Enter your postcode">
-                                            <button class="postcodtbtn">Search</button>
-                                    </div>
-                                    <div class="mt-2">
-                                        <a class="text-dark text-decoration-underline" href="#">Enter my address manually</a>
-                                    </div>
-                                    <div class="form-check py-2 mt-2">
-                                        <input class="form-check-input" type="checkbox" id="emailCheckbox" form="consultationForm" name="email_checkbox" data-gtm-form-interact-field-id="1">
-                                        <label class="form-checks-label" for="emailCheckbox">Tick to receive news &amp; offers via email</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="smsCheckbox" form="consultationForm" name="sms_checkbox" data-gtm-form-interact-field-id="2">
-                                        <label class="form-check-label" for="smsCheckbox">Tick to receive news &amp; offers via text</label>
-                                    </div>
-                                    <div>
-                                        <button class="continue-btn">Continue</button>
-                                    </div>
+                                <input class="form-control" type="number" name="user_contact_number" value="" placeholder="Contact number">
+                                <label class="label d-md-block mt-3">Address</label>
+                                <div class="d-flex gap-4">
+                                    <input class="form-control" type="number" name="user_Address" value="" placeholder="Enter your postcode">
+                                    <button class="postcodtbtn">Search</button>
+                                </div>
+                                <div class="mt-2">
+                                    <a class="text-dark text-decoration-underline" href="#">Enter my address manually</a>
+                                </div>
+                                <div class="form-check py-2 mt-2">
+                                    <input class="form-check-input" type="checkbox" id="emailCheckbox" form="consultationForm" name="email_checkbox" data-gtm-form-interact-field-id="1">
+                                    <label class="form-checks-label" for="emailCheckbox">Tick to receive news &amp; offers via email</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="smsCheckbox" form="consultationForm" name="sms_checkbox" data-gtm-form-interact-field-id="2">
+                                    <label class="form-check-label" for="smsCheckbox">Tick to receive news &amp; offers via text</label>
+                                </div>
+                                <div>
+                                    <button class="continue-btn">Continue</button>
+                                </div>
 
-
-                                {{-- <div class="row">
-                                        <div class="col-md-6">
-                                            <label class="label d-md-block">Name</label>
-                                            <input class="form-control" type="text" name="user_email" value=""
-                                                placeholder="First name">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input class="form-control" type="text" name="user_email" value=""
-                                                placeholder="Last name">
-                                        </div>
-                                    </div> --}}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-
-
         </div>
     </main><!-- End #main -->
 
-    <script src="{{ asset('/assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="assets/vendor/tinymce/tinymce.min.js"></script>
-    <script src="{{ asset('/assets/admin/plugins/tinymce/tinymce.min.js') }}"></script>
-    <script src="{{ asset('/assets/admin/dist/js/main.js') }}"></script>
-
+    <script>
+        $(document).ready(function() {
+            $("#btnlogin").click(function() {
+                $("#loginModal").modal('show');
+            });
+        });
+    </script>
 
 </body>
 

@@ -49,7 +49,11 @@ class WebController extends Controller
     public function bmi_form(Request $request)
     {
         $data['user'] = auth()->user() ?? [];
-        return view('web.pages.bmi_form',$data);
+        if(auth()->user()){
+            return view('web.pages.bmi_form',$data);
+        }else{
+            return redirect()->route('web.regisrationFrom');
+        }
     }
 
     public function consultation_form(Request $request)
@@ -62,15 +66,10 @@ class WebController extends Controller
     {
         $data['user'] = auth()->user() ?? [];
         if(auth()->user()){
-            return view('web.pages.consultation_form',$data);
+            return redirect()->route('web.bmiForm');
         }else{
             return view('web.pages.regisration_from',$data);
         }
-    }
-
-    public function regisration_from2(Request $request)
-    {
-        return view('web.pages.regisration_from2');
     }
 
 }
