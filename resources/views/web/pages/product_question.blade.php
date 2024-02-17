@@ -33,19 +33,29 @@
 
 </head>
 
-<body>
+<body style="background: #FBF9F6">
 
 
+    </div>
 
-    <main>
-        <div class="text-center bg-white p-3">
-            <a href="#" style="margin: auto;">
-                <img class="align-top" style="width: 10%;"
-                    src="http://127.0.0.1:8000/assets/web/consultation/img/Weighloss_final_logo.png">
-            </a>
+    <div class="text-center bg-white p-3">
+        <a href="#" style="margin: auto;">
+            <img class="align-top" style="width: 10%;"
+            src="{{ asset('/assets/web/consultation/img/Weighloss_final_logo.png')}}">
+        </a>
+    </div>
+    <div class="question-tittles">
+        <div class="container text-center my-4">
+            <h3 class="fw-bold">Do you agree and consent to the following?</h3>
         </div>
+    <main>
         <div class="container">
-            <div class="main-sec mt-4 mb-5" style="padding: 40px 30px;">
+            <div class="main-sec mt-4 mb-5" style="padding: 30px; width: 60%; margin: auto;">
+                <ul>
+                    <li>I am over 18 years old and live in the UK.</li>
+                    <li>I will be the sole user of any medication offered to me through this service.</li>
+                    <li>I confirm all answers are provided by me, and are completely truthful.</li>
+                </ul>
                 <div class="question fade-in">
                     <form id="form1">
                         <div class="text">
@@ -126,6 +136,17 @@
                                 <input class="form-check-input" type="checkbox" value="aa" id="aa">
                                 <label class="form-check-label w-100" for="aa">AA</label>
                             </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="question collapse">
+                    <form id="form6">
+                        <div class="text">
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                                <label for="floatingTextarea">Describe</label>
+                              </div>
                         </div>
                     </form>
                 </div>
