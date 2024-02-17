@@ -1444,3 +1444,54 @@ h6 {
     margin-top: 20px;
     color: white;
 }
+
+
+
+
+
+
+.question .text .form-check {
+    border: 1px solid #ced4da;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    padding-left: 30px;
+}
+
+
+
+
+.form-check {
+    border: 1px solid #ced4da; /* default border color */
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  .question .text .form-check{
+      padding-left: 30px;
+  }
+
+
+  .question .text .form-check.checked {
+    border-color: #007bff; /* border color when checked */
+  }
+
+
+  .question .text .form-check.checked label {
+    /* background-color: #007bff; background color when checked */
+    color: blue; /* text color when checked */
+  }
+
+  /* Hide previous button initially */
+  #prevButton {
+    display: none;
+  }
+
+  /* Hide next button initially */
+  #nextButton {
+    display: none;
+  }
+.form-check-label
+{
+    cursor: pointer;
+}

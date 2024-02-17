@@ -16,7 +16,9 @@
     <link rel="stylesheet" href=https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css>
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
 
 
     <link rel="stylesheet" type="text/css" media="all" href="{{ asset('/assets/web/css/modul.css') }}" />
@@ -37,211 +39,109 @@
 
     <main>
         <div class="text-center bg-white p-3">
-            <a href="#" style="margin: auto; width: 200px">
-                <img class="align-top" width="200" src="http://127.0.0.1:8000/assets/web/consultation/img/Weighloss_final_logo.png">
+            <a href="#" style="margin: auto;">
+                <img class="align-top" style="width: 10%;"
+                    src="http://127.0.0.1:8000/assets/web/consultation/img/Weighloss_final_logo.png">
             </a>
         </div>
         <div class="container">
-            <div class="main-sec mt-4 mb-5">
-                <div class="row">
-                    <div class="col-md-7">
-                        <div class="full-form">
-                            <label class="label d-md-block mt-3">Email</label>
-                            <input class="form-control" type="email" name="user_email" value="" placeholder="Email">
-
-                            <label class="label d-md-block mt-3">Name</label>
-                            <div class="d-flex gap-3">
-                                <input class="form-control" type="text" name="user_first_name" value="" placeholder="First name">
-                                <input class="form-control" type="text" name="user_last_name" value="" placeholder="Last name">
-                            </div>
-                            <label class="label d-md-block mt-3">Password</label>
-                            <input class="form-control" type="password" name="user_password" value="" placeholder="password">
-                            <div class="mt-2">
-                                <p style="color: #00e5d2;">Password Strength: No Password</p>
-                            </div>
-                            <label class="label d-md-block mt-3">Date of Birth</label>
-                            <div class="d-flex gap-3">
-                                <select class="calenders" name="day" onchange="setDateValue(this)" class="splitdob-day">
-                                    <option value="" data-class="">Day</option>
-                                    <option value="01" data-class="">01</option>
-                                    <option value="02" data-class="">02</option>
-                                    <option value="03" data-class="">03</option>
-                                    <option value="04" data-class="">04</option>
-                                    <option value="05" data-class="">05</option>
-                                    <option value="06" data-class="">06</option>
-                                    <option value="07" data-class="">07</option>
-                                    <option value="08" data-class="">08</option>
-                                    <option value="09" data-class="">09</option>
-                                    <option value="10" data-class="">10</option>
-                                    <option value="11" data-class="">11</option>
-                                    <option value="12" data-class="">12</option>
-                                    <option value="13" data-class="">13</option>
-                                    <option value="14" data-class="">14</option>
-                                    <option value="15" data-class="">15</option>
-                                    <option value="16" data-class="">16</option>
-                                    <option value="17" data-class="">17</option>
-                                    <option value="18" data-class="">18</option>
-                                    <option value="19" data-class="">19</option>
-                                    <option value="20" data-class="">20</option>
-                                    <option value="21" data-class="">21</option>
-                                    <option value="22" data-class="">22</option>
-                                    <option value="23" data-class="">23</option>
-                                    <option value="24" data-class="">24</option>
-                                    <option value="25" data-class="">25</option>
-                                    <option value="26" data-class="">26</option>
-                                    <option value="27" data-class="">27</option>
-                                    <option value="28" data-class="">28</option>
-                                    <option value="29" data-class=" noleap">29</option>
-                                    <option value="30" data-class=" noleap leapd">30</option>
-                                    <option value="31" data-class=" noleap leapd is31">31</option>
-                                </select>
-                                <select class="calender-month" name="month" onchange="setDateValue(this)" class="splitdob-month">
-                                    <option value="">Month</option>
-                                    <option value="01">January</option>
-                                    <option value="02">Febuary</option>
-                                    <option value="03">March</option>
-                                    <option value="04">April</option>
-                                    <option value="05">May</option>
-                                    <option value="06">June</option>
-                                    <option value="07">July</option>
-                                    <option value="08">August</option>
-                                    <option value="09">September</option>
-                                    <option value="10">October</option>
-                                    <option value="11">November</option>
-                                    <option value="12">December</option>
-                                </select>
-                                <select class="calenders" name="year" onchange="setDateValue(this)" class="splitdob-year">
-                                    <option value="" data-class="">Year</option>
-                                    <option value="2006" data-class="">2006</option>
-                                    <option value="2005" data-class="">2005</option>
-                                    <option value="2004" data-class="leapy">2004</option>
-                                    <option value="2003" data-class="">2003</option>
-                                    <option value="2002" data-class="">2002</option>
-                                    <option value="2001" data-class="">2001</option>
-                                    <option value="2000" data-class="leapy">2000</option>
-                                    <option value="1999" data-class="">1999</option>
-                                    <option value="1998" data-class="">1998</option>
-                                    <option value="1997" data-class="">1997</option>
-                                    <option value="1996" data-class="leapy">1996</option>
-                                    <option value="1995" data-class="">1995</option>
-                                    <option value="1994" data-class="">1994</option>
-                                    <option value="1993" data-class="">1993</option>
-                                    <option value="1992" data-class="leapy">1992</option>
-                                    <option value="1991" data-class="">1991</option>
-                                    <option value="1990" data-class="">1990</option>
-                                    <option value="1989" data-class="">1989</option>
-                                    <option value="1988" data-class="leapy">1988</option>
-                                    <option value="1987" data-class="">1987</option>
-                                    <option value="1986" data-class="">1986</option>
-                                    <option value="1985" data-class="">1985</option>
-                                    <option value="1984" data-class="leapy">1984</option>
-                                    <option value="1983" data-class="">1983</option>
-                                    <option value="1982" data-class="">1982</option>
-                                    <option value="1981" data-class="">1981</option>
-                                    <option value="1980" data-class="leapy">1980</option>
-                                    <option value="1979" data-class="">1979</option>
-                                    <option value="1978" data-class="">1978</option>
-                                    <option value="1977" data-class="">1977</option>
-                                    <option value="1976" data-class="leapy">1976</option>
-                                    <option value="1975" data-class="">1975</option>
-                                    <option value="1974" data-class="">1974</option>
-                                    <option value="1973" data-class="">1973</option>
-                                    <option value="1972" data-class="leapy">1972</option>
-                                    <option value="1971" data-class="">1971</option>
-                                    <option value="1970" data-class="">1970</option>
-                                    <option value="1969" data-class="">1969</option>
-                                    <option value="1968" data-class="leapy">1968</option>
-                                    <option value="1967" data-class="">1967</option>
-                                    <option value="1966" data-class="">1966</option>
-                                    <option value="1965" data-class="">1965</option>
-                                    <option value="1964" data-class="leapy">1964</option>
-                                    <option value="1963" data-class="">1963</option>
-                                    <option value="1962" data-class="">1962</option>
-                                    <option value="1961" data-class="">1961</option>
-                                    <option value="1960" data-class="leapy">1960</option>
-                                    <option value="1959" data-class="">1959</option>
-                                    <option value="1958" data-class="">1958</option>
-                                    <option value="1957" data-class="">1957</option>
-                                    <option value="1956" data-class="leapy">1956</option>
-                                    <option value="1955" data-class="">1955</option>
-                                    <option value="1954" data-class="">1954</option>
-                                    <option value="1953" data-class="">1953</option>
-                                    <option value="1952" data-class="leapy">1952</option>
-                                    <option value="1951" data-class="">1951</option>
-                                    <option value="1950" data-class="">1950</option>
-                                    <option value="1949" data-class="">1949</option>
-                                    <option value="1948" data-class="leapy">1948</option>
-                                    <option value="1947" data-class="">1947</option>
-                                    <option value="1946" data-class="">1946</option>
-                                    <option value="1945" data-class="">1945</option>
-                                    <option value="1944" data-class="leapy">1944</option>
-                                    <option value="1943" data-class="">1943</option>
-                                    <option value="1942" data-class="">1942</option>
-                                    <option value="1941" data-class="">1941</option>
-                                    <option value="1940" data-class="leapy">1940</option>
-                                    <option value="1939" data-class="">1939</option>
-                                    <option value="1938" data-class="">1938</option>
-                                    <option value="1937" data-class="">1937</option>
-                                    <option value="1936" data-class="leapy">1936</option>
-                                    <option value="1935" data-class="">1935</option>
-                                    <option value="1934" data-class="">1934</option>
-                                    <option value="1933" data-class="">1933</option>
-                                    <option value="1932" data-class="leapy">1932</option>
-                                    <option value="1931" data-class="">1931</option>
-                                    <option value="1930" data-class="">1930</option>
-                                    <option value="1929" data-class="">1929</option>
-                                    <option value="1928" data-class="leapy">1928</option>
-                                    <option value="1927" data-class="">1927</option>
-                                    <option value="1926" data-class="">1926</option>
-                                    <option value="1925" data-class="">1925</option>
-                                    <option value="1924" data-class="leapy">1924</option>
-                                    <option value="1923" data-class="">1923</option>
-                                    <option value="1922" data-class="">1922</option>
-                                    <option value="1921" data-class="">1921</option>
-                                    <option value="1920" data-class="leapy">1920</option>
-                                    <option value="1919" data-class="">1919</option>
-                                    <option value="1918" data-class="">1918</option>
-                                    <option value="1917" data-class="">1917</option>
-                                    <option value="1916" data-class="leapy">1916</option>
-                                    <option value="1915" data-class="">1915</option>
-                                    <option value="1914" data-class="">1914</option>
-                                    <option value="1913" data-class="">1913</option>
-                                    <option value="1912" data-class="leapy">1912</option>
-                                    <option value="1911" data-class="">1911</option>
-                                    <option value="1910" data-class="">1910</option>
-                                    <option value="1909" data-class="">1909</option>
-                                    <option value="1908" data-class="leapy">1908</option>
-                                    <option value="1907" data-class="">1907</option>
-                                </select>
-                            </div>
-                            <label class="label d-md-block mt-3">Phone Number</label>
-                            <input class="form-control" type="number" name="user_contact_number" value="" placeholder="Contact number">
-                            <label class="label d-md-block mt-3">Address</label>
-                            <div class="d-flex gap-4">
-                                <input class="form-control" type="number" name="user_Address" value="" placeholder="Enter your postcode">
-                                <button class="postcodtbtn">Search</button>
-                            </div>
-                            <div class="mt-2">
-                                <a class="text-dark text-decoration-underline" href="#">Enter my address manually</a>
-                            </div>
-                            <div class="form-check py-2 mt-2">
-                                <input class="form-check-input" type="checkbox" id="emailCheckbox" form="consultationForm" name="email_checkbox" data-gtm-form-interact-field-id="1">
-                                <label class="form-checks-label" for="emailCheckbox">Tick to receive news &amp; offers via email</label>
+            <div class="main-sec mt-4 mb-5" style="padding: 40px 30px;">
+                <div class="question fade-in">
+                    <form id="form1">
+                        <div class="text">
+                            <label>question 1 </label><br>
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" value="paris" id="paris">
+                                <label class="form-check-label w-100" for="paris">Paris</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="smsCheckbox" form="consultationForm" name="sms_checkbox" data-gtm-form-interact-field-id="2">
-                                <label class="form-check-label" for="smsCheckbox">Tick to receive news &amp; offers via text</label>
+                                <input class="form-check-input" type="checkbox" value="london" id="london">
+                                <label class="form-check-label w-100" for="london">London</label>
                             </div>
-                            <div>
-                                <button class="continue-btn">Continue</button>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="berlin" id="berlin">
+                                <label class="form-check-label w-100" for="berlin">Berlin</label>
                             </div>
-
-
-
                         </div>
-                    </div>
+                    </form>
+                </div>
+
+                <div class="question collapse">
+                    <form id="form2">
+                        <div class="text">
+                            <label>question 2 </label><br>
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" value="pakistan" id="pakistan">
+                                <label class="form-check-label w-100" for="pakistan">pakistan</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="abc" id="abc">
+                                <label class="form-check-label w-100" for="abc">abc</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="question collapse">
+                    <form id="form3">
+                        <div class="text">
+                            <label>question 3</label><br>
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" value="ab" id="ab">
+                                <label class="form-check-label w-100" for="ab">ab</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="asia" id="asia">
+                                <label class="form-check-label w-100" for="asia">Asia</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="question collapse">
+                    <form id="form4">
+                        <div class="text">
+                            <label>question 4</label><br>
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" value="africa" id="africa">
+                                <label class="form-check-label w-100" for="africa">Africa</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="bb" id="bb">
+                                <label class="form-check-label w-100" for="bb">BB</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="question collapse">
+                    <form id="form5">
+                        <div class="text">
+                            <label>question 5</label><br>
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" value="cd" id="cd">
+                                <label class="form-check-label w-100" for="cd">cd</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="aa" id="aa">
+                                <label class="form-check-label w-100" for="aa">AA</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- Progress Indicator -->
+                <div class="progress mt-3">
+                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0"
+                        aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="d-flex justify-content-between mt-3">
+                    <button id="prevButton" class="btn btn-primary">Previous</button>
+                    <button id="nextButton" class="btn btn-primary">Next</button>
                 </div>
             </div>
+        </div>
 
 
 
@@ -249,9 +149,86 @@
     </main><!-- End #main -->
 
     <script src="{{ asset('/assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="assets/vendor/tinymce/tinymce.min.js"></script>
-    <script src="{{ asset('/assets/admin/plugins/tinymce/tinymce.min.js') }}"></script>
-    <script src="{{ asset('/assets/admin/dist/js/main.js') }}"></script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var currentQuestionIndex = 0;
+            var questions = document.querySelectorAll('.question');
+            var totalQuestions = questions.length;
+            var progress = 0;
+            var prevButton = document.getElementById('prevButton');
+            var nextButton = document.getElementById('nextButton');
+
+            prevButton.style.display = 'none'; // Hide previous button initially
+            updateProgress(); // Update progress initially
+
+            nextButton.addEventListener('click', function() {
+                prevButton.style.display = 'block'; // Show previous button
+
+                questions[currentQuestionIndex].classList.remove('show');
+                questions[currentQuestionIndex].classList.add('collapse');
+                currentQuestionIndex++;
+                questions[currentQuestionIndex].classList.remove('collapse');
+                questions[currentQuestionIndex].classList.add('slide-in', 'show');
+
+                // Hide next button if at the last question
+                if (currentQuestionIndex === totalQuestions - 1) {
+                    nextButton.style.display = 'none';
+                }
+
+                updateProgress(); // Update progress
+            });
+
+            prevButton.addEventListener('click', function() {
+                nextButton.style.display = 'block'; // Show next button
+
+                questions[currentQuestionIndex].classList.remove('show');
+                questions[currentQuestionIndex].classList.add('collapse');
+                currentQuestionIndex--;
+                questions[currentQuestionIndex].classList.remove('collapse');
+                questions[currentQuestionIndex].classList.add('slide-in', 'show');
+
+                // Hide previous button if at the first question
+                if (currentQuestionIndex === 0) {
+                    prevButton.style.display = 'none';
+                }
+
+                updateProgress(); // Update progress
+            });
+
+            // Handle checkbox change to enable/disable next button and update progress
+            var checkboxes = document.querySelectorAll('.question input[type="checkbox"]');
+            checkboxes.forEach(function(checkbox) {
+                checkbox.addEventListener('change', function() {
+                    nextButton.disabled = false;
+                    nextButton.style.display =
+                    'block'; // Show next button after checkbox interaction
+                    updateProgress(); // Update progress
+                    updateBackground(); // Update background color of selected values
+                });
+            });
+
+            function updateProgress() {
+                var answeredQuestions = 0;
+                questions.forEach(function(question) {
+                    if (question.querySelectorAll('input[type="checkbox"]:checked').length > 0) {
+                        answeredQuestions++;
+                    }
+                });
+                progress = (answeredQuestions / totalQuestions) * 100;
+                document.querySelector('.progress-bar').style.width = progress + '%';
+                document.querySelector('.progress-bar').setAttribute('aria-valuenow', progress);
+            }
+
+            function updateBackground() {
+                var checkedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+                checkedCheckboxes.forEach(function(checkbox) {
+                    checkbox.parentElement.classList.add('checked');
+                });
+            }
+        });
+    </script>
 
 
 </body>
