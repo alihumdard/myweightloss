@@ -42,15 +42,14 @@ class Users extends Seeder
             'created_by' => '1',
         ]);
 
-        // Create a Admin
+        // Create a Dispensary
         User::factory()->create([
-            'name'         => 'Admin',
-            'email'        => 'admin@gmail.com',
+            'name'         => 'Dispensary',
+            'email'        => 'dispensary@gmail.com',
             'phone'        => '+923394030',
             'address'      => 'gernal texi stand.',
-            'email'        => 'admin@gmail.com',
             'password'     => Hash::make('12345'),
-            'role'         => 'Admin',
+            'role'         => 'Dispensary',
             'status'       => '1',
             'created_by'   => '2'
         ]);

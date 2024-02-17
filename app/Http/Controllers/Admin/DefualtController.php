@@ -27,6 +27,10 @@ class DefualtController extends Controller
         $user = auth()->user();
 
         if ($user) {
+            $page_name = 'dashboard';
+            if (!view_permission($page_name)) {
+                return redirect()->back();
+            }
             session(['user_details' => $user]);
             $data['user']       = $user;
             // User roles: 1 for Super Admin, 2 for Admin, 3 for Doctor, 4 User
@@ -37,7 +41,8 @@ class DefualtController extends Controller
             } else if (isset($user->role) && $user->role == user_roles('3')) {
                 return view('admin.pages.dashboard');
             } else if (isset($user->role) && $user->role == user_roles('4')) {
-                return redirect('/');
+                // return redirect('/');
+                return view('admin.pages.dashboard');
             }
         } else {
             return redirect('/login');
