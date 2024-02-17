@@ -130,7 +130,7 @@ class SystemController extends Controller
     public function doctors(Request $request)
     {
         $user = auth()->user();
-        $page_name = 'admins';
+        $page_name = 'doctors';
         if (!view_permission($page_name)) {
             return redirect()->back();
         }
