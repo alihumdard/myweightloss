@@ -112,7 +112,7 @@
                         <a href="department-single.html" class="nav__item-link">Cardiac Clinic</a>
                     </li>
                 </ul>
-                <a href="{{ route('web.bmiForm')}}" class="btn btn__primary btn__rounded ml-30">
+                <a href="{{ route('web.regisrationFrom')}}" class="btn btn__primary btn__rounded ml-30">
                     <i class="icon-calendar"></i>
                     <span>Contsultations</span>
                 </a>

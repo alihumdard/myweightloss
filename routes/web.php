@@ -27,7 +27,6 @@ Route::match(['get','post'],'/bmiForm', [WebController::class, 'bmi_form'])->nam
 Route::match(['get','post'],'/consultationForm', [WebController::class, 'consultation_form'])->name('web.consultationForm');
 Route::match(['get','post'],'/regisrationFrom', [WebController::class, 'regisration_from'])->name('web.regisrationFrom');
 
-Route::match(['get','post'],'/regisrationFrom2', [WebController::class, 'regisration_from2'])->name('web.regisrationFrom');
 Route::match(['get','post'],'/product_question', function(){
     return view('web.pages.product_question');
 });
