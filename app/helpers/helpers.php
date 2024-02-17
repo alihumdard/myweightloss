@@ -20,7 +20,7 @@ function user_roles($role_no)
         case 1:
             return 'Super Admin';
         case 2:
-            return 'Admin';
+            return 'Dispensary';
         case 3:
             return 'Doctor';
         case 4:
@@ -49,7 +49,7 @@ function user_role_no($role_no)
     switch ($role_no) {
         case 'Super Admin':
             return 1;
-        case 'Admin':
+        case 'Dispensary':
             return 2;
         case 'Doctor':
             return 3;
@@ -67,26 +67,36 @@ function view_permission($page_name)
 
         case 'Super Admin':
             switch ($page_name) {
-                case 'index':
-                case 'admins':
-                case 'add_admin':
-                case 'add_doctor':
-                case 'users':
+                case 'dashboard':
                 case 'categories':
-                case 'add_category':
-                case 'questions':
-                case 'add_question':
-                case 'assign_question':
+                    case 'add_category':
+                case 'consultations':
+                    case 'questions':
+                    case 'add_question':
+                    case 'assign_question':
                 case 'prodcuts':
-                case 'add_product':
+                    case 'add_product':
+                case 'orders':
+                case 'doctors':
+                    case 'add_doctor':
+                case 'dispensaries':
+                    case 'add_dispensary':
+                case 'users':
+                case 'contact':
+                case 'setting':
+                case 'faq':
                     return true;
                 default:
                     return false;
             }
 
-        case 'Admin':
+        case 'Dispensary':
             switch ($page_name) {
-                case 'index':
+                case 'dashboard':
+                case 'orders':
+                case 'contact':
+                case 'setting':
+                case 'faq':
                     return true;
                 default:
                     return false;
@@ -94,7 +104,11 @@ function view_permission($page_name)
 
         case 'Doctor':
             switch ($page_name) {
-                case 'index':
+                case 'dashboard':
+                case 'orders':
+                case 'contact':
+                case 'setting':
+                case 'faq':
                     return true;
                 default:
                     return false;
@@ -102,7 +116,12 @@ function view_permission($page_name)
 
         case 'User':
             switch ($page_name) {
-                case 'index':
+                case 'dashboard':
+                case 'consultations':
+                case 'orders':
+                case 'contact':
+                case 'setting':
+                case 'faq':
                     return true;
                 default:
                     return false;
