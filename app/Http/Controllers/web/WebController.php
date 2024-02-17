@@ -68,4 +68,9 @@ class WebController extends Controller
         }
     }
 
+    public function regisration_from2(Request $request)
+    {
+        return view('web.pages.regisration_from2');
+    }
+
 }
