@@ -1452,9 +1452,10 @@ h6 {
 
 .question .text .form-check {
     border: 1px solid #ced4da;
-    padding: 10px;
+    padding: 15px;
     margin-bottom: 10px;
     cursor: pointer;
+    border-radius: 7px;
     padding-left: 30px;
 }
 
@@ -1467,10 +1468,6 @@ h6 {
     margin-bottom: 10px;
     cursor: pointer;
   }
-  .question .text .form-check{
-      padding-left: 30px;
-  }
-
 
   .question .text .form-check.checked {
     border-color: #007bff; /* border color when checked */

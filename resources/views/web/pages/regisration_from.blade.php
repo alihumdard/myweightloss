@@ -40,7 +40,9 @@
     <main>
         <div class="text-center bg-white p-3">
             <a href="#" style="margin: auto; width: 200px">
-                <img class="align-top" width="200" src="http://127.0.0.1:8000/assets/web/consultation/img/Weighloss_final_logo.png">
+                <img class="align-top" width="200"
+                    src="{{ asset('/assets/web/consultation/img/Weighloss_final_logo.png')}}">
+
             </a>
         </div>
         <div class="container">
