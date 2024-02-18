@@ -152,7 +152,7 @@
                                 <button id="btnlogin" class="account-btn" data-toggle="modal" data-target="#loginModal">ٰI have an account</button>
                             </div>
                             <div>
-                                <form class="row g-3 mt-3 needs-validation" method="post" action="{{ route('web.register') }}" novalidate>
+                                <form class="mt-3 needs-validation" method="post" action="{{ route('web.register') }}" novalidate>
                                     @csrf
                                     <input type="hidden" name="role" required value="{{ user_roles('4')}}">
 
@@ -168,11 +168,10 @@
 
                                     <label for="password" class="label d-md-block mt-3">Password</label>
                                     <input class="form-control" type="password" name="password" id="password" value="" placeholder="password">
-                                    <div class="mt-2">
-                                        <p style="color: #00e5d2;">* Make a strong passowrd</p>
+                                    <div class="mt-1">
+                                        <p style="color: #00e5d2;" >* Make a strong passowrd</p>
                                     </div>
-
-                                    <label for="dob" class="label d-md-block mt-3">Date of Birth</label>
+                                    <label for="dob" class="label d-md-block ">Date of Birth</label>
                                     <div class="d-flex gap-3">
                                         <select class="calenders" name="day" id="dob" onchange="setDateValue(this)" class="splitdob-day">
                                             <option value="">Day</option>
@@ -327,24 +326,35 @@
                                             <option value="1907">1907</option>
                                         </select>
                                     </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="phone" class="label d-md-block mt-3">Phone Number</label>
+                                                <input class="form-control" type="number" name="phone" id="phone" value="" placeholder="Contact number">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="zip_code" class="label d-md-block mt-3">Zip Code</label>
+                                                <input class="form-control" type="number" name="zip_code" id="zip_code" value="" placeholder="Enter your zip code">
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                    <label for="phone" class="label d-md-block mt-3">Phone Number</label>
-                                    <input class="form-control" type="number" name="phone" id="phone" value="" placeholder="Contact number">
-
-                                    <label for="zip_code" class="label d-md-block mt-3">Zip Code</label>
-                                    <input class="form-control" type="number" name="zip_code" id="zip_code" value="" placeholder="enter you zip code">
-                                    <div class="mt-2">
+                                    
+                                    <div class="mt-1">
                                         <p style="color: #00e5d2;">* Enter valid Zip Code</p>
                                     </div>
 
-                                    <label for="address" class="label d-md-block mt-3">Address</label>
+                                    <label for="address" class="label d-md-block ">Address</label>
                                     <input class="form-control" type="text" name="address" id="address" value="" placeholder="enter your address">
-                                    <div class="mt-2">
+                                    <div class="mt-1">
                                         <p style="color: #00e5d2;">* Enter address manually</p>
                                     </div>
 
                                     <div>
-                                        <button type="submit" class="continue-btn">Continue</button>
+                                        <button type="submit mx-auto" class="continue-btn">Continue</button>
                                     </div>
                                 </form>
                             </div>
