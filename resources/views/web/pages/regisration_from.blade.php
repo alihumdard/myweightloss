@@ -156,7 +156,7 @@
 
                             </div>
                             <div>
-                                <form class="row g-3 mt-3 needs-validation" method="post" action="{{ route('admin.storeAdmin') }}" novalidate>
+                                <form class="row g-3 mt-3 needs-validation" method="post" action="{{ route('web.register') }}" novalidate>
                                     @csrf
                                     <input type="hidden" name="role" required value="{{ user_roles('4')}}">
 
@@ -342,7 +342,7 @@
                                     </div>
 
                                     <label for="address" class="label d-md-block mt-3">Address</label>
-                                    <input class="form-control" type="number" name="address" id="address" value="" placeholder="enter your address">
+                                    <input class="form-control" type="text" name="address" id="address" value="" placeholder="enter your address">
                                     <div class="mt-2">
                                         <p style="color: #00e5d2;">* Enter address manually</p>
                                     </div>
