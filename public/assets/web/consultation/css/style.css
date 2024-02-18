@@ -7,11 +7,22 @@
     flex-direction: column;
     align-items: center;
 }
+.itl-container2 {
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    /* margin-left: 450px; */
+    margin: auto; 
+}
 .itl-container__inner__survey {
     max-width: 500px;
     width: 100%;
     padding-left: 10px;
     padding-right: 10px;
+    margin: auto;
 }
 .w-100 {
     width: 100% !important;
@@ -24,28 +35,9 @@
     width: 100%;
     overflow: hidden;
     position: relative;
+   
 }
-@media only screen and (max-width: 768px) {
-    .card {
-        width: 80%;  /* Adjust the max-width for medium-sized screens */
-        margin-left: 72px;  /* Adjust the margin for medium-sized screens */
-    }
-}
-
-/* Media Query for Small-sized Screens */
-@media only screen and (max-width: 576px) {
-    .card {
-        width: 90%;  /* Adjust the max-width for small-sized screens */
-        margin-left: 22px;  /* Remove the left margin for small-sized screens */
-    }
-}
-@media only screen and (max-width: 448px) {
-    .card {
-        width: 90%;  /* Adjust the max-width for small-sized screens */
-        margin-left: 24px;  /* Remove the left margin for small-sized screens */
-    }
-}
-.card12 {
+.card2 {
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 0 9px rgba(182, 181, 182, 0.3);
@@ -55,26 +47,58 @@
     position: relative;
     margin-left: 450px;
 }
-@media only screen and (max-width: 768px) {
-    .card12 {
-        width: 80%;  /* Adjust the max-width for medium-sized screens */
-        margin-left: 72px;  /* Adjust the margin for medium-sized screens */
-    }
-}
+
 
 /* Media Query for Small-sized Screens */
 @media only screen and (max-width: 576px) {
-    .card12 {
+    .card {
         width: 90%;  /* Adjust the max-width for small-sized screens */
         margin-left: 22px;  /* Remove the left margin for small-sized screens */
     }
 }
-@media only screen and (max-width: 448px) {
+@media only screen and (max-width: 767px) {
+    .itl-container2 {
+        width: 100% !important;  /* Adjust the max-width for small-sized screens */
+        /* margin-left: 24px;  Remove the left margin for small-sized screens */
+    }
+    .itl-container__inner__survey{
+        width: 100% !important;
+    }
     .card12 {
-        width: 90%;  /* Adjust the max-width for small-sized screens */
-        margin-left: 24px;  /* Remove the left margin for small-sized screens */
+        width: 100% !important;
     }
 }
+.card12 {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 9px rgba(182, 181, 182, 0.3);
+    color: #7E8977;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    /* margin-left: 450px; */
+    margin: auto;
+}
+/* @media only screen and (max-width: 768px) {
+    .card12 {
+        width: 80%;  
+        margin-left: 72px;  
+    }
+}
+
+
+@media only screen and (max-width: 576px) {
+    .card12 {
+        width: 90%;  
+        margin-left: 22px;  
+    }
+}
+@media only screen and (max-width: 448px) {
+    .card12 {
+        width: 90%;  
+        margin-left: 24px;  
+    }
+} */
 
 .mt-5, .my-5 {
     margin-top: 3rem !important;
@@ -964,7 +988,7 @@ svg:not(:root) {
 @media only screen and (max-width: 448px) {
     #chatbot-progressbar1 {
         width: 70%;
-    margin-left: 20px;
+    /* margin-left: 20px; */
     margin-bottom: -9px;
 }
 }
@@ -974,9 +998,10 @@ svg:not(:root) {
     overflow: hidden;
     border-radius: 25px;
     background: #e6f1f3;
-    width: 35%;
+    width: 100%;
     padding-left: 4px;
-    margin-left: 467px;
+    /* margin-left: 467px; */
+    margin: auto;
 }
 @media only screen and (max-width: 768px) {
     #chatbot-progressbar   {

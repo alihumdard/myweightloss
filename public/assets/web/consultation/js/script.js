@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var proceedBtn_1 =  document.getElementById("proceedBtn_1");
     var proceedBtn_2 =  document.getElementById("proceedBtn_2");
     var proceedBtn_3 =  document.getElementById("proceedBtn_3");
+    var proceedBtn_4 =  document.getElementById("proceedBtn_4");
     var proceedBtn_5 =  document.getElementById("proceedBtn_5");
     var proceedBtn_6 =  document.getElementById("proceedBtn_6");
     var proceedBtn_7 =  document.getElementById("proceedBtn_7");
@@ -45,6 +46,9 @@ document.addEventListener('DOMContentLoaded', function () {
     var proceedBtn_36 = document.getElementById("proceedBtn_36");
     var proceedBtn_37 = document.getElementById("proceedBtn_37");
     var proceedBtn_38 = document.getElementById("proceedBtn_38");
+    var proceedBtn_39 = document.getElementById("proceedBtn_39");
+    var proceedBtn_40 = document.getElementById("proceedBtn_40");
+    var proceedBtn_41 = document.getElementById("proceedBtn_41");
 
     var previousBtn =   document.getElementById("previousBtn");
     var previousBtn2 =  document.getElementById("previousBtn_2");
@@ -127,6 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var item38 = document.getElementById("item_38");
     var item39 = document.getElementById("item_39");
     var item40 = document.getElementById("item_40");
+    var item41 = document.getElementById("item_41");
     var item =   document.getElementById("item");
 
     var maleRadio = document.getElementById("html");
@@ -236,6 +241,17 @@ document.addEventListener('DOMContentLoaded', function () {
     var no9 = document.getElementById("no9");
     var yes9 = document.getElementById("yes9");
 
+    var no10 = document.getElementById("no10");
+    var yes10 = document.getElementById("yes10");
+
+    var no11 = document.getElementById("no11");
+    var yes11 = document.getElementById("yes11");
+
+    var no12 = document.getElementById("no12");
+    var yes12 = document.getElementById("yes12");
+
+    var messageShown = false;
+
     var Liraglutide = document.getElementById("Liraglutide");
     var Mysimba = document.getElementById("Mysimba");
     var Orlistat = document.getElementById("Orlistat");
@@ -328,7 +344,26 @@ document.addEventListener('DOMContentLoaded', function () {
             item6.style.display = 'block';
         }
     });
+    proceedBtn_4.addEventListener('click', function () {
+        if (no10.checked) {
+            item5.style.display = 'none';
+            item1.style.display = 'block';
+        } else if (yes10.checked && !messageShown) {
+            // Create a div element for the message
+            var messageDiv = document.createElement('div');
+            messageDiv.innerHTML = "Unfortunately we would not be able to issue any kind of medical therapy for weight management during pregnancy or whilst breast-feeding. If you have any questions please reach out to one of our specialists for advice."; // Customize your message here
 
+            messageDiv.style.color = '#ff0000';
+            messageDiv.style.marginTop = "30px";
+            // Get the "Yes" radio button and its label
+            var yesLabel = document.querySelector('label[for="yes10"]');
+
+            // Insert the message div after the label of the "Yes" radio button
+            yesLabel.insertAdjacentElement('afterend', messageDiv);
+
+            messageShown = true;
+        }
+    });
     proceedBtn_5.addEventListener('click', function () {
         if (no.checked) {
             item4.style.display = 'none';
@@ -433,7 +468,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     proceedBtn_14.addEventListener('click', () => {
         item14.style.display = 'none';
-        item11.style.display = 'block';
+        item12.style.display = 'block';
     });
     proceedBtn_15.addEventListener('click', function () {
         if (no2.checked) {
@@ -445,9 +480,21 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
     proceedBtn_17.addEventListener('click', function () {
-        if (no4.checked) {
-            // item15.style.display = 'none';
-            // item16.style.display = 'block';
+        if (no4.checked && !messageShown) {
+            var messageDiv = document.createElement('div');
+            messageDiv.textContent = "It is important that you understand the potential side effects of this medication before you proceed. A 'No' answer indicates that you do not wish to continue. Please visit our website for advice on how to lose weight through lifestyle changes."; // Customize your message here
+
+            messageDiv.style.color = '#ff0000';
+            messageDiv.style.marginTop = "30px";
+            // Get the "Yes" radio button and its label
+            
+            var YesLabel = document.querySelector('label[for="yes4"]');
+
+            // Insert the message div after the label of the "Yes" radio button
+            YesLabel.insertAdjacentElement('afterend', messageDiv);
+
+            messageShown = true;
+
         } else if (yes4.checked) {
             item17.style.display = 'none';
             item16.style.display = 'block';
@@ -467,12 +514,23 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
     proceedBtn_19.addEventListener('click', function () {
-        if (no3.checked) {
+        if (no3.checked ) {
             item16.style.display = 'none';
             item19.style.display = 'block';
-        } else if (yes3.checked) {
-            // item15.style.display = 'none';
-            // item17.style.display = 'block';
+        } else if (yes3.checked && !messageShown) {
+            var messageDiv = document.createElement('div');
+            messageDiv.textContent = "Treatment with GLP1 type medication (Wegovy, Ozempic, Rybelsus, Saxenda, Mounjaro) is not recommended. Please see your GP to discuss weight loss, or continue with lifestyle measures such as exercise or dietary interventions."; // Customize your message here
+
+            messageDiv.style.color = '#ff0000';
+            messageDiv.style.marginTop = "30px";
+            // Get the "Yes" radio button and its label
+            
+            var YesLabel = document.querySelector('label[for="yes3"]');
+
+            // Insert the message div after the label of the "Yes" radio button
+            YesLabel.insertAdjacentElement('afterend', messageDiv);
+            
+            messageShown = true;
         }
     });
     proceedBtn_20.addEventListener('click', () => {
@@ -689,9 +747,20 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
       proceedBtn_37.addEventListener('click', function () {
-        if (no9.checked) {
-            // item35.style.display = 'none';
-            // item37.style.display = 'block'; 
+        if (no9.checked && !messageShown) {
+            var messageDiv = document.createElement('div');
+            messageDiv.textContent = "It is important that you understand some of the potential risks of these treatments before you proceed. Please go back and read the statements, and indicate 'yes' if you are happy to proceed."; // Customize your message here
+
+            messageDiv.style.color = '#ff0000';
+            messageDiv.style.marginTop = "30px";
+            // Get the "Yes" radio button and its label
+            
+            var YesLabel = document.querySelector('label[for="yes9"]');
+
+            // Insert the message div after the label of the "Yes" radio button
+            YesLabel.insertAdjacentElement('afterend', messageDiv); 
+            
+            messageShown = true;
             
         } else if (yes9.checked) {
             item37.style.display = 'none';
@@ -699,10 +768,75 @@ document.addEventListener('DOMContentLoaded', function () {
             
         }
       });
+     
       proceedBtn_38.addEventListener('click', () => {
         item38.style.display = 'none';
         item37.style.display = 'block';
     });
+    proceedBtn_39.addEventListener('click', function () {
+        if (no12.checked && !messageShown) {
+            var messageDiv = document.createElement('div');
+            messageDiv.textContent = "It is important that you understand some of the potential risks of these treatments before you proceed. Please go back and read the statements, and indicate 'yes' if you are happy to proceed."; // Customize your message here
+
+            messageDiv.style.color = '#ff0000';
+            messageDiv.style.marginTop = "30px";
+            // Get the "Yes" radio button and its label
+            
+            var YesLabel = document.querySelector('label[for="yes9"]');
+
+            // Insert the message div after the label of the "Yes" radio button
+            YesLabel.insertAdjacentElement('afterend', messageDiv);
+            
+            messageShown = true;
+            
+        } else if (yes12.checked) {
+            // item37.style.display = 'none';
+            // item39.style.display = 'block';
+            
+        }
+      });
+    proceedBtn_40.addEventListener('click', function () {
+        if (no11.checked && !messageShown) {
+            var messageDiv = document.createElement('div');
+            messageDiv.textContent = "Unfortunately without this agreement we could not progress with treatment."; // Customize your message here
+
+            messageDiv.style.color = '#ff0000';
+            messageDiv.style.marginTop = "30px";
+            // Get the "Yes" radio button and its label
+            
+            var YesLabel = document.querySelector('label[for="yes11"]');
+
+            // Insert the message div after the label of the "Yes" radio button
+            YesLabel.insertAdjacentElement('afterend', messageDiv); 
+            
+            messageShown = true;
+            
+        } else if (yes11.checked) {
+            item40.style.display = 'none';
+            item35.style.display = 'block';
+            
+        }
+      });
+    //   proceedBtn_41.addEventListener('click', function () {
+    //     if (no12.checked) {
+    //         var messageDiv = document.createElement('div');
+    //         messageDiv.textContent = "We require your consent and agreement to proceed with treating you, if you are not happy to proceed please exit the consult, for services in your rea please visit https://www.nhs.uk/nhs-services/services-near-you/"; // Customize your message here
+
+    //         messageDiv.style.color = '#ff0000';
+    //         messageDiv.style.marginTop = "30px";
+    //         // Get the "Yes" radio button and its label
+            
+    //         var YesLabel = document.querySelector('label[for="yes11"]');
+
+    //         // Insert the message div after the label of the "Yes" radio button
+    //         YesLabel.insertAdjacentElement('afterend', messageDiv);  
+            
+    //     } else if (yes12.checked) {
+    //         item40.style.display = 'none';
+    //         item41.style.display = 'block';
+            
+    //     }
+    //   });
     previousBtn.addEventListener('click', function () {
         
         if (item1.style.display === 'block') {
@@ -736,7 +870,7 @@ document.addEventListener('DOMContentLoaded', function () {
         
         if (item5.style.display === 'block') {
             item5.style.display = 'none';
-            item4.style.display = 'block';
+            item.style.display = 'block';
         } 
     });
     previousBtn6.addEventListener('click', function () {
@@ -764,7 +898,7 @@ document.addEventListener('DOMContentLoaded', function () {
         
         if (item9.style.display === 'block') {
             item9.style.display = 'none';
-            item7.style.display = 'block';
+            item4.style.display = 'block';
         } 
     });
     previousBtn10.addEventListener('click', function () {
