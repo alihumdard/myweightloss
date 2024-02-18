@@ -293,7 +293,7 @@
                             </div>
                             
                             <div class="col-md-2">
-                                <label for="zip_code" class="form-label">Zip</label>
+                                <label for="zip_code" class="form-label">Zip Code</label>
                                 <input type="text" name="zip_code" value="{{  $admin['zip_code'] ?? '' }}" class="form-control" id="zip_code" required>
                                 <div class="invalid-feedback">Please enter  zip code.</div>
                             </div>
