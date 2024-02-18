@@ -16,16 +16,16 @@
     <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png') }}">
 
     <!-- GOOGLE WEB FONT -->
-	<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
 
     <!-- BASE CSS -->
     <link href="{{ asset('/assets/web/bmi/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/assets/web/bmi/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('/assets/web/bmi/css/menu.css') }}" rel="stylesheet">
     <link href="{{ asset('/assets/web/bmi/css/vendors.min.css') }}" rel="stylesheet">
-	<link href="{{ asset('/assets/web/bmi/css/icon_fonts/css/all_icons.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/assets/web/bmi/css/icon_fonts/css/all_icons.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/assets/web/bmi/css/skins/square/grey.css') }}" rel="stylesheet">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- YOUR CUSTOM CSS -->
     <link href="{{ asset('/assets/web/bmi/css/custom.css') }}" rel="stylesheet">
@@ -47,9 +47,9 @@
                     <img src="{{ asset('/assets/web/bmi/img/Weighloss_final_logo.png') }}" class="bmi-logo">
                 </div>
                 <div class="col-md-6 pt-4 text-md-end">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                        <i class="fa fa-sign-in" aria-hidden="true"></i>Login
-                    </button>
+                    <a href="{{ route('web.logout') }}" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        <i class="fa fa-sign-in" aria-hidden="true"></i>LogOut
+                    </a>
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -101,7 +101,7 @@
                             </div>
                             <div class="col-md-3"></div>
                         </div>
-                        
+
                     </div>
                     <!-- /First branch What Type of Project ============================== -->
 
@@ -138,7 +138,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                         <!-- /step -->
                     </div>
@@ -167,7 +167,7 @@
                                 </div>
                                 <div class="col-md-2"></div>
                             </div>
-                            
+
                         </div>
                     </div>
                     <!-- /Second branch Web-Development ============================== -->
@@ -200,7 +200,7 @@
                                 </div>
 
                             </div>
-                            
+
                         </div>
                     </div>
                     <!-- /Web-Development > HTML-Development ============================== -->
@@ -232,7 +232,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                     <!-- /Web-Development > CMS-Development ============================== -->

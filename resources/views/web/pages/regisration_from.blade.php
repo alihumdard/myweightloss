@@ -356,7 +356,13 @@
 
         </div>
     </main><!-- End #main -->
-
+    @if(session('status'))
+    <script>
+        $(document).ready(function() {
+            $("#loginModal").modal('show');
+        });
+    </script>
+    @endif
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -364,21 +370,67 @@
                     <h5 class="modal-title mx-auto font-weight-bold" id="exampleModalLabel" style="font-family: sans-serif;  letter-spacing: 2px;">LogIn </h5>
 
                 </div>
-                <form>
+                <form class="row g-3 needs-validation" action="{{ route('web.login')}}" method="post" novalidate>
+                    @csrf
                     <div class="modal-body">
+                        <div class="col-12 mx-auto">
+                            <!-- Display Validation Errors -->
+                            @if(session('status') === 'error')
+                            <div class="alert alert-danger">
+                                <strong>Error:</strong>
+                                @foreach(session('message')->all() as $error)
+                                <p>{{ $error }}</p>
+                                @endforeach
+                            </div>
+                            @endif
+
+                            <!-- Display Success Message -->
+                            @if(session('status') === 'success')
+                            <div class="alert alert-success">
+                                <strong>Success:</strong> {{ session('message') }}
+                            </div>
+                            @endif
+
+                            <!-- Display Invalid Credentials or Admin Contact Message -->
+                            @if(session('status') === 'invalid')
+                            <div class="alert alert-danger">
+                                <strong>Error:</strong> {{ session('message') }}
+                            </div>
+                            @endif
+
+                            <!-- Display Unverified User Message -->
+                            @if(session('status') === 'Unverfied')
+                            <div class="alert alert-warning">
+                                <strong>Warning:</strong> {{ session('message') }}
+                            </div>
+                            @endif
+
+                            <!-- Display Deactivated User Message -->
+                            @if(session('status') === 'Deactive')
+                            <div class="alert alert-danger">
+                                <strong>Error:</strong> {{ session('message') }}
+                            </div>
+                            @endif
+
+                            @if(session('status') === 'noexitance')
+                            <div class="alert alert-danger">
+                                <strong>Error:</strong> {{ session('message') }}
+                            </div>
+                            @endif
+                        </div>
 
                         <div class="form-group mb-2">
-                            <label for="exampleInputEmail1" class="font-weight-bold">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                            <label for="user_email" class="font-weight-bold">Email address</label>
+                            <input type="email" name="email" class="form-control" id="user_email" value="{{ session('email') ?? ''}}" required aria-describedby="emailHelp" placeholder="Enter your email">
                             <small id="emailHelp" class="form-text text-muted"><span class="text-danger">*</span> We'll never share your email with anyone else.</small>
                         </div>
                         <div class="form-group ">
-                            <label for="exampleInputPassword1" class="font-weight-bold">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                            <label for="yourPassword" class="font-weight-bold">Password</label>
+                            <input type="password" name="password" class="form-control" id="yourPassword" required placeholder="Password">
                         </div>
                         <div class="form-group mt-2 ">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label small" for="exampleCheck1">Remember Password</label>
+                            <input type="checkbox" class="form-check-input" name="remberme" id="remberme">
+                            <label class="form-check-label small" for="remberme">Remember Password</label>
                         </div>
 
 
