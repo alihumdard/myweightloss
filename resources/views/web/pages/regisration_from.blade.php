@@ -144,16 +144,12 @@
                                 </div>
                             </div>
                         </div>
-
-
-
                     </div>
                     <div class="col-md-7">
                         <div class="full-form">
                             <div class="user-text mt-2">
                                 <button><i class="fa fa-check"></i>I'm new</button> &nbsp; &nbsp;
                                 <button id="btnlogin" class="account-btn" data-toggle="modal" data-target="#loginModal">ٰI have an account</button>
-
                             </div>
                             <div>
                                 <form class="row g-3 mt-3 needs-validation" method="post" action="{{ route('web.register') }}" novalidate>
@@ -365,8 +361,8 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mx-auto font-weight-bold" id="exampleModalLabel"  style="font-family: sans-serif;  letter-spacing: 2px;" >LogIn </h5>
-                    
+                    <h5 class="modal-title mx-auto font-weight-bold" id="exampleModalLabel" style="font-family: sans-serif;  letter-spacing: 2px;">LogIn </h5>
+
                 </div>
                 <form>
                     <div class="modal-body">
@@ -374,7 +370,7 @@
                         <div class="form-group mb-2">
                             <label for="exampleInputEmail1" class="font-weight-bold">Email address</label>
                             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                            <small id="emailHelp" class="form-text text-muted"><span class="text-danger" >*</span> We'll never share your email with anyone else.</small>
+                            <small id="emailHelp" class="form-text text-muted"><span class="text-danger">*</span> We'll never share your email with anyone else.</small>
                         </div>
                         <div class="form-group ">
                             <label for="exampleInputPassword1" class="font-weight-bold">Password</label>
@@ -396,21 +392,21 @@
         </div>
     </div>
 
-<script>
-    $(document).ready(function() {
-        $("#btnlogin").click(function() {
-            $("#loginModal").modal('show');
-        });
-        $(document).on('click', function(e) {
-            if ($(e.target).is('.modal') || $(e.target).closest('.modal-content').length === 0) {
+    <script>
+        $(document).ready(function() {
+            $("#btnlogin").click(function() {
+                $("#loginModal").modal('show');
+            });
+            $(document).on('click', function(e) {
+                if ($(e.target).is('.modal') || $(e.target).closest('.modal-content').length === 0) {
+                    $('#loginModal').modal('hide');
+                }
+            });
+            $('#loginModal .close, #loginModal [data-dismiss="modal"]').on('click', function() {
                 $('#loginModal').modal('hide');
-            }
+            });
         });
-        $('#loginModal .close, #loginModal [data-dismiss="modal"]').on('click', function(){
-            $('#loginModal').modal('hide');
-        });
-    });
-</script>
+    </script>
 
 
 
