@@ -366,9 +366,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Login </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    
                 </div>
                 <form>
                     <div class="modal-body">
@@ -391,21 +389,31 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-secondary px-5" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary px-5">Submit</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
-    <script>
-        $(document).ready(function() {
-            $("#btnlogin").click(function() {
-                $("#loginModal").modal('show');
-            });
+<script>
+    $(document).ready(function() {
+        $("#btnlogin").click(function() {
+            $("#loginModal").modal('show');
         });
-    </script>
+        $(document).on('click', function(e) {
+            if ($(e.target).is('.modal') || $(e.target).closest('.modal-content').length === 0) {
+                $('#loginModal').modal('hide');
+            }
+        });
+        $('#loginModal .close, #loginModal [data-dismiss="modal"]').on('click', function(){
+            $('#loginModal').modal('hide');
+        });
+    });
+</script>
+
+
 
 </body>
 
