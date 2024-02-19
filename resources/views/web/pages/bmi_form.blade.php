@@ -181,162 +181,60 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="answer_1">SEO Title</label>
-                                            <input type="text" id="seo_title" name="branch_1_group_1" class="required" placeholder="Enter SEO Title">
+                                            <input type="text" id="seo_title" name="branch_1_group_1" class="required"
+                                                placeholder="Enter SEO Title">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="answer_2">SEO Description</label>
-                                            <input type="text" id="seo_description" name="seo_description" class="required" placeholder="Enter SEO Description">
+                                            <input type="text" id="seo_description" name="seo_description"
+                                                class="required" placeholder="Enter SEO Description">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
 
-                        <!-- Web-Development > FrontEnd-Development ============================== -->
-                        <div class="branch" id="FrontEnd-Development">
-                            <div class="step" data-state="budget">
-                                <div class="question_title">
-                                    <h3>Web Development: FrontEnd Development</h3>
-                                    <p>Multiple Selection (Checkbox based)</p>
-                                </div>
-                                <div class="row justify-content-center">
-                                    <div class="col-lg-5 animated zoomIn delay-fast">
-                                        <div class="box_general">
-                                            <div class="form-group short">
-                                                <label><input type="checkbox" name="branch_2_3_answers[]"
-                                                        class="icheck required" value="Jquery">Jquery</label>
-                                            </div>
-                                            <div class="form-group short">
-                                                <label><input type="checkbox" name="branch_2_3_answers[]"
-                                                        class="icheck required" value="Angularjs 2">Angularjs 2</label>
-                                            </div>
-                                            <div class="form-group short">
-                                                <label><input type="checkbox" name="branch_2_3_answers[]"
-                                                        class="icheck required" value="Angularjs 4">Angularjs 4</label>
-                                            </div>
-                                            <div class="form-group short">
-                                                <label><input type="checkbox" name="branch_2_3_answers[]"
-                                                        class="icheck required" value="Reactjs">Reactjs</label>
-                                            </div>
-                                            <div class="form-group short">
-                                                <label><input type="checkbox" name="branch_2_3_answers[]"
-                                                        class="icheck required" value="Sass">Sass</label>
-                                            </div>
-                                            <hr>
-                                            <h6 class="add_bottom_15">Any particular notes?</h6>
-                                            <textarea class="form-control" style="height:100px; margin-bottom:0;"
-                                                placeholder="Typer here" name="frontend_development_notes"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+
                         <!-- /Web-Development > FrontEnd-Development ============================== -->
 
                         <!-- Design > What Type of Design do you need ============================== -->
                         <div class="branch" id="Design">
-                            <div class="step" data-state="budget">
-                                <div class="question_title">
-                                    <h3>What Type of Design do you need?</h3>
-                                    <p>Multiple Selection (Checkbox based)</p>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-4 animated zoomIn delay-fast">
-                                        <div class="item">
-                                            <input id="branch_3_answer_1" type="checkbox" name="branch_3_answers[]"
-                                                value="Web Design">
-                                            <label for="branch_3_answer_1"><img src="img/design_icon_2.svg"
-                                                    alt=""><strong>Web Design</strong>Postea democritum mnesarchum ne
-                                                nam, ad vim aperiri tractatos.</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 animated zoomIn delay-normal">
-                                        <div class="item">
-                                            <input id="branch_3_answer_2" name="branch_3_answers[]" type="checkbox"
-                                                value="Print Design">
-                                            <label for="branch_3_answer_2"><img src="img/design_icon_3.svg"
-                                                    alt=""><strong>Print Design</strong>Postea democritum mnesarchum ne
-                                                nam, ad vim aperiri tractatos.</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 animated zoomIn delay-medium">
-                                        <div class="item">
-                                            <input id="branch_3_answer_3" name="branch_3_answers[]" type="checkbox"
-                                                value="Logo Design">
-                                            <label for="branch_3_answer_3"><img src="img/design_icon_4.svg"
-                                                    alt=""><strong>Logo Design</strong>Postea democritum mnesarchum ne
-                                                nam, ad vim aperiri tractatos.</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /Design > What Type of Design do you need ============================== -->
+
 
                             <!-- Budget ============================== -->
                             <div class="step" id="budget" data-state="">
                                 <div class="question_title">
-                                    <h3>50 million</h3>
-                                    <p>users have chosen us</p>
+                                    <h3>BMI Calculator</h3>
+                                    <p>What is your weighi and height</p>
                                 </div>
                                 <div class="row justify-content-center">
                                     <div class="col-lg-5 animated zoomIn delay-fast">
                                         <div class="items">
-                                            <img src="{{ asset('/assets/web/bmi/img/weightloss/25.png') }}" alt="">
-                                        </div>
-                                        <a href="{{ route('web.consultationForm')}}">
-                                            <button type="button" class="btn btn-info next-step">Continue</button>
-                                        </a>
-                                    </div>
-
-                                </div>
-                                <!-- /Budget ============================== -->
-
-                                <!-- Last step ============================== -->
-                                <div class="submit step" id="end">
-                                    <div class="question_title">
-                                        <h3>Plase fill with your details</h3>
-                                        <p>Ei duo homero postea dignissim.</p>
-                                    </div>
-                                    <div class="row justify-content-center">
-                                        <div class="col-lg-5 animated zoomIn delay-fast">
-                                            <div class="box_general">
-                                                <div class="form-group">
-                                                    <input type="text" name="first_last_name"
-                                                        class="required form-control" placeholder="First and Last name">
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="email" name="email" class="required form-control"
-                                                        placeholder="Your Email">
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="text" name="telephone" class="form-control"
-                                                        placeholder="Your Telephone">
-                                                </div>
-                                                <div class="form-group add_bottom_30">
-                                                    <div class="styled-select">
-                                                        <select class="required" name="country">
-                                                            <option value="" selected>Select your country</option>
-                                                            <option value="Europe">Europe</option>
-                                                            <option value="Asia">Asia</option>
-                                                            <option value="North America">North America</option>
-                                                            <option value="South America">South America</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="checkbox_questions">
-                                                    <input name="terms" type="checkbox" class="icheck required"
-                                                        value="yes">
-                                                    <label>Please accept <a href="#" data-bs-toggle="modal"
-                                                            data-bs-target="#terms-txt">terms and
-                                                            conditions</a>.</label>
-                                                </div>
+                                            <div class="form-group">
+                                                <label for="height" class="mb-3 text-left f-bold">Height</label>
+                                                <input type="number" class="form-control" id="height" placeholder="cm"
+                                                    required>
                                             </div>
+                                            <div class="form-group">
+                                                <label for="weight" class="mt-3 text-left f-bold">Weight</label>
+                                                <input type="number" class="form-control" id="weight" placeholder="kg"
+                                                    required>
+                                            </div>
+
+                                            <a href="{{ route('web.consultationForm')}}">
+                                                <button type="button"
+                                                    class="btn btn-info text-light next-step">Continue</button>
+                                            </a>
                                         </div>
+
                                     </div>
+
                                 </div>
+
+                                <!-- /Budget ============================== -->
                             </div>
                         </div>
                         <div id="bottom-wizard">
