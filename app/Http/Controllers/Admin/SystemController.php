@@ -43,11 +43,11 @@ class SystemController extends Controller
         // return view('admin.pages.dashboard');
     }
 
-    // system roles .... Super Admin, Admin, Doctor,User, 
+    // system roles .... Super Admin, Dispensary, Doctor,User, 
     public function admins(Request $request)
     {
         $user = auth()->user();
-        $page_name = 'admins';
+        $page_name = 'dispensaries';
         if (!view_permission($page_name)) {
             return redirect()->back();
         }
@@ -64,7 +64,7 @@ class SystemController extends Controller
     public function add_admin(Request $request)
     {
         $user = auth()->user();
-        $page_name = 'add_admin';
+        $page_name = 'add_dispensary';
         if (!view_permission($page_name)) {
             return redirect()->back();
         }
@@ -80,7 +80,7 @@ class SystemController extends Controller
     public function store_admin(Request $request)
     {
         $user = auth()->user();
-        $page_name = 'add_admin';
+        $page_name = 'add_dispensary';
         if (!view_permission($page_name)) {
             return redirect()->back();
         }
@@ -130,7 +130,7 @@ class SystemController extends Controller
     public function doctors(Request $request)
     {
         $user = auth()->user();
-        $page_name = 'admins';
+        $page_name = 'doctors';
         if (!view_permission($page_name)) {
             return redirect()->back();
         }

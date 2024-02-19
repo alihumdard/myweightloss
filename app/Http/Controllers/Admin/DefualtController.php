@@ -15,18 +15,39 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Config;
 
 // models ...
 use App\Models\User;
+use App\Models\Category;
+use App\Models\Question;
+use App\Models\AssignQuestion;
+use App\Models\Product;
+use App\Models\ProductAttribute;
 
 
 class DefualtController extends Controller
 {
+    protected $status;
+    protected $user;
+
+    public function __construct()
+    {
+        $this->user = auth()->user();
+        $this->status = config('constants.USER_STATUS');
+    }
+
     public function index()
     {
         $user = auth()->user();
 
         if ($user) {
+            $page_name = 'dashboard';
+            if (!view_permission($page_name)) {
+                return redirect()->back();
+            }
             session(['user_details' => $user]);
             $data['user']       = $user;
             // User roles: 1 for Super Admin, 2 for Admin, 3 for Doctor, 4 User
@@ -37,7 +58,8 @@ class DefualtController extends Controller
             } else if (isset($user->role) && $user->role == user_roles('3')) {
                 return view('admin.pages.dashboard');
             } else if (isset($user->role) && $user->role == user_roles('4')) {
-                return redirect('/');
+                // return redirect('/');
+                return view('admin.pages.dashboard');
             }
         } else {
             return redirect('/login');
@@ -87,7 +109,7 @@ class DefualtController extends Controller
                             } else if (isset($user->role) && $user->role == user_roles('3')) {
                                 return  redirect('/admin');
                             } else if (isset($user->role) && $user->role == user_roles('4')) {
-                                return redirect('/');
+                                return redirect()->route('web.bmiForm');
                             }
                             // return redirect()->back()->with(['status' => 'success', 'message' => 'User successfully logged in', 'token' => $token]);
                         } else {
@@ -112,7 +134,7 @@ class DefualtController extends Controller
             } else if (isset($user->role) && $user->role == user_roles('3')) {
                 return  redirect('/admin');
             } else if (isset($user->role) && $user->role == user_roles('4')) {
-                return redirect('/');
+                return redirect()->route('web.bmiForm');
             }
         }
         return view('admin.pages.login');
@@ -134,6 +156,59 @@ class DefualtController extends Controller
         } else if (isset($user->role) && $user->role == user_roles('4')) {
             return redirect('/');
         }
-        
+    }
+
+    public function user_register(Request $request)
+    {
+        $user = auth()->user();
+        if (!$user) {
+            $validator = Validator::make($request->all(), [
+                'name'     => 'required',
+                'phone'    => 'required',
+                'address'  => 'required',
+                'role'     => 'required',
+                'email'    => [
+                    'required',
+                    'email',
+                    Rule::unique('users')->ignore($request->id),
+                ],
+                'password' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+
+            $data['user'] = auth()->user();
+
+            $saved = User::updateOrCreate(
+                ['id' => $request->id ?? NULL],
+                [
+                    'name'       => ucwords($request->name),
+                    'email'      => $request->email,
+                    'dob'        => $request->dob,
+                    'role'       => $request->role,
+                    'phone'      => $request->phone,
+                    'address'    => $request->address,
+                    'zip_code'   => $request->zip_code,
+                    'city'       => $request->city ?? '',
+                    'state'      => $request->state ?? '',
+                    'password'   => Hash::make($request->password),
+                    'status'     => $this->status['Active'],
+                    'created_by' => 1,
+                ]
+            );
+            $credentials = $request->only('email', 'password');
+            if (Auth::attempt($credentials)) {
+                $user = auth()->user();
+                $token = $user->createToken('MyApp')->plainTextToken;
+            }
+            $message = "User" . ($request->id ? "Registraion" : "Registraion") . " Successfully";
+            if ($saved) {
+                return redirect()->route('web.bmiForm')->with(['msg' => $message]);
+            }
+        }else{
+            return redirect()->back();
+        }
     }
 }

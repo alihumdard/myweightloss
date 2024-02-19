@@ -1208,6 +1208,17 @@ h6 {
   .error-404 img {
     max-width: 50%;
   }
+
+
+}
+
+@media (max-width: 992px){
+    .align-top{
+        width: 20% !important;
+    }
+    .main-sec{
+        width: 70% !important;
+   }
 }
 
 /*--------------------------------------------------------------
@@ -1291,4 +1302,220 @@ h6 {
     padding: 5px 24px;
     margin-top: 10px;
     border: none;
+}
+.quest-heading{
+    font-family: serif;
+    color: black;
+}
+
+
+
+/* registration_form2 styling */
+
+.main-sec{
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 9px rgba(182, 181, 182, 0.3);
+    color: #7E8977;
+    max-width: 100%;
+    overflow: hidden;
+    padding: 30px;
+     width: 50%;
+      margin: auto;
+}
+
+.step-marker .fa{
+    font-size: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.left-boxs{
+    padding-right: 0 !important;
+}
+.review-description {
+    background: #ecf7fc;
+    padding: 30px 18px 20px;
+    border-radius: 10px;
+    width: 90%;
+    margin: auto;
+    margin-top: 25px;
+}
+
+@media  (max-width:767px) {
+    .left-boxs{
+        padding-right: calc(var(--bs-gutter-x) * .5) !important;
+    }
+    .user-text{
+        text-align: center;
+    }
+    .step-marker .fa {
+        font-size: 14px;
+    }
+    .main-sec{
+         width: 100% !important;
+    }
+    .align-top{
+        width: 30% !important;
+    }
+
+}
+.align-top{
+    width: 15%;
+}
+.review-description .review-list-content .fa {
+    color: #fff;
+    background: #00b5e9;
+    border-radius: 50%;
+    padding: 4px 4px;
+}
+
+.review-description .review-list-content p {
+    color: #00b5e9;
+    font-size: 14px;
+    font-weight: 600;
+    padding-left: 10px;
+}
+
+.user-review-section .user-heading h4 {
+    color: #00b5e9;
+    width: 90%;
+    margin: auto;
+}
+
+
+.testimonial-section {
+    background: #00b5e9;
+    border-radius: 0 0 0 10px;
+}
+
+.testimonial-section .testimonial-content {
+    padding: 50px;
+    align-items: center;
+}
+
+.testimonial-section .testimonial-content p{
+    color: white;
+    font-weight: 600;
+}
+
+.user-text button {
+    background: #00b5e9;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.user-text .account-btn{
+    padding: 10px 30px;
+    margin-top: 10px;
+    background: none;
+    color: #00b5e9;
+    border-radius: 6px;
+    border: 1px solid #00b5e9;
+    font-weight: 700;
+}
+.user-text .account-btn:hover{
+    background: #00b5e9;
+    color: white;
+    transition: 0.5s;
+}
+.user-text .fa {
+    background-color: #00e5d2;
+    border-radius: 50%;
+    padding: 4px;
+    margin-right: 10px;
+}
+.full-form{
+    padding: 30px;
+}
+.full-form .form-control{
+   box-shadow: none;
+   padding: 12px;
+}
+.full-form .postcodtbtn{
+    background: #00B5E9;
+    border: none;
+    padding: 5px 20px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+}
+
+.full-form .calenders
+{
+    width: 25%;
+    padding: 7px;
+    border-radius: 5px;
+}
+
+.full-form .calender-month
+{
+    width: 40%;
+    padding: 7px;
+    border-radius: 5px;
+}
+
+.full-form .continue-btn{
+    height: 46px;
+    border-radius: 5px;
+    width: 150px;
+    font-weight: 700;
+    background: #82e85c;
+    border: none;
+    margin-top: 20px;
+    color: white;
+}
+
+
+
+
+
+
+.question .text .form-check {
+    border: 1px solid #ced4da;
+    padding: 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 7px;
+    padding-left: 30px;
+}
+
+
+
+
+.form-check {
+    border: 1px solid #ced4da; /* default border color */
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+
+  .question .text .form-check.checked {
+    border-color: #007bff; /* border color when checked */
+  }
+
+
+  .question .text .form-check.checked label {
+    /* background-color: #007bff; background color when checked */
+    color: blue; /* text color when checked */
+  }
+
+  /* Hide previous button initially */
+  #prevButton {
+    display: none;
+  }
+
+  /* Hide next button initially */
+  #nextButton {
+    display: none;
+  }
+.form-check-label
+{
+    cursor: pointer;
 }

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Questions</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Add animation effect */
+    .fade-in {
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .slide-in {
+      animation: slideIn 0.5s ease-in-out;
+    }
+
+    @keyframes slideIn {
+      0% {
+        transform: translateY(-100%);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    /* Custom styles for form-check */
+    .form-check {
+      border: 1px solid #ced4da; /* default border color */
+      padding: 10px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+    .form-check{
+        padding-left: 30px;
+    }
+    .form-check input[type="checkbox"] {
+      /* hide the actual checkbox */
+      /* display: none;  */
+      /* margin-left: 50px; */
+    }
+
+    .form-check.checked {
+      border-color: #007bff; /* border color when checked */
+    }
+    
+
+    .form-check.checked label {
+      /* background-color: #007bff; background color when checked */
+      color: blue; /* text color when checked */
+    }
+
+    /* Hide previous button initially */
+    #prevButton {
+      display: none;
+    }
+
+    /* Hide next button initially */
+    #nextButton {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container col-md-6 mt-5">
+    <!-- Questions -->
+    <div class="question fade-in">
+      <form id="form1">
+        <div class="text">
+          <label>question 1 </label><br>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="paris" id="paris">
+            <label class="form-check-label" for="paris">Paris</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="london" id="london">
+            <label class="form-check-label" for="london">London</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="berlin" id="berlin">
+            <label class="form-check-label" for="berlin">Berlin</label>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="question collapse">
+      <form id="form2">
+        <div class="text">
+          <label>question 2 </label><br>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="pakistan" id="pakistan">
+            <label class="form-check-label" for="pakistan">pakistan</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="abc" id="abc">
+            <label class="form-check-label" for="abc">abc</label>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="question collapse">
+      <form id="form3">
+        <div class="text">
+          <label>question 3</label><br>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="ab" id="ab">
+            <label class="form-check-label" for="ab">ab</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="asia" id="asia">
+            <label class="form-check-label" for="asia">Asia</label>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="question collapse">
+        <form id="form4">
+          <div class="text">
+            <label>question 4</label><br>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="africa" id="africa">
+              <label class="form-check-label" for="africa">Africa</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="bb" id="bb">
+              <label class="form-check-label" for="bb">BB</label>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="question collapse">
+        <form id="form5">
+          <div class="text">
+            <label>question 5</label><br>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="cd" id="cd">
+              <label class="form-check-label" for="cd">cd</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="aa" id="aa">
+              <label class="form-check-label" for="aa">AA</label>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    <!-- Progress Indicator -->
+    <div class="progress mt-3">
+      <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="d-flex justify-content-between mt-3">
+      <button id="prevButton" class="btn btn-primary">Previous</button>
+      <button id="nextButton" class="btn btn-primary">Next</button>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and jQuery (required for Bootstrap) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var currentQuestionIndex = 0;
+      var questions = document.querySelectorAll('.question');
+      var totalQuestions = questions.length;
+      var progress = 0;
+      var prevButton = document.getElementById('prevButton');
+      var nextButton = document.getElementById('nextButton');
+
+      prevButton.style.display = 'none'; // Hide previous button initially
+      updateProgress(); // Update progress initially
+
+      nextButton.addEventListener('click', function() {
+        prevButton.style.display = 'block'; // Show previous button
+
+        questions[currentQuestionIndex].classList.remove('show');
+        questions[currentQuestionIndex].classList.add('collapse');
+        currentQuestionIndex++;
+        questions[currentQuestionIndex].classList.remove('collapse');
+        questions[currentQuestionIndex].classList.add('slide-in', 'show');
+
+        // Hide next button if at the last question
+        if (currentQuestionIndex === totalQuestions - 1) {
+          nextButton.style.display = 'none';
+        }
+
+        updateProgress(); // Update progress
+      });
+
+      prevButton.addEventListener('click', function() {
+        nextButton.style.display = 'block'; // Show next button
+
+        questions[currentQuestionIndex].classList.remove('show');
+        questions[currentQuestionIndex].classList.add('collapse');
+        currentQuestionIndex--;
+        questions[currentQuestionIndex].classList.remove('collapse');
+        questions[currentQuestionIndex].classList.add('slide-in', 'show');
+
+        // Hide previous button if at the first question
+        if (currentQuestionIndex === 0) {
+          prevButton.style.display = 'none';
+        }
+
+        updateProgress(); // Update progress
+      });
+
+      // Handle checkbox change to enable/disable next button and update progress
+      var checkboxes = document.querySelectorAll('.question input[type="checkbox"]');
+      checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+          nextButton.disabled = false;
+          nextButton.style.display = 'block'; // Show next button after checkbox interaction
+          updateProgress(); // Update progress
+          updateBackground(); // Update background color of selected values
+        });
+      });
+
+      function updateProgress() {
+        var answeredQuestions = 0;
+        questions.forEach(function(question) {
+          if (question.querySelectorAll('input[type="checkbox"]:checked').length > 0) {
+            answeredQuestions++;
+          }
+        });
+        progress = (answeredQuestions / totalQuestions) * 100;
+        document.querySelector('.progress-bar').style.width = progress + '%';
+        document.querySelector('.progress-bar').setAttribute('aria-valuenow', progress);
+      }
+
+      function updateBackground() {
+        var checkedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+        checkedCheckboxes.forEach(function(checkbox) {
+          checkbox.parentElement.classList.add('checked');
+        });
+      }
+    });
+  </script>
+</body>
+</html>
