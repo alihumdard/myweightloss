@@ -186,6 +186,7 @@ class DefualtController extends Controller
                 [
                     'name'       => ucwords($request->name),
                     'email'      => $request->email,
+                    'dob'        => $request->dob,
                     'role'       => $request->role,
                     'phone'      => $request->phone,
                     'address'    => $request->address,

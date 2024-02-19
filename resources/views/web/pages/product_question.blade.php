@@ -40,18 +40,19 @@
 
     <div class="text-center bg-white p-3">
         <a href="#" style="margin: auto;">
-            <img class="align-top" style="width: 10%;"
+            <img class="align-top"
             src="{{ asset('/assets/web/consultation/img/Weighloss_final_logo.png')}}">
         </a>
     </div>
     <div class="question-tittles">
-        <div class="container text-center my-4">
-            <h3 class="fw-bold">Do you agree and consent to the following?</h3>
+        <div class="container text-center my-5">
+            <h3 class="fw-bold quest-heading">Do you agree and consent to the <br> following?</h3>
         </div>
     <main>
         <div class="container">
-            <div class="main-sec mt-4 mb-5" style="padding: 30px; width: 60%; margin: auto;">
-                <ul>
+            <div class="main-sec-2 mt-5 mb-5">
+                <ul style="font-family: emoji;
+                color: black;">
                     <li>I am over 18 years old and live in the UK.</li>
                     <li>I will be the sole user of any medication offered to me through this service.</li>
                     <li>I confirm all answers are provided by me, and are completely truthful.</li>

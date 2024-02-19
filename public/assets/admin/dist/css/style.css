@@ -1208,6 +1208,17 @@ h6 {
   .error-404 img {
     max-width: 50%;
   }
+
+
+}
+
+@media (max-width: 992px){
+    .align-top{
+        width: 20% !important;
+    }
+    .main-sec-2{
+        width: 70% !important;
+   }
 }
 
 /*--------------------------------------------------------------
@@ -1292,19 +1303,38 @@ h6 {
     margin-top: 10px;
     border: none;
 }
+.quest-heading{
+    font-family: serif;
+    color: black;
+}
 
 
 
 /* registration_form2 styling */
 
-.main-sec{
+.main-sec, .main-sec-2{
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 0 9px rgba(182, 181, 182, 0.3);
     color: #7E8977;
     max-width: 100%;
     overflow: hidden;
-    /* padding: 40px 0; */
+}
+.form-user-img{
+    width: 60%;
+    height: auto;
+    margin-bottom: 25px;
+}
+.main-sec-2{
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 9px rgba(182, 181, 182, 0.3);
+    color: #7E8977;
+    max-width: 100%;
+    overflow: hidden;
+    padding: 30px;
+     width: 50%;
+      margin: auto;
 }
 
 .step-marker .fa{
@@ -1337,6 +1367,20 @@ h6 {
     .step-marker .fa {
         font-size: 14px;
     }
+    .main-sec-2{
+         width: 100% !important;
+    }
+    .align-top{
+        width: 30% !important;
+    }
+
+    .imbtn{
+        padding: 10px 50px !important;
+    }
+
+}
+.align-top{
+    width: 15%;
 }
 .review-description .review-list-content .fa {
     color: #fff;
@@ -1365,8 +1409,7 @@ h6 {
 }
 
 .testimonial-section .testimonial-content {
-    padding: 50px;
-    align-items: center;
+    padding: 25px
 }
 
 .testimonial-section .testimonial-content p{
