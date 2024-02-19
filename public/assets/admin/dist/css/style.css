@@ -1208,6 +1208,17 @@ h6 {
   .error-404 img {
     max-width: 50%;
   }
+
+
+}
+
+@media (max-width: 992px){
+    .align-top{
+        width: 20% !important;
+    }
+    .main-sec{
+        width: 70% !important;
+   }
 }
 
 /*--------------------------------------------------------------
@@ -1292,6 +1303,10 @@ h6 {
     margin-top: 10px;
     border: none;
 }
+.quest-heading{
+    font-family: serif;
+    color: black;
+}
 
 
 
@@ -1304,7 +1319,9 @@ h6 {
     color: #7E8977;
     max-width: 100%;
     overflow: hidden;
-    /* padding: 40px 0; */
+    padding: 30px;
+     width: 50%;
+      margin: auto;
 }
 
 .step-marker .fa{
@@ -1337,6 +1354,16 @@ h6 {
     .step-marker .fa {
         font-size: 14px;
     }
+    .main-sec{
+         width: 100% !important;
+    }
+    .align-top{
+        width: 30% !important;
+    }
+
+}
+.align-top{
+    width: 15%;
 }
 .review-description .review-list-content .fa {
     color: #fff;
