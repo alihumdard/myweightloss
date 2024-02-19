@@ -30,96 +30,144 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="{{ asset('/assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-    
-    <!-- Bootstrap Datepicker CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
 
-<!-- Bootstrap Datepicker JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <!-- Bootstrap Datepicker CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Datepicker JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 
 
     <!-- custome styling -->
     <link rel="stylesheet" href="{{ asset('/assets/admin/dist/css/style.css') }}">
-    <style> 
+    <style>
+        /*Bootstrap Calendar*/
+        .datepicker {
+            border-radius: 0;
+            padding: 0;
+        }
 
-/*Bootstrap Calendar*/
-.datepicker {
-    border-radius: 0;
-    padding: 0;
-}
-.datepicker-days table thead, .datepicker-days table tbody, .datepicker-days table tfoot {
-    padding: 10px;
-    display: list-item;
-}
-.datepicker-days table thead, .datepicker-months table thead, .datepicker-years table thead, .datepicker-decades table thead, .datepicker-centuries table thead {
-    background: #3546b3;
-    color: #ffffff;
-    border-radius: 0;
-}
-.datepicker-days table thead tr:nth-child(2n+0) td, .datepicker-days table thead tr:nth-child(2n+0) th {
-    border-radius: 3px;
-}
-.datepicker-days table thead tr:nth-child(3n+0) {
-    text-transform: uppercase;
-    font-weight: 300 !important;
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.7);
-}
-.table-condensed > tbody > tr > td, .table-condensed > tbody > tr > th, .table-condensed > tfoot > tr > td, .table-condensed > tfoot > tr > th, .table-condensed > thead > tr > td, .table-condensed > thead > tr > th {
-    padding: 11px 13px;
-}
-.datepicker-months table thead td, .datepicker-months table thead th, .datepicker-years table thead td, .datepicker-years table thead th, .datepicker-decades table thead td, .datepicker-decades table thead th, .datepicker-centuries table thead td, .datepicker-centuries table thead th {
-    border-radius: 0;
-}
-.datepicker td, .datepicker th {
-    border-radius: 50%;
-    padding: 0 12px;
-}
-.datepicker-days table thead, .datepicker-months table thead, .datepicker-years table thead, .datepicker-decades table thead, .datepicker-centuries table thead {
-    background: #3546b3;
-    color: #ffffff;
-    border-radius: 0;
-}
-.datepicker table tr td.active, .datepicker table tr td.active:hover, .datepicker table tr td.active.disabled, .datepicker table tr td.active.disabled:hover {
-    background-image: none;
-}
-.datepicker .prev, .datepicker .next {
-    color: rgba(255, 255, 255, 0.5);
-    transition: 0.3s;
-    width: 37px;
-    height: 37px;
-}
-.datepicker .prev:hover, .datepicker .next:hover {
-    background: transparent;
-    color: rgba(255, 255, 255, 0.99);
-    font-size: 21px;
-}
-.datepicker .datepicker-switch {
-    font-size: 24px;
-    font-weight: 400;
-    transition: 0.3s;
-}
-.datepicker .datepicker-switch:hover {
-    color: rgba(255, 255, 255, 0.7);
-    background: transparent;
-}
-.datepicker table tr td span {
-    border-radius: 2px;
-    margin: 3%;
-    width: 27%;
-}
-.datepicker table tr td span.active, .datepicker table tr td span.active:hover, .datepicker table tr td span.active.disabled, .datepicker table tr td span.active.disabled:hover {
-  background-color: #3546b3;
-  background-image: none;
-}
-.dropdown-menu {
-    border: 1px solid rgba(0,0,0,.1);
-    box-shadow: 0 6px 12px rgba(0,0,0,.175);
-}
-.datepicker-dropdown.datepicker-orient-top:before {
-    border-top: 7px solid rgba(0,0,0,.1);
-}
-    </style> 
+        .datepicker-days table thead,
+        .datepicker-days table tbody,
+        .datepicker-days table tfoot {
+            padding: 10px;
+            display: list-item;
+        }
+
+        .datepicker-days table thead,
+        .datepicker-months table thead,
+        .datepicker-years table thead,
+        .datepicker-decades table thead,
+        .datepicker-centuries table thead {
+            background: #3546b3;
+            color: #ffffff;
+            border-radius: 0;
+        }
+
+        .datepicker-days table thead tr:nth-child(2n+0) td,
+        .datepicker-days table thead tr:nth-child(2n+0) th {
+            border-radius: 3px;
+        }
+
+        .datepicker-days table thead tr:nth-child(3n+0) {
+            text-transform: uppercase;
+            font-weight: 300 !important;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .table-condensed>tbody>tr>td,
+        .table-condensed>tbody>tr>th,
+        .table-condensed>tfoot>tr>td,
+        .table-condensed>tfoot>tr>th,
+        .table-condensed>thead>tr>td,
+        .table-condensed>thead>tr>th {
+            padding: 11px 13px;
+        }
+
+        .datepicker-months table thead td,
+        .datepicker-months table thead th,
+        .datepicker-years table thead td,
+        .datepicker-years table thead th,
+        .datepicker-decades table thead td,
+        .datepicker-decades table thead th,
+        .datepicker-centuries table thead td,
+        .datepicker-centuries table thead th {
+            border-radius: 0;
+        }
+
+        .datepicker td,
+        .datepicker th {
+            border-radius: 50%;
+            padding: 0 12px;
+        }
+
+        .datepicker-days table thead,
+        .datepicker-months table thead,
+        .datepicker-years table thead,
+        .datepicker-decades table thead,
+        .datepicker-centuries table thead {
+            background: #3546b3;
+            color: #ffffff;
+            border-radius: 0;
+        }
+
+        .datepicker table tr td.active,
+        .datepicker table tr td.active:hover,
+        .datepicker table tr td.active.disabled,
+        .datepicker table tr td.active.disabled:hover {
+            background-image: none;
+        }
+
+        .datepicker .prev,
+        .datepicker .next {
+            color: rgba(255, 255, 255, 0.5);
+            transition: 0.3s;
+            width: 37px;
+            height: 37px;
+        }
+
+        .datepicker .prev:hover,
+        .datepicker .next:hover {
+            background: transparent;
+            color: rgba(255, 255, 255, 0.99);
+            font-size: 21px;
+        }
+
+        .datepicker .datepicker-switch {
+            font-size: 24px;
+            font-weight: 400;
+            transition: 0.3s;
+        }
+
+        .datepicker .datepicker-switch:hover {
+            color: rgba(255, 255, 255, 0.7);
+            background: transparent;
+        }
+
+        .datepicker table tr td span {
+            border-radius: 2px;
+            margin: 3%;
+            width: 27%;
+        }
+
+        .datepicker table tr td span.active,
+        .datepicker table tr td span.active:hover,
+        .datepicker table tr td span.active.disabled,
+        .datepicker table tr td span.active.disabled:hover {
+            background-color: #3546b3;
+            background-image: none;
+        }
+
+        .dropdown-menu {
+            border: 1px solid rgba(0, 0, 0, .1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+        }
+
+        .datepicker-dropdown.datepicker-orient-top:before {
+            border-top: 7px solid rgba(0, 0, 0, .1);
+        }
+    </style>
 
 </head>
 
@@ -183,7 +231,7 @@
 
             <div class="main-sec mt-4 mb-5">
                 <div class="row">
-                    <div class="col-md-5 left-boxs" style=" border-right: 1px solid #e5eef3;">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-5 left-boxs" style=" border-right: 1px solid #e5eef3;">
                         <div class="text-center mt-5">
                             <a href="#">
                                 <img class="img-fluid" src="{{ asset('/assets/web/images/logo/reviews-title.png') }}">
@@ -215,9 +263,9 @@
 
                         </div>
                         <div class="testimonial-section mt-4">
-                            <div class="testimonial-content d-flex">
-                                <div class="testimonial-img">
-                                    <img class="img-fluid" src="https://consultation.my-bmi.co.uk/static/version1707364664/frontend/MyBMI/child/en_GB/images/jamesO-new-photo_cutout.png" alt="info">
+                            <div class="testimonial-content">
+                                <div class="testimonial-img text-center">
+                                    <img class="img-fluid form-user-img" src="https://consultation.my-bmi.co.uk/static/version1707364664/frontend/MyBMI/child/en_GB/images/jamesO-new-photo_cutout.png" alt="info">
                                 </div>
                                 <div class="testimonial-right-content" style="font-style: italic;">
                                     <p class="has-text-white its-font-w--600 mb-2">"myBMI has access to the market
@@ -234,10 +282,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-7">
                         <div class="full-form">
                             <div class="user-text mt-2">
-                                <button><i class="fa fa-check"></i>I'm new</button> &nbsp; &nbsp;
+                                <button class="imbtn"><i class="fa fa-check"></i>I'm new</button>
                                 <button id="btnlogin" class="account-btn" data-toggle="modal" data-target="#loginModal">ٰI have an account</button>
                             </div>
                             <div>
@@ -258,11 +306,11 @@
                                     <label for="password" class="label d-md-block mt-3">Password</label>
                                     <input class="form-control" type="password" name="password" id="password" value="" placeholder="password">
                                     <div class="mt-1">
-                                        <p style="color: #00e5d2;" >* Make a strong passowrd</p>
+                                        <p style="color: #00e5d2;">* Make a strong passowrd</p>
                                     </div>
 
-                                    <label for="dob" class="label d-md-block ">Date of Birth</label> 
-                                    <input type="text" id="datepicker" class="form-control" placeholder="Select date">
+                                    <label for="dob" class="label d-md-block ">Date of Birth</label>
+                                    <input type="text" id="datepicker" name="dob" class="form-control" placeholder="Select date">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -278,7 +326,7 @@
                                         </div>
                                     </div>
 
-                                    
+
                                     <div class="mt-1">
                                         <p style="color: #00e5d2;">* Enter valid Zip Code</p>
                                     </div>
@@ -406,12 +454,11 @@
         });
 
         $(document).ready(function() {
-    $('#datepicker').datepicker({
-      format: 'mm/dd/yyyy',
-      autoclose: true
-    });
-  });
- 
+            $('#datepicker').datepicker({
+                format: 'mm/dd/yyyy',
+                autoclose: true
+            });
+        });
     </script>
 
 </body>
