@@ -166,34 +166,7 @@
                             </div>
                             <!-- /step -->
                         </div>
-                        <!-- /What Type of Project > Seo-Optimization ============================== -->
-
-                        <!-- Additional branch with ID Seo-Optimization -->
-                        <!-- under working  -->
-                        <div class="branch" id="Seo-Optimization">
-                            <div class="step" data-state="budget">
-                                <div class="question_title">
-                                    <h3>SEO Optimization Details</h3>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="answer_1">SEO Title</label>
-                                            <input type="text" id="seo_title" name="branch_1_group_1" class="required"
-                                                placeholder="Enter SEO Title">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="answer_2">SEO Description</label>
-                                            <input type="text" id="seo_description" name="seo_description"
-                                                class="required" placeholder="Enter SEO Description">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                        
 
 
                         <!-- /Web-Development > FrontEnd-Development ============================== -->
