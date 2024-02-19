@@ -231,7 +231,7 @@
 
             <div class="main-sec mt-4 mb-5">
                 <div class="row">
-                    <div class="col-md-5 left-boxs" style=" border-right: 1px solid #e5eef3;">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-5 left-boxs" style=" border-right: 1px solid #e5eef3;">
                         <div class="text-center mt-5">
                             <a href="#">
                                 <img class="img-fluid" src="{{ asset('/assets/web/images/logo/reviews-title.png') }}">
@@ -263,9 +263,9 @@
 
                         </div>
                         <div class="testimonial-section mt-4">
-                            <div class="testimonial-content d-flex">
-                                <div class="testimonial-img">
-                                    <img class="img-fluid" src="https://consultation.my-bmi.co.uk/static/version1707364664/frontend/MyBMI/child/en_GB/images/jamesO-new-photo_cutout.png" alt="info">
+                            <div class="testimonial-content">
+                                <div class="testimonial-img text-center">
+                                    <img class="img-fluid form-user-img" src="https://consultation.my-bmi.co.uk/static/version1707364664/frontend/MyBMI/child/en_GB/images/jamesO-new-photo_cutout.png" alt="info">
                                 </div>
                                 <div class="testimonial-right-content" style="font-style: italic;">
                                     <p class="has-text-white its-font-w--600 mb-2">"myBMI has access to the market
@@ -282,10 +282,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-7">
                         <div class="full-form">
                             <div class="user-text mt-2">
-                                <button><i class="fa fa-check"></i>I'm new</button> &nbsp; &nbsp;
+                                <button class="imbtn"><i class="fa fa-check"></i>I'm new</button>
                                 <button id="btnlogin" class="account-btn" data-toggle="modal" data-target="#loginModal">ٰI have an account</button>
                             </div>
                             <div>

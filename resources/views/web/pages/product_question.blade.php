@@ -50,7 +50,7 @@
         </div>
     <main>
         <div class="container">
-            <div class="main-sec mt-5 mb-5">
+            <div class="main-sec-2 mt-5 mb-5">
                 <ul style="font-family: emoji;
                 color: black;">
                     <li>I am over 18 years old and live in the UK.</li>

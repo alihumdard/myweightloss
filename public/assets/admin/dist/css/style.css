@@ -1216,7 +1216,7 @@ h6 {
     .align-top{
         width: 20% !important;
     }
-    .main-sec{
+    .main-sec-2{
         width: 70% !important;
    }
 }
@@ -1312,7 +1312,20 @@ h6 {
 
 /* registration_form2 styling */
 
-.main-sec{
+.main-sec, .main-sec-2{
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 9px rgba(182, 181, 182, 0.3);
+    color: #7E8977;
+    max-width: 100%;
+    overflow: hidden;
+}
+.form-user-img{
+    width: 60%;
+    height: auto;
+    margin-bottom: 25px;
+}
+.main-sec-2{
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 0 9px rgba(182, 181, 182, 0.3);
@@ -1354,11 +1367,15 @@ h6 {
     .step-marker .fa {
         font-size: 14px;
     }
-    .main-sec{
+    .main-sec-2{
          width: 100% !important;
     }
     .align-top{
         width: 30% !important;
+    }
+
+    .imbtn{
+        padding: 10px 50px !important;
     }
 
 }
@@ -1392,8 +1409,7 @@ h6 {
 }
 
 .testimonial-section .testimonial-content {
-    padding: 50px;
-    align-items: center;
+    padding: 25px
 }
 
 .testimonial-section .testimonial-content p{
