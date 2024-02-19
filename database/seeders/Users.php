@@ -70,8 +70,9 @@ class Users extends Seeder
         User::factory()->create([
             'name'      => 'User',
             'email'     => 'user@gmail.com',
-            'phone'        => '+923394030',
-            'address'      => 'gernal texi stand.',
+            'dob'       => '02/16/2024',
+            'phone'     => '+923394030',
+            'address'   => 'gernal texi stand.',
             'password'  => Hash::make('12345'),
             'role'      => 'User',
             'status'    => '1',
