@@ -9,11 +9,6 @@ class Category extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'name',
         'desc',
@@ -24,7 +19,23 @@ class Category extends Model
 
     public function products()
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Product::class, 'category_id');
     }
 
+    public function assignedQuestions()
+    {
+        return $this->hasMany(AssignQuestion::class, 'category_id');
+    }
+
+    public function questions()
+    {
+        return $this->hasManyThrough(
+            Question::class,
+            AssignQuestion::class,
+            'category_id',
+            'id',
+            'id',
+            'question_id'
+        );
+    }
 }

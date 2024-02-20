@@ -35,23 +35,23 @@ class WebController extends Controller
         $data['products'] = Product::with('category:id,name')->latest('id')->get()->toArray();
         $data['categories'] = Category::withCount('products')->latest('id')->get()->toArray();
 
-        return view('web.pages.products',$data);
+        return view('web.pages.products', $data);
     }
 
     public function product(Request $request)
     {
         $data['user'] = auth()->user() ?? [];
-         $data['product'] = Product::with('category:id,name')->findOrFail($request->id)->toArray();
-         $data['rel_products'] = Product::where(['category_id' => $data['product']['category_id']])->take(4)->latest('id')->get()->toArray();
-        return view('web.pages.product',$data);
+        $data['product'] = Product::with('category:id,name')->findOrFail($request->id)->toArray();
+        $data['rel_products'] = Product::where(['category_id' => $data['product']['category_id']])->take(4)->latest('id')->get()->toArray();
+        return view('web.pages.product', $data);
     }
 
     public function bmi_form(Request $request)
     {
         $data['user'] = auth()->user() ?? [];
-        if(auth()->user()){
-            return view('web.pages.bmi_form',$data);
-        }else{
+        if (auth()->user()) {
+            return view('web.pages.bmi_form', $data);
+        } else {
             return redirect()->route('web.regisrationFrom');
         }
     }
@@ -59,17 +59,32 @@ class WebController extends Controller
     public function consultation_form(Request $request)
     {
         $data['user'] = auth()->user() ?? [];
-        return view('web.pages.consultation_form',$data);
+        return view('web.pages.consultation_form', $data);
     }
 
     public function regisration_from(Request $request)
     {
         $data['user'] = auth()->user() ?? [];
-        if(auth()->user()){
+        if (auth()->user()) {
             return redirect()->route('web.bmiForm');
-        }else{
-            return view('web.pages.regisration_from',$data);
+        } else {
+            return view('web.pages.regisration_from', $data);
         }
     }
 
+    public function product_question(Request $request)
+    {
+        $data['user'] = auth()->user() ?? [];
+        if (auth()->user()) {
+            $data['product'] = Product::with(['category:id,name', 'category.questions'])
+                ->findOrFail($request->id)
+                ->toArray();
+            $data['category'] =  $data['product']['category'];
+            $data['questions'] =  $data['product']['category']['questions'];
+
+            return view('web.pages.product_question', $data);
+        } else {
+            return view('web.pages.regisration_from', $data);
+        }
+    }
 }
