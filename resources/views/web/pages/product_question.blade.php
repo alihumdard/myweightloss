@@ -38,136 +38,139 @@
 
     </div>
 
-    <div class="text-center bg-white p-3">
-        <a href="#" style="margin: auto;">
-            <img class="align-top"
-            src="{{ asset('/assets/web/consultation/img/Weighloss_final_logo.png')}}">
-        </a>
-    </div>
-    <div class="question-tittles">
-        <div class="container text-center my-5">
-            <h3 class="fw-bold quest-heading">Do you agree and consent to the <br> following?</h3>
-        </div>
-    <main>
-        <div class="container">
-            <div class="main-sec-2 mt-5 mb-5">
-                <ul style="font-family: emoji;
-                color: black;">
-                    <li>I am over 18 years old and live in the UK.</li>
-                    <li>I will be the sole user of any medication offered to me through this service.</li>
-                    <li>I confirm all answers are provided by me, and are completely truthful.</li>
-                </ul>
-                <div class="question fade-in">
-                    <form id="form1">
-                        <div class="text">
-                            <label>question 1 </label><br>
-                            <div class="form-check mt-2">
-                                <input class="form-check-input" type="checkbox" value="paris" id="paris">
-                                <label class="form-check-label w-100" for="paris">Paris</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="london" id="london">
-                                <label class="form-check-label w-100" for="london">London</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="berlin" id="berlin">
-                                <label class="form-check-label w-100" for="berlin">Berlin</label>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+    <div class="product-logo bg-white p-3">
+        <div class="container d-flex align-items-center justify-content-between">
+            <div class="w-50">
+                <a href="#">
+                <img class="align-top" src="{{ asset('/assets/web/consultation/img/Weighloss_final_logo.png') }}">
+            </a>
+            </div>
 
-                <div class="question collapse">
-                    <form id="form2">
-                        <div class="text">
-                            <label>question 2 </label><br>
-                            <div class="form-check mt-2">
-                                <input class="form-check-input" type="checkbox" value="pakistan" id="pakistan">
-                                <label class="form-check-label w-100" for="pakistan">pakistan</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="abc" id="abc">
-                                <label class="form-check-label w-100" for="abc">abc</label>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="question collapse">
-                    <form id="form3">
-                        <div class="text">
-                            <label>question 3</label><br>
-                            <div class="form-check mt-2">
-                                <input class="form-check-input" type="checkbox" value="ab" id="ab">
-                                <label class="form-check-label w-100" for="ab">ab</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="asia" id="asia">
-                                <label class="form-check-label w-100" for="asia">Asia</label>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="question collapse">
-                    <form id="form4">
-                        <div class="text">
-                            <label>question 4</label><br>
-                            <div class="form-check mt-2">
-                                <input class="form-check-input" type="checkbox" value="africa" id="africa">
-                                <label class="form-check-label w-100" for="africa">Africa</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="bb" id="bb">
-                                <label class="form-check-label w-100" for="bb">BB</label>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="question collapse">
-                    <form id="form5">
-                        <div class="text">
-                            <label>question 5</label><br>
-                            <div class="form-check mt-2">
-                                <input class="form-check-input" type="checkbox" value="cd" id="cd">
-                                <label class="form-check-label w-100" for="cd">cd</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="aa" id="aa">
-                                <label class="form-check-label w-100" for="aa">AA</label>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="question collapse">
-                    <form id="form6">
-                        <div class="text">
-                            <div class="form-floating">
-                                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-                                <label for="floatingTextarea">Describe</label>
-                              </div>
-                        </div>
-                    </form>
-                </div>
-                <!-- Progress Indicator -->
-                <div class="progress mt-3">
-                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0"
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-
-                <!-- Navigation Buttons -->
-                <div class="d-flex justify-content-between mt-3">
-                    <button id="prevButton" class="btn btn-primary">Previous</button>
-                    <button id="nextButton" class="btn btn-primary">Next</button>
-                </div>
+            <div class="text-end">
+                <button class="btn btn-primary"><i class="fa fa-sign-in me-1"></i> Logout</button>
             </div>
         </div>
-
-
-
+    </div>
+    <div class="question-tittles">
+        <div class="question-sec text-center my-5">
+            <div class="container">
+                <h3 class="fw-bold quest-heading"> 1: Do you agree and consent to the following?</h3>
+            </div>
         </div>
+        <main>
+            <div class="container">
+                <div class="main-sec-2 mt-5 mb-5">
+                    <ul style="font-family: emoji;
+                color: black;">
+                        <li>I am over 18 years old and live in the UK.</li>
+                        <li>I will be the sole user of any medication offered to me through this service.</li>
+                        <li>I confirm all answers are provided by me, and are completely truthful.</li>
+                    </ul>
+                    <div class="question fade-in">
+                        <form id="form1">
+                            <div class="text">
+                                <div class="form-check mt-2">
+                                    <input class="form-check-input" type="checkbox" value="paris" id="paris">
+                                    <label class="form-check-label w-100" for="paris">Paris</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="london" id="london">
+                                    <label class="form-check-label w-100" for="london">London</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="berlin" id="berlin">
+                                    <label class="form-check-label w-100" for="berlin">Berlin</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="question collapse">
+                        <form id="form2">
+                            <div class="text">
+                                <div class="form-check mt-2">
+                                    <input class="form-check-input" type="checkbox" value="pakistan" id="pakistan">
+                                    <label class="form-check-label w-100" for="pakistan">pakistan</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="abc" id="abc">
+                                    <label class="form-check-label w-100" for="abc">abc</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="question collapse">
+                        <form id="form3">
+                            <div class="text">
+                                <div class="form-check mt-2">
+                                    <input class="form-check-input" type="checkbox" value="ab" id="ab">
+                                    <label class="form-check-label w-100" for="ab">ab</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="asia" id="asia">
+                                    <label class="form-check-label w-100" for="asia">Asia</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="question collapse">
+                        <form id="form4">
+                            <div class="text">
+                                <div class="form-check mt-2">
+                                    <input class="form-check-input" type="checkbox" value="africa" id="africa">
+                                    <label class="form-check-label w-100" for="africa">Africa</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="bb" id="bb">
+                                    <label class="form-check-label w-100" for="bb">BB</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="question collapse">
+                        <form id="form5">
+                            <div class="text">
+                                <div class="form-check mt-2">
+                                    <input class="form-check-input" type="checkbox" value="cd" id="cd">
+                                    <label class="form-check-label w-100" for="cd">cd</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="aa" id="aa">
+                                    <label class="form-check-label w-100" for="aa">AA</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="question collapse">
+                        <form id="form6">
+                            <div class="text">
+                                <div>
+                                    <textarea class="form-control"  placeholder="Describe" rows="5"></textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Progress Indicator -->
+                    <div class="progress mt-3">
+                        <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="d-flex justify-content-between mt-3">
+                        <button id="prevButton" class="btn btn-primary">Previous</button>
+                        <button id="nextButton" class="btn btn-primary">Next</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+    </div>
     </main><!-- End #main -->
 
     <script src="{{ asset('/assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -225,7 +228,7 @@
                 checkbox.addEventListener('change', function() {
                     nextButton.disabled = false;
                     nextButton.style.display =
-                    'block'; // Show next button after checkbox interaction
+                        'block'; // Show next button after checkbox interaction
                     updateProgress(); // Update progress
                     updateBackground(); // Update background color of selected values
                 });

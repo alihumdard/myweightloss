@@ -1214,10 +1214,13 @@ h6 {
 
 @media (max-width: 992px){
     .align-top{
-        width: 20% !important;
+        width: 25% !important;
     }
     .main-sec-2{
         width: 70% !important;
+   }
+   .question-sec{
+    width: 70% !important;
    }
 }
 
@@ -1371,16 +1374,24 @@ h6 {
          width: 100% !important;
     }
     .align-top{
-        width: 30% !important;
+        width: 35% !important;
     }
 
     .imbtn{
         padding: 10px 50px !important;
     }
 
+    .question-sec{
+        width: 100% !important;
+       }
 }
 .align-top{
     width: 15%;
+}
+
+.question-sec{
+    width: 45%;
+    margin: auto;
 }
 .review-description .review-list-content .fa {
     color: #fff;
@@ -1488,11 +1499,6 @@ h6 {
     color: white;
 }
 
-
-
-
-
-
 .question .text .form-check {
     border: 1px solid #ced4da;
     padding: 15px;
@@ -1502,10 +1508,7 @@ h6 {
     padding-left: 30px;
 }
 
-
-
-
-.form-check {
+.question .form-check {
     border: 1px solid #ced4da; /* default border color */
     padding: 10px;
     margin-bottom: 10px;
@@ -1535,3 +1538,6 @@ h6 {
 {
     cursor: pointer;
 }
+
+
+
