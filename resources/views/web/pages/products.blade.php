@@ -47,8 +47,7 @@
                                     <img src="{{ asset('storage/'.$value['main_image'])}}" alt=" no image" loading="lazy">
                                 </a>
                                 <div class="product__action">
-                                    <a href="{{ route('web.bmiForm')}}"class="btn btn__primary btn__rounded">
-                                        <!-- <i class="icon-cart"></i> <span>Add To Cart</span> -->
+                                    <a href="{{ route('web.productQuestion', ['id' => $value['id']]) }}"class="btn btn__primary btn__rounded">
                                         <i class="icon-calendar"></i> <span>Contsultations</span>
                                     </a>
                                 </div>

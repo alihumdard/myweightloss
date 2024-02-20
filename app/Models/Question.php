@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,6 +20,7 @@ class Question extends Model
         'optD',
         'created_by',
     ];
+
     public function assignments()
     {
         return $this->hasMany(AssignQuestion::class, 'question_id');
