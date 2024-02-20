@@ -10,9 +10,9 @@
     border:none;
     padding:5px 10px 5px 10px;
 }
-.bmi-main-images{
+/* .bmi-main-images{
     width:90%;
-}
+} */
 .main{
 
     background:#f5f4f5 !important;
@@ -22,9 +22,6 @@ body{
 }
 .wizard-header{
     margin-top:0px !important;
-}
-button.forward{
-    width: 20%;
 }
 .item label:hover{
     background: none;
@@ -51,47 +48,71 @@ body{
 .navbar-bottombar{
     background: #5C7BB8;
 }
-/*-------- Header --------*/
-/*.navbar-bottombar {
-        background: #00e5d2;
-        width: 100%;
-        height: 50px;
-    }
-#middle-wizard {
-        padding: 0;
-    }
-    .navbar-container {
-        box-sizing: border-box;
-        margin-left: auto;
-        margin-right: auto;
-        max-width: 1280px;
-        padding-left: 20px;
-        padding-right: 20px;
-        width: 100%;
-    }
-    .search-bar-ipad.search-bar {
-        flex: 1 auto;
-        display: none;
-    }
-    .d-block {
-        display: block !important;
-    }
-    .align-items-center {
-        align-items: center !important;
-    }
-    .d-flex {
-        display: flex !important;
-    }
-    a {
-        text-decoration: none;
-    }
-    .f--white {
-        color: white;
-    }
-    .ml-2, .mx-2 {
-        margin-left: 0.5rem !important;
-    }
-    img {
-        max-width: 100%;
-    }    
 
+/* shahroz style  */
+.align-items-center.data {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: auto;
+
+}
+
+.bmi-logo {
+    width: 20%;
+    /* height: 20%; */
+}
+
+.question_title h3 {
+    /* font-size: 36px; */
+    /* font-size: 2.25rem; */
+    margin-top: 45px;
+    color: #333;
+}
+/* Button container */
+#bottom-wizard {
+    text-align: center; 
+    margin-top: 20px; 
+}
+
+/* Common styles for buttons */
+button.backward,
+button.forward,
+a.submit {
+    display: inline-block; 
+    margin: 0 10px; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    border-radius: 5px;
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+}
+
+/* Style for backward button */
+button.backward {
+    background-color: #6c757d;
+    border: none; 
+    color: #fff;
+}
+
+/* Style for forward button */
+button.forward {
+    background-color: #007bff; 
+    border: none;
+    color: #fff;
+}
+
+/* Style for last step button */
+.submit {
+    background-color: #17a2b8; 
+    border: none; 
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Hover effect for buttons */
+button.backward:hover,
+button.forward:hover,
+a.submit:hover {
+    opacity: 0.8; 
+}
