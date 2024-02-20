@@ -1219,6 +1219,9 @@ h6 {
     .main-sec-2{
         width: 70% !important;
    }
+   .question-sec{
+    width: 70% !important;
+   }
 }
 
 /*--------------------------------------------------------------
@@ -1378,9 +1381,17 @@ h6 {
         padding: 10px 50px !important;
     }
 
+    .question-sec{
+        width: 100% !important;
+       }
 }
 .align-top{
     width: 15%;
+}
+
+.question-sec{
+    width: 45%;
+    margin: auto;
 }
 .review-description .review-list-content .fa {
     color: #fff;

@@ -52,8 +52,10 @@
         </div>
     </div>
     <div class="question-tittles">
-        <div class="container text-center my-5">
-            <h3 class="fw-bold quest-heading"> 1: Do you agree and consent to the <br> following?</h3>
+        <div class="question-sec text-center my-5">
+            <div class="container">
+                <h3 class="fw-bold quest-heading"> 1: Do you agree and consent to the following?</h3>
+            </div>
         </div>
         <main>
             <div class="container">
@@ -146,9 +148,8 @@
                     <div class="question collapse">
                         <form id="form6">
                             <div class="text">
-                                <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-                                    <label for="floatingTextarea">Describe</label>
+                                <div>
+                                    <textarea class="form-control"  placeholder="Describe" rows="5"></textarea>
                                 </div>
                             </div>
                         </form>
