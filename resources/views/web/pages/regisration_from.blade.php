@@ -270,13 +270,10 @@
                                 <div class="testimonial-right-content" style="font-style: italic;">
                                     <p class="has-text-white its-font-w--600 mb-2">"myBMI has access to the market
                                         leading treatments for weight loss which we have been prescribing to our
-                                        patients for several years now with excellent clinical outcomes. The
-                                        clinical
-                                        processes and support structures are all designed to give you the
-                                        opportunity to
+                                        patients for several years now with excellent clinical outcomes. The clinical
+                                        processes and support structures are all designed to give you the opportunity to
                                         achieve your target weight with many exciting new developments on the way.
-                                        Congratulations on starting your weight loss journey. Together we can do
-                                        it."
+                                        Congratulations on starting your weight loss journey. Together we can do it."
                                     </p>
                                     <span class="has-text-white its-font-w--400">
                                         James O’Loan - PHARMACEUTICAL LEAD, PRESCRIBING PHARMACIST &amp; WEIGHT
@@ -285,93 +282,72 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-12 col-sm-12 col-md-12 col-lg-7">
-                    <div class="full-form">
-                        <div class="user-text mt-2">
-                            <button class="imbtn"><i class="fa fa-check"></i>I'm new</button>
-                            <button id="btnlogin" class="account-btn" data-toggle="modal" data-target="#loginModal">ٰI have an account</button>
-                        </div>
-                        <div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-7">
+                        <div class="full-form">
+                            <div class="user-text mt-2">
+                                <button class="imbtn"><i class="fa fa-check"></i>I'm new</button>
+                                <button id="btnlogin" class="account-btn" data-toggle="modal" data-target="#loginModal">ٰI have an account</button>
+                            </div>
+                            <div>
 
-                            <form class="mt-3 needs-validation" method="post" action="{{ route('web.register') }}" novalidate>
-                                @csrf
-                                <input type="hidden" name="role" required value="{{ user_roles('4')}}">
+                                <form class="mt-3 needs-validation" method="post" action="{{ route('web.register') }}" novalidate>
+                                    @csrf
+                                    <input type="hidden" name="role" required value="{{ user_roles('4')}}">
 
-                                <label for="name" class="label d-md-block mt-3">Name</label>
-                                <input class="form-control" type="text" name="name" id="name" value="" placeholder="Enter your name">
-                                <!-- <div class="d-flex gap-3">
+                                    <label for="name" class="label d-md-block mt-3">Name</label>
+                                    <input class="form-control" type="text" name="name" id="name" value="" placeholder="Enter your name">
+                                    <!-- <div class="d-flex gap-3">
                                         <input class="form-control" type="text" name="user_first_name" value="" placeholder="First name">
                                         <input class="form-control" type="text" name="user_last_name" value="" placeholder="Last name">
                                     </div> -->
 
-                                <label for="email" class="label d-md-block mt-3">Email</label>
-                                <input class="form-control" type="email" name="email" id="email" value="" placeholder="write email address">
+                                    <label for="email" class="label d-md-block mt-3">Email</label>
+                                    <input class="form-control" type="email" name="email" id="email" value="" placeholder="write email address">
 
-                                <label for="password" class="label d-md-block mt-3">Password</label>
-                                <input class="form-control" type="password" name="password" id="password" value="" placeholder="password">
-                                <div class="mt-1">
-                                    <p style="color: #1f7c9f;">* Make a strong passowrd</p>
-                                </div>
-
-                                <label for="dob" class="label d-md-block ">Date of Birth</label>
-                                <input type="text" id="datepicker" name="dob" class="form-control" placeholder="Select date">
-
-                                <div class="row align-items-center">
-                                    <div class="col-md-6 mt-3">
-                                        <div class="form-group">
-                                            <label for="height" class=" mb-2 text-left font-weight-bold">Height</label>
-                                            <input type="number" class="form-control" id="height" placeholder="cm" required>
-                                        </div>
+                                    <label for="password" class="label d-md-block mt-3">Password</label>
+                                    <input class="form-control" type="password" name="password" id="password" value="" placeholder="password">
+                                    <div class="mt-1">
+                                        <p style="color: #00e5d2;">* Make a strong passowrd</p>
                                     </div>
-                                    <div class="col-md-6 mt-3">
-                                        <div class="form-group">
-                                            <label for="weight" class="mb-2 text-left font-weight-bold">Weight
-                                                (kg)</label>
-                                            <input type="number" class="form-control" id="weight" placeholder="kg" required>
-                                        </div>
-                                    </div>
-                                </div>
 
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="phone" class="label d-md-block mt-3">Phone
-                                                Number</label>
-                                            <input class="form-control" type="number" name="phone" id="phone" value="" placeholder="Contact number">
+                                    <label for="dob" class="label d-md-block ">Date of Birth</label>
+                                    <input type="text" id="datepicker" name="dob" class="form-control" placeholder="Select date">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="phone" class="label d-md-block mt-3">Phone Number</label>
+                                                <input class="form-control" type="number" name="phone" id="phone" value="" placeholder="Contact number">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="zip_code" class="label d-md-block mt-3">Zip Code</label>
-                                            <input class="form-control" type="number" name="zip_code" id="zip_code" value="" placeholder="Enter your zip code">
-                                            <div class="mt-1">
-                                                <p style="color: #1f7c9f;">* Enter valid Zip Code</p>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="zip_code" class="label d-md-block mt-3">Zip Code</label>
+                                                <input class="form-control" type="number" name="zip_code" id="zip_code" value="" placeholder="Enter your zip code">
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
 
+                                    <div class="mt-1">
+                                        <p style="color: #00e5d2;">* Enter valid Zip Code</p>
+                                    </div>
 
+                                    <label for="address" class="label d-md-block ">Address</label>
+                                    <input class="form-control" type="text" name="address" id="address" value="" placeholder="enter your address">
+                                    <div class="mt-1">
+                                        <p style="color: #00e5d2;">* Enter address manually</p>
+                                    </div>
 
-                                <label for="address" class="label d-md-block ">Address</label>
-                                <input class="form-control" type="text" name="address" id="address" value="" placeholder="enter your address">
-                                <div class="mt-1">
-                                    <p style="color: #1f7c9f;">* Enter address manually</p>
-                                </div>
+                                    <div>
+                                        <button type="submit mx-auto" class="continue-btn">Continue</button>
+                                    </div>
+                                </form>
+                            </div>
 
-                                <div>
-                                    <button type="submit mx-auto" class="continue-btn">Continue</button>
-                                </div>
-                            </form>
                         </div>
-
                     </div>
                 </div>
             </div>
-        </div>
 
         </div>
     </main><!-- End #main -->
@@ -381,127 +357,113 @@
             $("#loginModal").modal('show');
         });
     </script>
-    @endif
+    @endif
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered  " role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mx-auto font-weight-bold" id="exampleModalLabel" style="font-family: sans-serif;  letter-spacing: 2px;">LogIn </h5>
-
+                <h5 class="modal-title text-center font-weight-bold" id="exampleModalLabel" style="font-family: sans-serif; letter-spacing: 2px;">LogIn</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                </main><!-- End #main -->
-                @if(session('status'))
-                <script>
-                    $(document).ready(function() {
-                        $("#loginModal").modal('show');
-                    });
-                </script>
-                @endif
-                <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered  " role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title text-center font-weight-bold" id="exampleModalLabel" style="font-family: sans-serif; letter-spacing: 2px;">LogIn</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                <form class="row  needs-validation px-5" action="{{ route('web.login')}}" method="post" novalidate>
+                    @csrf
+                    <div class="modal-body">
+                        <div class="col-12 mx-auto">
+                            <!-- Display Validation Errors -->
+                            @if(session('status') === 'error')
+                            <div class="alert alert-danger">
+                                <strong>Error:</strong>
+                                @foreach(session('message')->all() as $error)
+                                <p>{{ $error }}</p>
+                                @endforeach
                             </div>
-                            <form class="row  needs-validation px-5" action="{{ route('web.login')}}" method="post" novalidate>
-                                @csrf
-                                <div class="modal-body">
-                                    <div class="col-12 mx-auto">
-                                        <!-- Display Validation Errors -->
-                                        @if(session('status') === 'error')
-                                        <div class="alert alert-danger">
-                                            <strong>Error:</strong>
-                                            @foreach(session('message')->all() as $error)
-                                            <p>{{ $error }}</p>
-                                            @endforeach
-                                        </div>
-                                        @endif
-                                        <!-- Display Invalid Credentials or Admin Contact Message -->
-                                        @if(session('status') === 'invalid')
-                                        <div class="alert alert-danger">
-                                            <strong>Error:</strong> {{ session('message') }}
-                                        </div>
-                                        @endif
+                            @endif
 
-                                        <!-- Display Unverified User Message -->
-                                        @if(session('status') === 'Unverfied')
-                                        <div class="alert alert-warning">
-                                            <strong>Warning:</strong> {{ session('message') }}
-                                        </div>
-                                        @endif
+                            <!-- Display Success Message -->
+                            @if(session('status') === 'success')
+                            <div class="alert alert-success">
+                                <strong>Success:</strong> {{ session('message') }}
+                            </div>
+                            @endif
 
-                                        <!-- Display Deactivated User Message -->
-                                        @if(session('status') === 'Deactive')
-                                        <div class="alert alert-danger">
-                                            <strong>Error:</strong> {{ session('message') }}
-                                        </div>
-                                        @endif
+                            <!-- Display Invalid Credentials or Admin Contact Message -->
+                            @if(session('status') === 'invalid')
+                            <div class="alert alert-danger">
+                                <strong>Error:</strong> {{ session('message') }}
+                            </div>
+                            @endif
 
-                                        @if(session('status') === 'noexitance')
-                                        <div class="alert alert-danger">
-                                            <strong>Error:</strong> {{ session('message') }}
-                                        </div>
-                                        @endif
-                                    </div>
+                            <!-- Display Unverified User Message -->
+                            @if(session('status') === 'Unverfied')
+                            <div class="alert alert-warning">
+                                <strong>Warning:</strong> {{ session('message') }}
+                            </div>
+                            @endif
 
-                                    <div class="form-group mb-2">
-                                        <label for="user_email" class="font-weight-bold">Email address</label>
-                                        <input type="email" name="email" class="form-control" id="user_email" value="{{ session('email') ?? ''}}" required aria-describedby="emailHelp" placeholder="Enter your email">
-                                        <small id="emailHelp" class="form-text text-muted"><span class="text-danger">*</span>
-                                            We'll never share your email with anyone else.</small>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="yourPassword" class="font-weight-bold">Password</label>
-                                        <input type="password" name="password" class="form-control" id="yourPassword" required placeholder="Password">
-                                    </div>
-                                    <div class="form-group mt-2 ">
-                                        <input type="checkbox" class="form-check-input" name="remberme" id="remberme">
-                                        <label class="form-check-label small" for="remberme">Remember Password</label>
-                                    </div>
-                                    <div class="form-group mb-2">
-                                        <label for="user_email" class="font-weight-bold mb-2">Email address</label>
-                                        <input type="email" name="email" class="form-control" id="user_email" value="{{ session('email') ?? ''}}" required aria-describedby="emailHelp" placeholder="Enter your email">
-                                        <small id="emailHelp" class="form-text text-muted"><span class="text-danger">*</span> We'll never share your email with anyone else.</small>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="yourPassword" class="font-weight-bold mb-2">Password</label>
-                                        <input type="password" name="password" class="form-control" id="yourPassword" required placeholder="Password">
-                                    </div>
-                                    <div class="form-group mt-2">
-                                        <input type="checkbox" class="form-check-input" name="rememberme" id="rememberme">
-                                        <label class="form-check-label small" for="rememberme">Remember Password</label>
-                                    </div>
-                                    <div class="row mt-3 mb-2">
-                                        <div class="col-12">
-                                            <button type="submit" class="btn btn-block bg-info w-100">Sign In</button>
-                                        </div>
-                                    </div>
+                            <!-- Display Deactivated User Message -->
+                            @if(session('status') === 'Deactive')
+                            <div class="alert alert-danger">
+                                <strong>Error:</strong> {{ session('message') }}
+                            </div>
+                            @endif
 
-
-
-                                </div>
-                            </form>
+                            @if(session('status') === 'noexitance')
+                            <div class="alert alert-danger">
+                                <strong>Error:</strong> {{ session('message') }}
+                            </div>
+                            @endif
                         </div>
-                    </div>
 
-                    <script>
-                        document).ready(function() {
-                            btnlogin ").click(function () {
-                            Modal ").modal('show');
-                            $(document).on('click', function(e) {
-                                if ($(e.target).is('.m                        ).closest('.modal - content ').leng                                                          odal').modal('hide');
-                                }
-                            });
-                            $('#l                    , #loginModal [data-dismiss="mod                lick            ion (                            $('
-                                #loginM odal '                e');
-                        });
-                        $(document).re {
-                        cker icke format: 'mm/dd/yyyy',
-                        autoclose: true
-                        });
-                        });
-                    </script>
+                        <div class="form-group mb-2">
+                            <label for="user_email" class="font-weight-bold mb-2">Email address</label>
+                            <input type="email" name="email" class="form-control" id="user_email" value="{{ session('email') ?? ''}}" required aria-describedby="emailHelp" placeholder="Enter your email">
+                            <small id="emailHelp" class="form-text text-muted"><span class="text-danger">*</span> We'll never share your email with anyone else.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="yourPassword" class="font-weight-bold mb-2">Password</label>
+                            <input type="password" name="password" class="form-control" id="yourPassword" required placeholder="Password">
+                        </div>
+                        <div class="form-group mt-2">
+                            <input type="checkbox" class="form-check-input" name="rememberme" id="rememberme">
+                            <label class="form-check-label small" for="rememberme">Remember Password</label>
+                        </div>
+                        <div class="row mt-3 mb-2">
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-block bg-info w-100">Sign In</button>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $("#btnlogin").click(function() {
+                $("#loginModal").modal('show');
+            });
+            $(document).on('click', function(e) {
+                if ($(e.target).is('.modal') || $(e.target).closest('.modal-content').length === 0) {
+                    $('#loginModal').modal('hide');
+                }
+            });
+            $('#loginModal .close, #loginModal [data-dismiss="modal"]').on('click', function() {
+                $('#loginModal').modal('hide');
+            });
+        });
+
+        $(document).ready(function() {
+            $('#datepicker').datepicker({
+                format: 'mm/dd/yyyy',
+                autoclose: true
+            });
+        });
+    </script>
+
 
 </body>
 
