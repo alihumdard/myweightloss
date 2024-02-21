@@ -189,12 +189,7 @@
                             <!-- /step -->
                         </div>
 
-
-
-                        <!-- /Web-Development > FrontEnd-Development ============================== -->
-
-                        <!-- Design > What Type of Design do you need ============================== -->
-                        <!-- Your HTML code -->
+                        <!-- step 3 code -->
                         <div class="branch" id="Design">
                             <!-- Budget -->
                             <div class="step" id="budget" data-state="">
@@ -223,7 +218,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-
+                                            <a href="{{ route('web.consultationForm') }}" class="submit btn btn-info text-light">submit</a>
                                         </div>
                                     </div>
                                 </div>
@@ -232,7 +227,7 @@
                         <div id="bottom-wizard">
                             <button type="button" name="backward" class="backward btn btn-secondary">Backward</button>
                             <button type="button" name="forward" class="forward btn btn-primary">Continue</button>
-                            <a href="{{ route('web.consultationForm') }}"></a>
+                            <!-- <a href="{{ route('web.consultationForm') }}" class="submit btn btn-info text-light">submit</a> -->
                         </div>
                     </form>
                 </div>
