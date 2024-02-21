@@ -7508,3 +7508,22 @@ textarea.form-control {
   right: 0;
   color: #848e9f;
 }/*# sourceMappingURL=style.css.map */
+
+
+/*start custom BMI design css Shahroz */
+/* Center the form */
+.loss-weight-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Add border and padding to form */
+form {
+  border-radius: 5px;
+  padding: 20px;
+  /* max-width: 400px; */
+}
+/*end custom BMI design css Shahroz */
