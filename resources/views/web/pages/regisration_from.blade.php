@@ -289,6 +289,7 @@
                                 <button id="btnlogin" class="account-btn" data-toggle="modal" data-target="#loginModal">ٰI have an account</button>
                             </div>
                             <div>
+
                                 <form class="mt-3 needs-validation" method="post" action="{{ route('web.register') }}" novalidate>
                                     @csrf
                                     <input type="hidden" name="role" required value="{{ user_roles('4')}}">
@@ -358,13 +359,13 @@
     </script>
     @endif
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered  " role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mx-auto font-weight-bold" id="exampleModalLabel" style="font-family: sans-serif;  letter-spacing: 2px;">LogIn </h5>
-
+                <h5 class="modal-title text-center font-weight-bold" id="exampleModalLabel" style="font-family: sans-serif; letter-spacing: 2px;">LogIn</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <form class="row g-3 needs-validation" action="{{ route('web.login')}}" method="post" novalidate>
+                <form class="row  needs-validation px-5" action="{{ route('web.login')}}" method="post" novalidate>
                     @csrf
                     <div class="modal-body">
                         <div class="col-12 mx-auto">
@@ -414,24 +415,26 @@
                         </div>
 
                         <div class="form-group mb-2">
-                            <label for="user_email" class="font-weight-bold">Email address</label>
+                            <label for="user_email" class="font-weight-bold mb-2">Email address</label>
                             <input type="email" name="email" class="form-control" id="user_email" value="{{ session('email') ?? ''}}" required aria-describedby="emailHelp" placeholder="Enter your email">
                             <small id="emailHelp" class="form-text text-muted"><span class="text-danger">*</span> We'll never share your email with anyone else.</small>
                         </div>
-                        <div class="form-group ">
-                            <label for="yourPassword" class="font-weight-bold">Password</label>
+                        <div class="form-group">
+                            <label for="yourPassword" class="font-weight-bold mb-2">Password</label>
                             <input type="password" name="password" class="form-control" id="yourPassword" required placeholder="Password">
                         </div>
-                        <div class="form-group mt-2 ">
-                            <input type="checkbox" class="form-check-input" name="remberme" id="remberme">
-                            <label class="form-check-label small" for="remberme">Remember Password</label>
+                        <div class="form-group mt-2">
+                            <input type="checkbox" class="form-check-input" name="rememberme" id="rememberme">
+                            <label class="form-check-label small" for="rememberme">Remember Password</label>
+                        </div>
+                        <div class="row mt-3 mb-2">
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-block bg-info w-100">Sign In</button>
+                            </div>
                         </div>
 
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary px-5" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary px-5">Submit</button>
+
                     </div>
                 </form>
             </div>
