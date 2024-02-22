@@ -129,4 +129,38 @@ class WebController extends Controller
     }
     
 
+    public function bmi_formStore(Request $request)
+    {
+        $data['user'] = auth()->user() ?? [];
+    
+        if (auth()->user()) {
+            dd($request->all());
+            $product_id = $request->input('product_id');
+            $category_id = $request->input('category_id');
+    
+            $questionAnswers = [];
+            foreach ($request->all() as $key => $value) {
+                if (strpos($key, 'qid_') === 0) {
+                    $question_id = substr($key, 4); // Extract question_id from the key
+                    $questionAnswers[$question_id] = $value;
+                }
+            }
+    
+            $save =  Transaction::create([
+                'user_id' => auth()->user()->id,
+                'product_id' => $product_id,
+                'category_id' => $category_id,
+                'question_answers' => json_encode($questionAnswers),
+                'status' => '1',
+                'created_by' => auth()->user()->id,
+            ]);
+    
+            if($save){
+                return redirect()->route('web.products', ['cat_id' => $category_id]);
+            }
+        } else {
+            return view('web.pages.regisration_from', $data);
+        }
+    }
+
 }
