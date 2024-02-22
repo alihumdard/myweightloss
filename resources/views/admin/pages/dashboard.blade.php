@@ -128,25 +128,35 @@
                         </div>
 
                     </div><!-- End Customers Card -->
-                    <!-- Customers graph -->
-                    <div class="col-xxl-4 col-xl-12">
+                    <!-- Reports -->
+                    <div class="col-12">
+                        <div class="card">
 
-                        <div class="card info-card customers-card">
+                            <div class="filter">
+                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                    <li class="dropdown-header text-start">
+                                        <h6>Filter</h6>
+                                    </li>
+
+                                    <li><a class="dropdown-item" href="#">Today</a></li>
+                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                </ul>
+                            </div>
+
                             <div class="card-body">
-                                <h5 class="card-title">BMI History </h5>
+                                <h5 class="card-title">BMI<span>/History</span></h5>
 
-                                <div class="d-flex align-items-center">
-                                    <div class="card card-bordered">
-                                        <div class="card-body">
-                                            <div id="kt_apexcharts_3" style="height: 350px;"></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <!-- Line Chart -->
+                                <div id="reportsChart"></div>
+
+                                <!-- End Line Chart -->
 
                             </div>
-                        </div>
 
-                    </div><!-- End Customers graph -->
+                        </div>
+                    </div><!-- End Reports -->
 
 
                 </div>
@@ -228,7 +238,7 @@
                     <div class="card-body">
                         <div class="link d-flex justify-content-between align-items-center">
                             <h5 class="card-title mb-0">My Stats</h5>
-                            <span><a href="/" class="text-decoration-none">Switch to Imperial</a></span>
+                            <span id="switchToUnit" onclick="toggleUnit()" style="cursor: pointer;" class="text-info" >Switch to Imperial</span>
                         </div>
 
                         <div class="row">
@@ -245,8 +255,8 @@
                                         </div>
                                         <!-- Content -->
                                         <div class="text-center text-light">
-                                            <h5 id="heightValue" class="mb-0">Height</h5>
-                                            <span>0cm</span>
+                                            <h5 class="mb-0">Height</h5>
+                                            <span id="heightValue">0cm</span>
                                         </div>
                                     </div>
                                 </div>
@@ -261,7 +271,7 @@
                                         </div>
                                         <div class="text-center text-light mb-0 pt-3">
                                             <h5 class="mb-0">Weight</h5>
-                                            <span>0kg</span>
+                                            <span id="weightValue">0kg</span>
                                         </div>
                                     </div>
                                 </div>
@@ -272,29 +282,78 @@
                         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
-                                    <div class="modal-header ">
-                                        <h5 class="modal-title text-center" id="exampleModalLongTitle">Edit Height</h5>
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-center" id="exampleModalLongTitle">Edit Height and Weight</h5>
                                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" style="background-color: red; color: white; border: none;">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body mt-3">
-                                        <input type="text" id="heightInput" class="form-control" placeholder="Enter height...">
+                                        <input type="text" id="heightInput" oninput="updateMeasurement('height')" class="form-control" placeholder="Enter height..."> <br />
+                                        <input type="text" id="weightInput" oninput="updateMeasurement('weight')" class="form-control" placeholder="Enter weight...">
                                     </div>
                                     <div class="modal-footer border-0">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" onclick="updateHeight()">Save changes</button>
+                                        <button type="button" id="saveChangesBtn" class="btn btn-primary text-center" onclick="updateMeasurement()">Save changes</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <script>
-                            function updateHeight() {
+                            function toggleUnit() {
+                                var switchToUnit = document.getElementById("switchToUnit");
+
+                                var currentUnit = switchToUnit.innerText.trim();
+
                                 var heightInput = document.getElementById("heightInput").value;
-                                document.getElementById("heightValue").innerText = heightInput + "cm";
+                                var weightInput = document.getElementById("weightInput").value;
+
+                                if (currentUnit === "Switch to Imperial") {
+                                    var heightInFeet = (parseFloat(heightInput) / 30.48).toFixed(2);
+                                    var weightInLbs = (parseFloat(weightInput) / 0.45359237).toFixed(2);
+
+                                    document.getElementById("heightValue").innerText = heightInFeet + " ft";
+                                    document.getElementById("weightValue").innerText = weightInLbs + " lbs";
+
+                                    switchToUnit.innerText = "Switch to Metric";
+                                } else {
+
+                                    var heightInCm = (parseFloat(heightInput) * 30.48).toFixed(2);
+                                    var weightInKg = (parseFloat(weightInput) * 0.45359237).toFixed(2);
+
+                                    document.getElementById("heightValue").innerText = heightInCm + " cm";
+                                    document.getElementById("weightValue").innerText = weightInKg + " kg";
+
+                                    switchToUnit.innerText = "Switch to Imperial";
+                                }
+                            }
+
+
+                            // Function to update measurement units
+                            function updateMeasurement(type) {
+                                var heightInput = document.getElementById("heightInput").value;
+                                var weightInput = document.getElementById("weightInput").value;
+
+                                // Update the displayed value
+                                var heightValue = (type === "height") ? heightInput : document.getElementById("heightValue").innerText;
+                                var weightValue = (type === "weight") ? weightInput : document.getElementById("weightValue").innerText;
+
+                                // Update the displayed values
+                                document.getElementById("heightValue").innerText = heightValue ;
+                                document.getElementById("weightValue").innerText = weightValue;
+
+                                // Check if both input fields have values
+                                var saveChangesBtn = document.getElementById("saveChangesBtn");
+                                if (heightInput.trim() !== "" && weightInput.trim() !== "") {
+                                    saveChangesBtn.disabled = false; // Enable the button
+                                } else {
+                                    saveChangesBtn.disabled = true; // Disable the button
+                                }
                             }
                         </script>
+
+
+
 
                         <div class="row">
                             <!-- Add another col-md-6 for the third box -->
@@ -327,10 +386,10 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
 
-                    
+
                 </div><!-- End my stats -->
             </div><!-- End Right side columns -->
 
@@ -521,140 +580,5 @@
             }]
         });
     });
-
-
-    // line chart for bmi history 
-    var element = document.getElementById('kt_apexcharts_3');
-
-    var height = parseInt(KTUtil.css(element, 'height'));
-    var labelColor = KTUtil.getCssVariableValue('--kt-gray-500');
-    var borderColor = KTUtil.getCssVariableValue('--kt-gray-200');
-    var baseColor = KTUtil.getCssVariableValue('--kt-info');
-    var lightColor = KTUtil.getCssVariableValue('--kt-info-light');
-
-    if (!element) {
-        return;
-    }
-
-    var options = {
-        series: [{
-            name: 'Net Profit',
-            data: [30, 40, 40, 90, 90, 70, 70]
-        }],
-        chart: {
-            fontFamily: 'inherit',
-            type: 'area',
-            height: height,
-            toolbar: {
-                show: false
-            }
-        },
-        plotOptions: {
-
-        },
-        legend: {
-            show: false
-        },
-        dataLabels: {
-            enabled: false
-        },
-        fill: {
-            type: 'solid',
-            opacity: 1
-        },
-        stroke: {
-            curve: 'smooth',
-            show: true,
-            width: 3,
-            colors: [baseColor]
-        },
-        xaxis: {
-            categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
-            axisBorder: {
-                show: false,
-            },
-            axisTicks: {
-                show: false
-            },
-            labels: {
-                style: {
-                    colors: labelColor,
-                    fontSize: '12px'
-                }
-            },
-            crosshairs: {
-                position: 'front',
-                stroke: {
-                    color: baseColor,
-                    width: 1,
-                    dashArray: 3
-                }
-            },
-            tooltip: {
-                enabled: true,
-                formatter: undefined,
-                offsetY: 0,
-                style: {
-                    fontSize: '12px'
-                }
-            }
-        },
-        yaxis: {
-            labels: {
-                style: {
-                    colors: labelColor,
-                    fontSize: '12px'
-                }
-            }
-        },
-        states: {
-            normal: {
-                filter: {
-                    type: 'none',
-                    value: 0
-                }
-            },
-            hover: {
-                filter: {
-                    type: 'none',
-                    value: 0
-                }
-            },
-            active: {
-                allowMultipleDataPointsSelection: false,
-                filter: {
-                    type: 'none',
-                    value: 0
-                }
-            }
-        },
-        tooltip: {
-            style: {
-                fontSize: '12px'
-            },
-            y: {
-                formatter: function(val) {
-                    return '$' + val + ' thousands'
-                }
-            }
-        },
-        colors: [lightColor],
-        grid: {
-            borderColor: borderColor,
-            strokeDashArray: 4,
-            yaxis: {
-                lines: {
-                    show: true
-                }
-            }
-        },
-        markers: {
-            strokeColor: baseColor,
-            strokeWidth: 3
-        }
-    };
-
-    var chart = new ApexCharts(element, options);
-    chart.render();
 </script>
 @endPushOnce
