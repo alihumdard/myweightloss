@@ -1,6 +1,7 @@
 @extends('admin.layouts.default')
 @section('title', 'Dashboard')
 @section('content')
+
 <!-- main stated -->
 <main id="main" class="main">
 
@@ -135,14 +136,11 @@
                                 <h5 class="card-title">BMI History </h5>
 
                                 <div class="d-flex align-items-center">
-                                    <!-- <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-people"></i>
+                                    <div class="card card-bordered">
+                                        <div class="card-body">
+                                            <div id="kt_apexcharts_3" style="height: 350px;"></div>
+                                        </div>
                                     </div>
-                                    <div class="ps-3">
-                                        <h6>1244</h6>
-                                        <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
-
-                                    </div> -->
                                 </div>
 
                             </div>
@@ -220,11 +218,11 @@
                                 </div>
                             </div><!-- End activity item-->
 
-                            <!-- Other activity items -->
 
                         </div>
                     </div>
                 </div><!-- End order status -->
+
                 <!-- start  my stats  -->
                 <div class="card">
                     <div class="card-body">
@@ -233,46 +231,106 @@
                             <span><a href="/" class="text-decoration-none">Switch to Imperial</a></span>
                         </div>
 
-                        <div class="activity">
-                            <div class="activity-item d-flex">
-                                <div class="activite-label">32 min</div>
-                                <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
-                                <div class="activity-content">
-                                    Quia quae rerum <a href="#" class="fw-bold text-dark">explicabo officiis</a> beatae
-                                </div>
-                            </div>
-                            <!-- 2nd card -->
-                            <!-- End activity item-->
-                            <div class="activity-item d-flex">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
-                                    Launch demo modal
-                                </button>
-
-
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                ...
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>
-                                            </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-4 d-flex">
+                                <div class="activity-item d-flex flex-column justify-content-between h-100" style="background-color: #1aa9dd;">
+                                    <div class="activity-content">
+                                        <!-- Edit image positioned at the top right -->
+                                        <div class="d-flex justify-content-end">
+                                            <img src="https://i.ibb.co/NS4BmQF/graph-edit.png" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" class="w-25 h-auto mt-2" alt="edit">
+                                        </div>
+                                        <!-- Height image centered -->
+                                        <div class="text-center mb-3">
+                                            <img src="https://i.ibb.co/1nGzhKh/height-icon.png" class="w-50 h-auto" alt="height">
+                                        </div>
+                                        <!-- Content -->
+                                        <div class="text-center text-light">
+                                            <h5 id="heightValue" class="mb-0">Height</h5>
+                                            <span>0cm</span>
                                         </div>
                                     </div>
                                 </div>
-                            </div><!-- End activity item-->
+                            </div>
+
+                            <!-- Add another col-md-6 for the second box -->
+                            <div class="col-md-6 mb-4">
+                                <div class="activity-item d-flex align-items-center justify-content-center flex-column h-100 " style="background-color: #769ccd;">
+                                    <div class="activite-label mr-auto text-center mt-3">
+                                        <div class="activity-content d-flex align-items-center justify-content-center">
+                                            <img src="https://i.ibb.co/HGkLc5M/weight-icon.png" class="w-50 h-auto mt-3" alt="calculate">
+                                        </div>
+                                        <div class="text-center text-light mb-0 pt-3">
+                                            <h5 class="mb-0">Weight</h5>
+                                            <span>0kg</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header ">
+                                        <h5 class="modal-title text-center" id="exampleModalLongTitle">Edit Height</h5>
+                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" style="background-color: red; color: white; border: none;">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body mt-3">
+                                        <input type="text" id="heightInput" class="form-control" placeholder="Enter height...">
+                                    </div>
+                                    <div class="modal-footer border-0">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary" onclick="updateHeight()">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <script>
+                            function updateHeight() {
+                                var heightInput = document.getElementById("heightInput").value;
+                                document.getElementById("heightValue").innerText = heightInput + "cm";
+                            }
+                        </script>
+
+                        <div class="row">
+                            <!-- Add another col-md-6 for the third box -->
+                            <div class="col-md-6  py-3 pb-2  mr-md-2">
+                                <div class="activity-item d-flex align-items-center justify-content-center flex-column h-100" style="background-color: #769ccd;">
+                                    <div class="activite-label mr-auto text-center">
+                                        <div class="activity-content d-flex align-items-center justify-content-center">
+                                            <img src="https://i.ibb.co/LSDDDfp/noinfo.png" class="w-50 h-auto mt-3" alt="calculate">
+                                        </div>
+                                        <div class="text-center text-light mb-0 pt-3">
+                                            <h5 class="mb-0">BMI</h5>
+                                            <span>0kg</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Add another col-md-6 for the fourth box -->
+                            <div class="col-md-6   py-3 pb-2 ml-md-2">
+                                <div class="activity-item d-flex align-items-center justify-content-center flex-column h-100" style="background-color: #1aa9dd;">
+                                    <div class="activite-label mr-auto text-center">
+                                        <div class="activity-content d-flex align-items-center justify-content-center">
+                                            <img src="https://i.ibb.co/3zrC2BV/waist.png" class="w-50 h-auto mt-3" alt="calculate">
+                                        </div>
+                                        <div class="text-center text-light mb-0 pt-3">
+                                            <h5 class="mb-0">Waist</h5>
+                                            <span>0 cm</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
 
+                    
                 </div><!-- End my stats -->
             </div><!-- End Right side columns -->
 
@@ -463,5 +521,140 @@
             }]
         });
     });
+
+
+    // line chart for bmi history 
+    var element = document.getElementById('kt_apexcharts_3');
+
+    var height = parseInt(KTUtil.css(element, 'height'));
+    var labelColor = KTUtil.getCssVariableValue('--kt-gray-500');
+    var borderColor = KTUtil.getCssVariableValue('--kt-gray-200');
+    var baseColor = KTUtil.getCssVariableValue('--kt-info');
+    var lightColor = KTUtil.getCssVariableValue('--kt-info-light');
+
+    if (!element) {
+        return;
+    }
+
+    var options = {
+        series: [{
+            name: 'Net Profit',
+            data: [30, 40, 40, 90, 90, 70, 70]
+        }],
+        chart: {
+            fontFamily: 'inherit',
+            type: 'area',
+            height: height,
+            toolbar: {
+                show: false
+            }
+        },
+        plotOptions: {
+
+        },
+        legend: {
+            show: false
+        },
+        dataLabels: {
+            enabled: false
+        },
+        fill: {
+            type: 'solid',
+            opacity: 1
+        },
+        stroke: {
+            curve: 'smooth',
+            show: true,
+            width: 3,
+            colors: [baseColor]
+        },
+        xaxis: {
+            categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+            axisBorder: {
+                show: false,
+            },
+            axisTicks: {
+                show: false
+            },
+            labels: {
+                style: {
+                    colors: labelColor,
+                    fontSize: '12px'
+                }
+            },
+            crosshairs: {
+                position: 'front',
+                stroke: {
+                    color: baseColor,
+                    width: 1,
+                    dashArray: 3
+                }
+            },
+            tooltip: {
+                enabled: true,
+                formatter: undefined,
+                offsetY: 0,
+                style: {
+                    fontSize: '12px'
+                }
+            }
+        },
+        yaxis: {
+            labels: {
+                style: {
+                    colors: labelColor,
+                    fontSize: '12px'
+                }
+            }
+        },
+        states: {
+            normal: {
+                filter: {
+                    type: 'none',
+                    value: 0
+                }
+            },
+            hover: {
+                filter: {
+                    type: 'none',
+                    value: 0
+                }
+            },
+            active: {
+                allowMultipleDataPointsSelection: false,
+                filter: {
+                    type: 'none',
+                    value: 0
+                }
+            }
+        },
+        tooltip: {
+            style: {
+                fontSize: '12px'
+            },
+            y: {
+                formatter: function(val) {
+                    return '$' + val + ' thousands'
+                }
+            }
+        },
+        colors: [lightColor],
+        grid: {
+            borderColor: borderColor,
+            strokeDashArray: 4,
+            yaxis: {
+                lines: {
+                    show: true
+                }
+            }
+        },
+        markers: {
+            strokeColor: baseColor,
+            strokeWidth: 3
+        }
+    };
+
+    var chart = new ApexCharts(element, options);
+    chart.render();
 </script>
 @endPushOnce
