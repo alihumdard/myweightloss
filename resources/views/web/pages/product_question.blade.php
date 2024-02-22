@@ -51,7 +51,9 @@
     <div class="container-md px-lg-5 container-fluid ">
         <div class="my-5  mx-lg-5 px-lg-5 ">
             <main class="mx-lg-5 px-lg-5 card pb-2">
-                <form action="/" method="get">
+                <form action="{{ route('web.transactionStore') }}" method="POST">
+                    <input type="hidden" name="product_id" value="{{ $product['id'] ?? '' }}" id="product_id">
+                    <input type="hidden" name="category_id" value="{{ $category['id'] ?? ''  }}" id="category_id">
                     @csrf
                     @foreach($questions as $key => $question)
                     <div class="question {{ $loop->first ? 'fade-in' : 'collapse' }} ">
@@ -67,37 +69,37 @@
                             </p>
                             <div class="text">
                                 <div>
-                                    <textarea class="form-control" name="q_{{$question['id']}}" placeholder="Describe" rows="5"></textarea>
+                                    <textarea class="form-control" name="qid_{{$question['id']}}" placeholder="Describe" rows="5" required='required' ></textarea>
                                 </div>
                             </div>
                             @elseif($question['anwser_set'] == 'mt_choice' )
                             <div class="text">
                                 <div class="form-check mt-2 px-5">
-                                    <input class="form-check-input" type="radio" name="q_{{$question['id']}}" value="paris" id="paris">
-                                    <label class="form-check-label fw-semibold   w-100" for="paris">{{$question['optA'] ?? ''}}</label>
+                                    <input class="form-check-input" type="radio" name="qid_{{$question['id']}}" value="{{$question['optA'] ?? ''}}" id="optionA" required='required' >
+                                    <label class="form-check-label fw-semibold   w-100" for="optionA">{{$question['optA'] ?? ''}}</label>
                                 </div>
                                 <div class="form-check px-5">
-                                    <input class="form-check-input" type="radio" name="q_{{$question['id']}}" value="london" id="london">
-                                    <label class="form-check-label fw-semibold w-100" for="london">{{$question['optB'] ?? ''}}</label>
+                                    <input class="form-check-input" type="radio" name="qid_{{$question['id']}}" value="{{$question['optB'] ?? ''}}" id="optionB" required='required' >
+                                    <label class="form-check-label fw-semibold w-100" for="optionB">{{$question['optB'] ?? ''}}</label>
                                 </div>
                                 <div class="form-check px-5">
-                                    <input class="form-check-input" type="radio" name="q_{{$question['id']}}" value="berlin" id="berlin">
-                                    <label class="form-check-label fw-semibold w-100" for="berlin">{{$question['optC'] ?? ''}}</label>
+                                    <input class="form-check-input" type="radio" name="qid_{{$question['id']}}" value="{{$question['optC'] ?? ''}}" id="optionC" required='required' >
+                                    <label class="form-check-label fw-semibold w-100" for="optionC">{{$question['optC'] ?? ''}}</label>
                                 </div>
                                 <div class="form-check px-5">
-                                    <input class="form-check-input" type="radio" name="q_{{$question['id']}}" value="berlin" id="berlin">
-                                    <label class="form-check-label fw-semibold w-100" for="berlin">{{$question['optD'] ?? ''}}</label>
+                                    <input class="form-check-input" type="radio" name="qid_{{$question['id']}}" value="{{$question['optD'] ?? ''}}" id="optionD">
+                                    <label class="form-check-label fw-semibold w-100" for="optionD">{{$question['optD'] ?? ''}}</label>
                                 </div>
                             </div>
                             @else
                             <div class="text">
                                 <div class="form-check mt-2 px-5">
-                                    <input class="form-check-input" type="radio" name="q_{{$question['id']}}" value="paris" id="paris">
-                                    <label class="form-check-label fw-semibold   w-100" for="paris">{{$question['yes_lable'] ?? ''}}</label>
+                                    <input class="form-check-input" type="radio" name="qid_{{$question['id']}}" value="{{$question['yes_lable'] ?? ''}}" id="option_yes" required='required' >
+                                    <label class="form-check-label fw-semibold   w-100" for="option_yes">{{$question['yes_lable'] ?? ''}}</label>
                                 </div>
                                 <div class="form-check px-5">
-                                    <input class="form-check-input" type="radio" name="q_{{$question['id']}}" value="london" id="london">
-                                    <label class="form-check-label fw-semibold w-100" for="london">{{$question['no_lable'] ?? ''}}</label>
+                                    <input class="form-check-input" type="radio" name="qid_{{$question['id']}}" value="{{$question['no_lable'] ?? ''}}" id="option_no" required='required' >
+                                    <label class="form-check-label fw-semibold w-100" for="option_no">{{$question['no_lable'] ?? ''}}</label>
                                 </div>
                             </div>
                             @endif
@@ -122,7 +124,9 @@
     <script src="{{ asset('/assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script>
         $(document).ready(function() {
-            $('html, body').animate({ scrollTop: $(document).height() }, 0);
+            $('html, body').animate({
+                scrollTop: $(document).height()
+            }, 0);
 
             var currentQuestionIndex = 0;
             var questions = $('.question');
@@ -143,45 +147,42 @@
             updateProgress(); // Update progress initially
 
             nextButton.on('click', function() {
-                prevButton.show(); // Show previous button
+                prevButton.show();
 
                 questions.eq(currentQuestionIndex).fadeOut(400, function() {
                     $(this).removeClass('show').addClass('collapse');
                     currentQuestionIndex++;
                     questions.eq(currentQuestionIndex).fadeIn(600).removeClass('collapse').addClass('slide-in show');
-                });
-
-                // Hide next button if at the last question
-                if (currentQuestionIndex === totalQuestions - 1) {
-                    nextButton.hide();
-                    if (questions.eq(currentQuestionIndex).find('input[type="checkbox"]:checked').length > 0) {
+                    if (currentQuestionIndex === totalQuestions - 1) {
+                        nextButton.hide();
                         submitButton.prop('disabled', false).show();
                     }
-                }
+                    updateProgress();
+                    $('html, body').animate({
+                        scrollTop: $(document).height()
+                    }, 0);
 
-                updateProgress(); // Update progress
-                $('html, body').animate({ scrollTop: $(document).height() }, 0);
-
+                });
             });
 
             prevButton.on('click', function() {
-                submitButton.prop('disabled', false).hide();
-                nextButton.show(); // Show next button
+                submitButton.prop('disabled', true).hide();
+                nextButton.show(); 
 
                 questions.eq(currentQuestionIndex).fadeOut(400, function() {
                     $(this).removeClass('show').addClass('collapse');
                     currentQuestionIndex--;
                     questions.eq(currentQuestionIndex).fadeIn(600).removeClass('collapse').addClass('slide-in show');
+                    if (currentQuestionIndex === 0) {
+                        prevButton.hide();
+                        submitButton.prop('disabled', true).hide();
+                    }
+                    updateProgress();
+                    $('html, body').animate({
+                        scrollTop: $(document).height()
+                    }, 0);
+
                 });
-
-                // Hide previous button if at the first question
-                if (currentQuestionIndex === 0) {
-                    prevButton.hide();
-                }
-
-                updateProgress(); // Update progress
-                $('html, body').animate({ scrollTop: $(document).height() }, 0);
-
             });
 
             // Handle radio button change to enable/disable next button and update progress
