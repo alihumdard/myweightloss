@@ -35,10 +35,11 @@
         </div>
     </div>
     <nav class="navbar navbar-expand-lg sticky-navbar">
-        <div class="container-fluid">
+        <div class="container-fluid m-2">
             <a class="navbar-brand" href="index.html">
-                <img src="{{ asset('/assets/web/images/logo/logo-light.png') }}" class="logo-light" alt="logo">
-                <img src="{{ asset('/assets/web/images/logo/logo-dark.png') }}" class="logo-dark" alt="logo">
+            <img src="{{ asset('/assets/web/images/logo/weightloss_logo.png') }}" class="weightloss_logo" alt="logo" style="max-height: 90px;">
+
+                <!-- <img src="{{ asset('/assets/web/images/logo/weightloss_final_logo.png') }}" class="logo-dark" alt="logo"> -->
             </a>
             <button class="navbar-toggler" type="button">
                 <span class="menu-lines"><span></span></span>
@@ -46,30 +47,12 @@
             <div class="collapse navbar-collapse" id="mainNavigation">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav__item has-dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle nav__item-link active">Home</a>
-                        <ul class="dropdown-menu">
+                        <a href="{{ route('web.index') }}"  class="nav__item-link active">Home</a>
+                        <!-- <ul class="dropdown-menu">
                             <li class="nav__item">
                                 <a href="{{ route('web.index') }}" class="nav__item-link">Home Main</a>
                             </li>
-                        </ul>
-                    </li>
-                    <li class="nav__item has-dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle nav__item-link">About Us</a>
-                        <ul class="dropdown-menu">
-                            <li class="nav__item">
-                                <a href="{{ route('web.aboutUs') }}" class="nav__item-link">About Us</a>
-                            </li>
-
-                        </ul>
-                    </li>
-
-                    <li class="nav__item has-dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle nav__item-link">Blog</a>
-                        <ul class="dropdown-menu">
-                            <li class="nav__item">
-                                <a href="{{ route('web.blogs') }}" class="nav__item-link">Blog Grid</a>
-                            </li>
-                        </ul>
+                        </ul> -->
                     </li>
                     <li class="nav__item has-dropdown">
                         <a href="{{ route('web.products') }}" data-toggle="dropdown" class="dropdown-toggle nav__item-link active">Products</a>
@@ -81,9 +64,13 @@
                                 <a href="cart.html" class="nav__item-link">Cart</a>
                             </li>
                         </ul>
+                    </li>                   
+                    <li class="nav__item ">
+                    <a href="{{ route('web.blogs') }}" class="nav__item-link">Blog</a>
                     </li>
+                    
                     <li class="nav__item">
-                        <a href="{{ route('web.contactUs') }}" class="nav__item-link">Contacts</a>
+                        <a href="{{ route('web.contactUs') }}" class="nav__item-link">Contacts US</a>
                     </li>
                 </ul>
                 <button class="close-mobile-menu d-block d-lg-none"><i class="fas fa-times"></i></button>

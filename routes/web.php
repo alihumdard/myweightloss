@@ -29,6 +29,11 @@ Route::match(['get','post'],'/bmiForm', [WebController::class, 'bmi_form'])->nam
 Route::match(['get','post'],'/bmiFormStore', [WebController::class, 'bmi_formStore'])->name('web.bmiFormStore');
 Route::match(['get','post'],'/consultationForm', [WebController::class, 'consultation_form'])->name('web.consultationForm');
 Route::match(['get','post'],'/productQuestion/{id}', [WebController::class, 'product_question'])->name('web.productQuestion');
+
+Route::match(['get','post'],'/cart', function(){
+    return view('web.pages.cart');
+})->name('web.cart');
+
 Route::match(['get','post'],'/transactionStore/', [WebController::class, 'transaction_store'])->name('web.transactionStore');
 
 
