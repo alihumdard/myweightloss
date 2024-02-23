@@ -311,14 +311,17 @@ document.addEventListener('DOMContentLoaded', function () {
             item3.style.display = 'block';
         }
     });
+
     proceedBtn_7.addEventListener('click', () => {
         item8.style.display = 'none';
         item9.style.display = 'block';
     });
+
     proceedBtn_12.addEventListener('click', () => {
         item13.style.display = 'none';
         item9.style.display = 'block';
     });
+
     proceedBtn_3.addEventListener('click', function () {
         if (noRadio.checked) {
             item3.style.display = 'none';
@@ -344,6 +347,7 @@ document.addEventListener('DOMContentLoaded', function () {
             item9.style.display = 'block';
         }
     });
+
     proceedBtn_6.addEventListener('click', function () {
         if (normal.checked) {
             item7.style.display = 'none';
@@ -376,6 +380,7 @@ document.addEventListener('DOMContentLoaded', function () {
             item11.style.display = 'block';
         }
     });
+
     proceedBtn_9.addEventListener('click', function () {
         if (below.checked) {
             item10.style.display = 'none';
@@ -385,6 +390,7 @@ document.addEventListener('DOMContentLoaded', function () {
             item11.style.display = 'block';
         }
     });
+
     proceedBtn_10.addEventListener('click', function () {
         if (medical.checked) {
             item11.style.display = 'none';
@@ -418,6 +424,7 @@ document.addEventListener('DOMContentLoaded', function () {
             item14.style.display = 'block';
         }
     });
+
     proceedBtn_11.addEventListener('click', function () {
         if (no1.checked) {
             item12.style.display = 'none';
@@ -427,14 +434,17 @@ document.addEventListener('DOMContentLoaded', function () {
             item18.style.display = 'block';
         }
     });
+
     proceedBtn_13.addEventListener('click', () => {
         item6.style.display = 'none';
         item4.style.display = 'block';
     });
+
     proceedBtn_14.addEventListener('click', () => {
         item14.style.display = 'none';
         item11.style.display = 'block';
     });
+
     proceedBtn_15.addEventListener('click', function () {
         if (no2.checked) {
             item15.style.display = 'none';
@@ -444,6 +454,7 @@ document.addEventListener('DOMContentLoaded', function () {
             item17.style.display = 'block';
         }
     });
+
     proceedBtn_17.addEventListener('click', function () {
         if (no4.checked) {
             // item15.style.display = 'none';
@@ -453,10 +464,12 @@ document.addEventListener('DOMContentLoaded', function () {
             item16.style.display = 'block';
         }
     });
+
     proceedBtn_16.addEventListener('click', () => {
         item18.style.display = 'none';
         item15.style.display = 'block';
     });
+
     proceedBtn_18.addEventListener('click', function () {
         if (no5.checked) {
              item19.style.display = 'none';
@@ -466,6 +479,7 @@ document.addEventListener('DOMContentLoaded', function () {
             item21.style.display = 'block';
         }
     });
+
     proceedBtn_19.addEventListener('click', function () {
         if (no3.checked) {
             item16.style.display = 'none';
@@ -475,10 +489,12 @@ document.addEventListener('DOMContentLoaded', function () {
             // item17.style.display = 'block';
         }
     });
+
     proceedBtn_20.addEventListener('click', () => {
         item21.style.display = 'none';
         item20.style.display = 'block';
     });
+
     proceedBtn_21.addEventListener('click', function () {
         if (diagnosed.checked) {
             item20.style.display = 'none';
@@ -494,10 +510,12 @@ document.addEventListener('DOMContentLoaded', function () {
             item23.style.display = 'block';
         }
     });
+
     proceedBtn_22.addEventListener('click', () => {
         item23.style.display = 'none';
         item22.style.display = 'block';
     });
+
     proceedBtn_23.addEventListener('click', function () {
         if (no6.checked) {
              item22.style.display = 'none';
@@ -507,10 +525,12 @@ document.addEventListener('DOMContentLoaded', function () {
             item25.style.display = 'block';
         }
     });
+
     proceedBtn_24.addEventListener('click', () => {
         item25.style.display = 'none';
         item24.style.display = 'block';
     });
+
     proceedBtn_25.addEventListener('click', function () {
         if (I.checked) {
             item24.style.display = 'none';
@@ -538,14 +558,17 @@ document.addEventListener('DOMContentLoaded', function () {
             item27.style.display = 'block';
         } 
     });
+
     proceedBtn_26.addEventListener('click', () => {
         item27.style.display = 'none';
         item26.style.display = 'block';
     });
+
     proceedBtn_27.addEventListener('click', () => {
         item26.style.display = 'none';
         item28.style.display = 'block';
     });
+
     proceedBtn_28.addEventListener('click', function () {
         if (Smoke.checked) {
             item28.style.display = 'none';
@@ -562,6 +585,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         
     });
+
     proceedBtn_29.addEventListener('click', function () {
         if (alcohol.checked) {
             item29.style.display = 'none';
@@ -578,6 +602,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         
     });
+
     proceedBtn_30.addEventListener('click', function () {
         if (takeaways.checked) {
             item30.style.display = 'none';
@@ -594,6 +619,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         
     });
+
     proceedBtn_31.addEventListener('click', function () {
         if (unhealthy.checked) {
             item31.style.display = 'none';
@@ -610,6 +636,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         
     });
+    
     proceedBtn_32.addEventListener('click', function () {
         if (mins.checked) {
             item32.style.display = 'none';
