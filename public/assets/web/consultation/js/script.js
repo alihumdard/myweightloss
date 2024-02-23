@@ -7,17 +7,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var totalSteps = 19; // Total number of steps
     var currentStep = 1; // Initialize current step
-    var proceedBtn =    document.getElementById("proceedBtn");
-    var proceedBtn_1 =  document.getElementById("proceedBtn_1");
-    var proceedBtn_2 =  document.getElementById("proceedBtn_2");
-    var proceedBtn_3 =  document.getElementById("proceedBtn_3");
-    var proceedBtn_5 =  document.getElementById("proceedBtn_5");
-    var proceedBtn_6 =  document.getElementById("proceedBtn_6");
-    var proceedBtn_7 =  document.getElementById("proceedBtn_7");
-    var proceedBtn_8 =  document.getElementById("proceedBtn_8");
-    var proceedBtn_9 =  document.getElementById("proceedBtn_9");
-    var proceedBtn_10 =  document.getElementById("proceedBtn_10");
-    var proceedBtn_11 =  document.getElementById("proceedBtn_11");
+    var proceedBtn = document.getElementById("proceedBtn");
+    var proceedBtn_1 = document.getElementById("proceedBtn_1");
+    var proceedBtn_2 = document.getElementById("proceedBtn_2");
+    var proceedBtn_3 = document.getElementById("proceedBtn_3");
+    var proceedBtn_5 = document.getElementById("proceedBtn_5");
+    var proceedBtn_6 = document.getElementById("proceedBtn_6");
+    var proceedBtn_7 = document.getElementById("proceedBtn_7");
+    var proceedBtn_8 = document.getElementById("proceedBtn_8");
+    var proceedBtn_9 = document.getElementById("proceedBtn_9");
+    var proceedBtn_10 = document.getElementById("proceedBtn_10");
+    var proceedBtn_11 = document.getElementById("proceedBtn_11");
     var proceedBtn_12 = document.getElementById("proceedBtn_12");
     var proceedBtn_13 = document.getElementById("proceedBtn_13");
     var proceedBtn_14 = document.getElementById("proceedBtn_14");
@@ -46,15 +46,15 @@ document.addEventListener('DOMContentLoaded', function () {
     var proceedBtn_37 = document.getElementById("proceedBtn_37");
     var proceedBtn_38 = document.getElementById("proceedBtn_38");
 
-    var previousBtn =   document.getElementById("previousBtn");
-    var previousBtn2 =  document.getElementById("previousBtn_2");
-    var previousBtn3 =  document.getElementById("previousBtn_3");
-    var previousBtn4 =  document.getElementById("previousBtn_4");
-    var previousBtn5 =  document.getElementById("previousBtn_5");
-    var previousBtn6 =  document.getElementById("previousBtn_6");
-    var previousBtn7 =  document.getElementById("previousBtn_7");
-    var previousBtn8 =  document.getElementById("previousBtn_8");
-    var previousBtn9 =  document.getElementById("previousBtn_9");
+    var previousBtn = document.getElementById("previousBtn");
+    var previousBtn2 = document.getElementById("previousBtn_2");
+    var previousBtn3 = document.getElementById("previousBtn_3");
+    var previousBtn4 = document.getElementById("previousBtn_4");
+    var previousBtn5 = document.getElementById("previousBtn_5");
+    var previousBtn6 = document.getElementById("previousBtn_6");
+    var previousBtn7 = document.getElementById("previousBtn_7");
+    var previousBtn8 = document.getElementById("previousBtn_8");
+    var previousBtn9 = document.getElementById("previousBtn_9");
     var previousBtn10 = document.getElementById("previousBtn_10");
     var previousBtn11 = document.getElementById("previousBtn_11");
     var previousBtn12 = document.getElementById("previousBtn_12");
@@ -86,16 +86,16 @@ document.addEventListener('DOMContentLoaded', function () {
     var previousBtn38 = document.getElementById("previousBtn_38");
     var previousBtn39 = document.getElementById("previousBtn_39");
     var previousBtn40 = document.getElementById("previousBtn_40");
-    
-    var item1 =  document.getElementById("item_1");
-    var item2 =  document.getElementById("item_2");
-    var item3 =  document.getElementById("item_3");
-    var item4 =  document.getElementById("item_4");
-    var item5 =  document.getElementById("item_5");
-    var item6 =  document.getElementById("item_6");
-    var item7 =  document.getElementById("item_7");
-    var item8 =  document.getElementById("item_8");
-    var item9 =  document.getElementById("item_9");
+
+    var item1 = document.getElementById("item_1");
+    var item2 = document.getElementById("item_2");
+    var item3 = document.getElementById("item_3");
+    var item4 = document.getElementById("item_4");
+    var item5 = document.getElementById("item_5");
+    var item6 = document.getElementById("item_6");
+    var item7 = document.getElementById("item_7");
+    var item8 = document.getElementById("item_8");
+    var item9 = document.getElementById("item_9");
     var item10 = document.getElementById("item_10");
     var item11 = document.getElementById("item_11");
     var item12 = document.getElementById("item_12");
@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var item38 = document.getElementById("item_38");
     var item39 = document.getElementById("item_39");
     var item40 = document.getElementById("item_40");
-    var item =   document.getElementById("item");
+    var item = document.getElementById("item");
 
     var maleRadio = document.getElementById("html");
     var femaleRadio = document.getElementById("css");
@@ -312,16 +312,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    proceedBtn_7.addEventListener('click', () => {
-        item8.style.display = 'none';
-        item9.style.display = 'block';
-    });
-
-    proceedBtn_12.addEventListener('click', () => {
-        item13.style.display = 'none';
-        item9.style.display = 'block';
-    });
-
     proceedBtn_3.addEventListener('click', function () {
         if (noRadio.checked) {
             item3.style.display = 'none';
@@ -335,12 +325,12 @@ document.addEventListener('DOMContentLoaded', function () {
     proceedBtn_5.addEventListener('click', function () {
         if (no.checked) {
             item4.style.display = 'none';
-            item9.style.display = 'block'; 
-            
+            item9.style.display = 'block';
+
         } else if (yes.checked) {
             item4.style.display = 'none';
             item7.style.display = 'block';
-            
+
         }
         else if (not.checked) {
             item4.style.display = 'none';
@@ -348,32 +338,45 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+
+    proceedBtn_7.addEventListener('click', () => {
+        item8.style.display = 'none';
+        item9.style.display = 'block';
+    });
+
+    proceedBtn_12.addEventListener('click', () => {
+        item13.style.display = 'none';
+        item9.style.display = 'block';
+    });
+
+
+// done
     proceedBtn_6.addEventListener('click', function () {
         if (normal.checked) {
             item7.style.display = 'none';
-            item9.style.display = 'block'; 
-            
+            item9.style.display = 'block';
+
         } else if (high.checked) {
             item7.style.display = 'none';
             item13.style.display = 'block';
-            
+
         }
         else if (low.checked) {
             item7.style.display = 'none';
             item9.style.display = 'block';
         }
-        
+
     });
-    
+
     proceedBtn_8.addEventListener('click', function () {
         if (yesreading.checked) {
             item9.style.display = 'none';
-            item10.style.display = 'block'; 
-            
+            item10.style.display = 'block';
+
         } else if (yesnotreading.checked) {
             item9.style.display = 'none';
             item11.style.display = 'block';
-            
+
         }
         else if (noreading.checked) {
             item9.style.display = 'none';
@@ -472,8 +475,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     proceedBtn_18.addEventListener('click', function () {
         if (no5.checked) {
-             item19.style.display = 'none';
-             item20.style.display = 'block';
+            item19.style.display = 'none';
+            item20.style.display = 'block';
         } else if (yes5.checked) {
             item19.style.display = 'none';
             item21.style.display = 'block';
@@ -498,12 +501,12 @@ document.addEventListener('DOMContentLoaded', function () {
     proceedBtn_21.addEventListener('click', function () {
         if (diagnosed.checked) {
             item20.style.display = 'none';
-            item22.style.display = 'block'; 
-            
+            item22.style.display = 'block';
+
         } else if (depression.checked) {
             item20.style.display = 'none';
             item23.style.display = 'block';
-            
+
         }
         else if (diagnosis.checked) {
             item20.style.display = 'none';
@@ -518,8 +521,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     proceedBtn_23.addEventListener('click', function () {
         if (no6.checked) {
-             item22.style.display = 'none';
-             item24.style.display = 'block';
+            item22.style.display = 'none';
+            item24.style.display = 'block';
         } else if (yes6.checked) {
             item22.style.display = 'none';
             item25.style.display = 'block';
@@ -556,7 +559,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (explain.checked) {
             item24.style.display = 'none';
             item27.style.display = 'block';
-        } 
+        }
     });
 
     proceedBtn_26.addEventListener('click', () => {
@@ -572,443 +575,443 @@ document.addEventListener('DOMContentLoaded', function () {
     proceedBtn_28.addEventListener('click', function () {
         if (Smoke.checked) {
             item28.style.display = 'none';
-            item29.style.display = 'block'; 
-            
+            item29.style.display = 'block';
+
         } else if (occasionally.checked) {
             item28.style.display = 'none';
             item29.style.display = 'block';
-            
+
         }
         else if (regularly.checked) {
             item28.style.display = 'none';
             item29.style.display = 'block';
         }
-        
+
     });
 
     proceedBtn_29.addEventListener('click', function () {
         if (alcohol.checked) {
             item29.style.display = 'none';
-            item30.style.display = 'block'; 
-            
+            item30.style.display = 'block';
+
         } else if (drink.checked) {
             item29.style.display = 'none';
             item30.style.display = 'block';
-            
+
         }
         else if (daily.checked) {
             item29.style.display = 'none';
             item30.style.display = 'block';
         }
-        
+
     });
 
     proceedBtn_30.addEventListener('click', function () {
         if (takeaways.checked) {
             item30.style.display = 'none';
-            item31.style.display = 'block'; 
-            
+            item31.style.display = 'block';
+
         } else if (takeaway.checked) {
             item30.style.display = 'none';
             item31.style.display = 'block';
-            
+
         }
         else if (week.checked) {
             item30.style.display = 'none';
             item31.style.display = 'block';
         }
-        
+
     });
 
     proceedBtn_31.addEventListener('click', function () {
         if (unhealthy.checked) {
             item31.style.display = 'none';
-            item32.style.display = 'block'; 
-            
+            item32.style.display = 'block';
+
         } else if (snacks.checked) {
             item31.style.display = 'none';
             item32.style.display = 'block';
-            
+
         }
         else if (eat.checked) {
             item31.style.display = 'none';
             item32.style.display = 'block';
         }
-        
+
     });
-    
+
     proceedBtn_32.addEventListener('click', function () {
         if (mins.checked) {
             item32.style.display = 'none';
-            item33.style.display = 'block'; 
-            
+            item33.style.display = 'block';
+
         } else if (more.checked) {
             item32.style.display = 'none';
             item33.style.display = 'block';
-            
+
         }
         else if (moderate.checked) {
             item32.style.display = 'none';
             item33.style.display = 'block';
         }
-        
+
     });
     proceedBtn_33.addEventListener('click', function () {
         if (a.checked) {
             item33.style.display = 'none';
-            item34.style.display = 'block'; 
-            
+            item34.style.display = 'block';
+
         } else if (b.checked) {
             item33.style.display = 'none';
             item34.style.display = 'block';
-            
+
         }
         else if (c.checked) {
             item33.style.display = 'none';
             item34.style.display = 'block';
         }
-        
+
     });
     proceedBtn_34.addEventListener('click', function () {
         if (no7.checked) {
             item34.style.display = 'none';
-            item35.style.display = 'block'; 
-            
+            item35.style.display = 'block';
+
         } else if (yes7.checked) {
             item34.style.display = 'none';
             item36.style.display = 'block';
-            
+
         }
-        
+
     });
     proceedBtn_35.addEventListener('click', function () {
         if (no8.checked) {
             item35.style.display = 'none';
-            item37.style.display = 'block'; 
-            
+            item37.style.display = 'block';
+
         } else if (yes8.checked) {
             item35.style.display = 'none';
             item38.style.display = 'block';
-            
+
         }
-      });
-      proceedBtn_36.addEventListener('click', function () {
+    });
+    proceedBtn_36.addEventListener('click', function () {
         if (Liraglutide.checked) {
             item36.style.display = 'none';
-            item40.style.display = 'block'; 
-            
+            item40.style.display = 'block';
+
         } else if (Mysimba.checked) {
             item36.style.display = 'none';
             item40.style.display = 'block';
-            
+
         } else if (Orlistat.checked) {
             item36.style.display = 'none';
             item40.style.display = 'block';
-            
+
         } else if (Semaglutide.checked) {
             item36.style.display = 'none';
             item40.style.display = 'block';
-            
+
         } else if (management.checked) {
             item36.style.display = 'none';
             item40.style.display = 'block';
-            
+
         }
-      });
-      proceedBtn_37.addEventListener('click', function () {
+    });
+    proceedBtn_37.addEventListener('click', function () {
         if (no9.checked) {
             // item35.style.display = 'none';
             // item37.style.display = 'block'; 
-            
+
         } else if (yes9.checked) {
             item37.style.display = 'none';
             item39.style.display = 'block';
-            
+
         }
-      });
-      proceedBtn_38.addEventListener('click', () => {
+    });
+    proceedBtn_38.addEventListener('click', () => {
         item38.style.display = 'none';
         item37.style.display = 'block';
     });
     previousBtn.addEventListener('click', function () {
-        
+
         if (item1.style.display === 'block') {
             item1.style.display = 'none';
             item.style.display = 'block';
-        } 
+        }
     });
     previousBtn2.addEventListener('click', function () {
-        
+
         if (item2.style.display === 'block') {
             item2.style.display = 'none';
             item1.style.display = 'block';
-        } 
+        }
 
     });
     previousBtn3.addEventListener('click', function () {
-        
+
         if (item3.style.display === 'block') {
             item3.style.display = 'none';
             item2.style.display = 'block';
-        } 
+        }
     });
     previousBtn4.addEventListener('click', function () {
-        
+
         if (item4.style.display === 'block') {
             item4.style.display = 'none';
             item3.style.display = 'block';
-        } 
+        }
     });
     previousBtn5.addEventListener('click', function () {
-        
+
         if (item5.style.display === 'block') {
             item5.style.display = 'none';
             item4.style.display = 'block';
-        } 
+        }
     });
     previousBtn6.addEventListener('click', function () {
-        
+
         if (item6.style.display === 'block') {
             item6.style.display = 'none';
             item3.style.display = 'block';
-        } 
+        }
     });
     previousBtn7.addEventListener('click', function () {
-        
+
         if (item7.style.display === 'block') {
             item7.style.display = 'none';
             item4.style.display = 'block';
-        } 
+        }
     });
     previousBtn8.addEventListener('click', function () {
-        
+
         if (item8.style.display === 'block') {
             item8.style.display = 'none';
             item7.style.display = 'block';
-        } 
+        }
     });
     previousBtn9.addEventListener('click', function () {
-        
+
         if (item9.style.display === 'block') {
             item9.style.display = 'none';
             item7.style.display = 'block';
-        } 
+        }
     });
     previousBtn10.addEventListener('click', function () {
-        
+
         if (item10.style.display === 'block') {
             item10.style.display = 'none';
             item9.style.display = 'block';
-        } 
+        }
     });
     previousBtn11.addEventListener('click', function () {
-        
+
         if (item11.style.display === 'block') {
             item11.style.display = 'none';
             item10.style.display = 'block';
-        } 
+        }
     });
     previousBtn12.addEventListener('click', function () {
-        
+
         if (item12.style.display === 'block') {
             item12.style.display = 'none';
             item11.style.display = 'block';
-        } 
+        }
     });
     previousBtn13.addEventListener('click', function () {
-        
+
         if (item13.style.display === 'block') {
             item13.style.display = 'none';
             item7.style.display = 'block';
-        } 
+        }
     });
     previousBtn14.addEventListener('click', function () {
-        
+
         if (item14.style.display === 'block') {
             item14.style.display = 'none';
             item11.style.display = 'block';
-        } 
+        }
     });
     previousBtn15.addEventListener('click', function () {
-        
+
         if (item15.style.display === 'block') {
             item15.style.display = 'none';
             item12.style.display = 'block';
-        } 
+        }
     });
     previousBtn16.addEventListener('click', function () {
-        
+
         if (item16.style.display === 'block') {
             item16.style.display = 'none';
             item15.style.display = 'block';
-        } 
+        }
     });
     previousBtn17.addEventListener('click', function () {
-        
+
         if (item17.style.display === 'block') {
             item17.style.display = 'none';
             item15.style.display = 'block';
-        } 
+        }
     });
     previousBtn18.addEventListener('click', function () {
-        
+
         if (item18.style.display === 'block') {
             item18.style.display = 'none';
             item12.style.display = 'block';
-        } 
+        }
     });
     previousBtn19.addEventListener('click', function () {
-        
+
         if (item19.style.display === 'block') {
             item19.style.display = 'none';
             item16.style.display = 'block';
-        } 
+        }
     });
     previousBtn20.addEventListener('click', function () {
-        
+
         if (item20.style.display === 'block') {
             item20.style.display = 'none';
             item19.style.display = 'block';
-        } 
+        }
     });
     previousBtn21.addEventListener('click', function () {
-        
+
         if (item21.style.display === 'block') {
             item21.style.display = 'none';
             item19.style.display = 'block';
-        } 
+        }
     });
     previousBtn22.addEventListener('click', function () {
-        
+
         if (item22.style.display === 'block') {
             item22.style.display = 'none';
             item20.style.display = 'block';
-        } 
+        }
     });
     previousBtn23.addEventListener('click', function () {
-        
+
         if (item23.style.display === 'block') {
             item23.style.display = 'none';
             item20.style.display = 'block';
-        } 
+        }
     });
     previousBtn24.addEventListener('click', function () {
-        
+
         if (item24.style.display === 'block') {
             item24.style.display = 'none';
             item22.style.display = 'block';
-        } 
+        }
     });
     previousBtn25.addEventListener('click', function () {
-        
+
         if (item25.style.display === 'block') {
             item25.style.display = 'none';
             item22.style.display = 'block';
-        } 
+        }
     });
     previousBtn26.addEventListener('click', function () {
-        
+
         if (item26.style.display === 'block') {
             item26.style.display = 'none';
             item24.style.display = 'block';
-        } 
+        }
     });
     previousBtn27.addEventListener('click', function () {
-        
+
         if (item27.style.display === 'block') {
             item27.style.display = 'none';
             item24.style.display = 'block';
-        } 
+        }
     });
     previousBtn28.addEventListener('click', function () {
-        
+
         if (item28.style.display === 'block') {
             item28.style.display = 'none';
             item26.style.display = 'block';
-        } 
+        }
     });
     previousBtn29.addEventListener('click', function () {
-        
+
         if (item29.style.display === 'block') {
             item29.style.display = 'none';
             item28.style.display = 'block';
-        } 
+        }
     });
     previousBtn30.addEventListener('click', function () {
-        
+
         if (item30.style.display === 'block') {
             item30.style.display = 'none';
             item29.style.display = 'block';
-        } 
+        }
     });
     previousBtn31.addEventListener('click', function () {
-        
+
         if (item31.style.display === 'block') {
             item31.style.display = 'none';
             item30.style.display = 'block';
-        } 
+        }
     });
     previousBtn32.addEventListener('click', function () {
-        
+
         if (item32.style.display === 'block') {
             item32.style.display = 'none';
             item31.style.display = 'block';
-        } 
+        }
     });
     previousBtn33.addEventListener('click', function () {
-        
+
         if (item33.style.display === 'block') {
             item33.style.display = 'none';
             item32.style.display = 'block';
-        } 
+        }
     });
     previousBtn34.addEventListener('click', function () {
-        
+
         if (item34.style.display === 'block') {
             item34.style.display = 'none';
             item33.style.display = 'block';
-        } 
+        }
     });
     previousBtn35.addEventListener('click', function () {
-        
+
         if (item35.style.display === 'block') {
             item35.style.display = 'none';
             item34.style.display = 'block';
-        } 
+        }
     });
     previousBtn36.addEventListener('click', function () {
-        
+
         if (item36.style.display === 'block') {
             item36.style.display = 'none';
             item34.style.display = 'block';
-        } 
+        }
     });
     previousBtn37.addEventListener('click', function () {
-        
+
         if (item37.style.display === 'block') {
             item37.style.display = 'none';
             item35.style.display = 'block';
-        } 
+        }
     });
     previousBtn38.addEventListener('click', function () {
-        
+
         if (item38.style.display === 'block') {
             item38.style.display = 'none';
             item35.style.display = 'block';
-        } 
+        }
     });
     previousBtn39.addEventListener('click', function () {
-        
+
         if (item39.style.display === 'block') {
             item39.style.display = 'none';
             item37.style.display = 'block';
-        } 
+        }
     });
     previousBtn40.addEventListener('click', function () {
-        
+
         if (item40.style.display === 'block') {
             item40.style.display = 'none';
             item36.style.display = 'block';
-        } 
+        }
     });
 });

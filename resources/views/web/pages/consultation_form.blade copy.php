@@ -262,7 +262,7 @@
                 <div class="card12 mt-5 mb-0">
                     <div id="surveyElement" class="itl-survey" style="display:inline-block;width:100%;">
                         <legend>
-                            <h3 style="font-weight: 700; color: #4DC4D8;">Could you please indicate a general well being<br> score? How well do you feel generally speaking</h3>
+                            <h3 style="font-weight: 700; color: #4DC4D8;">Could you please indicate a general well being score? How well do you feel generally speaking</h3>
                         </legend>
                         <input type="radio" id="unhappy" name="fav_language" value="unhappy" class="mb-3 mt-5">
                           <label for="unhappy" class="mb-2" style="cursor: pointer; color: #938977;"><img src="{{ asset('/assets/web/consultation/img/img2.png') }}" alt="" style="width: 15px;vertical-align: bottom;margin-right: 5px;margin-top: 10px;margin-bottom: 15px;"> Unhappy</label>
@@ -329,7 +329,8 @@
                     <div id="surveyElement" class="itl-survey" style="display:inline-block;width:100%;">
                         <legend>
                             <h3 style="font-weight: 700; color: #5E7BC0;">Have you had your blood pressure measured in<br> the last 6 months?</h3>
-                            <p class="mt-2" style="color: #4DC4D8;">If you struggle with weight management, we advise to have your blood pressure checked at least every 6 months with your NHS GP.</p>
+                            <p class="mt-2" style="color: #4DC4D8;">
+                            If you struggle with weight management, we advise to have your blood pressure checked at least every 6 months with your NHS GP.</p>
                         </legend>
                         <input type="radio" id="yes" name="fav_language" value="yes" class="mb-3 mt-4">
                           <label for="yes" class="mb-2" style="cursor: pointer;">Yes- I know the reading</label>
@@ -422,7 +423,7 @@
                 <div class="card12 mt-5 mb-0">
                     <div id="surveyElement" class="itl-survey" style="display:inline-block;width:100%;">
                         <legend>
-                            <h3 style="font-weight: 700; color: #5E7BC0;">What was the reading / measurement?<br> the last 6 months?</h3>
+                            <h3 style="font-weight: 700; color: #5E7BC0;">What was the reading / measurement of the last 6 months?</h3>
                         </legend>
                         <input type="radio" id="normal" name="fav_language" value="normal" class="mb-3 mt-4">
                           <label for="normal" class="mb-2" style="cursor: pointer; color: #938977;">Normal 90/60 to 139/89</a></label>

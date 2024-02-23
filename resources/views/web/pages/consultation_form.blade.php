@@ -32,6 +32,38 @@
     <script src="{{ asset('/assets/web/bmi/js/modernizr.js') }}"></script>
     <!-- Modernizr -->
 
+    <style>
+        label.btn {
+            text-align: left !important;
+            color: black;
+            padding: 5px auto;
+            white-space: normal;
+            -webkit-transform: scale(1.0);
+            -moz-transform: scale(1.0);
+            -o-transform: scale(1.0);
+            -webkit-transition: transform 0.3s ease-in-out;
+            -moz-transition: transform 0.3s ease-in-out;
+            -o-transition: transform 0.3s ease-in-out;
+        }
+
+        label.btn:hover {
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            -webkit-transform: scale(1.05);
+            -moz-transform: scale(1.05);
+            -o-transform: scale(1.05);
+        }
+
+        .question_title {
+            text-align: center;
+            margin-bottom: 0px !important;
+            text-align: left;
+        }
+
+        .box_general {
+            padding: 3rem 0 !important;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -96,107 +128,366 @@
             <div id="wizard_container">
                 <form name="example-1" id="wrapped" method="POST">
                     <input id="website" name="website" type="text" value="">
-                    <!-- Leave input above for security protection, read docs for details -->
                     <div id="middle-wizard">
 
-                        <!-- First branch What Type of Project ============================== -->
-                        <div class="step" data-state="branchtype">
-                            <div class="question_title">
-                                <h3>Why do you want to lose weight?</h3>
-                                <p>It is important we understand the motives for trying to mange<br> your weight as this can dictate the type of treatment plan we<br> offer and more specifically the advice we give you for length of treatment and goals.</p>
-                            </div>
-                            <div class="row justify-content-center">
-                                <div class="col-lg-5 animated zoomIn delay-fast">
-                                    <div class="box_general">
-                                        <div class="form-group short">
-                                            <label><input type="radio" name="qustion_1" class="icheck required" value="general">General- I want to be healthier</label>
-                                        </div>
-                                        <div class="form-group short">
-                                            <label><input type="radio" name="qustion_1" class="icheck required" value="Pre">Pre- IVF- I'm planning to have a baby via IVF</label>
-                                        </div>
-                                        <div class="form-group short">
-                                            <label><input type="radio" name="qustion_1" class="icheck required" value="PCOS">PCOS- I struggle with PCOS weight gain</label>
-                                        </div>
-                                        <div class="form-group short">
-                                            <label><input type="radio" name="qustion_1" class="icheck required" value="Surgery"><small>Pre- Surgery- I need to lose weight before</small></label>
-                                        </div>
-                                        <div class="form-group short">
-                                            <label><input type="radio" name="qustion_1" class="icheck required" value="Post">Post Pregnancy- I recently had a baby</label>
-                                        </div>
-                                        <div class="form-group short">
-                                            <label><input type="radio" name="qustion_1" class="icheck required" value="Other">Other</label>
+                        <!-- question no 1 -->
+                        <div class="step" data-state="question_2">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class=" row question_title justify-content-center ">
+                                        <div class="col-lg-7 animated zoomIn delay-fast">
+                                            <h3>Why do you want to lose weight?</h3>
+                                            <p style="margin-bottom: 0;">It is important we understand the motives for trying to mange your weight as this can dictate the type of treatment plan we offer and more specifically the advice we give you for length of treatment and goals.</p>
                                         </div>
                                     </div>
-                                    <!-- /box_general -->
+
+                                    <div class="row justify-content-center">
+                                        <div class="col-lg-7 animated zoomIn delay-fast">
+                                            <div class="box_general" style="border:none;">
+                                                <div class="form-group short">
+                                                    <label for="question_1_ans_1" class="btn btn-lg btn-outline-success btn-block w-100 ">
+                                                        <input id="question_1_ans_1" type="radio" name="question_1" class="icheck required" value="General I want to be healthier">
+                                                        General I want to be healthier
+                                                    </label>
+                                                </div>
+                                                <div class="form-group short">
+                                                    <label for="question_1_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                        <input id="question_1_ans_2" type="radio" name="question_1" class="icheck required" value="Pre IVF I'm planning to have a baby via IVF">
+                                                        Pre- IVF- I'm planning to have a baby via IVF
+                                                    </label>
+                                                </div>
+                                                <div class="form-group short">
+                                                    <label for="question_1_ans_3" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                        <input id="question_1_ans_3" type="radio" name="question_1" class="icheck required" value="PCOS I struggle with PCOS weight gain">
+                                                        PCOS- I struggle with PCOS weight gain
+                                                    </label>
+                                                </div>
+                                                <div class="form-group short">
+                                                    <label for="question_1_ans_4" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                        <input id="question_1_ans_4" type="radio" name="question_1" class="icheck required" value="Pre Surgery I need to lose weight before.">
+                                                        Pre- Surgery- I need to lose weight before. </label>
+                                                </div>
+                                                <div class="form-group short">
+                                                    <label for="question_1_ans_5" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                        <input id="question_1_ans_5" type="radio" name="question_1" class="icheck required" value="Post Pregnancy I recently had a baby">
+                                                        Post Pregnancy- I recently had a baby
+                                                    </label>
+                                                </div>
+                                                <div class="form-group short">
+                                                    <label for="question_1_ans_6" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                        <input id="question_1_ans_6" type="radio" name="question_1" class="icheck required" value="Other">
+                                                        Other
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <!-- /box_general -->
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- /First branch What Type of Project ============================== -->
+                        <!-- /step -->
 
-                        <!-- /What Type of Project > Seo-Optimization ============================== -->
-                        <div class="branch" id="Seo-Optimization">
-                            <div class="step" data-state="budget">
-                                <div class="question_title">
-                                    <h3>What Type of Seo Optimization do you need?</h3>
-                                    <p>Multiple Selection (Checkbox based)</p>
+                        <!-- question no 2 -->
+                        <div class="step" id="question_2" data-state="question_3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class=" row question_title justify-content-center ">
+                                        <div class="col-lg-9 animated zoomIn delay-fast">
+                                            <h3>Could you please indicate a general well being score?</h3>
+                                            <p style="margin-bottom: 0;">
+                                                How well do you feel generally speaking.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row justify-content-center mb-lg-4">
+                                        <div class="col-lg-10">
+                                            <div class="row mx-auto">
+                                                <div class="col-md-4 animated zoomIn delay-fast">
+                                                    <div class="item">
+                                                        <input id="question_2_ans_1" type="radio" name="question_2" value="Happy" class="required">
+                                                        <label for="question_2_ans_1">
+                                                            <img style="height: auto !important;" src="{{ asset('/assets/web/consultation/img/img3.png') }}" alt="happy" class="img-fluid">
+                                                            <strong>Happy</strong>the physical conditon....</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 animated zoomIn delay-normal">
+                                                    <div class="item">
+                                                        <input id="question_2_ans_2" name="question_2" type="radio" value="Neutral" class="required">
+                                                        <label for="question_2_ans_2">
+                                                            <img style="height: auto !important;" src="{{ asset('/assets/web/consultation/img/img1.png') }}" alt="natural" class="img-fluid">
+                                                            <strong>Neutral</strong>
+                                                            Lorem ipsum dolor sit..</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 animated zoomIn delay-medium">
+                                                    <div class="item">
+                                                        <input id="question_2_ans_3" name="question_2" type="radio" value="Unhappy" class="required">
+                                                        <label for="question_2_ans_3">
+                                                            <img style="height: auto !important;" src="{{ asset('/assets/web/consultation/img/img2.png') }}" alt="unhappy" class="img-fluid">
+                                                            <strong>Unhappy</strong>
+                                                            Lorem ipsum dolor sit..</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-4 animated zoomIn delay-fast">
-                                        <div class="item">
-                                            <input id="branch_1_answer_1" type="checkbox" name="branch_1_answers[]" value="Page SEO Checker" class="required">
-                                            <label for="branch_1_answer_1"><img src="img/seo_icon_2.svg" alt=""><strong>On Page SEO Checker</strong>Postea democritum mnesarchum ne nam, ad vim aperiri tractatos.</label>
+                            </div>
+                        </div>
+                        <!-- /step -->
+
+                        <!-- question no 3 -->
+                        <div class="step" id="question_3" data-state="branchtype">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class=" row question_title justify-content-center ">
+                                        <div class="col-lg-7 animated zoomIn delay-fast">
+                                            <h3>Do you have any allergies?</h3>
+                                            <p style="margin-bottom: 0;">
+                                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi, voluptatibus..
+                                            </p>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 animated zoomIn delay-normal">
-                                        <div class="item">
-                                            <input id="branch_1_answer_2" name="branch_1_answers[]" type="checkbox" value="Pay Per Click" class="required">
-                                            <label for="branch_1_answer_2"><img src="img/seo_icon_3.svg" alt=""><strong>Pay Per Click</strong>Postea democritum mnesarchum ne nam, ad vim aperiri tractatos.</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 animated zoomIn delay-medium">
-                                        <div class="item">
-                                            <input id="branch_1_answer_3" name="branch_1_answers[]" type="checkbox" value="Backlinks Checker" class="required">
-                                            <label for="branch_1_answer_3"><img src="img/seo_icon_4.svg" alt=""><strong>Backlinks Checker</strong>Postea democritum mnesarchum ne nam, ad vim aperiri tractatos.</label>
+
+                                    <div class="row justify-content-center">
+                                        <div class="col-lg-7 animated zoomIn delay-fast">
+                                            <div class="box_general" style="border:none;">
+                                                <div class="form-group short">
+                                                    <label for="question_3_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                        <input type="radio" id="question_3_ans_1" name="question_3" class="icheck required" value="branch_1 Yes">
+                                                        Yes, I have.
+                                                    </label>
+                                                </div>
+                                                <div class="form-group short">
+                                                    <label for="question_3_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                        <input type="radio" id="question_3_ans_2" name="question_3" class="icheck required" value="branch_2 No">
+                                                        No, I have not.
+                                                    </label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- /row-->
+                            </div>
+                        </div>
+                        <!-- /step -->
+
+                        <!-- fist branch question 4 > branch_1 ============================== -->
+                        <div class="branch" id="branch_1">
+                            <!-- question no 4 -->
+                            <div class="step">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class=" row question_title justify-content-center ">
+                                            <div class="col-lg-7 animated zoomIn delay-fast">
+                                                <h3>Please tell us more about your allergies?</h3>
+                                                <p style="margin-bottom: 0;">
+                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt, corporis.
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row justify-content-center">
+                                            <div class="col-lg-7 animated zoomIn delay-fast">
+                                                <div class="box_general" style="border:none;">
+                                                    <div class="form-group short">
+                                                        <label for="question_4_ans_1" class="fw-bold w-100">
+                                                            Describe, your allergies in details...
+                                                        </label>
+                                                        <textarea id="question_4_ans_1" name="question_4" class="form-control required" style="height:150px; margin-bottom:0; border-radius:10px; " placeholder="Typer here ..." name="cms_development_notes"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /step -->
+
+                        </div>
+                        <!-- / branch question 4 > branch_1 ============================== -->
+
+                        <!--  branch question 5 > branch_2 ============================== -->
+                        <div class="branch" id="branch_2" data-state="question_5">
+                            <!-- question no 5 -->
+                            <div class="step" id="question_5" data-state="branchtype">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class=" row question_title justify-content-center ">
+                                            <div class="col-lg-7 animated zoomIn delay-fast">
+                                                <h3>Have you had your blood pressure measured in the last 6 months?</h3>
+                                                <p style="margin-bottom: 0;">
+                                                    If you struggle with weight management, we advise to have your blood pressure checked at least every 6 months with your NHS GP.
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row justify-content-center">
+                                            <div class="col-lg-7 animated zoomIn delay-fast">
+                                                <div class="box_general" style="border:none;">
+                                                    <div class="form-group short">
+                                                        <label for="question_5_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" id="question_5_ans_1" name="question_5" class="icheck required" value="branch_3 Yes, I know the reading">
+                                                            Yes, I know the reading.
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group short">
+                                                        <label for="question_5_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" id="question_5_ans_2" name="question_5" class="icheck required" value="branch_4  Yes, But I do not know the reading">
+                                                            Yes, But I do not know the reading.
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group short">
+                                                        <label for="question_5_ans_3" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" id="question_5_ans_3" name="question_5" class="icheck required" value="branch_4 No, I have not had my blood pressure measured">
+                                                            No, I have not had my blood pressure measured.
+                                                        </label>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <!-- /step -->
                         </div>
-                        <!-- /What Type of Project > Seo-Optimization ============================== -->
+                        <!-- /branch question 5 > branch_2 ============================== -->
 
-                        <!-- Second branch Web-Development ============================== -->
-                        <div class="branch" id="Web-Development">
+                        <!--  branch question 6 > branch_3 ============================== -->
+                        <div class="branch" id="branch_3">
+                            <!-- question no 6 -->
                             <div class="step" data-state="branchtype">
-                                <div class="question_title">
-                                    <h3>What Type of Web Development do you need?</h3>
-                                    <p>Selection with Branch (Second Branch)</p>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class=" row question_title justify-content-center ">
+                                            <div class="col-lg-7 animated zoomIn delay-fast">
+                                                <h3>What was the reading / measurement of the last 6 months?</h3>
+                                                <p style="margin-bottom: 0;">
+                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, illum?
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row justify-content-center">
+                                            <div class="col-lg-7 animated zoomIn delay-fast">
+                                                <div class="box_general" style="border:none;">
+                                                    <div class="form-group short">
+                                                        <label for="question_6_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" id="question_6_ans_1" name="question_6" class="icheck required" value="branch_5 High 140/90 or above">
+                                                            High 140/90 or above
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group short">
+                                                        <label for="question_6_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" id="question_6_ans_2" name="question_6" class="icheck required" value="branch_4 Normal 90/60 to 139/89">
+                                                            Normal 90/60 to 139/89
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group short">
+                                                        <label for="question_6_ans_3" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" id="question_6_ans_3" name="question_6" class="icheck required" value="branch_4 Low 90/60 or below">
+                                                            Low 90/60 or below
+                                                        </label>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-4 animated zoomIn delay-fast">
-                                        <div class="item">
-                                            <input id="branch_2_answer_1" type="radio" name="branch_2_group_1" value="HTML-Development" class="required">
-                                            <label for="branch_2_answer_1"><img src="img/web_development_icon_2.svg" alt=""><strong>HTML Development</strong>Postea democritum mnesarchum ne nam, ad vim aperiri tractatos.</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 animated zoomIn delay-normal">
-                                        <div class="item">
-                                            <input id="branch_2_answer_2" name="branch_2_group_1" type="radio" value="CMS-Development" class="required">
-                                            <label for="branch_2_answer_2"><img src="img/web_development_icon_3.svg" alt=""><strong>CMS Development</strong>Postea democritum mnesarchum ne nam, ad vim aperiri tractatos.</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 animated zoomIn delay-medium">
-                                        <div class="item">
-                                            <input id="branch_2_answer_3" name="branch_2_group_1" type="radio" value="FrontEnd-Development" class="required">
-                                            <label for="branch_2_answer_3"><img src="img/web_development_icon_4.svg" alt=""><strong>FrontEnd Development</strong>Postea democritum mnesarchum ne nam, ad vim aperiri tractatos.</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /row-->
                             </div>
+                            <!-- /step -->
                         </div>
-                        <!-- /Second branch Web-Development ============================== -->
+                        <!-- /branch question 6 > branch_3 ============================== -->
+
+                        <!--  branch question 7 > branch_4 ============================== -->
+                        <div class="branch" id="branch_4">
+                            <!-- question no 7 -->
+                            <div class="step">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class=" row question_title justify-content-center ">
+                                            <div class="col-lg-7 animated zoomIn delay-fast">
+                                                <h3>Have you had your blood sugar measured in the last 6 months?</h3>
+                                                <p style="margin-bottom: 0;">
+                                                    We recommend all patients struggling with weight management have their blood sugar measured at least every 6 months. The reading is known as HbA1c.
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row justify-content-center">
+                                            <div class="col-lg-7 animated zoomIn delay-fast">
+                                                <div class="box_general" style="border:none;">
+                                                    <div class="form-group short">
+                                                        <label for="question_7_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" id="question_7_ans_1" name="question_7" class="icheck required" value="Yes, I know the reading">
+                                                            Yes, I know the reading.
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group short">
+                                                        <label for="question_7_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" id="question_7_ans_2" name="question_7" class="icheck required" value="Yes, But I do not know the reading">
+                                                            Yes, I do not know the reading.
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group short">
+                                                        <label for="question_7_ans_3" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" id="question_7_ans_3" name="question_7" class="icheck required" value="No, I have not had my blood sugar measured">
+                                                            No, I have not had my blood sugar measuredd.
+                                                        </label>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /step -->
+                        </div>
+                        <!-- /branch question 7 > branch_4 ============================== -->
+
+                        <!--  branch question 8 > branch_5 ============================== -->
+                        <div class="branch" id="branch_5">
+                            <!-- question no 8 -->
+                            <div class="step">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class=" row question_title justify-content-center ">
+                                            <div class="col-lg-7 animated zoomIn delay-fast">
+                                                <h3>Have you been prescribed anything to treat your high blood pressure??</h3>
+                                                <p style="margin-bottom: 0;">
+                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt, corporis.
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row justify-content-center">
+                                            <div class="col-lg-7 animated zoomIn delay-fast">
+                                                <div class="box_general" style="border:none;">
+                                                    <div class="form-group short">
+                                                        <label for="question_4_ans_1" class="fw-bold w-100">
+                                                            Describe, your here in details...
+                                                        </label>
+                                                        <textarea id="question_8_ans_1" name="question_8" class="form-control required" style="height:150px; margin-bottom:0; border-radius:10px; " placeholder="Typer here ..." ></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /step -->
+                        </div>
+                        <!-- /branch question 8 > branch_5 ============================== -->
+
+
+
+
 
                         <!-- Web-Development > HTML-Development ============================== -->
                         <div class="branch" id="HTML-Development">
@@ -416,9 +707,9 @@
                     </div>
                     <!-- /middle-wizard -->
                     <div id="bottom-wizard">
-                        <button type="button" name="backward" class="backward">Backward </button>
-                        <button type="button" name="forward" class="forward">Forward</button>
-                        <button type="submit" name="process" class="submit">Submit</button>
+                        <button type="button" name="backward" class="backward  mx-1 py-2 px-5">Backward </button>
+                        <button type="button" name="forward" class="forward mx-1 py-2  px-5">Forward</button>
+                        <button type="submit" name="process" class="submit mx-2 py-2  px-5 ">Submit</button>
                     </div>
                     <!-- /bottom-wizard -->
                 </form>
@@ -435,6 +726,7 @@
     <script src="{{ asset('/assets/web/bmi/js/menu.js') }}"></script>
     <script src="{{ asset('/assets/web/bmi/js/main.js') }}"></script>
     <script src="{{ asset('/assets/web/bmi/js/wizard_func_multiple_branch.js') }}"></script>
+
 </body>
 
 </html>
