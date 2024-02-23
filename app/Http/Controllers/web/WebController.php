@@ -27,6 +27,7 @@ use App\Models\AssignQuestion;
 use App\Models\Product;
 use App\Models\ProductAttribute;
 use App\Models\Transaction;
+use App\Models\UserBmi;
 
 class WebController extends Controller
 {
@@ -128,5 +129,33 @@ class WebController extends Controller
         }
     }
     
+
+    public function bmi_formStore(Request $request)
+    {
+        $data['user'] = auth()->user() ?? [];
+    
+        if (auth()->user()) {
+            $weight = $request->weight; 
+            $height = $request->height / 100; 
+            $bmi = $weight / ($height * $height);            
+            $bmi = round($bmi, 1);
+            $save =  UserBmi::create([
+                'user_id' => auth()->user()->id,
+                'weight' => $request->weight,
+                'height' => $request->height,
+                'age' => $request->age,
+                'gender' => $request->gender,
+                'bmi' => $bmi,
+                'status' => '1',
+                'created_by' => auth()->user()->id,
+            ]);
+    
+            if($save){
+                return redirect()->route('web.consultationForm');
+            }
+        } else {
+            return view('web.pages.regisration_from', $data);
+        }
+    }
 
 }
