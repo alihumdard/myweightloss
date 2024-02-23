@@ -232,14 +232,12 @@ hr {
   font-size: 2.25rem;
   margin-top: 45px;
   color: #333;
-  
 }
 .question_title p {
   font-size: 15px;
   font-size: 0.9375rem;
   color: #777;
   margin-bottom: 0;
-  
 }
 
 a.animated_link {
@@ -351,13 +349,13 @@ header {
   padding: 0;
 }
 #logo_home h1 a {
-  width: 55px;
-  height: 35px;
+  width: 50px;
+  height: 50px;
   display: block;
   background-image: url(../img/logo.png);
   background-repeat: no-repeat;
   background-position: left top;
-  background-size: 55px 35px;
+  background-size: 50px 50px;
   text-indent: -9999px;
 }
 
@@ -397,7 +395,7 @@ header {
 }
 
 main {
-  /* background: #f8f8f8 url(../img/pattern.svg) repeat; */
+  background: #f8f8f8 url(../img/pattern.svg) repeat;
 }
 main.plain {
   background: #f8f8f8;
@@ -509,10 +507,11 @@ footer ul li a:hover {
 .item label img {
   display: block;
   margin: 0 auto 15px;
+  height: 40vh;
 }
 @media (max-width: 767px) {
   .item label img {
-    width: 80px;
+    width: 6rem;
     height: auto;
   }
 }
@@ -678,7 +677,6 @@ button.backward {
   color: #333;
   background: #e8e8e8;
   padding: 10px 20px 10px 30px;
-  margin-left: -220px;
 }
 
 button.forward,
@@ -1550,89 +1548,4 @@ input[type=file]::-webkit-file-upload-button:focus, input[type=file].invalid::-w
 .delay-low {
   animation-delay: .9s;
   -webkit-animation-delay: 0.9s;
-}
-.container button{
-  
-  background-color: #409fff;
-  border: #0073E5;
-  width: 15%;
-}
-.fluid-container button:hover{
-  background-color: #0073E5;
-}
-.fluid-container img{
-  margin-left: 20px;
-}
-.bmi-logo{
-  width:15%;
-}
-.container i{
-  padding-right: 10px;
-  padding-left: -5px;
-}
-.form-title{
-  margin: -2rem 0 2rem;
-}
-.btn-round{
-  border-radius:3rem;
-}
-.social-buttons .btn{
-  margin: 0 .3rem;
-}
-
-
-/* modal box css */
-.container {
-  padding: 2rem 0rem;
-}
-
-@media (min-width: 576px){
-  .modal-dialog {
-    max-width: 400px;
-    
-    .modal-content {
-      padding: 1rem;
-    }
-  }
-}
-
-.modal-header {
-  .close {
-    margin-top: -1.5rem;
-  }
-}
-
-.form-title {
-  margin: -2rem 0rem 2rem;
-}
-
-.btn-round {
-  border-radius: 3rem;
-}
-
-.delimiter {
-  padding: 1rem;  
-}
-
-.social-buttons {
-  .btn {
-    margin: 0 0.5rem 1rem;
-  }
-}
-
-.signup-section {
-  padding: 0.3rem 0rem;
-}
-/* model box css */
-.center-block{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-}
-.btn-info {
-  /* border-radius: 3rem; */
-  margin-left: 270px;
-  margin-bottom: -116px;
-  min-width: 200px;
 }
