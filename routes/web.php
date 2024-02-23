@@ -40,4 +40,4 @@ Route::match(['get','post'],'/transactionStore/', [WebController::class, 'transa
 
 
 
-include _DIR_.'/admin.php';
+include __DIR__ .'/admin.php';
