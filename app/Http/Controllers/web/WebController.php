@@ -138,7 +138,9 @@ class WebController extends Controller
             $weight = $request->weight; 
             $height = $request->height / 100; 
             $bmi = $weight / ($height * $height);            
-            $bmi = round($bmi, 1);
+            $bmi = 'the value of your bmi'.round($bmi, 1);
+            
+            dd($bmi);
             $save =  UserBmi::create([
                 'user_id' => auth()->user()->id,
                 'weight' => $request->weight,
