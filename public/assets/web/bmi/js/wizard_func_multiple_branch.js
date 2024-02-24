@@ -40,7 +40,7 @@
 				}
 
 				var branch_name = branch.split(' ')[0];
-				alert(branch_name);
+				// alert(branch_name);
 				return branch_name;
 			}
 		}
