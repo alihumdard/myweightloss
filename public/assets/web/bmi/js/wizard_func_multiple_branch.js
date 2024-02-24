@@ -38,7 +38,10 @@
 				if (!branch) {
 					 $("form").valid();
 				}
-				return branch;
+
+				var branch_name = branch.split(' ')[0];
+				alert(branch_name);
+				return branch_name;
 			}
 		}
 	});
