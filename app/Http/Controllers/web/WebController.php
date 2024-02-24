@@ -138,23 +138,26 @@ class WebController extends Controller
             $weight = $request->weight; 
             $height = $request->height / 100; 
             $bmi = $weight / ($height * $height);            
-            $bmi = 'the value of your bmi'.round($bmi, 1);
-            
-            dd($bmi);
-            $save =  UserBmi::create([
-                'user_id' => auth()->user()->id,
-                'weight' => $request->weight,
-                'height' => $request->height,
-                'age' => $request->age,
-                'gender' => $request->gender,
-                'bmi' => $bmi,
-                'status' => '1',
-                'created_by' => auth()->user()->id,
-            ]);
-    
-            if($save){
-                return redirect()->route('web.consultationForm');
+            $bmi = round($bmi, 1);
+            if($bmi < 30){
+                dd('the bmi value is less then 30');
+            }else{
+                $save =  UserBmi::create([
+                    'user_id' => auth()->user()->id,
+                    'weight' => $request->weight,
+                    'height' => $request->height,
+                    'age' => $request->age,
+                    'gender' => $request->gender,
+                    'bmi' => $bmi,
+                    'status' => '1',
+                    'created_by' => auth()->user()->id,
+                ]);
+        
+                if($save){
+                    return redirect()->route('web.consultationForm');
+                }
             }
+ 
         } else {
             return view('web.pages.regisration_from', $data);
         }
