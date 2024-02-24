@@ -46,7 +46,7 @@
             </button>
             <div class="collapse navbar-collapse" id="mainNavigation">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav__item has-dropdown">
+                    <li class="nav__item">
                         <a href="{{ route('web.index') }}"  class="nav__item-link active">Home</a>
                         <!-- <ul class="dropdown-menu">
                             <li class="nav__item">
@@ -54,15 +54,15 @@
                             </li>
                         </ul> -->
                     </li>
-                    <li class="nav__item has-dropdown">
-                        <a href="{{ route('web.products') }}" data-toggle="dropdown" class="dropdown-toggle nav__item-link active">Products</a>
+                    <li class="nav__item">
+                        <a href="{{ route('web.products') }}" class="nav__item-link active">Products</a>
                         <ul class="dropdown-menu">
-                            <li class="nav__item">
+                            <!-- <li class="nav__item">
                                 <a href="{{ route('web.products') }}" class="nav__item-link">Our Products</a>
                             </li>
                             <li class="nav__item">
                                 <a href="cart.html" class="nav__item-link">Cart</a>
-                            </li>
+                            </li> -->
                         </ul>
                     </li>                   
                     <li class="nav__item ">
@@ -73,13 +73,13 @@
                         <a href="{{ route('web.contactUs') }}" class="nav__item-link">Contacts US</a>
                     </li>
                 </ul>
-                <button class="close-mobile-menu d-block d-lg-none"><i class="fas fa-times"></i></button>
+                <!-- <button class="close-mobile-menu d-block d-lg-none"><i class="fas fa-times"></i></button> -->
             </div>
             <div class="d-none d-xl-flex align-items-center position-relative ml-30">
-                <div class="miniPopup-departments-trigger">
+                <!-- <div class="miniPopup-departments-trigger">
                     <span style="cursor:pointer" class="menu-lines" id="miniPopup-departments-trigger-icon"><span></span></span>
-                </div>
-                <ul id="miniPopup-departments" class="miniPopup miniPopup-departments dropdown-menu">
+                </div> -->
+                <!-- <ul id="miniPopup-departments" class="miniPopup miniPopup-departments dropdown-menu">
                     <li class="nav__item">
                         <a href="department-single.html" class="nav__item-link">Neurology Clinic</a>
                     </li>
@@ -98,7 +98,7 @@
                     <li class="nav__item">
                         <a href="department-single.html" class="nav__item-link">Cardiac Clinic</a>
                     </li>
-                </ul>
+                </ul> -->
                 <a href="{{ route('web.regisrationFrom')}}" class="btn btn__primary btn__rounded ml-30">
                     <i class="icon-calendar"></i>
                     <span>Contsultations</span>
