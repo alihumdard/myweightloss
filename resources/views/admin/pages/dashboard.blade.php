@@ -235,26 +235,27 @@
 
                 <!-- start  my stats  -->
                 <div class="card">
+
                     <div class="card-body">
-                        <div class="link d-flex justify-content-between align-items-center">
-                            <h5 class="card-title mb-0">My Stats</h5>
-                            <span id="switchToUnit" onclick="toggleUnit()" style="cursor: pointer;" class="text-info" >Switch to Imperial</span>
+                        <div style="position: relative;">
+                            <img src="https://i.ibb.co/CmRQbgh/pen-1250615-1.png" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" class="w-70 h-auto" alt="edit" style="width: 15px; height: 15px; position: absolute; top: 100%; right: 0; margin-top:10px; cursor:pointer;">
+                        </div>
+                        <div class="link d-flex justify-content-between align-items-center mt-3">
+                            <h5 class="card-title mb-0 ">My Stats</h5>
+                            <span id="switchToUnit" onclick="toggleUnit()" style="cursor: pointer;" class="text-info">Switch to Imperial</span>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6 mb-4 d-flex">
-                                <div class="activity-item d-flex flex-column justify-content-between h-100" style="background-color: #1aa9dd;">
+                            <div class="col-md-6 mb-4">
+                                <div class="activity-item d-flex  align-items-center flex-column h-100" style="background-color: #1aa9dd;">
                                     <div class="activity-content">
-                                        <!-- Edit image positioned at the top right -->
-                                        <div class="d-flex justify-content-end">
-                                            <img src="https://i.ibb.co/NS4BmQF/graph-edit.png" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" class="w-25 h-auto mt-2" alt="edit">
-                                        </div>
+
                                         <!-- Height image centered -->
-                                        <div class="text-center mb-3">
+                                        <div class="activite-label mr-auto text-center mt-3">
                                             <img src="https://i.ibb.co/1nGzhKh/height-icon.png" class="w-50 h-auto" alt="height">
                                         </div>
                                         <!-- Content -->
-                                        <div class="text-center text-light">
+                                        <div class="text-center text-light pt-2">
                                             <h5 class="mb-0">Height</h5>
                                             <span id="heightValue">0cm</span>
                                         </div>
@@ -267,9 +268,9 @@
                                 <div class="activity-item d-flex align-items-center justify-content-center flex-column h-100 " style="background-color: #769ccd;">
                                     <div class="activite-label mr-auto text-center mt-3">
                                         <div class="activity-content d-flex align-items-center justify-content-center">
-                                            <img src="https://i.ibb.co/HGkLc5M/weight-icon.png" class="w-50 h-auto mt-3" alt="calculate">
+                                            <img src="https://i.ibb.co/HGkLc5M/weight-icon.png" class="w-50 h-auto" alt="calculate">
                                         </div>
-                                        <div class="text-center text-light mb-0 pt-3">
+                                        <div class="text-center text-light pt-2">
                                             <h5 class="mb-0">Weight</h5>
                                             <span id="weightValue">0kg</span>
                                         </div>
@@ -339,7 +340,7 @@
                                 var weightValue = (type === "weight") ? weightInput : document.getElementById("weightValue").innerText;
 
                                 // Update the displayed values
-                                document.getElementById("heightValue").innerText = heightValue ;
+                                document.getElementById("heightValue").innerText = heightValue;
                                 document.getElementById("weightValue").innerText = weightValue;
 
                                 // Check if both input fields have values
