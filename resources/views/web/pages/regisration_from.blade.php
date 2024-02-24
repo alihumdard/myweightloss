@@ -323,24 +323,22 @@
                                             <div class="form-group">
                                                 <label for="zip_code" class="label d-md-block mt-3">Zip Code</label>
                                                 <input class="form-control" type="number" name="zip_code" id="zip_code" value="" placeholder="Enter your zip code">
+                                                <p style="color: #00e5d2;" class="pt-1">* Enter valid Zip Code</p>
                                             </div>
                                         </div>
                                     </div>
-
-
-                                    <div class="mt-1">
+                                    <!-- <div class="mt-1">
                                         <p style="color: #00e5d2;">* Enter valid Zip Code</p>
-                                    </div>
-
+                                    </div> -->
                                     <label for="address" class="label d-md-block ">Address</label>
                                     <input class="form-control" type="text" name="address" id="address" value="" placeholder="enter your address">
                                     <div class="mt-1">
                                         <p style="color: #00e5d2;">* Enter address manually</p>
                                     </div>
-
                                     <div>
-                                        <button type="submit mx-auto" class="continue-btn">Continue</button>
+                                        <button type="submit" class="continue-btn mx-auto">Continue</button>
                                     </div>
+
                                 </form>
                             </div>
 
@@ -362,7 +360,7 @@
         <div class="modal-dialog modal-dialog-centered  " role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title text-center font-weight-bold" id="exampleModalLabel" style="font-family: sans-serif; letter-spacing: 2px;">LogIn</h5>
+                    <h5 class="modal-title text-center font-weight-bold" id="exampleModalLabel" style="font-family: sans-serif; letter-spacing: 2px;">LogIn</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <form class="row  needs-validation px-5" action="{{ route('web.login')}}" method="post" novalidate>
