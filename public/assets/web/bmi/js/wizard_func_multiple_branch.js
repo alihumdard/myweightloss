@@ -34,14 +34,25 @@
 	$("#wizard_container").wizard({
 		transitions: {
 			branchtype: function ($step, action) {
-				var branch = $step.find(":checked").val();
+				// var branch = $step.find(":checked").val();
+				var branch ='';
+				// Check if the current step has a radio button selected
+				var checkedRadio = $step.find(":checked");
+				if (checkedRadio.length > 0) {
+					branch = checkedRadio.attr('data-branch_id');
+				} else {
+					// If no radio button is selected, assume it's a text area
+					var textArea = $step.find("textarea");
+					branch = textArea.attr('data-branch_id');
+				}
+
 				if (!branch) {
 					 $("form").valid();
 				}
 
-				var branch_name = branch.split(' ')[0];
-				// alert(branch_name);
-				return branch_name;
+				// var branch_name = branch.split(' ')[0];
+				// alert(branch);
+				return branch;
 			}
 		}
 	});
