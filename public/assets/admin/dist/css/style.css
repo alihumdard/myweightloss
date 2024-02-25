@@ -1541,3 +1541,13 @@ h6 {
 
 
 
+/* Sanader Changes start form here */
+.form-control::placeholder{
+  color:gray !important;
+}
+
+.extra-text{
+  font-size:10px;
+  font-weight:bold;
+}
+
