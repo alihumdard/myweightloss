@@ -7526,4 +7526,31 @@ form {
   padding: 20px;
   /* max-width: 400px; */
 }
-/*end custom BMI design css Shahroz */
+
+
+
+
+/* custom design for footer shahroz */
+#shadow-host-companion{
+  padding:0px;
+}
+
+/* Overlay styles for the first section images */
+.slide-item:nth-child(1) .bg-img .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Overlay styles for the second section images */
+.slide-item:nth-child(2) .bg-img .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
