@@ -28,6 +28,7 @@ use App\Models\Product;
 use App\Models\ProductAttribute;
 use App\Models\Transaction;
 use App\Models\UserBmi;
+use App\Models\UserConsultation;
 
 class WebController extends Controller
 {
@@ -40,7 +41,7 @@ class WebController extends Controller
             $query->where('category_id', $cat_id);
         }
         $data['products'] = $query->get()->toArray();
-        
+
         $data['categories'] = Category::withCount('products')->latest('id')->get()->toArray();
 
         return view('web.pages.products', $data);
@@ -68,6 +69,44 @@ class WebController extends Controller
     {
         $data['user'] = auth()->user() ?? [];
         return view('web.pages.consultation_form', $data);
+    }
+
+    public function consultation_store(Request $request)
+    {
+        $data['user'] = auth()->user() ?? [];
+
+        if (auth()->user()) {
+            $product_id = $request->input('product_id') ?? NULL;
+            $category_id = $request->input('category_id') ?? NULL;
+
+            $questionAnswers = [];
+            foreach ($request->all() as $key => $value) {
+                $iteration = 1;
+                if ($key === '_token' || $key === 'website' || $key === 'process') {
+                    continue; // Skip unwanted keys
+                }
+
+                if ($key === 'question_3' && $value instanceof \Illuminate\Http\UploadedFile) {
+                    // Handle image upload here
+                    $imagePath = $value->store('images'); // You may need to customize the storage path
+                    $questionAnswers['question_3'] = $imagePath;
+                } elseif (strpos($key, 'question_') === 0) {
+                    $question_id = substr($key, 9); // Extract question_id from the key
+                    $questionAnswers[$question_id] = $value;
+                }
+            }
+
+            $save =  UserConsultation::create([
+                'user_id' => auth()->user()->id,
+                'question_answers' => json_encode($questionAnswers),
+                'status' => '1',
+                'created_by' => auth()->user()->id,
+            ]);
+
+            if ($save) {
+                return redirect()->route('admin.index');
+            }
+        }
     }
 
     public function regisration_from(Request $request)
@@ -99,11 +138,11 @@ class WebController extends Controller
     public function transaction_store(Request $request)
     {
         $data['user'] = auth()->user() ?? [];
-    
+
         if (auth()->user()) {
             $product_id = $request->input('product_id');
             $category_id = $request->input('category_id');
-    
+
             $questionAnswers = [];
             foreach ($request->all() as $key => $value) {
                 if (strpos($key, 'qid_') === 0) {
@@ -111,7 +150,7 @@ class WebController extends Controller
                     $questionAnswers[$question_id] = $value;
                 }
             }
-    
+
             $save =  Transaction::create([
                 'user_id' => auth()->user()->id,
                 'product_id' => $product_id,
@@ -120,28 +159,28 @@ class WebController extends Controller
                 'status' => '1',
                 'created_by' => auth()->user()->id,
             ]);
-    
-            if($save){
+
+            if ($save) {
                 return redirect()->route('web.products', ['cat_id' => $category_id]);
             }
         } else {
             return view('web.pages.regisration_from', $data);
         }
     }
-    
+
 
     public function bmi_formStore(Request $request)
     {
         $data['user'] = auth()->user() ?? [];
-    
+
         if (auth()->user()) {
-            $weight = $request->weight; 
-            $height = $request->height / 100; 
-            $bmi = $weight / ($height * $height);            
+            $weight = $request->weight;
+            $height = $request->height / 100;
+            $bmi = $weight / ($height * $height);
             $bmi = round($bmi, 1);
-            if($bmi < 30){
+            if ($bmi < 30) {
                 dd('the bmi value is less then 30');
-            }else{
+            } else {
                 $save =  UserBmi::create([
                     'user_id' => auth()->user()->id,
                     'weight' => $request->weight,
@@ -152,15 +191,13 @@ class WebController extends Controller
                     'status' => '1',
                     'created_by' => auth()->user()->id,
                 ]);
-        
-                if($save){
+
+                if ($save) {
                     return redirect()->route('web.consultationForm');
                 }
             }
- 
         } else {
             return view('web.pages.regisration_from', $data);
         }
     }
-
 }

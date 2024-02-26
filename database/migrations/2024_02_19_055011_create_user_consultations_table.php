@@ -15,12 +15,8 @@ return new class extends Migration
     {
         Schema::create('user_consultations', function (Blueprint $table) {
             $table->id();
-            $table->string('question_num');
-            $table->string('next_question');
-            $table->string('last_question');
             $table->unsignedBigInteger('user_id');
-            $table->text('question_title');
-            $table->text('question_ans');
+            $table->json('question_answers');
             $table->string('status')->default('1');
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable()->default(null);
