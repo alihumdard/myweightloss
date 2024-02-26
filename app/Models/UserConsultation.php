@@ -11,11 +11,7 @@ class UserConsultation extends Model
 
     protected $fillable = [
         'user_id',
-        'question_num',
-        'next_question',
-        'last_question',
-        'question_title',
-        'question_ans',
+        'question_answers',
         'status',
         'created_by',
         'updated_by',
