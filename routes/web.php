@@ -37,6 +37,9 @@ Route::match(['get','post'],'/cart', function(){
 Route::match(['get','post'],'/transactionStore/', [WebController::class, 'transaction_store'])->name('web.transactionStore');
 
 
+Route::match(['get','post'],'/checkout', function(){
+    return view('web.pages.checkout');
+})->name('web.checkout');
 
 
 
