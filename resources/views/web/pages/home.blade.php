@@ -5,28 +5,23 @@
 <!-- ============================
         Slider
     ============================== -->
-<section class="slider slider-centerd">
+    <section class="slider slider-centerd">
     <div class="slick-carousel m-slides-0 carousel-arrows-light carousel-dots-light" data-slick='{"slidesToShow": 1, "arrows": true, "dots": false, "speed": 700,"fade": true,"cssEase": "linear"}'>
         <div class="slide-item align-v-h">
-            <div class="bg-img"><img src="{{ asset('/assets/web/images/sliders/8.jpg') }}" alt="slide img"></div>
+            <div class="bg-img">
+                <img src="https://i.ibb.co/nrxPp49/science-sport-doctor-asking-patient-about-his-health-while-sportsman-running-cross-trainer-with-mask.jpg" alt="slide img">
+                <div class="overlay"></div>
+            </div>
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 offset-xl-2">
                         <div class="slide__content">
-                            <h2 class="slide__title color-white">Medical Supplies <br> And Equipment</h2>
-                            <p class="slide__desc color-white">The health and well-being of our patients and their health care
-                                team will
-                                always be our priority, so we follow the best practices for cleanliness.</p>
+                            <h2 class="slide__title color-white">Start the Journey to <br> Weight Loss Success!</h2>
+                            <p class="slide__desc color-white"> Take a happy journey to better health! Set habits that will promote long-term health and vitality as you start on your weight-loss journey. </p>
                             <div class="d-flex flex-wrap justify-content-center align-items-center">
                                 <a href="about-us.html" class="btn btn__white btn__rounded mr-30">
                                     <span>More About Us</span>
                                     <i class="icon-arrow-right"></i>
-                                </a>
-                                <a class="video__btn video__btn-white popup-video" href="https://www.youtube.com/watch?v=nrJtHemSPW4">
-                                    <div class="video__player">
-                                        <i class="fa fa-play"></i>
-                                    </div>
-                                    <span class="video__btn-title color-white">Watch Our Video!</span>
                                 </a>
                             </div>
                         </div>
@@ -35,25 +30,20 @@
             </div>
         </div>
         <div class="slide-item align-v-h">
-            <div class="bg-img"><img src="{{ asset('/assets/web/images/sliders/9.jpg') }}" alt="slide img"></div>
+            <div class="bg-img">
+                <img src="https://i.ibb.co/yN4y8rR/images-1.jpg" alt="slide img">
+                <div class="overlay"></div>
+            </div>
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 offset-xl-2">
                         <div class="slide__content">
-                            <h2 class="slide__title color-white">Large Selections <br> Of Medical Products</h2>
-                            <p class="slide__desc color-white">The health and well-being of our patients and their health care
-                                team will
-                                always be our priority, so we follow the best practices for cleanliness.</p>
+                            <h2 class="slide__title color-white">Start Your Journey <br> with Weight Loss!</h2>
+                            <p class="slide__desc color-white">For a happier, more energetic life, start on a transformative weight-loss journey, choosing healthier habits and reaching your fitness objectives.</p>
                             <div class="d-flex flex-wrap justify-content-center align-items-center">
                                 <a href="about-us.html" class="btn btn__white btn__rounded mr-30">
                                     <span>More About Us</span>
                                     <i class="icon-arrow-right"></i>
-                                </a>
-                                <a class="video__btn video__btn-white popup-video" href="https://www.youtube.com/watch?v=nrJtHemSPW4">
-                                    <div class="video__player">
-                                        <i class="fa fa-play"></i>
-                                    </div>
-                                    <span class="video__btn-title color-white">Watch Our Video!</span>
                                 </a>
                             </div>
                         </div>
@@ -63,6 +53,7 @@
         </div>
     </div>
 </section>
+
 <!-- ========================
        shop 
     =========================== -->
@@ -125,10 +116,7 @@
                 <div class="banner-text">
                     <div class="heading-layout2 heading-light">
                         <h2 class="heading__title">Committed To Build A Positive, Safe, Patient Focused Culture.</h2>
-                        <p class="heading__desc mb-40">Today the hospital is recognised as a world renowned institution, not
-                            only providing outstanding care and treatment, our goal is to deliver quality care in a respectful &
-                            compassionate manner. We strive to be the first and best choice for healthcare.
-                        </p>
+                        <p class="heading__desc mb-40"> Weight-loss offers access to the best weight-loss solutions available worldwide, along with a customised weight management program designed by medical professionals. Our team, trained in the newest methods of weight loss, offers online consultations to customise the best course of action for you. </p>
                     </div>
                     <ul class="list-items list-items-layout2 list-items-light list-horizontal list-unstyled mb-50">
                         <li>Fractures and dislocations</li>
@@ -139,7 +127,7 @@
                     </ul>
                     <div class="d-flex flex-wrap">
                         <a href="doctors-timetable.html" class="btn btn__white btn__rounded mr-30">
-                            <span>Find A Doctor</span> <i class="icon-arrow-right"></i>
+                            <span>Let's Start Consultation </span> <i class="icon-arrow-right"></i>
                         </a>
                         <a href="contact-us.html" class="btn btn__white btn__outlined btn__rounded">
                             Contact us
@@ -175,7 +163,7 @@
                 <div class="post-item">
                     <div class="post__img">
                         <a href="blog-single-post.html">
-                            <img src="{{ asset('/assets/web/images/blog/grid/1.jpg') }}" alt="post image" loading="lazy">
+                            <img src="{{ asset('https://i.ibb.co/Ycd4ZJx/weightloss1.jpg') }}" alt="post image" loading="lazy">
                         </a>
                     </div><!-- /.post__img -->
                     <div class="post__body">
@@ -186,11 +174,9 @@
                             <span class="post__meta-date">Jan 30, 2022</span>
                             <a class="post__meta-author" href="#">Martin King</a>
                         </div>
-                        <h4 class="post__title"><a href="#">6 Tips to Protect Your Mental Health When You’re Sick</a></h4>
+                        <h4 class="post__title"><a href="#"> Evaluation by Our Weight Loss Expert</a></h4>
 
-                        <p class="post__desc">It’s normal to feel anxiety, worry and grief any time you’re diagnosed with a
-                            condition that’s certainly true if you test positive for COVID-19, or are presumed to be positive...
-                        </p>
+                        <p class="post__desc">An experienced weight-management specialist from our team will go over your medical history and consultation.</p>
                         <a href="blog-single-post.html" class="btn btn__secondary btn__link btn__rounded">
                             <span>Read More</span>
                             <i class="icon-arrow-right"></i>
@@ -203,7 +189,7 @@
                 <div class="post-item">
                     <div class="post__img">
                         <a href="blog-single-post.html">
-                            <img src="{{ asset('/assets/web/images/blog/grid/2.jpg') }}" alt="post image" loading="lazy">
+                            <img src="{{ asset('https://i.ibb.co/dcrvkxX/close-up-doctor-measuring-patient.jpg') }}" alt="post image" loading="lazy">
                         </a>
                     </div><!-- /.post__img -->
                     <div class="post__body">
@@ -214,10 +200,8 @@
                             <span class="post__meta-date">Jan 30, 2022</span>
                             <a class="post__meta-author" href="#">John Ezak</a>
                         </div>
-                        <h4 class="post__title"><a href="#">Unsure About Wearing a Face Mask? Here’s How and Why</a></h4>
-                        <p class="post__desc">That means that you should still be following any shelter-in-place orders in your
-                            community. But when you’re venturing out to the grocery store, pharmacy or hospital..
-                        </p>
+                        <h4 class="post__title"><a href="#">Get an Online Weight-loss Consultation</a></h4>
+                        <p class="post__desc">Participate in an online weight-loss consultation to stay connected with our healthcare team and address any queries or concerns. </p>
                         <a href="blog-single-post.html" class="btn btn__secondary btn__link btn__rounded">
                             <span>Read More</span>
                             <i class="icon-arrow-right"></i>
@@ -230,7 +214,7 @@
                 <div class="post-item">
                     <div class="post__img">
                         <a href="blog-single-post.html">
-                            <img src="{{ asset('/assets/web/images/blog/grid/3.jpg') }}" alt="post image" loading="lazy">
+                            <img src="{{ asset('https://i.ibb.co/yX8sgNp/2148256175.jpg') }}" alt="post image" loading="lazy">
                         </a>
                     </div><!-- /.post__img -->
                     <div class="post__body">
@@ -241,11 +225,8 @@
                             <span class="post__meta-date">Jan 28, 2022</span>
                             <a class="post__meta-author" href="#">Saul Wade</a>
                         </div>
-                        <h4 class="post__title"><a href="#">Tips for Eating Healthy When You’re Working From Home </a></h4>
-
-                        <p class="post__desc">It’s normal to feel anxiety, worry and grief any time you’re diagnosed with a
-                            condition that’s certainly true if you test positive for COVID-19, or are presumed to be positive...
-                        </p>
+                        <h4 class="post__title"><a href="#">Ongoing Patient Care​ </a></h4>
+                        <p class="post__desc">When your monthly treatment plan is about to expire, log into your dashboard to access the consultation for returning patients.  </p>
                         <a href="blog-single-post.html" class="btn btn__secondary btn__link btn__rounded">
                             <span>Read More</span>
                             <i class="icon-arrow-right"></i>
