@@ -139,70 +139,231 @@
     </div><!-- End Page Title -->
 
     <section class="product-sec">
-        <form class="row g-3 mt-3 needs-validation" id="product_detail_from" method="post" action="{{ route('admin.storeProduct') }}" novalidate enctype="multipart/form-data">
+        <form class=" g-3 mt-3 needs-validation" id="product_detail_from" method="post" action="{{ route('admin.storeProduct') }}" novalidate enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="id" value="{{  $product['id'] ?? '' }}">
             <div class="row gy-4">
-                <div class=" col-md-6">
-                    <div class="row">
-
-                        <div class="col-sm-12  col-md-12">
-                            <label class="form-label">Extra Images</label>
-                            <div class="upload__box">
-                                <div class="upload__btn-box">
-                                    <div class="upload__img-wrap">
-                                        <label class="upload__btn" id="uploadbtn" for="product_images">
-                                            <p>+</p>
-                                            <input type="file" multiple data-max_length="5" id="product_images" name="images[]" class="upload__inputfile">
-                                        </label>
-                                    </div>
-                                </div>
+                <div class=" col-md-6 extra-images">
+                    <label class="form-label">Extra Images</label>
+                    <div class="upload__box">
+                        <div class="upload__btn-box">
+                            <div class="upload__img-wrap">
+                                <label class="upload__btn" id="uploadbtn" for="product_images">
+                                    <p>+</p>
+                                    <input type="file" multiple data-max_length="5" id="product_images" name="images[]" class="upload__inputfile">
+                                </label>
                             </div>
-                            <!-- <div class="invalid-feedback">Please select product image!</div> -->
-                            @error('images')
+                        </div>
+                    </div>
+                    <div class="invalid-feedback">Please select product image!</div>
+                    @error('images')
+                    <div class="alert-danger text-danger ">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="col-md-6 text-and-gallery-images">
+                    <div class="row">
+                        <div class="col-12">
+                            <label class="form-label">Product Title</label>
+                            <input class="form-control me-2" type="text" name="title" id="pro_id" value="{{  $product['title'] ?? old('title') }}" placeholder="Product Title" aria-label="Search" required>
+                            <div class="invalid-feedback">Please write product title!</div>
+                            @error('title')
                             <div class="alert-danger text-danger ">{{ $message }}</div>
                             @enderror
                         </div>
+                        <div class="col-12 mt-2 produt-main-image">
+                            <label for="product_main_image" class="form-label">Upload Main Image</label>
+                            <input type="file" class="form-control" id="product_main_image" name="main_image" value="{{ ($product['main_image'] ?? NULL) ? 'required' : '' }}" onchange="previewMainImage(this)">
+                            @php
+                            $path = $product['main_image'] ?? '';
+                            @endphp
+                            <img id="mainImage_preview" src="{{ asset('storage/'.$path) ?? '' }}" class="rounded-circle mt-1 ms-auto d-block" alt="no image" style="width: 45px; height: 45px">
+                            <div class="invalid-feedback">* Upload product main Image!</div>
+                        </div>
+                        <div class="col-12 select-product-category">
+                            <label for="category_id" class="form-label">Select Product Category</label>
+                            <select id="category_id" name="category_id" class="form-select" required>
+                                <option value="" selected>Choose...</option>
+                                @foreach ($categories as $key => $value)
+                                <option value="{{ $value['id'] ?? '' }}" {{ ($product['category_id'] ?? NULL == $value['id'] ) ? 'selected' : '' }}>{{ $value['name'] ?? '' }}</option>
+                                @endforeach
+                            </select>
+                            <div class="invalid-feedback">* Please select product category</div>
+                        </div>
+                        <div class="mt-2">
+                            <div class="col-md-12">
+                                <label for="ext_tax" class="col-form-label">Extra Tax <span class="extra-text">(Optional)</span>:</label>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="text" name="ext_tax" value="{{  $product['ext_tax'] ?? old('ext_tax') }}" class="form-control me-2" required>
+
+                                <div class="invalid-feedback">Enter extra tax!</div>
+                                @error('ext_tax')
+                                <div class="alert-danger text-danger ">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-6 ">
-                    <div class="col-12 ">
-                        <label for="category_id" class="form-label">Select Product Category</label>
-                        <select id="category_id" name="category_id" class="form-select" required>
-                            <option value="" selected>Choose...</option>
-                            @foreach ($categories as $key => $value)
-                            <option value="{{ $value['id'] ?? '' }}" {{ ($product['category_id'] ?? NULL == $value['id'] ) ? 'selected' : '' }}>{{ $value['name'] ?? '' }}</option>
-                            @endforeach
-                        </select>
-                        <div class="invalid-feedback">* Please select product category</div>
+
+            </div>
+
+            <div class="row mb-5">
+                <div class="form-floating col-12  mt-3">
+                    <textarea class="form-control tinymce-editor" name="desc" id="pro_desc" height="500px" cols="8" rows="50" placeholder="Product Description" required=''>{{$product['desc'] ?? ''}}</textarea>
+                    <div class="invalid-feedback">Please write product desc!</div>
+                    @error('desc')
+                    <div class="alert-danger text-danger ">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="container-fluid m-0 ">
+                <div class="variants-div">
+                    <h4>Product Details</h4>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-sm-12">
+                        <div class="card p-2">
+                            <label for="" class="form-label">Product Price <span class="extra-text">(Price in UK Pound)</span></label>
+                            <input type="text" class="form-control" id="">
+                        </div>
                     </div>
-                    <div class="col-12 mt-1">
-                        <label for="product_main_image" class="form-label">Upload Main Image</label>
-                        <input type="file" class="form-control" id="product_main_image" name="main_image" value="{{ ($product['main_image'] ?? NULL) ? 'required' : '' }}" onchange="previewMainImage(this)">
-                        @php
-                        $path = $product['main_image'] ?? '';
-                        @endphp
-                        <img id="mainImage_preview" 
-                        src="{{ asset('storage/'.$path) ?? '' }}"
-                         class="rounded-circle mt-1 ms-auto d-block" alt="no image" style="width: 45px; height: 45px">
-                        <div class="invalid-feedback">* Upload product main Image!</div>
+                    <div class="col-md-3 col-sm-12">
+                        <div class="card p-2">
+                            <label for="" class="form-label">Variant Name <span class="extra-text">(optional)</span></label>
+                            <input type="text" class="form-control" id="">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 product-md">
+                        <div class="card p-2">
+                            <label for="" class="form-label">Variant Value <span class="extra-text">(optional)</span></label>
+                            <input type="text" class="form-control" id="">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 ">
+                        <div class="card p-2">
+                            <label for="" class="form-label">Inventory <span class="extra-text">(Available Stock)</span></label>
+                            <input type="text" class="form-control" id="">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-sm-12">
+                        <div class="card p-2">
+                            <label for="" class="form-label">Barcode <span class="extra-text">(ISBN, UPC, GTIN, etc.)</span></label>
+                            <input type="text" class="form-control" id="">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <div class="card p-2">
+                            <label for="" class="form-label">SKU <span class="extra-text">(Stock Keeping Unit)</span></label>
+                            <input type="text" class="form-control" id="">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 ">
+                        <div class="card p-2">
+                            <label for="inputNumber" class=" col-form-label">File choose</label>
+                            <input class="form-control" type="file" id="formFile">
+                        </div>
                     </div>
 
-                    <div class="col-12 mt-3">
-                        <input class="form-control me-2" type="text" name="title" id="pro_id" value="{{  $product['title'] ?? old('title') }}" placeholder="product title" aria-label="Search" required>
-                        <div class="invalid-feedback">Please write product title!</div>
-                        @error('title')
-                        <div class="alert-danger text-danger ">{{ $message }}</div>
-                        @enderror
+                    <div class="col-md-3 col-sm-12 product-md">
+                        <div class="card p-2">
+                            <button type="button" class="btn btn-success">Add Details</button>
+                        </div>
                     </div>
-                    <div class="form-floating col-12  mt-3">
-                        <textarea class="form-control h-50" name="desc" id="pro_desc" cols="10" rows="10" placeholder="product Description" required=''>{{$product['desc'] ?? ''}}</textarea>
-                        <div class="invalid-feedback">Please write product desc!</div>
-                        @error('desc')
-                        <div class="alert-danger text-danger ">{{ $message }}</div>
-                        @enderror
-                        <label for="pro_desc">product Description</label>
+                </div>
+                <div class="table-responsive">
+                    <table id="tbl_data" class="table table-bordered table-striped dataTable no-footer dtr-inline table-responsive" aria-describedby="tbl_data_info" data-scroll-x="true">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th class="sorting sorting_asc" tabindex="0" aria-controls="tbl_data" rowspan="1" colspan="1" aria-sort="ascending" aria-label="#: activate to sort column descending">Price</th>
+                                <th class="sorting" tabindex="0" aria-controls="tbl_data" rowspan="1" colspan="1" aria-label="Details: activate to sort column ascending">Variant Name</th>
+                                <th class="sorting" tabindex="0" aria-controls="tbl_data" rowspan="1" colspan="1" aria-label="Price - Ext_Tax : activate to sort column ascending">Variant Value</th>
+                                <th class="sorting" tabindex="0" aria-controls="tbl_data" rowspan="1" colspan="1" aria-label="Stock - Quantity: activate to sort column ascending">Inventory</th>
+                                <th class="sorting" tabindex="0" aria-controls="tbl_data" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending">Barcode</th>
+                                <th class="sorting" tabindex="0" aria-controls="tbl_data" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">SKU </th>
+                                <th class="sorting" tabindex="0" aria-controls="tbl_data" rowspan="1" colspan="1" aria-label="Actions: activate to sort column ascending">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="odd">
+                                <td valign="top" colspan="7" class="dataTables_empty">No data available in table</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+
+
+            <div style="display:none;">
+                <!-- commit for backend developer please check your detailes -->
+                <div class="row mt-5 pt-5">
+                    <div class="row mt-2 Product-details mt-5 pt-5">
+                        <div class="col-md-6">
+                            <div class="variants-div">
+                                <h4>Product Variants</h4>
+                                <h6>Variants Name</h6>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-2">
+                                        <label for="price" class="col-form-label">Price</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="col-md-12">
+                                        <input type="number" name="price" id="price" value="{{  $product['price'] ?? old('price') }}" class="form-control" required>
+                                        <div class="invalid-feedback">Enter product price!</div>
+                                        @error('price')
+                                        <div class="alert-danger text-danger ">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="qty" class="col-form-label">Qty</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input type="text" id="qty" name="qty" value="{{  $product['qty'] ?? old('qty') }}" class="form-control" required>
+                                        <div class="invalid-feedback">Enter product Qty!</div>
+                                        @error('qty')
+                                        <div class="alert-danger text-danger ">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-2">
+                                        <label for="stock" class="col-form-label">Stock</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="number" name="stock" id="stock" value="{{  $product['stock'] ?? old('stock') }}" class="form-control" required>
+                                        <div class="invalid-feedback">Enter avialable stock!</div>
+                                        @error('stock')
+                                        <div class="alert-danger text-danger ">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="cnn" class="col-form-label">Barcode (ISBN, UPC, GTIN, etc.)</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="number" name="cnn" id="cnn" value="{{  $product['cnn'] ?? old('cnn') }}" class="form-control" required>
+                                        <div class="invalid-feedback">Enter GTIN number!</div>
+                                        @error('cnn')
+                                        <div class="alert-danger text-danger ">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
+                </div>
+
+                <div class="col-md-6 ">
 
                     <hr>
                     <!--colors-section start-->
@@ -241,7 +402,7 @@
                                 @enderror
                             </div>
                             <div class="col-md-2">
-                                <label for="cnn" class="col-form-label">Cnn No</label>
+                                <label for="cnn" class="col-form-label">GTN</label>
                             </div>
                             <div class="col-md-4">
                                 <input type="number" name="cnn" id="cnn" value="{{  $product['cnn'] ?? old('cnn') }}" class="form-control" required>
@@ -251,18 +412,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="row mt-2">
-                            <div class="col-md-2">
-                                <label for="ext_tax" class="col-form-label">Ex Tax:</label>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" name="ext_tax" id="ext_tax" value="{{  $product['ext_tax'] ?? old('ext_tax') }}" class="form-control" required>
-                                <div class="invalid-feedback">Enter extra tax!</div>
-                                @error('ext_tax')
-                                <div class="alert-danger text-danger ">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
+
                     </div>
 
                     <div class="product-btns mt-4">
@@ -271,7 +421,11 @@
                     </div>
                 </div>
             </div>
-        </form>
+
+
+
+        </div>
+    </form>
     </section>
 
 </main>
