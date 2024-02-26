@@ -150,7 +150,7 @@
                             <div class="upload__img-wrap">
                                 <label class="upload__btn" id="uploadbtn" for="product_images">
                                     <p>+</p>
-                                    <input type="file" multiple data-max_length="5" id="product_images" name="images[]" class="upload__inputfile">
+                                    <input type="file" multiple data-max_length="5" id="product_images" name="images" class="upload__inputfile">
                                 </label>
                             </div>
                         </div>
@@ -206,7 +206,44 @@
                 </div>
 
             </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-2">
+                        <label for="price" class="col-form-label">Price</label>
+                    </div>
+                    <input type="number" name="price" id="price" value="{{  $product['price'] ?? old('price') }}" class="form-control" required>
+                    <div class="invalid-feedback">Enter product price!</div>
+                    @error('price')
+                    <div class="alert-danger text-danger ">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="col-md-6">
+                    <label for="qty" class="col-form-label">Qty</label>
 
+                    <input type="text" id="qty" name="qty" value="{{  $product['qty'] ?? old('qty') }}" class="form-control" required>
+                    <div class="invalid-feedback">Enter product Qty!</div>
+                    @error('qty')
+                    <div class="alert-danger text-danger ">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="col-md-6">
+                    <label for="stock" class="col-form-label">Stock</label>
+                    <input type="number" name="stock" id="stock" value="{{  $product['stock'] ?? old('stock') }}" class="form-control" required>
+                    <div class="invalid-feedback">Enter avialable stock!</div>
+                    @error('stock')
+                    <div class="alert-danger text-danger ">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="col-md-6">
+                    <label for="cnn" class="form-label">Barcode (ISBN, UPC, GTIN, etc.)</label>
+                    <input type="number" name="cnn" id="cnn" value="{{  $product['cnn'] ?? old('cnn') }}" class="form-control" required>
+                    <div class="invalid-feedback">Enter GTIN number!</div>
+                    @error('cnn')
+                    <div class="alert-danger text-danger ">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            </div>
             <div class="row mb-5">
                 <div class="form-floating col-12  mt-3">
                     <textarea class="form-control tinymce-editor" name="desc" id="pro_desc" height="500px" cols="8" rows="50" placeholder="Product Description" required=''>{{$product['desc'] ?? ''}}</textarea>
@@ -218,58 +255,65 @@
             </div>
 
             <div class="container-fluid m-0 ">
-                <div class="variants-div">
-                    <h4>Product Details</h4>
-                </div>
-                <div class="row">
-                    <div class="col-md-3 col-sm-12">
-                        <div class="card p-2">
-                            <label for="" class="form-label">Product Price <span class="extra-text">(Price in UK Pound)</span></label>
-                            <input type="text" class="form-control" id="">
-                        </div>
+                <div class="d-flex justify-content-between col-md-12">
+                    <div class="variants-div">
+                        <h4>Product Variants</h4>
                     </div>
-                    <div class="col-md-3 col-sm-12">
-                        <div class="card p-2">
-                            <label for="" class="form-label">Variant Name <span class="extra-text">(optional)</span></label>
-                            <input type="text" class="form-control" id="">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-12 product-md">
-                        <div class="card p-2">
-                            <label for="" class="form-label">Variant Value <span class="extra-text">(optional)</span></label>
-                            <input type="text" class="form-control" id="">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-12 ">
-                        <div class="card p-2">
-                            <label for="" class="form-label">Inventory <span class="extra-text">(Available Stock)</span></label>
-                            <input type="text" class="form-control" id="">
+                    <div class=" float-end mb-2">
+                        <div class="p-2">
+                        <button type=" button" id="add_new_row" class="btn btn-success"><i class="fa fa-plus"></i> Add</button>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-3 col-sm-12">
-                        <div class="card p-2">
-                            <label for="" class="form-label">Barcode <span class="extra-text">(ISBN, UPC, GTIN, etc.)</span></label>
-                            <input type="text" class="form-control" id="">
+                <div class="card p-4" id="variant_row">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-12">
+                            <div class="p-2">
+                                <label for="" class="form-label">Product Price <span class="extra-text">(Price in UK Pound)</span></label>
+                                <input type="text" class="form-control" name="price[]" id="">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-3 col-sm-12">
-                        <div class="card p-2">
-                            <label for="" class="form-label">SKU <span class="extra-text">(Stock Keeping Unit)</span></label>
-                            <input type="text" class="form-control" id="">
+                        <div class="col-md-3 col-sm-12">
+                            <div class="p-2">
+                                <label for="" class="form-label">Variant Name <span class="extra-text">(optional)</span></label>
+                                <input type="text" class="form-control" name="name[]" id="">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-3 col-sm-12 ">
-                        <div class="card p-2">
-                            <label for="inputNumber" class=" col-form-label">File choose</label>
-                            <input class="form-control" type="file" id="formFile">
+                        <div class="col-md-3 col-sm-12 product-md">
+                            <div class="p-2">
+                                <label for="" class="form-label">Variant Value <span class="extra-text">(optional)</span></label>
+                                <input type="text" class="form-control" name="value[]" id="">
+                            </div>
                         </div>
-                    </div>
+                        <div class="col-md-3 col-sm-12 ">
+                            <div class="p-2">
+                                <label for="" class="form-label">Inventory <span class="extra-text">(Available Stock)</span></label>
+                                <input type="text" class="form-control" name="inventory[]" id="">
+                            </div>
+                        </div>
 
-                    <div class="col-md-3 col-sm-12 product-md">
-                        <div class="card p-2">
-                            <button type="button" class="btn btn-success">Add Details</button>
+                        <div class="col-md-3 col-sm-12">
+                            <div class="p-2">
+                                <label for="" class="form-label">Barcode <span class="extra-text">(ISBN, UPC, GTIN, etc.)</span></label>
+                                <input type="text" class="form-control" name="barcode[]" id="">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <div class="p-2">
+                                <label for="" class="form-label">SKU <span class="extra-text">(Stock Keeping Unit)</span></label>
+                                <input type="text" class="form-control" name="sku[]" id="">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-12 ">
+                            <div class="p-2">
+                                <label for="inputNumber" class="form-label">Select Image</label>
+                                <input class="form-control" name="attr_image[]" type="file" id="formFile">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-12 mt-4">
+                            <div class="p-2 ">
+                                <button type="button" id="" class="btn btn-danger"><i class="fa fa-minus"></i> Remove</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -295,137 +339,13 @@
                     </table>
                 </div>
             </div>
-
-
-
-            <div style="display:none;">
-                <!-- commit for backend developer please check your detailes -->
-                <div class="row mt-5 pt-5">
-                    <div class="row mt-2 Product-details mt-5 pt-5">
-                        <div class="col-md-6">
-                            <div class="variants-div">
-                                <h4>Product Variants</h4>
-                                <h6>Variants Name</h6>
-
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="col-md-2">
-                                        <label for="price" class="col-form-label">Price</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="col-md-12">
-                                        <input type="number" name="price" id="price" value="{{  $product['price'] ?? old('price') }}" class="form-control" required>
-                                        <div class="invalid-feedback">Enter product price!</div>
-                                        @error('price')
-                                        <div class="alert-danger text-danger ">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="col-md-12">
-                                        <label for="qty" class="col-form-label">Qty</label>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <input type="text" id="qty" name="qty" value="{{  $product['qty'] ?? old('qty') }}" class="form-control" required>
-                                        <div class="invalid-feedback">Enter product Qty!</div>
-                                        @error('qty')
-                                        <div class="alert-danger text-danger ">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="row mt-2">
-                                    <div class="col-md-2">
-                                        <label for="stock" class="col-form-label">Stock</label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <input type="number" name="stock" id="stock" value="{{  $product['stock'] ?? old('stock') }}" class="form-control" required>
-                                        <div class="invalid-feedback">Enter avialable stock!</div>
-                                        @error('stock')
-                                        <div class="alert-danger text-danger ">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label for="cnn" class="col-form-label">Barcode (ISBN, UPC, GTIN, etc.)</label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <input type="number" name="cnn" id="cnn" value="{{  $product['cnn'] ?? old('cnn') }}" class="form-control" required>
-                                        <div class="invalid-feedback">Enter GTIN number!</div>
-                                        @error('cnn')
-                                        <div class="alert-danger text-danger ">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 ">
-
-                    <hr>
-                    <!--colors-section start-->
-                    <div class="pricing mt-3">
-                        <div class="row gy-2">
-                            <div class="col-md-2">
-                                <label for="price" class="col-form-label">Price</label>
-                            </div>
-                            <div class="col-md-4">
-                                <input type="number" name="price" id="price" value="{{  $product['price'] ?? old('price') }}" class="form-control" required>
-                                <div class="invalid-feedback">Enter product price!</div>
-                                @error('price')
-                                <div class="alert-danger text-danger ">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-md-2">
-                                <label for="qty" class="col-form-label">Qty</label>
-                            </div>
-                            <div class="col-md-4">
-                                <input type="text" id="qty" name="qty" value="{{  $product['qty'] ?? old('qty') }}" class="form-control" required>
-                                <div class="invalid-feedback">Enter product Qty!</div>
-                                @error('qty')
-                                <div class="alert-danger text-danger ">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-md-2">
-                                <label for="stock" class="col-form-label">Stock</label>
-                            </div>
-                            <div class="col-md-4">
-                                <input type="number" name="stock" id="stock" value="{{  $product['stock'] ?? old('stock') }}" class="form-control" required>
-                                <div class="invalid-feedback">Enter avialable stock!</div>
-                                @error('stock')
-                                <div class="alert-danger text-danger ">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-md-2">
-                                <label for="cnn" class="col-form-label">GTN</label>
-                            </div>
-                            <div class="col-md-4">
-                                <input type="number" name="cnn" id="cnn" value="{{  $product['cnn'] ?? old('cnn') }}" class="form-control" required>
-                                <div class="invalid-feedback">Enter cnn number!</div>
-                                @error('cnn')
-                                <div class="alert-danger text-danger ">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="product-btns mt-4">
-                        <button>Cancel</button> &nbsp;
-                        <button>Submit</button>
-                    </div>
-                </div>
+            <div class="product-btns mt-4">
+                <button>Cancel</button> &nbsp;
+                <button>Submit</button>
             </div>
 
-
-
-        </div>
-    </form>
+            </div>
+        </form>
     </section>
 
 </main>
@@ -440,6 +360,8 @@
     });
 
     var imgArray = [];
+
+
 
     function ImgUpload() {
         var imgWrap = $('.upload__img-wrap');
@@ -488,7 +410,7 @@
 
             // Append images to the FormData object
             for (var i = 0; i < imgArray.length; i++) {
-                formData.append('images[]', imgArray[i]);
+                formData.append('images', imgArray[i]);
             }
 
             // Append other form data
@@ -541,6 +463,7 @@
 
     }
 
+
     function previewMainImage(input) {
         var preview = $('#mainImage_preview');
         var file = input.files[0];
@@ -554,5 +477,71 @@
             reader.readAsDataURL(file);
         }
     }
+
+
+
+
+    // new row add 
+
+    var new_row = `<div class="row">
+                        <div class="col-md-3 col-sm-12">
+                            <div class="p-2">
+                                <label for="" class="form-label">Product Price <span class="extra-text">(Price in UK Pound)</span></label>
+                                <input type="text" class="form-control" name="price[]" id="">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <div class="p-2">
+                                <label for="" class="form-label">Variant Name <span class="extra-text">(optional)</span></label>
+                                <input type="text" class="form-control" name="name[]" id="">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-12 product-md">
+                            <div class="p-2">
+                                <label for="" class="form-label">Variant Value <span class="extra-text">(optional)</span></label>
+                                <input type="text" class="form-control" name="value[]" id="">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-12 ">
+                            <div class="p-2">
+                                <label for="" class="form-label">Inventory <span class="extra-text">(Available Stock)</span></label>
+                                <input type="text" class="form-control" name="inventory[]" id="">
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-12">
+                            <div class="p-2">
+                                <label for="" class="form-label">Barcode <span class="extra-text">(ISBN, UPC, GTIN, etc.)</span></label>
+                                <input type="text" class="form-control" name="barcode[]" id="">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <div class="p-2">
+                                <label for="" class="form-label">SKU <span class="extra-text">(Stock Keeping Unit)</span></label>
+                                <input type="text" class="form-control" name="sku[]" id="">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-12 ">
+                            <div class="p-2">
+                                <label for="inputNumber" class="form-label">Select Image</label>
+                                <input class="form-control" name="attr_image[]" type="file" id="">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-12 mt-4">
+                            <div class="p-2 ">
+                                <button type="button" class="btn remove_row btn-danger"><i class="fa fa-minus"></i> Remove</button>
+                            </div>
+                        </div>
+                    </div>`;
+
+    $('#add_new_row').on('click', function() {
+        $('#variant_row').append(new_row);
+    });
+
+    $(document).on('click', '.remove_row', function() {
+        $(this).closest('.row').fadeOut('slow', function() {
+            $(this).remove();
+        });
+    });
 </script>
 @endPushOnce

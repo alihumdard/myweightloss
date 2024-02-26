@@ -13,13 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_consultations', function (Blueprint $table) {
+        Schema::create('product_variants', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->json('question_answers');
-            $table->string('status')->default('1');
-            $table->unsignedBigInteger('created_by')->nullable();
-            $table->unsignedBigInteger('updated_by')->nullable()->default(null);
+            $table->bigInteger('product_id');
+            $table->string('name')->nullable();
+            $table->string('price')->nullable();
+            $table->string('value')->nullable();
+            $table->string('barcode')->nullable();
+            $table->string('sku')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_consultations');
+        Schema::dropIfExists('product_variants');
     }
 };

@@ -53,7 +53,7 @@
                         <span class="product__price mb-20">$ {{ $product['price'] ?? ''}}</span>
                         <div class="product__desc">
                             <p>
-                                {{ $product['desc'] ?? ''}}
+                            {!! $product['desc'] ?? ''!!}
                             </p>
                         </div><!-- /.product-desc -->
                         <div class="product__quantity d-flex mb-30">
@@ -73,10 +73,10 @@
                                 <li>
                                     <div class="nice-select" tabindex="0"><span class="current">Sort by latest</span>
                                         <ul class="list">
-                                            <li data-value="0" class="option selected focus">Select Type</li>
-                                            <li data-value="1" class="option">250MG</li>
-                                            <li data-value="2" class="option">500GM</li>
-                                            <li data-value="3" class="option">1000GM</li>
+                                            <li data-value="0" class="option selected focus">Select Value</li>
+                                             @foreach($product['variants'] as $vrr)
+                                             <li data-value="{{ $vrr['value'] }}" class="option selected focus">{{$vrr['value'] }}</li>
+                                             @endforeach
                                         </ul>
                                     </div>
                                 </li>

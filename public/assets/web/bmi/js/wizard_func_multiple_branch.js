@@ -1,13 +1,7 @@
 	/*  Wizard */
 	jQuery(function ($) {
 		"use strict";
-		// Chose here which method to send the email, available:
-		// Simple phpmail text/plain > form_send_multiple_branch.php (default)
-		// PHPMailer text/html > phpmailer/multiple_branch_phpmailer.php
-		// PHPMailer text/html SMTP > phpmailer/multiple_branch_phpmailer_smtp.php
-		// PHPMailer with html template > phpmailer/multiple_branch_phpmailer_template.php
-		// PHPMailer with html template SMTP> phpmailer/multiple_branch_phpmailer_template_smtp.php
-		$('form#wrapped').attr('action', 'form_send_multiple_branch.php');
+		
 		$("#wizard_container").wizard({
 			stepsWrapper: "#wrapped",
 			submit: ".submit",
@@ -51,7 +45,10 @@
 				}
 
 				// var branch_name = branch.split(' ')[0];
-				// alert(branch);
+				if(branch == 'no_branch'){
+					alert('Please choose an other option. You can not procceed futher with that option.');
+				}
+				
 				return branch;
 			}
 		}

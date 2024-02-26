@@ -126,7 +126,8 @@
     <main>
         <div class="container">
             <div id="wizard_container">
-                <form name="example-1" id="wrapped" method="POST">
+                <form name="example-1" id="wrapped" method="POST" action="{{ route('web.consultationStore') }}" enctype="multipart/form-data">
+                    @csrf
                     <input id="website" name="website" type="text" value="">
                     <div id="middle-wizard">
 
@@ -276,7 +277,7 @@
                             <!-- /step -->
 
                             <!-- question  3 -->
-                            <div class="step" id="question_3" data-state="question_4">
+                            <div class="step" id="question_4" data-state="question_5">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class=" row question_title justify-content-center ">
@@ -310,7 +311,7 @@
                             <!-- /step -->
 
                             <!-- question 4 -->
-                            <div class="step" id="question_4" data-state="branchtype">
+                            <div class="step" id="question_5" data-state="branchtype">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class=" row question_title justify-content-center ">
@@ -808,31 +809,33 @@
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Do any of the following apply to you?</h3>
                                                 <p style="margin-bottom: 0;">
-                                                    <img src="{{ asset('/assets/web/consultation/img/c4u-bullet.png') }}" alt="" style="width: 15px;vertical-align: bottom;margin-right: 5px;margin-top: 10px;margin-bottom: 15px;">
-                                                <p class="paragraph">Taking levothyroxine, liothyronine or any other thyroid<br>hormone.</p>
-                                                <br>
-                                                <img src="{{ asset('/assets/web/consultation/img/c4u-bullet.png') }}" alt="" style="width: 15px;vertical-align: bottom;margin-right: 5px;margin-top: 10px;margin-bottom: 15px;">
-                                                <p class="paragraph">Taking carbimazole, propylthiouracil or any other anti-thyroid medication.</p>
-                                                <br>
-                                                <img src="{{ asset('/assets/web/consultation/img/c4u-bullet.png') }}" alt="" style="width: 15px;vertical-align: bottom;margin-right: 5px;margin-top: 10px;margin-bottom: 15px;">
-                                                <p class="paragraph">Have a diagnosis of thyroid disease including an under or<br>over-active thyroid gland, Hashimotos or Grave's disease.</p>
-                                                <br>
+                                                <div class="d-flex">
+                                                    <img src="{{ asset('/assets/web/consultation/img/c4u-bullet.png') }}" alt="" style="width: 15px;vertical-align: bottom;margin-right: 5px;margin-top: 3px;margin-bottom: 15px;">
+                                                    <p class="paragraph">Taking levothyroxine, liothyronine or any other thyroid hormone.</p>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <img src="{{ asset('/assets/web/consultation/img/c4u-bullet.png') }}" alt="" style="width: 15px;vertical-align: bottom;margin-right: 5px;margin-top: 3px;margin-bottom: 15px;">
+                                                    <p class="paragraph">Taking carbimazole, propylthiouracil or any other anti-thyroid medication.</p>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <img src="{{ asset('/assets/web/consultation/img/c4u-bullet.png') }}" alt="" style="width: 15px;vertical-align: bottom;margin-right: 5px;margin-top: 3px;margin-bottom: 15px;">
+                                                    <p class="paragraph">Have a diagnosis of thyroid disease including an under or over-active thyroid gland, Hashimotos or Grave's disease.</p>
+                                                </div>
                                                 </p>
                                             </div>
                                         </div>
-
                                         <div class="row justify-content-center">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
                                                         <label for="question_16_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_14" id="question_161" name="question_16" class="icheck required" value="Yes, I have apply.">
+                                                            <input type="radio" data-branch_id="branch_14" id="question_16_ans_1" name="question_16" class="icheck required" value="Yes, I have apply.">
                                                             Yes, I have apply.
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
                                                         <label for="question_16_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_15" id="question_16__2" name="question_16" class="icheck required" value="No">
+                                                            <input type="radio" data-branch_id="branch_L_1" id="question_16_ans_2" name="question_16" class="icheck required" value="No">
                                                             No, I don't.
                                                         </label>
                                                     </div>
@@ -867,13 +870,13 @@
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
                                                         <label for="question_17_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_" id="question_17_ans_1" name="question_17" class="icheck required" value="Yes">
+                                                            <input type="radio" data-branch_id="branch_L_1" id="question_17_ans_1" name="question_17" class="icheck required" value="Yes">
                                                             Yes
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
                                                         <label for="question_17_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_" id="question_17_ans_2" name="question_17" class="icheck required" value="No, I don't have.">
+                                                            <input type="radio" data-branch_id="no_branch" id="question_17_ans_2" name="question_17" class="icheck required" value="No, I don't have.">
                                                             No
                                                         </label>
                                                     </div>
@@ -887,9 +890,59 @@
                         </div>
                         <!-- /branch_14 -->
 
+                        <!--  ===============  branch_L_1  =============== -->
+                        <div class="branch" id="branch_L_1">
+                            <!-- question 18 -->
+                            <div class="step" data-state="branchtype">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class=" row question_title justify-content-center ">
+                                            <div class="col-lg-7 animated zoomIn delay-fast">
+                                                <h3>Do any of the following apply to you?</h3>
+                                                <div class="d-flex">
+                                                    <img src="{{ asset('/assets/web/consultation/img/c4u-bullet.png') }}" alt="" style="width: 15px;vertical-align: bottom;margin-right: 5px;margin-top: 3px;margin-bottom: 15px;">
+                                                    <p class="paragraph">A personal diagnosis of Medullary Thyroid Cancer (MTC), or any member of your family having this.</p>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <img src="{{ asset('/assets/web/consultation/img/c4u-bullet.png') }}" alt="" style="width: 15px;vertical-align: bottom;margin-right: 5px;margin-top: 3px;margin-bottom: 15px;">
+                                                    <p class="paragraph">A diagnosis of Multiple Endocrine Neoplasiam Type 2 (MEN2).</p>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <img src="{{ asset('/assets/web/consultation/img/c4u-bullet.png') }}" alt="" style="width: 15px;vertical-align: bottom;margin-right: 5px;margin-top: 3px;margin-bottom: 15px;">
+                                                    <p class="paragraph">A diagnosis of diabetic eye disease (Diabetic Retinopathy).</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row justify-content-center">
+                                            <div class="col-lg-7 animated zoomIn delay-fast">
+                                                <div class="box_general" style="border:none;">
+                                                    <div class="form-group short">
+                                                        <label for="question_18_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="no_branch" id="question_18_ans_1" name="question_18" class="icheck required" value="Yes, I have apply.">
+                                                            Yes, I have apply.
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group short">
+                                                        <label for="question_18_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_15" id="question_18_ans_2" name="question_18" class="icheck required" value="No">
+                                                            No, I don't.
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /step -->
+
+                        </div>
+                        <!-- /branch_L_1 -->
+
                         <!--  ===============  branch_15  =============== -->
                         <div class="branch" id="branch_15">
-                            <!-- question 18 -->
+                            <!-- question  19 -->
                             <div class="step" data-state="branchtype">
                                 <div class="card">
                                     <div class="card-body">
@@ -906,14 +959,14 @@
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
-                                                        <label for="question_18_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_16" id="question_18_ans_1" name="question_18" class="icheck required" value="Yes">
+                                                        <label for="question_19_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_16" id="question_19_ans_1" name="question_19" class="icheck required" value="Yes">
                                                             Yes
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_18_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_17" id="question_18_ans_2" name="question_18" class="icheck required" value="No, I don't have.">
+                                                        <label for="question_19_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_17" id="question_19_ans_2" name="question_19" class="icheck required" value="No, I don't have.">
                                                             No
                                                         </label>
                                                     </div>
@@ -929,7 +982,7 @@
 
                         <!--  ===============  branch_16  =============== -->
                         <div class="branch" id="branch_16">
-                            <!-- question 19 -->
+                            <!-- question  20 -->
                             <div class="step" data-state="branchtype">
                                 <div class="card">
                                     <div class="card-body">
@@ -946,10 +999,10 @@
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
-                                                        <label for="question_19_ans_1" class="fw-bold w-100">
+                                                        <label for="question_20_ans_1" class="fw-bold w-100">
                                                             Please provide details.
                                                         </label>
-                                                        <textarea id="question_19_ans_1" data-branch_id="branch_17" name="question_19" class="form-control required" style="height:150px; margin-bottom:0; border-radius:10px; " placeholder="Typer here ..." name="cms_development_notes"></textarea>
+                                                        <textarea id="question_20_ans_1" data-branch_id="branch_17" name="question_20" class="form-control required" style="height:150px; margin-bottom:0; border-radius:10px; " placeholder="Typer here ..." name="cms_development_notes"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -963,7 +1016,7 @@
 
                         <!--  ===============  branch_17  =============== -->
                         <div class="branch" id="branch_17">
-                            <!-- question 20 -->
+                            <!-- question  21 -->
                             <div class="step" data-state="branchtype">
                                 <div class="card">
                                     <div class="card-body">
@@ -980,20 +1033,20 @@
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
-                                                        <label for="question_20_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_19" id="question_20_ans_1" name="question_20" class="icheck required" value="No, I have never been diagnosed with any conditions relating to mental health or eating disorders.">
+                                                        <label for="question_21_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_19" id="question_21_ans_1" name="question_21" class="icheck required" value="No, I have never been diagnosed with any conditions relating to mental health or eating disorders.">
                                                             No, I have never been diagnosed with any conditions relating to mental health or eating disorders.
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_20_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_18" id="question_20_ans_2" name="question_20" class="icheck required" value="A diagnosis of mental health disorder i.e. depression, anxiety or other.">
+                                                        <label for="question_21_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_18" id="question_21_ans_2" name="question_21" class="icheck required" value="A diagnosis of mental health disorder i.e. depression, anxiety or other.">
                                                             A diagnosis of mental health disorder i.e. depression, anxiety or other.
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_20_ans_3" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_18" id="question_20_ans_3" name="question_20" class="icheck required" value="A diagnosis of any eating disorders i.e. anorexia, bulimia or other">
+                                                        <label for="question_21_ans_3" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_18" id="question_21_ans_3" name="question_21" class="icheck required" value="A diagnosis of any eating disorders i.e. anorexia, bulimia or other">
                                                             A diagnosis of any eating disorders i.e. anorexia, bulimia or other
                                                         </label>
                                                     </div>
@@ -1009,7 +1062,7 @@
 
                         <!--  ===============  branch_18  =============== -->
                         <div class="branch" id="branch_18">
-                            <!-- question 21 -->
+                            <!-- question  22 -->
                             <div class="step" data-state="branchtype">
                                 <div class="card">
                                     <div class="card-body">
@@ -1026,10 +1079,10 @@
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
-                                                        <label for="question_21_ans_1" class="fw-bold w-100">
+                                                        <label for="question_22_ans_1" class="fw-bold w-100">
                                                             Please provide details.
                                                         </label>
-                                                        <textarea id="question_21_ans_1" data-branch_id="branch_19" name="question_21" class="form-control required" style="height:150px; margin-bottom:0; border-radius:10px; " placeholder="Typer here ..." name="cms_development_notes"></textarea>
+                                                        <textarea id="question_22_ans_1" data-branch_id="branch_19" name="question_22" class="form-control required" style="height:150px; margin-bottom:0; border-radius:10px; " placeholder="Typer here ..." name="cms_development_notes"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1043,7 +1096,7 @@
 
                         <!--  ===============  branch_19  =============== -->
                         <div class="branch" id="branch_19">
-                            <!-- question 22 -->
+                            <!-- question  23 -->
                             <div class="step" data-state="branchtype">
                                 <div class="card">
                                     <div class="card-body">
@@ -1060,14 +1113,14 @@
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
-                                                        <label for="question_22_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_20" id="question_22_ans_1" name="question_22" class="icheck required" value="Yes">
+                                                        <label for="question_23_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_20" id="question_23_ans_1" name="question_23" class="icheck required" value="Yes">
                                                             Yes
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_22_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_21" id="question_22_ans_2" name="question_22" class="icheck required" value="No, I don't have.">
+                                                        <label for="question_23_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_21" id="question_23_ans_2" name="question_23" class="icheck required" value="No, I don't have.">
                                                             No
                                                         </label>
                                                     </div>
@@ -1083,7 +1136,7 @@
 
                         <!--  ===============  branch_20  =============== -->
                         <div class="branch" id="branch_20">
-                            <!-- question 23 -->
+                            <!-- question  24 -->
                             <div class="step" data-state="branchtype">
                                 <div class="card">
                                     <div class="card-body">
@@ -1100,10 +1153,10 @@
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
-                                                        <label for="question_23_ans_1" class="fw-bold w-100">
+                                                        <label for="question_24_ans_1" class="fw-bold w-100">
                                                             Please provide details.
                                                         </label>
-                                                        <textarea id="question_23_ans_1" data-branch_id="branch_21" name="question_23" class="form-control required" style="height:150px; margin-bottom:0; border-radius:10px; " placeholder="Typer here ..." name="cms_development_notes"></textarea>
+                                                        <textarea id="question_24_ans_1" data-branch_id="branch_21" name="question_24" class="form-control required" style="height:150px; margin-bottom:0; border-radius:10px; " placeholder="Typer here ..." name="cms_development_notes"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1117,7 +1170,7 @@
 
                         <!--  ===============  branch_21  =============== -->
                         <div class="branch" id="branch_21">
-                            <!-- question 24 -->
+                            <!-- question  25 -->
                             <div class="step" data-state="branchtype">
                                 <div class="card">
                                     <div class="card-body">
@@ -1134,50 +1187,50 @@
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
-                                                        <label for="question_24_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_23" id="question_24_ans_1" name="question_24" class="icheck required" value="Do you have any medical conditions?">
+                                                        <label for="question_25_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_23" id="question_25_ans_1" name="question_25" class="icheck required" value="Do you have any medical conditions?">
                                                             I am worried about obesity.
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_24_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_23" id="question_24_ans_2" name="question_24" class="icheck required" value="No - No medical conditions">
+                                                        <label for="question_25_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_23" id="question_25_ans_2" name="question_25" class="icheck required" value="No - No medical conditions">
                                                             My weight affects my personal life.
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_24_ans_3" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_23" id="question_24_ans_3" name="question_24" class="icheck required" value="Diabetes">
+                                                        <label for="question_25_ans_3" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_23" id="question_25_ans_3" name="question_25" class="icheck required" value="Diabetes">
                                                             My weight affects my health.
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_24_ans_4" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_23" id="question_24_ans_4" name="question_24" class="icheck required" value="Pancreatitis">
+                                                        <label for="question_25_ans_4" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_23" id="question_25_ans_4" name="question_25" class="icheck required" value="Pancreatitis">
                                                             My weight gets me down.
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_24_ans_5" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_23" id="question_24_ans_5" name="question_24" class="icheck required" value="Inflamed gall bladder or gallstones">
+                                                        <label for="question_25_ans_5" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_23" id="question_25_ans_5" name="question_25" class="icheck required" value="Inflamed gall bladder or gallstones">
                                                             My weight make me depressed.
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_24_ans_6" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_23" id="question_24_ans_6" name="question_24" class="icheck required" value="Heart failure, heart attack or stroke">
+                                                        <label for="question_25_ans_6" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_23" id="question_25_ans_6" name="question_25" class="icheck required" value="Heart failure, heart attack or stroke">
                                                             diet and exercise haven't resulted in sufficient and sustained weight loss.
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_24_ans_7" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_23" id="question_24_ans_7" name="question_24" class="icheck required" value="Ketoacidosis">
+                                                        <label for="question_25_ans_7" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_23" id="question_25_ans_7" name="question_25" class="icheck required" value="Ketoacidosis">
                                                             I need to lose weight before surgery.
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_24_ans_8" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_22" id="question_24_ans_8" name="question_24" class="icheck required" value="Inflammatory bowel disease i.e. Ulcerative">
+                                                        <label for="question_25_ans_8" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_22" id="question_25_ans_8" name="question_25" class="icheck required" value="Inflammatory bowel disease i.e. Ulcerative">
                                                             Other (please explain).
                                                         </label>
                                                     </div>
@@ -1193,7 +1246,7 @@
 
                         <!--  ===============  branch_22  =============== -->
                         <div class="branch" id="branch_22">
-                            <!-- question 25 -->
+                            <!-- question  26 -->
                             <div class="step" data-state="branchtype">
                                 <div class="card">
                                     <div class="card-body">
@@ -1210,10 +1263,10 @@
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
-                                                        <label for="question_25_ans_1" class="fw-bold w-100">
+                                                        <label for="question_26_ans_1" class="fw-bold w-100">
                                                             Please provide details.
                                                         </label>
-                                                        <textarea id="question_25_ans_1" data-branch_id="branch_23" name="question_25" class="form-control required" style="height:150px; margin-bottom:0; border-radius:10px; " placeholder="Typer here ..." name="cms_development_notes"></textarea>
+                                                        <textarea id="question_26_ans_1" data-branch_id="branch_23" name="question_26" class="form-control required" style="height:150px; margin-bottom:0; border-radius:10px; " placeholder="Typer here ..." name="cms_development_notes"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1227,7 +1280,7 @@
 
                         <!--  ===============  branch_23  =============== -->
                         <div class="branch" id="branch_23">
-                            <!-- question 26 -->
+                            <!-- question  27 -->
                             <div class="step" data-state="branchtype">
                                 <div class="card">
                                     <div class="card-body">
@@ -1245,10 +1298,10 @@
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
-                                                        <label for="question_26_ans_1" class="fw-bold w-100">
+                                                        <label for="question_27_ans_1" class="fw-bold w-100">
                                                             Please provide details.
                                                         </label>
-                                                        <textarea id="question_26_ans_1" data-branch_id="branch_24" name="question_26" class="form-control required" style="height:150px; margin-bottom:0; border-radius:10px; " placeholder="Typer here ..." name="cms_development_notes"></textarea>
+                                                        <textarea id="question_27_ans_1" data-branch_id="branch_24" name="question_27" class="form-control required" style="height:150px; margin-bottom:0; border-radius:10px; " placeholder="Typer here ..." name="cms_development_notes"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1262,7 +1315,7 @@
 
                         <!--  ===============  branch_24  =============== -->
                         <div class="branch" id="branch_24">
-                            <!-- question 27 -->
+                            <!-- question  28 -->
                             <div class="step" data-state="branchtype">
                                 <div class="card">
                                     <div class="card-body">
@@ -1279,20 +1332,20 @@
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
-                                                        <label for="question_27_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_25" id="question_27_ans_1" name="question_27" class="icheck required" value="I do NOT Smoke">
+                                                        <label for="question_28_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_25" id="question_28_ans_1" name="question_28" class="icheck required" value="I do NOT Smoke">
                                                             I do NOT Smoke.
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_27_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_25" id="question_27_ans_2" name="question_27" class="icheck required" value="I smoke regularl">
+                                                        <label for="question_28_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_25" id="question_28_ans_2" name="question_28" class="icheck required" value="I smoke regularl">
                                                             I smoke regularly.
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_27_ans_3" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_25" id="question_27_ans_3" name="question_27" class="icheck required" value="I smoke occasionally">
+                                                        <label for="question_28_ans_3" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_25" id="question_28_ans_3" name="question_28" class="icheck required" value="I smoke occasionally">
                                                             I smoke occasionally.
                                                         </label>
                                                     </div>
@@ -1308,7 +1361,7 @@
 
                         <!--  ===============  branch_25  =============== -->
                         <div class="branch" id="branch_25">
-                            <!-- question 28 -->
+                            <!-- question  29 -->
                             <div class="step" data-state="branchtype">
                                 <div class="card">
                                     <div class="card-body">
@@ -1325,20 +1378,20 @@
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
-                                                        <label for="question_28_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_26" id="question_28_ans_1" name="question_28" class="icheck required" value="I do NOT drink alcohol">
+                                                        <label for="question_29_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_26" id="question_29_ans_1" name="question_29" class="icheck required" value="I do NOT drink alcohol">
                                                             I do NOT drink alcohol.
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_28_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_26" id="question_28_ans_2" name="question_28" class="icheck required" value="I drink alcohol occasionally">
+                                                        <label for="question_29_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_26" id="question_29_ans_2" name="question_29" class="icheck required" value="I drink alcohol occasionally">
                                                             I drink alcohol occasionally.
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_28_ans_3" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_26" id="question_28_ans_3" name="question_28" class="icheck required" value="I drink alcohol regularly">
+                                                        <label for="question_29_ans_3" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_26" id="question_29_ans_3" name="question_29" class="icheck required" value="I drink alcohol regularly">
                                                             I drink alcohol regularly.
                                                         </label>
                                                     </div>
@@ -1372,20 +1425,20 @@
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
-                                                        <label for="question_29_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_27" id="question_29_ans_1" name="question_29" class="icheck required" value="I do NOT eat takeaways / fast food regularly">
+                                                        <label for="question_30_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_27" id="question_30_ans_1" name="question_30" class="icheck required" value="I do NOT eat takeaways / fast food regularly">
                                                             I do NOT eat takeaways / fast food regularly.
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_29_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_27" id="question_29_ans_2" name="question_29" class="icheck required" value="I eat takeaway / fast food once or twice a week">
+                                                        <label for="question_30_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_27" id="question_30_ans_2" name="question_30" class="icheck required" value="I eat takeaway / fast food once or twice a week">
                                                             I eat takeaway / fast food once or twice a week.
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_29_ans_3" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_27" id="question_29_ans_3" name="question_29" class="icheck required" value="I eat takeaway / fast food on most days of the week">
+                                                        <label for="question_30_ans_3" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_27" id="question_30_ans_3" name="question_30" class="icheck required" value="I eat takeaway / fast food on most days of the week">
                                                             I eat takeaway / fast food on most days of the week.
                                                         </label>
                                                     </div>
@@ -1401,7 +1454,7 @@
 
                         <!--  ===============  branch_27  =============== -->
                         <div class="branch" id="branch_27">
-                            <!-- question 30 -->
+                            <!-- question  31 -->
                             <div class="step" data-state="branchtype">
                                 <div class="card">
                                     <div class="card-body">
@@ -1418,20 +1471,20 @@
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
-                                                        <label for="question_30_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_28" id="question_30_ans_1" name="question_30" class="icheck required" value="I do NOT eat takeaways / fast food regularly">
+                                                        <label for="question_31_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_28" id="question_31_ans_1" name="question_31" class="icheck required" value="I do NOT eat takeaways / fast food regularly">
                                                             I do NOT eat unhealthy snacks regularly.
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_30_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_28" id="question_30_ans_2" name="question_30" class="icheck required" value="I eat takeaway / fast food once or twice a week">
+                                                        <label for="question_31_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_28" id="question_31_ans_2" name="question_31" class="icheck required" value="I eat takeaway / fast food once or twice a week">
                                                             I eat unhealthy snacks, once or twice a week.
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_30_ans_3" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_28" id="question_30_ans_3" name="question_30" class="icheck required" value="I eat takeaway / fast food on most days of the week">
+                                                        <label for="question_31_ans_3" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_28" id="question_31_ans_3" name="question_31" class="icheck required" value="I eat takeaway / fast food on most days of the week">
                                                             I eat unhealthy snacks most days of the week.
                                                         </label>
                                                     </div>
@@ -1447,7 +1500,7 @@
 
                         <!--  ===============  branch_28  =============== -->
                         <div class="branch" id="branch_28">
-                            <!-- question 31 -->
+                            <!-- question  32 -->
                             <div class="step" data-state="branchtype">
                                 <div class="card">
                                     <div class="card-body">
@@ -1464,20 +1517,20 @@
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
-                                                        <label for="question_31_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_29" id="question_31_ans_1" name="question_31" class="icheck required" value="I do 60- 120 mins of moderate exercise a week">
+                                                        <label for="question_32_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_29" id="question_32_ans_1" name="question_32" class="icheck required" value="I do 60- 120 mins of moderate exercise a week">
                                                             I do 60- 120 mins of moderate exercise a week.
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_31_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_29" id="question_31_ans_2" name="question_31" class="icheck required" value="I do 120 mins or more of moderate exercise a week">
+                                                        <label for="question_32_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_29" id="question_32_ans_2" name="question_32" class="icheck required" value="I do 120 mins or more of moderate exercise a week">
                                                             I do 120 mins or more of moderate exercise a week.
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_31_ans_3" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_30" id="question_31_ans_3" name="question_31" class="icheck required" value="I do not do any moderate exercise">
+                                                        <label for="question_32_ans_3" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_30" id="question_32_ans_3" name="question_32" class="icheck required" value="I do not do any moderate exercise">
                                                             I do not do any moderate exercise.
                                                         </label>
                                                     </div>
@@ -1493,7 +1546,7 @@
 
                         <!--  ===============  branch_29  =============== -->
                         <div class="branch" id="branch_29">
-                            <!-- question 32 -->
+                            <!-- question  33 -->
                             <div class="step" data-state="branchtype">
                                 <div class="card">
                                     <div class="card-body">
@@ -1509,20 +1562,20 @@
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
-                                                        <label for="question_32_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_30" id="question_32_ans_1" name="question_32" class="icheck required" value="I do 60-120 mins of vigorous exercise a week">
+                                                        <label for="question_33_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_30" id="question_33_ans_1" name="question_33" class="icheck required" value="I do 60-120 mins of vigorous exercise a week">
                                                             I do 60-120 mins of vigorous exercise a week
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_32_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_30" id="question_32_ans_2" name="question_32" class="icheck required" value="I do 120 mins or more of vigorous exercise a week">
+                                                        <label for="question_33_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_30" id="question_33_ans_2" name="question_33" class="icheck required" value="I do 120 mins or more of vigorous exercise a week">
                                                             I do 120 mins or more of vigorous exercise a week.
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_32_ans_3" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_30" id="question_32_ans_3" name="question_32" class="icheck required" value="I do not do any Vigorous Exercise">
+                                                        <label for="question_33_ans_3" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_30" id="question_33_ans_3" name="question_33" class="icheck required" value="I do not do any Vigorous Exercise">
                                                             I do not do any Vigorous Exercise.
                                                         </label>
                                                     </div>
@@ -1538,7 +1591,7 @@
 
                         <!--  ===============  branch_30  =============== -->
                         <div class="branch" id="branch_30">
-                            <!-- question 33 -->
+                            <!-- question  34 -->
                             <div class="step" data-state="branchtype">
                                 <div class="card">
                                     <div class="card-body">
@@ -1555,14 +1608,14 @@
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
-                                                        <label for="question_33_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_31" id="question_33_ans_1" name="question_33" class="icheck required" value="Yes">
+                                                        <label for="question_34_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_31" id="question_34_ans_1" name="question_34" class="icheck required" value="Yes">
                                                             Yes
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_33_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_32" id="question_33_ans_2" name="question_33" class="icheck required" value="No, I don't have.">
+                                                        <label for="question_34_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_32" id="question_34_ans_2" name="question_34" class="icheck required" value="No, I don't have.">
                                                             No
                                                         </label>
                                                     </div>
@@ -1578,7 +1631,7 @@
 
                         <!--  ===============  branch_31  =============== -->
                         <div class="branch" id="branch_31">
-                            <!-- question 34 -->
+                            <!-- question 35 -->
                             <div class="step" data-state="branchtype">
                                 <div class="card">
                                     <div class="card-body">
@@ -1595,32 +1648,32 @@
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
-                                                        <label for="question_34_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_32" id="question_34_ans_1" name="question_34" class="icheck required" value="I have taken Liraglutide (Saxenda)">
+                                                        <label for="question_35_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_32" id="question_35_ans_1" name="question_35" class="icheck required" value="I have taken Liraglutide (Saxenda)">
                                                             I have taken Liraglutide (Saxenda)
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_34_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_32" id="question_34_ans_2" name="question_34" class="icheck required" value="I have taken Mysimba">
+                                                        <label for="question_35_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_32" id="question_35_ans_2" name="question_35" class="icheck required" value="I have taken Mysimba">
                                                             I have taken Mysimba
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_34_ans_3" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_32" id="question_34_ans_3" name="question_34" class="icheck required" value="I have taken Orlistat (Xenical or Alli)">
+                                                        <label for="question_35_ans_3" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_32" id="question_35_ans_3" name="question_35" class="icheck required" value="I have taken Orlistat (Xenical or Alli)">
                                                             I have taken Orlistat (Xenical or Alli)
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_34_ans_4" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_32" id="question_34_ans_4" name="question_34" class="icheck required" value="I have taken Semaglutide (Ozempic or Rybelsus)">
+                                                        <label for="question_35_ans_4" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_32" id="question_35_ans_4" name="question_35" class="icheck required" value="I have taken Semaglutide (Ozempic or Rybelsus)">
                                                             I have taken Semaglutide (Ozempic or Rybelsus)
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_34_ans_5" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_32" id="question_34_ans_5" name="question_34" class="icheck required" value="I have used other methods for weight management">
+                                                        <label for="question_35_ans_5" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_32" id="question_35_ans_5" name="question_35" class="icheck required" value="I have used other methods for weight management">
                                                             I have used other methods for weight management
                                                         </label>
                                                     </div>
@@ -1636,7 +1689,47 @@
 
                         <!--  ===============  branch_32  =============== -->
                         <div class="branch" id="branch_32">
-                            <!-- question 34 -->
+                            <!-- question 36 -->
+                            <div class="step" data-state="branchtype">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class=" row question_title justify-content-center ">
+                                            <div class="col-lg-7 animated zoomIn delay-fast">
+                                                <h3>
+                                                    Is there anything else about yourself or your medical history that you think our specialists should know about?
+                                                </h3>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row justify-content-center">
+                                            <div class="col-lg-7 animated zoomIn delay-fast">
+                                                <div class="box_general" style="border:none;">
+                                                    <div class="form-group short">
+                                                        <label for="question_36_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_34" id="question_36_ans_1" name="question_36" class="icheck required" value="Yes">
+                                                            Yes
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group short">
+                                                        <label for="question_36_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_35" id="question_36_ans_2" name="question_36" class="icheck required" value="No, I don't have.">
+                                                            No
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /step -->
+                        </div>
+                        <!-- /branch_32 -->
+
+                        <!--  ===============  branch_33  =============== -->
+                        <div class="branch" id="branch_33">
+                            <!-- question  37 -->
                             <div class="step" data-state="branchtype">
                                 <div class="card">
                                     <div class="card-body">
@@ -1654,54 +1747,14 @@
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
-                                                        <label for="question_34_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_33" id="question_34_ans_1" name="question_34" class="icheck required" value="Yes">
+                                                        <label for="question_37_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_33" id="question_37_ans_1" name="question_37" class="icheck required" value="Yes">
                                                             Yes
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_34_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_" id="question_34_ans_2" name="question_34" class="icheck required" value="No, I don't have.">
-                                                            No
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /step -->
-                        </div>
-                        <!-- /branch_32 -->
-
-                        <!--  ===============  branch_33  =============== -->
-                        <div class="branch" id="branch_33">
-                            <!-- question 35 -->
-                            <div class="step" data-state="branchtype">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class=" row question_title justify-content-center ">
-                                            <div class="col-lg-7 animated zoomIn delay-fast">
-                                                <h3>
-                                                    Is there anything else about yourself or your medical history that you think our specialists should know about?
-                                                </h3>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="row justify-content-center">
-                                            <div class="col-lg-7 animated zoomIn delay-fast">
-                                                <div class="box_general" style="border:none;">
-                                                    <div class="form-group short">
-                                                        <label for="question_35_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_" id="question_35_ans_1" name="question_35" class="icheck required" value="Yes">
-                                                            Yes
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-group short">
-                                                        <label for="question_35_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_35" id="question_35_ans_2" name="question_35" class="icheck required" value="No, I don't have.">
+                                                        <label for="question_37_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="no_branch" id="question_37_ans_2" name="question_37" class="icheck required" value="No, I don't have.">
                                                             No
                                                         </label>
                                                     </div>
@@ -1718,7 +1771,7 @@
 
                         <!--  ===============  branch_34  =============== -->
                         <div class="branch" id="branch_34">
-                            <!-- question 36 -->
+                            <!-- question  38 -->
                             <div class="step" data-state="branchtype">
                                 <div class="card">
                                     <div class="card-body">
@@ -1735,10 +1788,10 @@
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
-                                                        <label for="question_36_ans_1" class="fw-bold w-100">
+                                                        <label for="question_38_ans_1" class="fw-bold w-100">
                                                             Please provide details.
                                                         </label>
-                                                        <textarea id="question_36_ans_1" data-branch_id="branch_35" name="question_36" class="form-control required" style="height:150px; margin-bottom:0; border-radius:10px; " placeholder="Typer here ..." name="cms_development_notes"></textarea>
+                                                        <textarea id="question_38_ans_1" data-branch_id="branch_35" name="question_38" class="form-control required" style="height:150px; margin-bottom:0; border-radius:10px; " placeholder="Typer here ..." name="cms_development_notes"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1752,7 +1805,7 @@
 
                         <!--  ===============  branch_35  =============== -->
                         <div class="branch" id="branch_35">
-                            <!-- question 37 -->
+                            <!-- question  39 -->
                             <div class="step" data-state="branchtype">
                                 <div class="card">
                                     <div class="card-body">
@@ -1773,14 +1826,14 @@
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
-                                                        <label for="question_37_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_36" id="question_37_ans_1" name="question_37" class="icheck required" value="Yes">
+                                                        <label for="question_39_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="branch_36" id="question_39_ans_1" name="question_39" class="icheck required" value="Yes">
                                                             Yes
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_37_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_" id="question_37_ans_2" name="question_37" class="icheck required" value="No, I don't have.">
+                                                        <label for="question_39_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="no_branch" id="question_39_ans_2" name="question_39" class="icheck required" value="No, I don't have.">
                                                             No
                                                         </label>
                                                     </div>
@@ -1795,9 +1848,9 @@
                         <!-- /branch_35 -->
 
                         <!--  ===============  branch_36  =============== -->
-                        <div class="branch" id="branch_36">
-                            <!-- question 38 -->
-                            <div class="step" data-state="branchtype">
+                        <div class="branch" id="branch_36" data-state="end">
+                            <!-- question  40 -->
+                            <div class="submit step" id="end">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class=" row question_title justify-content-center ">
@@ -1816,14 +1869,14 @@
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
-                                                        <label for="question_38_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_37" id="question_38_ans_1" name="question_38" class="icheck required" value="Yes">
+                                                        <label for="question_40_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="no_branch" id="question_40_ans_1" name="question_40" class="icheck required" value="Yes">
                                                             Yes
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
-                                                        <label for="question_38_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_" id="question_38_ans_2" name="question_38" class="icheck required" value="No, I don't have.">
+                                                        <label for="question_40_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" data-branch_id="no_branch" id="question_40_ans_2" name="question_40" class="icheck required" value="No, I don't have.">
                                                             No
                                                         </label>
                                                     </div>
@@ -1836,145 +1889,6 @@
                             <!-- /step -->
                         </div>
                         <!-- /branch_36 -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        <!-- textare -->
-
-                        <div class="step" data-state="branchtype">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class=" row question_title justify-content-center ">
-                                        <div class="col-lg-7 animated zoomIn delay-fast">
-                                            <h3>Please tell us more about your allergies?</h3>
-                                            <p style="margin-bottom: 0;">
-                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt, corporis.
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div class="row justify-content-center">
-                                        <div class="col-lg-7 animated zoomIn delay-fast">
-                                            <div class="box_general" style="border:none;">
-                                                <div class="form-group short">
-                                                    <label for="question_4_ans_1" class="fw-bold w-100">
-                                                        Describe, your allergies in details...
-                                                    </label>
-                                                    <textarea id="question_4_ans_1" name="question_4" class="form-control required" style="height:150px; margin-bottom:0; border-radius:10px; " placeholder="Typer here ..." name="cms_development_notes"></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- question 11 -->
-                        <div class="step" data-state="branchtype">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class=" row question_title justify-content-center ">
-                                        <div class="col-lg-7 animated zoomIn delay-fast">
-                                            <h3>Please list the medications or supplements you currently take.</h3>
-                                            <p style="margin-bottom: 0;">
-                                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed, rerum.
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div class="row justify-content-center">
-                                        <div class="col-lg-7 animated zoomIn delay-fast">
-                                            <div class="box_general" style="border:none;">
-                                                <div class="form-group short">
-                                                    <label for="question_16_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                        <input type="radio" data-branch_id="branch_9" id="question_16_ans_1" name="question_" class="icheck required" value="Below or equal to 7.8 mmol/L">
-                                                        Below or equal to 7.8 mmol/L
-                                                    </label>
-                                                </div>
-                                                <div class="form-group short">
-                                                    <label for="question_16_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                        <input type="radio" data-branch_id="branch_9" id="question_16_ans_2" name="questio" class="icheck required" value="Above 7.8mmol/L">
-                                                        Above 7.8mmol/L
-                                                    </label>
-                                                </div>
-                                                <div class="form-group short">
-                                                    <label for="question_16_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                        <input type="radio" data-branch_id="branch_9" id="question_16_ans_2" name="question" class="icheck required" value="Above 7.8mmol/L">
-                                                        Above 7.8mmol/L
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /step -->
-
-                        <!--  ===============  branch_  =============== -->
-                        <div class="branch" id="branch_">
-                            <!-- question -->
-                            <div class="step" data-state="branchtype">
-                                <!-- question 1 -->
-                                <div class="step" data-state="branchtype">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class=" row question_title justify-content-center ">
-                                                <div class="col-lg-7 animated zoomIn delay-fast">
-                                                    <h3>What was the reading / measurement?</h3>
-                                                    <p style="margin-bottom: 0;">
-                                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed, rerum.
-                                                    </p>
-                                                </div>
-                                            </div>
-
-                                            <div class="row justify-content-center">
-                                                <div class="col-lg-7 animated zoomIn delay-fast">
-                                                    <div class="box_general" style="border:none;">
-                                                        <div class="form-group short">
-                                                            <label for="question_11_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                                <input type="radio" data-branch_id="branch_9" id="question_11_ans_1" name="question_11" class="icheck required" value="Below or equal to 7.8 mmol/L">
-                                                                Below or equal to 7.8 mmol/L
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-group short">
-                                                            <label for="question_11_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                                <input type="radio" data-branch_id="branch_9" id="question_11_ans_2" name="question_11" class="icheck required" value="Above 7.8mmol/L">
-                                                                Above 7.8mmol/L
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /step -->
-                            </div>
-                            <!-- /step -->
-                        </div>
-                        <!-- /branch_ -->
-
 
                     </div>
                     <!-- /middle-wizard -->

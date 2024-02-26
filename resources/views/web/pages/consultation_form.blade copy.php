@@ -882,7 +882,7 @@
                         </legend>
                         <div class="sv-question__content sv-question__content--left">
                             <input type="radio" id="diagnosed" name="fav_language" value="diagnosed" class=" ml-1">
-                              <label for="diagnosed" class="mb-2" style="cursor: pointer; color: #938977;">No, I have never been diagnosed with any conditions relating to<br> mental health or eating disorders.<br></label>
+                              <label for="diagnosed" class="mb-2" style="cursor: pointer; color: #938977;">No, I have never been diagnosed with any conditions relating to mental health or eating disorders.<br></label>
                             <br>
                             <input type="radio" id="depression" name="fav_language" value="depression" class="ml-1 mb-4">
                               <label for="depression" style="cursor: pointer; color: #938977;">A diagnosis of mental health disorder i.e. depression, anxiety or other.</label>
@@ -1213,7 +1213,10 @@
                     <div id="surveyElement" class="itl-survey" style="display:inline-block;width:100%;">
                         <legend>
                             <h3 style="font-weight: 700; color: #4DC4D8;">Tell us about Takeaways / Fast food</h3>
-                            <p>Takeaways and fast food are typically high in fat and salt which can contribute to obesity as well as high blood pressure and heart disease.</p>
+                            <p>
+                                Takeaways and fast food are typically high in fat and salt which can contribute to obesity as well as high blood pressure and heart disease.
+
+                            </p>
                         </legend>
                         <div class="sv-question__content sv-question__content--left">
                             <input type="radio" id="takeaways" name="fav_language" value="takeaways" class="mb-3 ml-1">
@@ -1249,7 +1252,10 @@
                     <div id="surveyElement" class="itl-survey" style="display:inline-block;width:100%;">
                         <legend>
                             <h3 style="font-weight: 700; color: #4DC4D8;">Tell us about unhealthy snacks (crisps, chocolate, cakes or biscuits).</h3>
-                            <p>These foods are high in fats and sugar contributing to obesity and other illnesses such as high blood pressure and heart disease.</p>
+                            <p>
+                                These foods are high in fats and sugar contributing to obesity and other illnesses such as high blood pressure and heart disease.
+
+                            </p>
                         </legend>
                         <div class="sv-question__content sv-question__content--left">
                             <input type="radio" id="unhealthy" name="fav_language" value="unhealthy" class="mb-3 ml-1">
@@ -1424,7 +1430,7 @@
                 <div class="card12 mt-5 mb-0">
                     <div id="surveyElement" class="itl-survey" style="display:inline-block;width:100%;">
                         <legend>
-                            <h3 style="font-weight: 700; color: #4DC4D8;">Please let us know about previous attempts to manage your weight.</h3>
+                            <h3 style="font-weight: 700; color: #4DC4D8;">Please let us know about previous attempts to manage your weight..</h3>
                             <p>Please tick any that apply to you</p>
                         </legend>
                         <div class="sv-question__content sv-question__content--left">
