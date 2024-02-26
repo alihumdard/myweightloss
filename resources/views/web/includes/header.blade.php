@@ -1,7 +1,7 @@
 <!-- =========================
     Header
 =========================== -->
-<header class="header header-layout2">
+<header class="header header-layout2 pb-3">
     <div class="header-topbar">
         <div class="container-fluid">
             <div class="row align-items-center">
@@ -36,7 +36,7 @@
     </div>
     <nav class="navbar navbar-expand-lg sticky-navbar">
         <div class="container-fluid m-2">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="{{ route('web.index') }}" >
             <img src="{{ asset('/assets/web/images/logo/weightloss_logo.png') }}" class="weightloss_logo" alt="logo" style="max-height: 90px;">
 
                 <!-- <img src="{{ asset('/assets/web/images/logo/weightloss_final_logo.png') }}" class="logo-dark" alt="logo"> -->
@@ -55,7 +55,7 @@
                         </ul> -->
                     </li>
                     <li class="nav__item">
-                        <a href="{{ route('web.products') }}" class="nav__item-link active">Products</a>
+                        <a href="{{ route('web.products') }}" class="nav__item-link">Products</a>
                         <ul class="dropdown-menu">
                             <!-- <li class="nav__item">
                                 <a href="{{ route('web.products') }}" class="nav__item-link">Our Products</a>
@@ -101,7 +101,7 @@
                 </ul> -->
                 <a href="{{ route('web.regisrationFrom')}}" class="btn btn__primary btn__rounded ml-30">
                     <i class="icon-calendar"></i>
-                    <span>Contsultations</span>
+                    <span>Let's Start Consultation</span>
                 </a>
             </div>
         </div>

@@ -1,23 +1,27 @@
 <!-- ========================
       Footer
     ========================== -->
-    <footer class="footer">
-      <div class="footer-primary">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-3">
-              <div class="footer-widget-about">
-                <img src="{{ asset('/assets/web/images/logo/logo-light.png') }}" alt="logo" class="mb-30">
-                <p class="color-gray">Our goal is to deliver quality of care in a courteous, respectful, and
-                  compassionate manner. We hope you will allow us to care for you and strive to be the first and best
-                  choice for your family healthcare.
-                </p>
-                <a href="appointment.html" class="btn btn__primary btn__primary-style2 btn__link">
-                  <span>Make Appointment</span> <i class="icon-arrow-right"></i>
-                </a>
-              </div><!-- /.footer-widget__content -->
-            </div><!-- /.col-xl-2 -->
-            <div class="col-sm-6 col-md-6 col-lg-2 offset-lg-1">
+
+<!-- <style>
+      #abc1{
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+      }
+    </style> -->
+<footer class="footer" id="abc1" style="font-family:sans-serif">
+  <footer class="footer-primary py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-3">
+          <div class="footer-widget-about">
+            <img src="{{ asset('/assets/web/images/logo/logo-light.png') }}" alt="logo" class="mb-3">
+            <p class="color-gray">Dedicated professionals in weight management, drawing from extensive obesity research. We offer holistic support, prescription medicines, and a vibrant community for transformative journeys. Prioritising patient care from pre-treatment to long-term management.</p>
+            <a href="appointment.html" class="btn btn__primary btn__primary-style2 btn__link">
+              <span>Make an Appointment </span> <i class="icon-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-2 offset-lg-1">
               <div class="footer-widget-nav">
                 <h6 class="footer-widget__title">Departments</h6>
                 <nav>
@@ -46,52 +50,85 @@
                 </nav>
               </div><!-- /.footer-widget__content -->
             </div><!-- /.col-lg-2 -->
-            <div class="col-sm-12 col-md-6 col-lg-4">
-              <div class="footer-widget-contact">
-                <h6 class="footer-widget__title color-heading">Quick Contacts</h6>
-                <ul class="contact-list list-unstyled">
-                  <li>If you have any questions or need help, feel free to contact with our team.</li>
-                  <li>
-                    <a href="tel:01061245741" class="phone__number">
-                      <i class="icon-phone"></i> <span>01061245741</span>
-                    </a>
-                  </li>
-                  <li class="color-body">2307 Beverley Rd Brooklyn, New York 11226 United States.</li>
-                </ul>
-                <div class="d-flex align-items-center">
-                  <a href="contact-us.html" class="btn btn__primary btn__link mr-30">
-                    <i class="icon-arrow-right"></i> <span>Get Directions</span>
-                  </a>
-                  <ul class="social-icons list-unstyled mb-0">
-                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                  </ul><!-- /.social-icons -->
-                </div>
-              </div><!-- /.footer-widget__content -->
-            </div><!-- /.col-lg-2 -->
-          </div><!-- /.row -->
-        </div><!-- /.container -->
-      </div><!-- /.footer-primary -->
-      <div class="footer-secondary">
+
+        <div class="col-lg-4 col-md-12">
+          <div class="footer-widget-contact">
+            <h6 class="footer-widget__title color-heading">Quick Contacts</h6>
+            <ul class="contact-list list-unstyled">
+              <li>If you have any questions or need help, feel free to contact our team.</li>
+              <li>
+                <a href="tel:01061245741" class="phone__number">
+                  <i class="icon-phone"></i> <span>01061245741</span>
+                </a>
+              </li>
+              <li class="color-body">2307 Beverley Rd Brooklyn, New York 11226 United States.</li>
+            </ul>
+            <div class="d-flex align-items-center mt-3">
+              <a href="contact-us.html" class="btn btn__primary btn__link mr-3">
+                <i class="icon-arrow-right"></i> <span>Get Directions</span>
+              </a>
+              <ul class="social-icons list-unstyled mb-0">
+                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- shahroz code here  -->
         <div class="container">
-          <div class="row align-items-center">
-            <div class="col-sm-12 col-md-6 col-lg-6">
-              <span class="fz-14">&copy; 2020 DataSoft, All Rights Reserved. With Love by</span>
-              <a class="fz-14 color-primary" href="http://themeforest.net/user/7oroof">7oroof.com</a>
-            </div><!-- /.col-lg-6 -->
-            <div class="col-sm-12 col-md-6 col-lg-6">
-              <nav>
-                <ul class="list-unstyled footer__copyright-links d-flex flex-wrap justify-content-end mb-0">
-                  <li><a href="#">Terms & Conditions</a></li>
-                  <li><a href="#">Privacy Policy</a></li>
-                  <li><a href="#">Cookies</a></li>
-                </ul>
-              </nav>
-            </div><!-- /.col-lg-6 -->
-          </div><!-- /.row -->
-        </div><!-- /.container -->
-      </div><!-- /.footer-secondary -->
-    </footer><!-- /.Footer -->
-    <button id="scrollTopBtn"><i class="fas fa-long-arrow-alt-up"></i></button>
-    
+          <div class="row mb-5">
+            <div class="col-md-12">
+              <div class="text pt-2 mb-5">
+                <h5 class="text-light">What is Lorem Ipsum?</h5>
+                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+              </div>
+              <div class="text pt-2 mb-5">
+                <h5 class="text-light">What is Lorem Ipsum?</h5>
+                <p>It is a long established fact that have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+              </div>
+              <div class="text pt-2 mb-5">
+                <h5 class="text-light">What is Lorem Ipsum?</h5>
+                <p>It is a long established fact that looking at its layout. The point of using Lorem Ipsum is that it has a more-or-les 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container mt-5 mb-2">
+          <div class="row mb-5">
+          <div class="col-md-5 ">
+              <div class="image d-flex justify-content-start ml-2 mr-2">
+                <img src="https://i.ibb.co/6HkdTkC/pharmacy-4u-1c443eee-70cf-4156-a20b-d3c94d520af4-removebg-preview.png" alt="" width="100" height="35" class="img-fluid  mr-2">
+                <img src="https://i.ibb.co/Y7xTqwk/abcsd.png" alt="" width="100" height="35" class="img-fluid ml-5">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6 mt-2">
+          <nav class="mt-3">
+            <ul class="list-unstyled footer__copyright-links d-flex flex-wrap justify-content-start mb-0">
+              <li><a href="#">Terms & Conditions</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Cookies</a></li>
+            </ul>
+          </nav>
+        </div><!-- /.col-lg-6 -->
+      </div>
+    </div>
+  </footer>
+
+  <div class="footer-secondary text-center">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-12 d-flex justify-content-center">
+          <span class="fz-14">&copy; Copyright 2024 All Rights Design and Developed By
+            <a class="fz-14 color-primary" href="https://techsolutionspro.co.uk/">Tech Solutions Pro</a> </span>
+        </div><!-- /.col-lg-6 -->
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+  </div>
+  <!-- /.footer-secondary -->
+</footer><!-- /.Footer -->
+<button id="scrollTopBtn"><i class="fas fa-long-arrow-alt-up"></i></button>
