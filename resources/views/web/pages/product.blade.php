@@ -71,6 +71,16 @@
                         <div class="product__meta-details">
                             <ul class="list-unstyled mb-30">
                                 <li>
+                                    <div class="nice-select" tabindex="0"><span class="current">Sort by latest</span>
+                                        <ul class="list">
+                                            <li data-value="0" class="option selected focus">Select Type</li>
+                                            <li data-value="1" class="option">250MG</li>
+                                            <li data-value="2" class="option">500GM</li>
+                                            <li data-value="3" class="option">1000GM</li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
                                     <span>SKU :</span>
                                     <span>#{{ $product['cnn'] ?? ''}}</span>
                                 </li>
