@@ -49,7 +49,7 @@ class WebController extends Controller
     public function product(Request $request)
     {
         $data['user'] = auth()->user() ?? [];
-        $data['product'] = Product::with('category:id,name')->findOrFail($request->id)->toArray();
+        $data['product'] = Product::with('category:id,name','variants')->findOrFail($request->id)->toArray();
         $data['rel_products'] = Product::where(['category_id' => $data['product']['category_id']])->take(4)->latest('id')->get()->toArray();
         return view('web.pages.product', $data);
     }
