@@ -58,7 +58,7 @@
                                         {{ $value['title'] ?? ''}}
                                     </a>
                                 </h4>
-                                <span class="product__price">${{ $value['price'] ?? ''}}</span>
+                                <span class="product__price">£{{ $value['price'] ?? ''}}</span>
                             </div>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                                 </div>
                                 <div class="widget-product__content">
                                     <h5 class="widget-product__title"><a href="#">Calming Herps</a></h5>
-                                    <span class="widget-product__price">$ 38.00</span>
+                                    <span class="widget-product__price">£ 38.00</span>
                                 </div>
                             </div>
                             <!-- product item #2 -->
@@ -108,7 +108,7 @@
                                 </div>
                                 <div class="widget-product__content">
                                     <h5 class="widget-product__title"><a href="#">Goji Powder</a></h5>
-                                    <span class="widget-product__price">$ 33.00</span>
+                                    <span class="widget-product__price">£ 33.00</span>
                                 </div>
                             </div>
                             <!-- product item #3 -->
@@ -118,7 +118,7 @@
                                 </div>
                                 <div class="widget-product__content">
                                     <h5 class="widget-product__title"><a href="#">Biotin Complex</a></h5>
-                                    <span class="widget-product__price">$ 18.00</span>
+                                    <span class="widget-product__price">£ 18.00</span>
                                 </div>
                             </div>
                         </div>

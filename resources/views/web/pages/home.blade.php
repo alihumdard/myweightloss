@@ -2,6 +2,8 @@
 @section('title', 'Home')
 @section('content')
 
+
+
 <!-- ============================
         Slider
     ============================== -->
@@ -9,8 +11,8 @@
     <div class="slick-carousel m-slides-0 carousel-arrows-light carousel-dots-light" data-slick='{"slidesToShow": 1, "arrows": true, "dots": false, "speed": 700,"fade": true,"cssEase": "linear"}'>
         <div class="slide-item align-v-h">
             <div class="bg-img">
-                <img src="https://i.ibb.co/nrxPp49/science-sport-doctor-asking-patient-about-his-health-while-sportsman-running-cross-trainer-with-mask.jpg" alt="slide img">
-                <div class="overlay"></div>
+                <div class="overlay"></div> <!-- Add the overlay -->
+                <img src="https://i.ibb.co/594PJwz/medium-shot-nutritionist-measuring-patient.jpg" alt="slide img">
             </div>
             <div class="container">
                 <div class="row align-items-center">
@@ -29,10 +31,11 @@
                 </div>
             </div>
         </div>
+
         <div class="slide-item align-v-h">
             <div class="bg-img">
-                <img src="https://i.ibb.co/yN4y8rR/images-1.jpg" alt="slide img">
-                <div class="overlay"></div>
+                <div class="overlay"></div> 
+                <img src="https://i.ibb.co/mBvC2h8/expressive-young-woman-posing-studio.jpg" alt="slide img">
             </div>
             <div class="container">
                 <div class="row align-items-center">
@@ -53,6 +56,7 @@
         </div>
     </div>
 </section>
+
 
 <!-- ========================
        shop 
@@ -88,7 +92,7 @@
                                 {{ $value['title'] ?? ''}}
                             </a>
                         </h4>
-                        <span class="product__price">${{ $value['price'] ?? ''}}</span>
+                        <span class="product__price">£{{ $value['price'] ?? ''}}</span>
                     </div>
                 </div>
             </div>
@@ -226,7 +230,7 @@
                             <a class="post__meta-author" href="#">Saul Wade</a>
                         </div>
                         <h4 class="post__title"><a href="#">Ongoing Patient Care​ </a></h4>
-                        <p class="post__desc">When your monthly treatment plan is about to expire, log into your dashboard to access the consultation for returning patients.  </p>
+                        <p class="post__desc">When your monthly treatment plan is about to expire, log into your dashboard to access the consultation for returning patients. </p>
                         <a href="blog-single-post.html" class="btn btn__secondary btn__link btn__rounded">
                             <span>Read More</span>
                             <i class="icon-arrow-right"></i>

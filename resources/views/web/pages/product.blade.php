@@ -50,7 +50,7 @@
                             <span>4 Review(s)</span>
                             <a href="#">Add Review</a>
                         </div><!-- /.product-meta-review -->
-                        <span class="product__price mb-20">$ {{ $product['price'] ?? ''}}</span>
+                        <span class="product__price mb-20">£ {{ $product['price'] ?? ''}}</span>
                         <div class="product__desc">
                             <p>
                             {!! $product['desc'] ?? ''!!}
@@ -160,7 +160,7 @@
                                         {{ $value['title'] ?? ''}}
                                     </a>
                                 </h4>
-                                <span class="product__price">${{ $value['price'] ?? ''}}</span>
+                                <span class="product__price">£{{ $value['price'] ?? ''}}</span>
                             </div>
                         </div>
                     </div>
