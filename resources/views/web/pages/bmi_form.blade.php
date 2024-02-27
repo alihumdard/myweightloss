@@ -175,10 +175,10 @@
                                 <div class="col-lg-5 animated zoomIn delay-fast">
                                     <div class="box_general">
                                         <div class="form-group">
-                                            <input type="number" name="height"  min="20" max="254" class="form-control" placeholder="Your height in (Cm)">
+                                            <input type="number" name="height"  min="20" max="254" step="0.1" class="form-control" placeholder="Your height in (Cm)">
                                         </div>
                                         <div class="form-group">
-                                            <input type="number" name="weight" min="20" max="400" class="form-control" placeholder="Your weight in (Kg)">
+                                            <input type="number" name="weight" min="20" max="400" step="0.1" class="form-control" placeholder="Your weight in (Kg)">
                                         </div>
                                         <div class="checkbox_questions">
                                             <input name="terms" type="checkbox" class="icheck required" value="yes">
