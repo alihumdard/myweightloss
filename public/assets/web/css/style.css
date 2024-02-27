@@ -7534,23 +7534,35 @@ form {
 #shadow-host-companion{
   padding:0px;
 }
+ /* start custom style of home slider by shahroz */
+.slider .bg-img {
+  position: relative;
+  overflow: hidden;
+}
 
-/* Overlay styles for the first section images */
-.slide-item:nth-child(1) .bg-img .overlay {
+.slider .bg-img::after {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  pointer-events: none;
 }
 
-/* Overlay styles for the second section images */
-.slide-item:nth-child(2) .bg-img .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
+.slider .bg-img img {
+  display: block;
   width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  height: auto;
 }
+
+.slider .slide__content {
+  position: relative;
+  z-index: 2; 
+  color: #fff;
+  text-align: center; 
+}
+
+ /* end custom style of home slider by shahroz */
