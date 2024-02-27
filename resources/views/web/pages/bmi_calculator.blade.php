@@ -277,10 +277,18 @@
                 <div class=" btn btn-primary pt-3 question_title">
                     <h5 class="text-white fw-bold">Calculate/Update Your BMI</h5>
                 </div>
+                <div class="col-12 mx-auto">
+                    @if(session('status') === 'invalid')
+                    <div class="alert alert-danger">
+                        <strong>Error:</strong> {{ session('message') }}
+                    </div>
+                    @endif
+                </div>
                 <div class="card-body pt-4 px-2">
+
                     <form class="c-bmi" id="bmi_from" method="POST" action="{{ route('web.bmiUpdate') }}">
                         @csrf
-                        <input type="hidden"  name="id" value="{{$bmi_detail['id'] ?? '' }}">
+                        <input type="hidden" name="id" value="{{$bmi_detail['id'] ?? '' }}">
                         <label for="height" class="c-bmi__label"><strong>Height</strong>
                             <input class="c-bmi__range form-range mt-1" type="range" name="height" min="20" max="254" step="0.1" value="{{$bmi_detail['height'] ?? 0.0 }}" />
                             <output name="ho"><output>
@@ -291,7 +299,7 @@
                         </label>
                         <div class="c-bmi__result">
                             <span style="font-weight: 900;  "> Your BMI Is:</span>
-                            <div class="circle"  style="width: 9rem; height:9rem;">
+                            <div class="circle" style="width: 9rem; height:9rem;">
                                 <output name="bmio"></output>
                             </div>
                         </div>
@@ -393,13 +401,18 @@
                     [40, 100]
                 ].findIndex(e => e[0] <= i && i < e[1]);
             let o = (.393700787 * e).toFixed(0);
-            if(i > 0 && i <= 15){
-                $('.circle').css('background-color','#cc1100')
-            }else if(i > 30){
-                $('.circle').css('background-color','#28a745')
-            }
-            else{
-                $('.circle').css('background-color', '#fb4f4f');
+            if (i > 0 && i <= 18.49) {
+                $('.circle').css('background-color', '#0d6efd')
+            } else if (i > 18.5 && i <= 24.49) {
+                $('.circle').css('background-color', '#198754')
+            } else if (i > 25 && i <= 29.99) {
+                $('.circle').css('background-color', '#ffc107')
+            } else if (i > 30 && i <= 34.99) {
+                $('.circle').css('background-color', '#fd7e14')
+            } else if (i > 35 && i <= 39.99) {
+                $('.circle').css('background-color', '#ff6455')
+            } else {
+                $('.circle').css('background-color', '#dc3545');
 
             }
 

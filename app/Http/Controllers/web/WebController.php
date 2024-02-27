@@ -65,7 +65,6 @@ class WebController extends Controller
                 ->first();
             $data['bmi_detail'] = $bmiRecord ? $bmiRecord->toArray() : [];
             if ($data['bmi_detail']) {
-                // dd($data['bmi_detail']);
                 return view('web.pages.bmi_calculator', $data);
             } else {
                 return view('web.pages.bmi_form', $data);
@@ -230,7 +229,11 @@ class WebController extends Controller
                 ]);
 
             if ($save) {
-                return redirect()->route('web.bmiForm');
+                if($bmi >= 30){
+                    return redirect()->route('web.consultationForm');
+                }else{
+                    return redirect()->route('web.bmiForm')->with(['status' => 'invalid', 'message' => "You can't proceed futher because You'r bmi is lower than 30."]);
+                }
             }
         } else {
             return view('web.pages.regisration_from', $data);
