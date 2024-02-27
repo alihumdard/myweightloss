@@ -81,16 +81,16 @@
           <div class="row mb-5">
             <div class="col-md-12">
               <div class="text pt-2 mb-5">
-                <h5 class="text-light">What is Lorem Ipsum?</h5>
-                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+                <h5 class="text-light">Trusted Partners of Our Weightloss</h5>
+                <p>Online Clinic4u and Online Pharmacy4U trusted partners of our Weightloss, collaborate seamlessly to provide comprehensive pharmacy and prescribing services. Together, we ensure a dedicated and reliable support system for your health and wellness journey.</p>
               </div>
               <div class="text pt-2 mb-5">
-                <h5 class="text-light">What is Lorem Ipsum?</h5>
-                <p>It is a long established fact that have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+                <h5 class="text-light">Online Pharmacy4U For You</h5>
+                <p>Online Pharmacy4U simplifies the medication procurement process. Easily select your desired medication through direct search or category navigation. Following selection, a quick, free 1-minute consultation with our GPhC-approved prescribers ensures safe dispensing. Enjoy the convenience of express delivery, receiving your prescribed medications discreetly at your doorstep within hours. Your health, our priority, is delivered swiftly with Online Pharmacy4U.</p>
               </div>
               <div class="text pt-2 mb-5">
-                <h5 class="text-light">What is Lorem Ipsum?</h5>
-                <p>It is a long established fact that looking at its layout. The point of using Lorem Ipsum is that it has a more-or-les 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+                <h5 class="text-light">Online Clinic4U For You</h5>
+                <p>Online Clinic4U streamlines medication acquisition with a user-friendly interface. Effortlessly choose your medication via direct search or category navigation. After selection, undergo a 1-minute consultation. Our GPhC-approved prescribers review and approve your prescription, and Online Clinic4U ensures prompt, discreet delivery. Trust Online Clinic4U for a seamless and efficient healthcare experience.</p>
               </div>
             </div>
           </div>
