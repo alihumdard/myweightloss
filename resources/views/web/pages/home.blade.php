@@ -21,7 +21,7 @@
                             <h2 class="slide__title color-white">Start the Journey to <br> Weight Loss Success!</h2>
                             <p class="slide__desc color-white"> Take a happy journey to better health! Set habits that will promote long-term health and vitality as you start on your weight-loss journey. </p>
                             <div class="d-flex flex-wrap justify-content-center align-items-center">
-                                <a href="about-us.html" class="btn btn__white btn__rounded mr-30">
+                                <a href="{{ route('web.aboutUs') }}" class="btn btn__white btn__rounded mr-30">
                                     <span>More About Us</span>
                                     <i class="icon-arrow-right"></i>
                                 </a>
@@ -44,7 +44,7 @@
                             <h2 class="slide__title color-white">Start Your Journey <br> with Weight Loss!</h2>
                             <p class="slide__desc color-white">For a happier, more energetic life, start on a transformative weight-loss journey, choosing healthier habits and reaching your fitness objectives.</p>
                             <div class="d-flex flex-wrap justify-content-center align-items-center">
-                                <a href="about-us.html" class="btn btn__white btn__rounded mr-30">
+                                <a href="{{ route('web.aboutUs') }}" class="btn btn__white btn__rounded mr-30">
                                     <span>More About Us</span>
                                     <i class="icon-arrow-right"></i>
                                 </a>

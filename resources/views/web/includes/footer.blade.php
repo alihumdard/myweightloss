@@ -22,34 +22,40 @@
           </div>
         </div>
         <div class="col-sm-6 col-md-6 col-lg-2 offset-lg-1">
-              <div class="footer-widget-nav">
-                <h6 class="footer-widget__title">Departments</h6>
-                <nav>
-                  <ul class="list-unstyled">
-                    <li><a href="#">Neurology Clinic</a></li>
-                    <li><a href="#">Cardiology Clinic</a></li>
-                    <li><a href="#">Pathology Clinic</a></li>
-                    <li><a href="#">Laboratory Analysis</a></li>
-                    <li><a href="#">Pediatric Clinic</a></li>
-                    <li><a href="#">Cardiac Clinic</a></li>
-                  </ul>
-                </nav>
-              </div><!-- /.footer-widget__content -->
-            </div><!-- /.col-lg-2 -->
-            <div class="col-sm-6 col-md-6 col-lg-2">
-              <div class="footer-widget-nav">
-                <h6 class="footer-widget__title">Links</h6>
-                <nav>
-                  <ul class="list-unstyled">
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Our CLinic</a></li>
-                    <li><a href="#">Our Doctors</a></li>
-                    <li><a href="#">News & Media</a></li>
-                    <li><a href="#">Appointments</a></li>
-                  </ul>
-                </nav>
-              </div><!-- /.footer-widget__content -->
-            </div><!-- /.col-lg-2 -->
+          <div class="footer-widget-nav">
+            <h6 class="footer-widget__title">Legal</h6>
+            <nav>
+              <ul class="list-unstyled">
+                <li><a href="#">Terms & Conditions</a></li>
+                
+                <li><a href="#">Complaints policy</a></li>
+                <li><a href="#">Delivery & Returns</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Cookies</a></li>
+                <!-- <li><a href="#">Neurology Clinic</a></li>
+                <li><a href="#">Cardiology Clinic</a></li>
+                <li><a href="#">Pathology Clinic</a></li>
+                <li><a href="#">Laboratory Analysis</a></li>
+                <li><a href="#">Pediatric Clinic</a></li>
+                <li><a href="#">Cardiac Clinic</a></li> -->
+              </ul>
+            </nav>
+          </div><!-- /.footer-widget__content -->
+        </div><!-- /.col-lg-2 -->
+        <div class="col-sm-6 col-md-6 col-lg-2">
+          <div class="footer-widget-nav">
+            <h6 class="footer-widget__title">Our Links</h6>
+            <nav>
+              <ul class="list-unstyled">
+                <li><a href="{{ route('web.index') }}">Home</a></li>
+                <li><a href="{{ route('web.aboutUs') }}">About Us</a></li>
+                <li><a href="{{ route('web.products') }}">Products</a></li>
+                <li><a href="{{ route('web.blogs') }}">Blog</a></li>
+                <li><a href="{{ route('web.contactUs') }}">Contact Us</a></li>
+              </ul>
+            </nav>
+          </div><!-- /.footer-widget__content -->
+        </div><!-- /.col-lg-2 -->
 
         <div class="col-lg-4 col-md-12">
           <div class="footer-widget-contact">
@@ -57,27 +63,32 @@
             <ul class="contact-list list-unstyled">
               <li>If you have any questions or need help, feel free to contact our team.</li>
               <li>
-                <a href="tel:01061245741" class="phone__number">
-                  <i class="icon-phone"></i> <span>01061245741</span>
+                <a href="tel:01623572757" class="phone__number">
+                  <i class="icon-phone"></i> <span>01623 572757</span>
                 </a>
               </li>
-              <li class="color-body">2307 Beverley Rd Brooklyn, New York 11226 United States.</li>
+              <li class="color-body">Online Pharmacy 4U
+                Unit 2, Mansfield Woodhouse Station Gateway, Signal Way
+                off Debdale Way,
+                Nottinghamshire
+                NG19 9QH,
+                United Kingdom</li>
             </ul>
             <div class="d-flex align-items-center mt-3">
-              <a href="contact-us.html" class="btn btn__primary btn__link mr-3">
+              <!-- <a href="contact-us.html" class="btn btn__primary btn__link mr-3">
                 <i class="icon-arrow-right"></i> <span>Get Directions</span>
-              </a>
+              </a> -->
               <ul class="social-icons list-unstyled mb-0">
-                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="https://www.facebook.com/people/Online-Pharmacy4U/100083173698028/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="https://www.linkedin.com/company/74292944" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+                <li><a href="https://twitter.com/4uPharmacy" target="_blank"><i class="fab fa-twitter"></i></a></li>
               </ul>
             </div>
           </div>
         </div>
 
         <!-- shahroz code here  -->
-        <div class="container">
+        <!-- <div class="container">
           <div class="row mb-5">
             <div class="col-md-12">
               <div class="text pt-2 mb-5">
@@ -94,19 +105,26 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="container mt-5 mb-2">
-          <div class="row mb-5">
-          <div class="col-md-5 ">
-              <div class="image d-flex justify-content-start ml-2 mr-2">
-                <img src="https://i.ibb.co/6HkdTkC/pharmacy-4u-1c443eee-70cf-4156-a20b-d3c94d520af4-removebg-preview.png" alt="" width="100" height="35" class="img-fluid  mr-2">
-                <img src="https://i.ibb.co/Y7xTqwk/abcsd.png" alt="" width="100" height="35" class="img-fluid ml-5">
+        </div> -->
+        <div class="container mb-2">
+          <div class="row mb-5 align-items-center">
+            <div class="col-md-2">
+              <div class="image d-flex justify-content-start  align-items-center" style="height: 100%;">
+                <img src="https://i.ibb.co/vLw9Jr8/online-pharmacy-certificate.jpg" alt="" width="100" height="35" class="img-fluid mr-2">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <p class="text-center-md mt-5">Online Clinic4u and Online Pharmacy4U trusted partners of our Weightloss, collaborate seamlessly to provide comprehensive pharmacy and prescribing services.</p>
+            </div>
+            <div class="col-md-2">
+              <div class="image d-flex justify-content-start  align-items-center" style="height: 100%;">
+                <img src="https://i.ibb.co/pPcw7fp/ICO-Logo-White.png" alt="" width="100" height="35" class="img-fluid ml-5">
               </div>
             </div>
           </div>
         </div>
 
-        <div class="col-sm-12 col-md-6 mt-2">
+        <!-- <div class="col-sm-12 col-md-6 mt-2">
           <nav class="mt-3">
             <ul class="list-unstyled footer__copyright-links d-flex flex-wrap justify-content-start mb-0">
               <li><a href="#">Terms & Conditions</a></li>
@@ -114,7 +132,7 @@
               <li><a href="#">Cookies</a></li>
             </ul>
           </nav>
-        </div><!-- /.col-lg-6 -->
+        </div> -->
       </div>
     </div>
   </footer>
