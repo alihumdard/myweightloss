@@ -12,7 +12,7 @@
                                 <i class="icon-phone"></i><a href="tel:+5565454117">Emergency Line: (002) 01061245741</a>
                             </li>
                             <li>
-                                <i class="icon-location"></i><a href="#">Location: , Nottingham, NG19 9QH, United Kingdom</a>
+                                <i class="icon-location"></i><a href="#">Location:Unit 2, Mansfield Station Gateway</a>
                             </li>
                             <li>
                                 <i class="icon-clock"></i><a href="contact-us.html">Mon - Fri: 8:00 am - 7:00 pm</a>
@@ -64,21 +64,24 @@
                     </li>
                     <li class="nav__item">
                         <a href="{{ route('web.products') }}" class="nav__item-link">Products</a>
-                        <ul class="dropdown-menu">
+                        <!-- <ul class="dropdown-menu"> -->
                             <!-- <li class="nav__item">
                                 <a href="{{ route('web.products') }}" class="nav__item-link">Our Products</a>
                             </li>
                             <li class="nav__item">
                                 <a href="cart.html" class="nav__item-link">Cart</a>
                             </li> -->
-                        </ul>
+                        <!-- </ul> -->
                     </li>
                     <li class="nav__item ">
                         <a href="{{ route('web.blogs') }}" class="nav__item-link">Blog</a>
                     </li>
 
                     <li class="nav__item">
-                        <a href="{{ route('web.contactUs') }}" class="nav__item-link">Contacts Us</a>
+                        <a href="{{ route('web.contactUs') }}" class="nav__item-link">Contact</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="{{ route('web.login') }}" class="nav__item-link">Account </a>
                     </li>
                 </ul>
                 <!-- <button class="close-mobile-menu d-block d-lg-none"><i class="fas fa-times"></i></button> -->
@@ -109,7 +112,7 @@
                 </ul> -->
                 <a href="{{ route('web.regisrationFrom')}}" class="btn btn__primary btn__rounded ml-30">
                     <i class="icon-calendar"></i>
-                    <span>Let's Start Consultation</span>
+                    <span>Start Free Consultation</span>
                 </a>
             </div>
         </div>

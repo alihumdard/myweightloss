@@ -11,8 +11,8 @@
     <div class="slick-carousel m-slides-0 carousel-arrows-light carousel-dots-light" data-slick='{"slidesToShow": 1, "arrows": true, "dots": false, "speed": 700,"fade": true,"cssEase": "linear"}'>
         <div class="slide-item align-v-h">
             <div class="bg-img">
-                <div class="overlay"></div> <!-- Add the overlay -->
-                <img src="https://i.ibb.co/594PJwz/medium-shot-nutritionist-measuring-patient.jpg" alt="slide img">
+                <div class="overlay"></div>
+                <img src="{{ asset('/assets/web/images/tsp/home-slider/5.png') }}" alt="slide img">
             </div>
             <div class="container">
                 <div class="row align-items-center">
@@ -35,7 +35,7 @@
         <div class="slide-item align-v-h">
             <div class="bg-img">
                 <div class="overlay"></div> 
-                <img src="https://i.ibb.co/mBvC2h8/expressive-young-woman-posing-studio.jpg" alt="slide img">
+                <img src="{{ asset('/assets/web/images/tsp/home-slider/3.png') }}" alt="slide img">
             </div>
             <div class="container">
                 <div class="row align-items-center">
@@ -131,7 +131,7 @@
                     </ul>
                     <div class="d-flex flex-wrap">
                         <a href="doctors-timetable.html" class="btn btn__white btn__rounded mr-30">
-                            <span>Let's Start Consultation </span> <i class="icon-arrow-right"></i>
+                            <span>Start Free Consultation </span> <i class="icon-arrow-right"></i>
                         </a>
                         <a href="contact-us.html" class="btn btn__white btn__outlined btn__rounded">
                             Contact us
@@ -141,7 +141,7 @@
             </div>
             <div class="col-sm-12 col-md-12 col-lg-6 banner-img">
                 <div class="bg-img">
-                    <img src="{{ asset('/assets/web/images/banners/9.jpg') }}" alt="backgrounds">
+                    <img src="{{ asset('/assets/web/images/tsp/home-section/2.png') }}" alt="backgrounds">
                 </div>
             </div>
         </div>
@@ -167,7 +167,7 @@
                 <div class="post-item">
                     <div class="post__img">
                         <a href="blog-single-post.html">
-                            <img src="{{ asset('https://i.ibb.co/Ycd4ZJx/weightloss1.jpg') }}" alt="post image" loading="lazy">
+                            <img src="{{ asset('/assets/web/images/tsp/recent-articles/2.png') }}" alt="post image" loading="lazy">
                         </a>
                     </div><!-- /.post__img -->
                     <div class="post__body">
@@ -193,7 +193,7 @@
                 <div class="post-item">
                     <div class="post__img">
                         <a href="blog-single-post.html">
-                            <img src="{{ asset('https://i.ibb.co/dcrvkxX/close-up-doctor-measuring-patient.jpg') }}" alt="post image" loading="lazy">
+                            <img src="{{ asset('/assets/web/images/tsp/recent-articles/1.png') }}" alt="post image" loading="lazy">
                         </a>
                     </div><!-- /.post__img -->
                     <div class="post__body">
@@ -218,7 +218,7 @@
                 <div class="post-item">
                     <div class="post__img">
                         <a href="blog-single-post.html">
-                            <img src="{{ asset('https://i.ibb.co/yX8sgNp/2148256175.jpg') }}" alt="post image" loading="lazy">
+                            <img src="{{ asset('/assets/web/images/tsp/recent-articles/3.png') }}" alt="post image" loading="lazy">
                         </a>
                     </div><!-- /.post__img -->
                     <div class="post__body">
