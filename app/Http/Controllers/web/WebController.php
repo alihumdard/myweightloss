@@ -50,7 +50,7 @@ class WebController extends Controller
     public function product(Request $request)
     {
         $data['user'] = auth()->user() ?? [];
-        $data['product'] = Product::with('category:id,name','variants')->findOrFail($request->id)->toArray();
+        $data['product'] = Product::with('category:id,name', 'variants')->findOrFail($request->id)->toArray();
         $data['rel_products'] = Product::where(['category_id' => $data['product']['category_id']])->take(4)->latest('id')->get()->toArray();
         return view('web.pages.product', $data);
     }
@@ -59,7 +59,16 @@ class WebController extends Controller
     {
         $data['user'] = auth()->user() ?? [];
         if (auth()->user()) {
-            return view('web.pages.bmi_form', $data);
+            $user = auth()->user();
+            $bmiRecord = UserBmi::where('user_id', $user->id)
+                ->latest('id')
+                ->first();
+            $data['bmi_detail'] = $bmiRecord ? $bmiRecord->toArray() : [];
+            if ($data['bmi_detail']) {
+                return view('web.pages.bmi_calculator', $data);
+            } else {
+                return view('web.pages.bmi_form', $data);
+            }
         } else {
             return redirect()->route('web.regisrationFrom');
         }
@@ -178,22 +187,52 @@ class WebController extends Controller
             $height = $request->height / 100;
             $bmi = $weight / ($height * $height);
             $bmi = round($bmi, 1);
-            if ($bmi < 30) {
-                dd('the bmi value is less then 30');
-            } else {
-                $save =  UserBmi::create([
+
+            $save =  UserBmi::create([
+                'user_id' => auth()->user()->id,
+                'weight' => $request->weight,
+                'height' => $request->height,
+                'age' => $request->age,
+                'gender' => $request->gender,
+                'bmi' => $bmi,
+                'status' => '1',
+                'created_by' => auth()->user()->id,
+            ]);
+
+            if ($save) {
+                return redirect()->route('web.bmiForm');
+            }
+        } else {
+            return view('web.pages.regisration_from', $data);
+        }
+    }
+
+    public function bmi_update(Request $request)
+    {
+        $data['user'] = auth()->user() ?? [];
+
+        if (auth()->user()) {
+            // dd($request->all());
+            $weight = $request->weight;
+            $height = $request->height / 100;
+            $bmi = $weight / ($height * $height);
+            $bmi = round($bmi, 1);
+
+            $save =  UserBmi::where('id', $request->id)
+                ->update([
                     'user_id' => auth()->user()->id,
                     'weight' => $request->weight,
                     'height' => $request->height,
-                    'age' => $request->age,
-                    'gender' => $request->gender,
                     'bmi' => $bmi,
                     'status' => '1',
                     'created_by' => auth()->user()->id,
                 ]);
 
-                if ($save) {
+            if ($save) {
+                if($bmi >= 30){
                     return redirect()->route('web.consultationForm');
+                }else{
+                    return redirect()->route('web.bmiForm')->with(['status' => 'invalid', 'message' => "You can't proceed futher because You'r bmi is lower than 30."]);
                 }
             }
         } else {
