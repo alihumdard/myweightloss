@@ -466,7 +466,7 @@ class SystemController extends Controller
         AssignQuestion::where('category_id', $request->category_id)->delete();
 
         // Loop through each question_id and insert new records
-        foreach ($request->question_id as $questionId) {
+        foreach ($request->question_id ?? [] as $questionId) {
             AssignQuestion::create([
                 'category_id' => $request->category_id,
                 'category_title' => Category::findOrFail($request->category_id)->name,
@@ -478,7 +478,7 @@ class SystemController extends Controller
         }
 
         $message = "Data Updated Successfully";
-        return redirect()->route('admin.categories')->with(['msg' => $message]);
+        return redirect()->back()->with(['msg' => $message, 'category_id'=> $request->category_id]);
     }
 
     // products managment...
