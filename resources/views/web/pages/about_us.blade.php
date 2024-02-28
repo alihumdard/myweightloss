@@ -6,7 +6,7 @@
        page title 
     =========================== -->
 <section class="page-title page-title-layout1 bg-overlay">
-    <div class="bg-img"><img src="{{ asset('/assets/web/images/page-titles/1.jpg') }}" alt="background"></div>
+    <div class="bg-img"><img src="{{ asset('/assets/web/images/tsp/about-page/2.png') }}" alt="background"></div>
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-5">
