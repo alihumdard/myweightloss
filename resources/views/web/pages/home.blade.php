@@ -101,7 +101,7 @@
         <div class="row">
             <div class="col-12 text-center">
                 <a href="{{ route('web.products') }}" class="btn btn__secondary btn__rounded">
-                    <span>Explore All</span>
+                    <span>Learn More </span>
                     <i class="icon-arrow-right"></i>
                 </a>
             </div>
@@ -127,7 +127,6 @@
                         <li>Health Assessments</li>
                         <li>Desensitisation injections</li>
                         <li>High Quality Care</li>
-                        <li>Desensitisation injections</li>
                     </ul>
                     <div class="d-flex flex-wrap">
                         <a href="doctors-timetable.html" class="btn btn__white btn__rounded mr-30">
@@ -141,7 +140,7 @@
             </div>
             <div class="col-sm-12 col-md-12 col-lg-6 banner-img">
                 <div class="bg-img">
-                    <img src="{{ asset('/assets/web/images/tsp/home-section/2.png') }}" alt="backgrounds">
+                    <img src="{{ asset('/assets/web/images/tsp/home-section/1.png') }}" class="w-50 h-50" alt="backgrounds">
                 </div>
             </div>
         </div>
@@ -167,7 +166,7 @@
                 <div class="post-item">
                     <div class="post__img">
                         <a href="blog-single-post.html">
-                            <img src="{{ asset('/assets/web/images/tsp/recent-articles/2.png') }}" alt="post image" loading="lazy">
+                            <img src="https://i.ibb.co/Ycd4ZJx/weightloss1.jpg" alt="post image" loading="lazy">
                         </a>
                     </div><!-- /.post__img -->
                     <div class="post__body">
