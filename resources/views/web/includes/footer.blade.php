@@ -2,7 +2,7 @@
       Footer
     ========================== -->
 
-<footer class="footer"  style="font-family:sans-serif">
+<footer class="footer" style="font-family:sans-serif">
   <footer class="footer-primary py-4">
     <div class="container">
       <div class="row">
@@ -10,7 +10,7 @@
           <div class="footer-widget-about mt-5">
             <img src="{{ asset('/assets/web/images/logo/weightloss_logo.png') }}" alt="logo" class="" style="width: 100px; height: auto;">
             <p class="color-gray">Dedicated professionals in weight management, drawing from extensive obesity research. We offer holistic support, prescription medicines, and a vibrant community for transformative journeys. Prioritising patient care from pre-treatment to long-term management.</p>
-            
+
           </div>
         </div>
         <div class="col-sm-6 col-md-6 col-lg-2 offset-lg-1">
@@ -19,12 +19,12 @@
             <nav>
               <ul class="list-unstyled">
                 <li><a href="#">Terms & Conditions</a></li>
-                
+
                 <li><a href="#">Complaints policy</a></li>
                 <li><a href="#">Delivery & Returns</a></li>
                 <li><a href="#">Privacy Policy</a></li>
                 <li><a href="#">Cookies</a></li>
-                
+
               </ul>
             </nav>
           </div><!-- /.footer-widget__content -->
@@ -77,19 +77,19 @@
         <!-- shahroz code here  -->
         <div class="container">
           <div class="row mb-5 align-items-center">
-            
+
             <div class="col-md-12">
               <p class="text-center-md mt-5">All consultation and prescribing, is carried out by GPhC registered medical practitioners. All dispensing and shipping of medicines is completed by a UK licensed, GPhC registered Pharmacy</p>
             </div>
-            
+
           </div>
         </div>
-      
-        <div class="container">
+
+        <div class="container mb-4">
           <div class="row align-items-center">
             <div class="col-md-2">
               <div class="image d-flex justify-content-start  align-items-center" style="height: 100%;">
-                <img src="https://i.ibb.co/vLw9Jr8/online-pharmacy-certificate.jpg" alt="" width="100" height="35" class="img-fluid mr-1">
+               <a href="https://www.pharmacyregulation.org/registers/pharmacy/registrationnumber/9011972" target="_blank"> <img src="https://i.ibb.co/vLw9Jr8/online-pharmacy-certificate.jpg" alt="" width="100" height="35" class="img-fluid mr-1"></a>
               </div>
             </div>
             <div class="col-md-4">
@@ -104,47 +104,44 @@
               <div class="button m-2">
                 <a href="https://online-pharmacy4u.co.uk/pages/responsible-pharmacist" target="_blank"><button class=" p-2 px-3" style="background-color: #21cdc0;  border-radius: 5px;">Online Pharmacy 4U rather then Chemist 4u</button></a>
               </div>
-              </div>
             </div>
           </div>
         </div>
-        <div class="container mt-5">
-          <div class="row col-8 justify-content-center align-items-center">
+      </div>
+      
+    </div>
+    <div class="container mt-5 ">
+        <div class="row col-8 justify-content-center align-items-center">
           <div class="col-md-2">
-              <div class="image d-flex justify-content-start  align-items-center" style="height: 100%;">
-                <img src="{{ asset('/assets/web/images/payment-card/paypal1.png') }}"  alt="" width="100" height="35" class="img-fluid mr-1">
-              </div>
+            <div class="image d-flex justify-content-start  align-items-center">
+              <img src="{{ asset('/assets/web/images/payment-card/paypal2.webp') }}" alt="" >
+              
             </div>
-            <div class="col-md-2">
-              <div class="image d-flex justify-content-start  align-items-center" style="height: 100%;">
-                <img src="{{ asset('/assets/web/images/payment-card/gpay.png') }}"  alt="" width="100" height="35" class="img-fluid mr-1">
-              </div>
+          </div>
+          <div class="col-md-2">
+            <div class="image d-flex justify-content-start  align-items-center">
+              <img src="{{ asset('/assets/web/images/payment-card/gpay1.png') }}" alt="" class="img-fluid ">
             </div>
-            <div class="col-md-2">
-              <div class="image d-flex justify-content-start  align-items-center" style="height: 100%;">
-                <img src="{{ asset('/assets/web/images/payment-card/payapple.png') }}"  alt="" width="100" height="35" class="img-fluid mr-1">
-              </div>
+          </div>
+          <div class="col-md-2">
+            <div class="image d-flex justify-content-start  align-items-center">
+              <img src="{{ asset('/assets/web/images/payment-card/payapple1.png') }}" alt=""  class="img-fluid">
             </div>
-            <div class="col-md-2">
-              <div class="image d-flex justify-content-start  align-items-center" style="height: 100%;">
-                <img src="{{ asset('/assets/web/images/payment-card/visa.png') }}"  alt="" width="100" height="35" class="img-fluid mr-1">
-              </div>
+          </div>
+          <div class="col-md-2">
+            <div class="image d-flex justify-content-start  align-items-center">
+              <img src="{{ asset('/assets/web/images/payment-card/visa.png') }}" alt="" class="img-fluid ">
             </div>
-            <div class="col-md-2">
-              <div class="image d-flex justify-content-start  align-items-center" style="height: 100%;">
-                <img src="{{ asset('/assets/web/images/payment-card/mastercard.png') }}"  alt="" width="100" height="35" class="img-fluid mr-1">
-              </div>
+          </div>
+          <div class="col-md-2">
+            <div class="image d-flex justify-content-start  align-items-center">
+              <img src="{{ asset('/assets/web/images/payment-card/mastercard.png') }}" alt="" width="100" height="35" class="img-fluid ">
             </div>
-            <div class="col-md-2">
-              <div class="image d-flex justify-content-start  align-items-center" style="height: 100%;">
-                <img src="{{ asset('/assets/web/images/payment-card/american-express.png') }}"  alt="" width="100" height="35" class="img-fluid mr-1">
-              </div>
+          </div>
+          <div class="col-md-2">
+            <div class="image d-flex justify-content-start  align-items-center">
+              <img src="{{ asset('/assets/web/images/payment-card/american-express.png') }}" alt="" width="100" height="35" class="img-fluid ">
             </div>
-            <!-- <div class="col-md-2">
-              <div class="image d-flex justify-content-start  align-items-center" style="height: 100%;">
-                <img src="{{ asset('/assets/web/images/payment-card/payapple.png') }}"  alt="" width="100" height="35" class="img-fluid mr-1">
-              </div>
-            </div> -->
           </div>
         </div>
       </div>

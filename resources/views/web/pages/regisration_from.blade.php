@@ -177,7 +177,7 @@
 
     <main>
         <div class="text-center bg-white p-3">
-            <a href="#" style="margin: auto; width: 200px">
+            <a href="{{ route('web.index') }}" style="margin: auto; width: 200px">
                 <img class="align-top" width="200" src="{{ asset('/assets/web/consultation/img/Weighloss_final_logo.png')}}">
 
             </a>
@@ -265,10 +265,10 @@
                         <div class="testimonial-section mt-4">
                             <div class="testimonial-content">
                                 <div class="testimonial-img text-center">
-                                    <img class="img-fluid form-user-img" src="https://consultation.my-bmi.co.uk/static/version1707364664/frontend/MyBMI/child/en_GB/images/jamesO-new-photo_cutout.png" alt="info">
+                                    <img class="img-fluid form-user-img" src="https://i.ibb.co/KGVbyHz/anime.png" alt="info">
                                 </div>
                                 <div class="testimonial-right-content" style="font-style: italic;">
-                                    <p class="has-text-white its-font-w--600 mb-2">"myBMI has access to the market
+                                    <p class="has-text-white its-font-w--600 mb-2">"My Weightloss Centre has access to the market
                                         leading treatments for weight loss which we have been prescribing to our
                                         patients for several years now with excellent clinical outcomes. The clinical
                                         processes and support structures are all designed to give you the opportunity to
@@ -307,7 +307,7 @@
                                     <label for="password" class="label d-md-block mt-3">Password</label>
                                     <input class="form-control" type="password" name="password" id="password" value="" placeholder="password">
                                     <div class="mt-1">
-                                        <p style="color: #00e5d2;">* Make a strong passowrd</p>
+                                        <p style="color: #00e5d2;">* Make a strong password</p>
                                     </div>
 
                                     <label for="dob" class="label d-md-block ">Date of Birth</label>
