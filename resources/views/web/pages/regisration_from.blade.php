@@ -321,9 +321,9 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="zip_code" class="label d-md-block mt-3">Zip Code</label>
-                                                <input class="form-control" type="number" name="zip_code" id="zip_code" value="" placeholder="Enter your zip code">
-                                                <p style="color: #00e5d2;" class="pt-1">* Enter valid Zip Code</p>
+                                                <label for="zip_code" class="label d-md-block mt-3">Postal Code</label>
+                                                <input class="form-control" type="text" name="zip_code" id="zip_code" value="" placeholder="Enter your Postal code">
+                                                <p style="color: #00e5d2;" class="pt-1">* Enter valid Postal Code</p>
                                             </div>
                                         </div>
                                     </div>
