@@ -311,7 +311,7 @@
                                     </div>
 
                                     <label for="dob" class="label d-md-block ">Date of Birth</label>
-                                    <input type="text" id="datepicker" name="dob" class="form-control" placeholder="Select date">
+                                    <input type="text" id="datepicker" name="dob" class="form-control" placeholder="mm/dd/yy">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -331,7 +331,7 @@
                                         <p style="color: #00e5d2;">* Enter valid Zip Code</p>
                                     </div> -->
                                     <label for="address" class="label d-md-block ">Address</label>
-                                    <input class="form-control" type="text" name="address" id="address" value="" placeholder="enter your address">
+                                    <input class="form-control" type="text" name="address" id="address" value="" placeholder="Enter your address">
                                     <div class="mt-1">
                                         <p style="color: #00e5d2;">* Enter address manually</p>
                                     </div>
