@@ -7,15 +7,17 @@
             <div class="row align-items-center">
                 <div class="col-12">
                     <div class="d-flex align-items-center justify-content-between">
-                        <ul class="list-items  list-items-layout2 list-items-light list-unstyled d-flex justify-content-between align-items-center">
-                            <li> Dispensed by Regulated UK Pharmacists</li>
-                            <li>100% Discreet Packaging</li>
-                            <li>Free Delivery on orders over £40*</li>
-                            <li>Registered Pharmacy: 9011972</li>
+                        
+                        <ul class="list-items list-items-layout2 list-items-light list-unstyled d-flex justify-content-between mb-0">
+                            <li class="mr-3">Dispensed by Regulated UK Pharmacists</li>
+                            <li class="mr-3">100% Discreet Packaging</li>
+                            <li class="mr-3">Free Delivery on orders over £40*</li>
                         </ul>
 
+                       
+
                         <div class="d-flex justify-content-between align-items-center">
-                            <ul class="social-icons list-unstyled p-2 d-flex align-items-center">
+                            <ul class="social-icons list-unstyled d-flex align-items-center">
                                 <li><a href="https://www.facebook.com/people/Online-Pharmacy4U/100083173698028/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
                                 <li><a href="https://www.linkedin.com/company/74292944" target="_blank"><i class="fab fa-linkedin"></i></a></li>
                                 <li><a href="https://twitter.com/4uPharmacy" target="_blank"><i class="fab fa-twitter"></i></a></li>

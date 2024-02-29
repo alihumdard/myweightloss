@@ -61,13 +61,14 @@
 <!-- ========================
        shop 
     =========================== -->
-<section class="shop-grid">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-6 offset-lg-3">
-                <div class="heading text-center mb-40">
-                    <h2 class="heading__subtitle">Low Priced Medical Supplies</h2>
-                    <h3 class="heading__title">The Largest Selections Of Medical Products</h3>
+<section class="shop-grid"  >
+    <div class="container" >
+        <div class="row" >
+            <div class="col-sm-12 col-md-12 col-lg-6 offset-lg-3 " >
+                <div class="heading text-center ">
+                    <!-- <h2 class="heading__subtitle">Low Priced Medical Supplies</h2> -->
+                    <h2 class=" heading__title">Start Your Weightloss Journy Today</h2> <hr>
+                    <h3 class="heading__subtitle" style="font-size: 16px; font-weight:700;">The Largest Selections Of Medical Products</h3>
                 </div>
             </div>
         </div>

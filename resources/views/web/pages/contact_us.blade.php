@@ -2,17 +2,87 @@
 @section('title', 'Contact Us')
 @section('content')
 
+
 <!-- ========================= 
             Google Map
     =========================  -->
-<section class="google-map py-0">
+<!-- <section class="google-map py-0">
     <iframe frameborder="0" height="500" width="100%" src="https://maps.google.com/maps?q=Suite%20100%20San%20Francisco%2C%20LA%2094107%20United%20States&amp;t=m&amp;z=10&amp;output=embed&amp;iwloc=near"></iframe>
-</section><!-- /.GoogleMap -->
+</section> -->
+<!-- /.GoogleMap -->
+
+<section class="page-title page-title-layout1">
+    <div class="bg-img"><img src="{{ asset('/assets/web/images/tsp/home-slider/2.png') }}" alt="background"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-5">
+                <h1 class="pagetitle__heading">Feel Free Contact</h1>
+                <p class="pagetitle__desc">We are Weight-Loss – a dedicated team of professionals specialising in weight management. Meet our expert who will help you in your weight loss journey. </p>
+                <div class="d-flex flex-wrap align-items-center">
+                    <a href="#" class="btn btn__primary btn__rounded mr-30">
+                        <span>Contact</span>
+                        <i class="icon-arrow-right"></i>
+                    </a>
+
+                </div>
+            </div><!-- /.col-xl-5 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section><!-- /.page-title -->
+
+<!-- section of contact card  -->
+
+<section>
+    <div class="container">
+    <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card bg-light h-100">
+                <div class="card-body d-flex align-items-center justify-content-center">
+                    <img src="https://i.ibb.co/8MJWXJV/icons8-phone-32.png" alt="" class="mr-1">
+                    <div>
+                        <label for="phone">Phone Number:</label>
+                        <span id="phone">01623 572757</span><br>
+                        <a href="#">Click here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card bg-light h-100">
+                <div class="card-body d-flex align-items-center justify-content-center">
+                    <img src="https://i.ibb.co/ZGCkSfW/icons8-email-32.png" alt="" class="mr-1">
+                    <div>
+                        <label for="email">E-mail:</label>
+                        <span id="email">info@myweightlosscentre.co.uk</span><br>
+                        <a href="#"><span>Click here</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card bg-light h-100">
+                <div class="card-body d-flex align-items-center justify-content-center">
+                    <img src="https://i.ibb.co/NL1tqNZ/icons8-location-32.png" alt="" class="mr-1">
+                    <div>
+                        <span>My WeightLoss Centre Unit 2, Mansfield Woodhouse Station Gateway</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+</section>
+
+
+
 
 <!-- ==========================
         contact layout 1
     =========================== -->
-<section class="contact-layout1 pt-0 mt--100">
+<section class="contact-layout1 pt-0 mt--50">
     <div class="container">
         <div class="row">
             <div class="col-12">
