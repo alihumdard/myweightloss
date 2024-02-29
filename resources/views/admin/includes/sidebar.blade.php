@@ -95,7 +95,7 @@
                 </li>
                 <li>
                     <a class="{{(request()->routeIs(['admin.doctorsApproval'])) ? 'nav-link ' : ''}}" href="{{route('admin.doctorsApproval')}}">
-                        <i class="bi bi-circle"></i><span>Doctor's Approval</span>
+                        <i class="bi bi-circle"></i><span>Medical Professionals Approval</span>
                     </a>
                 </li>
                 <li>
@@ -115,12 +115,12 @@
         @if(view_permission('doctors'))
         <li class="nav-item">
             <a class="nav-link {{(request()->routeIs(['admin.doctors','admin.addDoctor'])) ? '' : 'collapsed'}} " data-bs-target="#tables-nav" data-bs-toggle="collapse">
-                <i class="bi bi-person"></i><span>Doctors</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-person"></i><span>Healthcare Professionals</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="tables-nav" class="nav-content {{(request()->routeIs(['admin.doctors','admin.addDoctor'])) ? '' : 'collapse'}} " data-bs-parent="#sidebar-nav">
                 <li>
                     <a class="{{(request()->routeIs(['admin.doctors'])) ? 'nav-link ' : ''}} " href="{{route('admin.doctors')}}">
-                        <i class="bi bi-person"></i><span>Doctor's Profiles</span>
+                        <i class="bi bi-person"></i><span>Profiles</span>
                     </a>
                 </li>
                 <li>
