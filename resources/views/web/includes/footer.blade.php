@@ -89,7 +89,7 @@
           <div class="row align-items-center">
             <div class="col-md-2">
               <div class="image d-flex justify-content-start  align-items-center" style="height: 100%;">
-               <a href="https://www.pharmacyregulation.org/registers/pharmacy/registrationnumber/9011972" target="_blank"> <img src="https://i.ibb.co/vLw9Jr8/online-pharmacy-certificate.jpg" alt="" width="100" height="35" class="img-fluid mr-1"></a>
+                <a href="https://www.pharmacyregulation.org/registers/pharmacy/registrationnumber/9011972" target="_blank"> <img src="https://i.ibb.co/vLw9Jr8/online-pharmacy-certificate.jpg" alt="" width="100" height="35" class="img-fluid mr-1"></a>
               </div>
             </div>
             <div class="col-md-4">
@@ -108,9 +108,9 @@
           </div>
         </div>
       </div>
-      
+
     </div>
-    <div class="container mt-5 ">
+    <!-- <div class="container mt-5 ">
         <div class="row col-8 justify-content-center align-items-center">
           <div class="col-md-2">
             <div class="image d-flex justify-content-start  align-items-center">
@@ -144,6 +144,12 @@
             </div>
           </div>
         </div>
+      </div>
+    </div> -->
+
+    <div class=" container col-xl-3 col-md-6 col-sm-12 col-12">
+      <div class="footer-widget footer-newsletter-widget ">
+        <img src="{{ asset('/assets/web/images/payment-card/payment-4.png') }}" alt="Payment Image">
       </div>
     </div>
   </footer>
