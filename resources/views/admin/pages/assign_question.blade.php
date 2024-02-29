@@ -19,7 +19,7 @@
         <div class="row">
             <div class="col-lg-12">
 
-                <div class="card vh-100">
+                <div class="card">
                     <div class="card-body">
                         <form class="row g-3 mt-3 needs-validation" method="post" action="{{ route('admin.storeAssignQuestion') }}" novalidate>
                             @csrf
@@ -37,26 +37,19 @@
                                 </div>
                             </div>
 
-                            <!-- <div class="row mb-3 mt-3">
+                            <div class="row mt-3">
                                 <label for="question_id" class="col-sm-2 col-form-label">Choose Question</label>
                                 <div class="col-sm-10">
-                                    <select id="question_id" class="form-select select2" name="question_id[]" multiple="multiple">>
-                                        <option value="all">all</option>
+                                    <select id="question_id" class="form-select select2" name="question_id[]">
                                         @foreach ($questions as $key => $value)
                                         <option value="{{ $value['id'] ?? '' }}">{{ $value['title'] ?? '' }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div id="message" class="text-danger"></div>
-                            </div> -->
-
-                            <div class="row mt-3">
-                                <div class="col-sm-4 mx-auto">
-                                    <label for="question_id" class=" text-center  col-form-label fw-bold btn btn-outline-success">+ Add New Question</label>
-                                </div>
                             </div>
 
-                            <div class="row mt-3">
+                            <div class="row mb-3">
                                 <div class="col-sm-12">
                                     <label for="question_id" class=" text-center  col-form-label fw-bold btn text-secordary">
                                         Q1. What is you problem here . is my problem?
@@ -69,13 +62,14 @@
                                 </div>
                                 <div class="col-md-10">
                                     <div class="row mt-2">
-                                        <div class="col-md-12">
-                                            <label for="question_id" class=" text-center px-5 col-form-label fw-bold btn btn-outline-secondary">
+                                        <div class="col-md-6">
+                                            <label for="optionA" class=" text-center px-5 col-form-label fw-bold btn btn-outline-secondary" onclick="focusDropdown('optionA')">
                                                 Option A
                                             </label>
                                         </div>
-                                            <select id="question_id" class="form-select select2"  >
-                                            <option value="">Choose ...</option>
+                                        <div class="col-md-6">
+                                            <select id="optionA" class="form-select select2" name="[]">
+                                                <option value="">Choose ...</option>
                                                 @foreach ($questions as $key => $value)
                                                 <option value="{{ $value['id'] ?? '' }}">{{ $value['title'] ?? '' }}</option>
                                                 @endforeach
@@ -84,12 +78,12 @@
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col-md-6">
-                                            <label for="question_id" class=" text-center px-5 col-form-label fw-bold btn btn-outline-secondary">
+                                            <label for="optionB" class=" text-center px-5 col-form-label fw-bold btn btn-outline-secondary" onclick="focusDropdown('optionB')">
                                                 Option B
                                             </label>
                                         </div>
                                         <div class="col-md-6">
-                                            <select id="" class="form-select select2" name="[]" >
+                                            <select id="optionB" class="form-select select2" name="[]">
                                                 <option value="">Choose ...</option>
                                                 @foreach ($questions as $key => $value)
                                                 <option value="{{ $value['id'] ?? '' }}">{{ $value['title'] ?? '' }}</option>
@@ -99,12 +93,12 @@
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col-md-6">
-                                            <label for="" class=" text-center px-5 col-form-label fw-bold btn btn-outline-secondary">
+                                            <label for="optionC" class=" text-center px-5 col-form-label fw-bold btn btn-outline-secondary" onclick="focusDropdown('optionC')">
                                                 Option C
                                             </label>
                                         </div>
                                         <div class="col-md-6">
-                                            <select id="" class="form-select select2" name="[]" >
+                                            <select id="optionC" class="form-select select2" name="[]">
                                                 <option value="">Choose ...</option>
                                                 @foreach ($questions as $key => $value)
                                                 <option value="{{ $value['id'] ?? '' }}">{{ $value['title'] ?? '' }}</option>
@@ -114,12 +108,12 @@
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col-md-6">
-                                            <label for="" class=" text-center px-5 col-form-label fw-bold btn btn-outline-secondary">
+                                            <label for="optionD" class=" text-center px-5 col-form-label fw-bold btn btn-outline-secondary" onclick="focusDropdown('optionD')">
                                                 Option D
                                             </label>
                                         </div>
                                         <div class="col-md-6">
-                                            <select id="" class="form-select select2" name="question_id[]" >
+                                            <select id="optionD" class="form-select select2" name="question_id[]">
                                                 <option value="">Choose ...</option>
                                                 @foreach ($questions as $key => $value)
                                                 <option value="{{ $value['id'] ?? '' }}">{{ $value['title'] ?? '' }}</option>
@@ -131,40 +125,15 @@
                             </div>
 
 
-                            <!--
-                                    <fieldset class="row mb-3">
-                                      <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
-                                      <div class="col-sm-10">
-                                        <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                                          <label class="form-check-label" for="gridRadios1">
-                                            First radio
-                                          </label>
-                                        </div>
-                                        <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-                                          <label class="form-check-label" for="gridRadios2">
-                                            Second radio
-                                          </label>
-                                        </div>
-                                        <div class="form-check disabled">
-                                          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
-                                          <label class="form-check-label" for="gridRadios3">
-                                            Third disabled radio
-                                          </label>
-                                        </div>
-                                      </div>
-                                    </fieldset>
-                                    <div class="row mb-3">
-                                      <div class="col-sm-10 offset-sm-2">
-                                        <div class="form-check">
-                                          <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                          <label class="form-check-label" for="gridCheck1">
-                                            Example checkbox
-                                          </label>
-                                        </div>
-                                      </div>
-                                    </div> -->
+                            <div class="question">
+
+                            </div>
+
+                            <div class="row my-3">
+                                <div class="col-sm-4 mx-auto">
+                                    <label for="question_id" id="add_new_question" class=" text-center  col-form-label fw-bold btn btn-outline-success">+ Add New Question</label>
+                                </div>
+                            </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary">Submit</button>
                                 <button type="reset" class="btn btn-secondary">Reset</button>
@@ -245,6 +214,90 @@
             questionDropdown.trigger('change');
         }
 
+        var new_row = `  
+        <div class="new-row" >
+
+        <div class="row my-3">
+                                <div class="col-sm-4 mx-auto">
+                                    <label for="question_id"  class=" text-center remove_row col-form-label fw-bold btn btn-danger"> - Remove Question</label>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <label for="question_id" class="col-sm-2 col-form-label">Choose Question</label>
+                                <div class="col-sm-10">
+                                    <select id="question_id" class="form-select select2" name="question_id[]">
+                                        @foreach ($questions as $key => $value)
+                                        <option value="{{ $value['id'] ?? '' }}">{{ $value['title'] ?? '' }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div id="message" class="text-danger"></div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-sm-12">
+                                    <label  class=" text-center  col-form-label fw-bold btn text-secordary">
+                                        Q2. Yes no question is how for ?
+                                    </label>
+                                </div>
+                                <div class="col-md-2">
+                                    <label  class=" text-center px-5 col-form-label fw-bold btn text-danger">
+                                        Option...
+                                    </label>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="row mt-2">
+                                        <div class="col-md-6">
+                                            <label  class=" text-center px-5 col-form-label fw-bold btn btn-outline-secondary">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <select id="" class="form-select select2" name="[]">
+                                                <option value="">Choose ...</option>
+                                                @foreach ($questions as $key => $value)
+                                                <option value="{{ $value['id'] ?? '' }}">{{ $value['title'] ?? '' }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-md-6">
+                                            <label  class=" text-center px-5 col-form-label fw-bold btn btn-outline-secondary">
+                                                No
+                                            </label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <select id="" class="form-select select2" name="[]">
+                                                <option value="">Choose ...</option>
+                                                @foreach ($questions as $key => $value)
+                                                <option value="{{ $value['id'] ?? '' }}">{{ $value['title'] ?? '' }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            `;
+
+        $('#add_new_question').on('click', function() {
+            $('.question').append(new_row);
+        });
+
+        $(document).on('click', '.remove_row', function() {
+            $(this).closest('.new-row').fadeOut('slow', function() {
+                $(this).remove();
+            });
+
+
+        });
+
     });
+
+    function focusDropdown(id) {
+        var element = document.getElementById(id);
+        $(element).select2('open');
+    }
 </script>
 @endPushOnce
