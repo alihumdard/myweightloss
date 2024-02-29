@@ -7,29 +7,30 @@
             <div class="row align-items-center">
                 <div class="col-12">
                     <div class="d-flex align-items-center justify-content-between">
-                        <ul class="contact__list d-flex flex-wrap align-items-center list-unstyled mb-0">
-                            <li>
-                                <i class="icon-phone"></i><a href="tel:+5565454117">Emergency Line: 01623 572757</a>
-                            </li>
-                            <li>
-                                <i class="icon-location"></i><a href="#">Location:Unit 2, Mansfield Station Gateway</a>
-                            </li>
-                            <li>
-                                <i class="icon-clock"></i><a href="contact-us.html">Mon - Fri: 8:00 am - 7:00 pm</a>
-                            </li>
+                        
+                        <ul class="list-items list-items-layout2 list-items-light list-unstyled d-flex justify-content-between mb-0">
+                            <li class="mr-3">Dispensed by Regulated UK Pharmacists</li>
+                            <li class="mr-3">100% Discreet Packaging</li>
+                            <li class="mr-3">Free Delivery on orders over £40*</li>
                         </ul>
-                        <div class="d-flex">
-                            <ul class="social-icons list-unstyled mb-0 mr-30">
+
+                       
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <ul class="social-icons list-unstyled d-flex align-items-center">
                                 <li><a href="https://www.facebook.com/people/Online-Pharmacy4U/100083173698028/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
                                 <li><a href="https://www.linkedin.com/company/74292944" target="_blank"><i class="fab fa-linkedin"></i></a></li>
                                 <li><a href="https://twitter.com/4uPharmacy" target="_blank"><i class="fab fa-twitter"></i></a></li>
                             </ul>
-                            <form class="header-topbar__search">
+                            <form class="header-topbar__search mb-2">
                                 <input type="text" class="form-control" placeholder="Search...">
                                 <button class="header-topbar__search-btn"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
+
                     </div>
+
+
                 </div>
             </div>
         </div>
@@ -65,7 +66,7 @@
                     <li class="nav__item">
                         <a href="{{ route('web.products') }}" class="nav__item-link">Products</a>
                         <!-- <ul class="dropdown-menu"> -->
-                            <!-- <li class="nav__item">
+                        <!-- <li class="nav__item">
                                 <a href="{{ route('web.products') }}" class="nav__item-link">Our Products</a>
                             </li>
                             <li class="nav__item">

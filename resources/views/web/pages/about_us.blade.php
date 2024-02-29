@@ -6,14 +6,13 @@
        page title 
     =========================== -->
 <section class="page-title page-title-layout1 bg-overlay">
+    <!-- <div class="overlay"></div> -->
     <div class="bg-img"><img src="{{ asset('/assets/web/images/tsp/about-page/2.png') }}" alt="background"></div>
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-5">
-                <h1 class="pagetitle__heading">Caring For The Health & Well Being Of Family.</h1>
-                <p class="pagetitle__desc">Medcity has been present in Europe since 1990, offering innovative
-                    solutions, specializing in medical services for treatment of medical infrastructure.
-                </p>
+                <h1 class="pagetitle__heading">Who Are We?</h1>
+                <p class="pagetitle__desc">We are Weight-Loss – a dedicated team of professionals specialising in weight management. Meet our expert who will help you in your weight loss journey. </p>
                 <div class="d-flex flex-wrap align-items-center">
                     <a href="appointment.html" class="btn btn__primary btn__rounded mr-30">
                         <span>Find A Doctor</span>
@@ -32,25 +31,27 @@
 <!-- ========================
       About Layout 1
     =========================== -->
-<section class="about-layout1 pb-0">
+<section class="about-layout1 pb-30">
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-6">
                 <div class="heading-layout2">
-                    <h3 class="heading__title mb-40">Improving The Quality Of Your Life Through Better Health.</h3>
+                    <h3 class="heading__title mb-40">Shape Your Future, Define Your Wellness:</h3>
                 </div><!-- /heading -->
             </div><!-- /.col-12 -->
         </div><!-- /.row -->
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-6">
                 <div class="about__Text">
-                    <p class="mb-30">Our goal is to deliver quality of care in a courteous, respectful, and compassionate
-                        manner. We hope you will allow us to care for you and to be the first and best choice for healthcare.
-                    </p>
-                    <p class="mb-30">We will work with you to develop individualised care plans, including management of
-                        chronic diseases. We are committed to being the region’s premier healthcare network providing patient
-                        centered care that inspires clinical and service excellence.</p>
-                    <div class="d-flex align-items-center mb-30">
+                    <p class="">Welcome to Weight-loss, the most expert weight-loss solutions and a customised weight management plan made by medical healthcare professionals.</p>
+                    <p class="">We offer weekly video consultations, daily meal tips, exercise routines, medications, as well as medical consultations. Buy direct from our website weight-loss products. Here's how weight loss works:</p>
+                    <ul  class="list-items list-items-layout2  list-horizontal list-unstyled">
+                    <li>Virtual Assessment</li>
+                    <li>Evaluation by Our Weight Loss Expert</li>
+                    <li>Online Weight-loss Consultation</li>
+                    <li>Ongoing Patient Care</li>
+                    </ul>
+                    <div class="d-flex align-items-center  mb-30">
                         <a href="doctors-grid.html" class="btn btn__primary btn__outlined btn__rounded mr-30">
                             Meet Our Doctors</a>
                         <img src="{{ asset('/assets/web/images/about/singnture.png') }}" alt="singnture">
@@ -74,7 +75,7 @@
 <!-- ======================
     Features Layout 1
     ========================= -->
-<section class="features-layout1 pt-130 pb-50 mt--90">
+<section class="features-layout1 pt-130 pb-50 mt--70">
     <div class="bg-img"><img src="{{ asset('/assets/web/images/backgrounds/1.jpg') }}" alt="background"></div>
     <div class="container">
         <div class="row mb-40">
@@ -355,10 +356,8 @@
                     <img src="{{ asset('/assets/web/images/icons/alert.png') }}" class="cta__img" alt="alert">
                 </div><!-- /.col-lg-2 -->
                 <div class="col-sm-12 col-md-7 col-lg-7">
-                    <h4 class="cta__title">True Healthcare For Your Family!</h4>
-                    <p class="cta__desc">Serve the community by improving the quality of life through better health. We have
-                        put protocols to protect our patients and staff while continuing to provide medically necessary care.
-                    </p>
+                    <h4 class="cta__title">Supporting Your Weight Loss Journey and Family Wellness</h4>
+                    <p class="cta__desc">Transform yourself through a pathway to a healthier and happier you! Our weight loss program which is designed to support the fitness goals of individuals, also encourages the overall wellness of the family. Experience the pleasure of healthy eating jointly, which results in a common lifestyle that benefits everybody.</p>
                 </div><!-- /.col-lg-7 -->
                 <div class="col-sm-12 col-md-12 col-lg-3">
                     <a href="appointment.html" class="btn btn__secondary btn__secondary-style2 btn__rounded mr-30">
