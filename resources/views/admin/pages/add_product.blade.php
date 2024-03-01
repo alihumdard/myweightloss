@@ -194,7 +194,7 @@
                                 <label for="ext_tax" class="col-form-label">Extra Tax <span class="extra-text">(Optional)</span>:</label>
                             </div>
                             <div class="col-md-12">
-                                <input type="text" name="ext_tax" value="{{  $product['ext_tax'] ?? old('ext_tax') }}" class="form-control me-2" required>
+                                <input type="number" name="ext_tax" value="{{  $product['ext_tax'] ?? old('ext_tax') }}" class="form-control me-2" required>
 
                                 <div class="invalid-feedback">Enter extra tax!</div>
                                 @error('ext_tax')
@@ -261,63 +261,14 @@
                     </div>
                     <div class=" float-end mb-2">
                         <div class="p-2">
-                        <button type=" button" id="add_new_row" class="btn btn-success"><i class="fa fa-plus"></i> Add</button>
+                            <lable id="add_new_row" class="btn btn-success mb-2"><i class="fa fa-plus"></i> Add Variants</lable>
                         </div>
                     </div>
                 </div>
-                <div class="card p-4" id="variant_row">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-12">
-                            <div class="p-2">
-                                <label for="" class="form-label">Product Price <span class="extra-text">(Price in UK Pound)</span></label>
-                                <input type="text" class="form-control" name="price[]" id="">
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-12">
-                            <div class="p-2">
-                                <label for="" class="form-label">Variant Name <span class="extra-text">(optional)</span></label>
-                                <input type="text" class="form-control" name="name[]" id="">
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-12 product-md">
-                            <div class="p-2">
-                                <label for="" class="form-label">Variant Value <span class="extra-text">(optional)</span></label>
-                                <input type="text" class="form-control" name="value[]" id="">
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-12 ">
-                            <div class="p-2">
-                                <label for="" class="form-label">Inventory <span class="extra-text">(Available Stock)</span></label>
-                                <input type="text" class="form-control" name="inventory[]" id="">
-                            </div>
-                        </div>
+                <div id="variant_row">
 
-                        <div class="col-md-3 col-sm-12">
-                            <div class="p-2">
-                                <label for="" class="form-label">Barcode <span class="extra-text">(ISBN, UPC, GTIN, etc.)</span></label>
-                                <input type="text" class="form-control" name="barcode[]" id="">
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-12">
-                            <div class="p-2">
-                                <label for="" class="form-label">SKU <span class="extra-text">(Stock Keeping Unit)</span></label>
-                                <input type="text" class="form-control" name="sku[]" id="">
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-12 ">
-                            <div class="p-2">
-                                <label for="inputNumber" class="form-label">Select Image</label>
-                                <input class="form-control" name="attr_image[]" type="file" id="formFile">
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-12 mt-4">
-                            <div class="p-2 ">
-                                <button type="button" id="" class="btn btn-danger"><i class="fa fa-minus"></i> Remove</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                <div class="table-responsive">
+                <!-- <div class="table-responsive">
                     <table id="tbl_data" class="table table-bordered table-striped dataTable no-footer dtr-inline table-responsive" aria-describedby="tbl_data_info" data-scroll-x="true">
                         <thead class="thead-dark">
                             <tr>
@@ -337,11 +288,11 @@
                         </tbody>
 
                     </table>
-                </div>
+                </div> -->
             </div>
-            <div class="product-btns mt-4">
-                <button>Cancel</button> &nbsp;
-                <button>Submit</button>
+            <div class="product-btns mt-4 text-end px-4">
+                <input type="reset" class=" btn btn-secondary rounded-2  px-5 mx-1 fw-bold" value="Cancel">
+                <button class="rounded-2 py-2 px-5 fw-bold">Submit</button>
             </div>
 
             </div>
@@ -360,8 +311,6 @@
     });
 
     var imgArray = [];
-
-
 
     function ImgUpload() {
         var imgWrap = $('.upload__img-wrap');
@@ -406,11 +355,15 @@
 
             // Create FormData object
             var formData = new FormData();
+            // Append main image
             formData.append('main_image', $('#product_main_image')[0].files[0]);
-
+            // Append variant images
+            $('.variant-image').each(function(index, element) {
+                formData.append('vari_attr_images[]', element.files[0]);
+            });
             // Append images to the FormData object
             for (var i = 0; i < imgArray.length; i++) {
-                formData.append('images', imgArray[i]);
+                formData.append('images[]', imgArray[i]);
             }
 
             // Append other form data
@@ -463,7 +416,6 @@
 
     }
 
-
     function previewMainImage(input) {
         var preview = $('#mainImage_preview');
         var file = input.files[0];
@@ -478,59 +430,68 @@
         }
     }
 
-
-
-
     // new row add 
-
-    var new_row = `<div class="row">
+    var new_row = `<div class="row bg-white rounded-3  mb-4 py-2">
+                        <div class="col-12">
+                            <hr class="">
+                        </div>
                         <div class="col-md-3 col-sm-12">
                             <div class="p-2">
-                                <label for="" class="form-label">Product Price <span class="extra-text">(Price in UK Pound)</span></label>
-                                <input type="text" class="form-control" name="price[]" id="">
+                                <label for="" class="form-label">Variant Price <span class="extra-text">(Price in UK Pound)</span></label>
+                                <input type="number" class="form-control" name="vari_price[]" id="" required>
+                                <div class="invalid-feedback">Enter variant price!</div>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-12">
                             <div class="p-2">
                                 <label for="" class="form-label">Variant Name <span class="extra-text">(optional)</span></label>
-                                <input type="text" class="form-control" name="name[]" id="">
+                                <input type="text" class="form-control" name="vari_name[]" id="" required>
+                                <div class="invalid-feedback">Enter variant title!</div>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-12 product-md">
                             <div class="p-2">
                                 <label for="" class="form-label">Variant Value <span class="extra-text">(optional)</span></label>
-                                <input type="text" class="form-control" name="value[]" id="">
+                                <input type="text" class="form-control" name="vari_value[]" id="" required>
+                                <div class="invalid-feedback">Enter variant value!</div>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-12 ">
                             <div class="p-2">
                                 <label for="" class="form-label">Inventory <span class="extra-text">(Available Stock)</span></label>
-                                <input type="text" class="form-control" name="inventory[]" id="">
+                                <input type="number" class="form-control" name="vari_inventory[]" id="" required>
+                                <div class="invalid-feedback">Enter variant stock!</div>
                             </div>
                         </div>
 
                         <div class="col-md-3 col-sm-12">
                             <div class="p-2">
                                 <label for="" class="form-label">Barcode <span class="extra-text">(ISBN, UPC, GTIN, etc.)</span></label>
-                                <input type="text" class="form-control" name="barcode[]" id="">
+                                <input type="number" class="form-control" name="vari_barcode[]" id="" required>
+                                <div class="invalid-feedback">Enter variant barcode!</div>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-12">
                             <div class="p-2">
                                 <label for="" class="form-label">SKU <span class="extra-text">(Stock Keeping Unit)</span></label>
-                                <input type="text" class="form-control" name="sku[]" id="">
+                                <input type="number" class="form-control" name="vari_sku[]" id="" required>
+                                <div class="invalid-feedback">Enter variant stock!</div>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-12 ">
                             <div class="p-2">
-                                <label for="inputNumber" class="form-label">Select Image</label>
-                                <input class="form-control" name="attr_image[]" type="file" id="">
+                                <label  class="form-label">Select Image</label>
+                                <input class="form-control variant-image" name="vari_attr_image[]" type="file" id="" required>
+                                <div class="invalid-feedback">Enter variant image!</div>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-12 mt-4">
+                        <div class="col-md-3 col-sm-12 mt-4 ">
                             <div class="p-2 ">
                                 <button type="button" class="btn remove_row btn-danger"><i class="fa fa-minus"></i> Remove</button>
                             </div>
+                        </div>
+                        <div class="col-12">
+                            <hr class="">
                         </div>
                     </div>`;
 
