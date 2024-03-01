@@ -171,7 +171,7 @@
                             <i class="icon-first-aid-kit"></i>
                             <i class="icon-first-aid-kit feature__overlay-icon"></i>
                         </div>
-                        <h4 class="feature__title">Only Qualified Doctors</h4>
+                        <h4 class="feature__title">Only Qualified</h4>
                     </div><!-- /.feature__content -->
                     <a href="#" class="btn__link">
                         <i class="icon-arrow-right icon-outlined"></i>
@@ -264,7 +264,6 @@
                     <li>Health Assessments</li>
                     <li>Desensitisation injections</li>
                     <li>High Quality Care</li>
-                    <li>Desensitisation injections</li>
                 </ul>
             </div><!-- /.col-xl-6 -->
         </div><!-- /.row -->
