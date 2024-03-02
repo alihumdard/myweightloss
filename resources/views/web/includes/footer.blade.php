@@ -93,7 +93,7 @@
               </div>
             </div>
             <div class="col-md-4">
-              <p class="text-center-md mt-5">Online Pharmacy 4U is our Partner Pharmacy and prescribing services provider</p>
+              <p class="text-center-md mt-5 ">Online Pharmacy 4U is our Partner Pharmacy and prescribing services provider</p>
             </div>
             <div class="col-md-2">
               <div class="image d-flex justify-content-start  align-items-center" style="height: 100%;">
@@ -101,8 +101,8 @@
               </div>
             </div>
             <div class="col-md-4">
-              <div class="button m-2">
-                <a href="https://online-pharmacy4u.co.uk/pages/responsible-pharmacist" target="_blank"><button class=" p-2 px-3" style="background-color: #21cdc0;  border-radius: 5px;">Online Pharmacy 4U rather then Chemist 4u</button></a>
+              <div class="button m-2 ">
+                <a href="https://online-pharmacy4u.co.uk/pages/responsible-pharmacist" target="_blank"><button class=" p-2 px-3 text-light" style="background-color: #21cdc0;  border-radius: 5px;">Online Pharmacy 4U rather then Chemist 4u</button></a>
               </div>
             </div>
           </div>

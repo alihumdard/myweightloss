@@ -178,9 +178,9 @@
                             <span class="post__meta-date">Jan 30, 2022</span>
                             <a class="post__meta-author" href="#">Martin King</a>
                         </div>
-                        <h4 class="post__title"><a href="#"> Evaluation by Our Weight Loss Expert</a></h4>
+                        <h4 class="post__title"><a href="#">Beginner's Guide to Crushing Your Weight Loss Goals</a></h4>
 
-                        <p class="post__desc">An experienced weight-management specialist from our team will go over your medical history and consultation.</p>
+                        <p class="post__desc">Start your weight loss journey with realistic goals and a supportive mindset for lasting success and improved well-being.</p>
                         <a href="blog-single-post.html" class="btn btn__secondary btn__link btn__rounded">
                             <span>Read More</span>
                             <i class="icon-arrow-right"></i>
@@ -204,8 +204,8 @@
                             <span class="post__meta-date">Jan 30, 2022</span>
                             <a class="post__meta-author" href="#">John Ezak</a>
                         </div>
-                        <h4 class="post__title"><a href="#">Get an Online Weight-loss Consultation</a></h4>
-                        <p class="post__desc">Participate in an online weight-loss consultation to stay connected with our healthcare team and address any queries or concerns. </p>
+                        <h4 class="post__title"><a href="#">5 Weight Loss Myths You Shouldn't Believe</a></h4>
+                        <p class="post__desc">Beware of weight loss myths! Crash diets harm metabolism, cardio isn't the sole solution, not all calories are equal, and supplements aren't magic.</p>
                         <a href="blog-single-post.html" class="btn btn__secondary btn__link btn__rounded">
                             <span>Read More</span>
                             <i class="icon-arrow-right"></i>
@@ -229,8 +229,8 @@
                             <span class="post__meta-date">Jan 28, 2022</span>
                             <a class="post__meta-author" href="#">Saul Wade</a>
                         </div>
-                        <h4 class="post__title"><a href="#">Ongoing Patient Care​ </a></h4>
-                        <p class="post__desc">When your monthly treatment plan is about to expire, log into your dashboard to access the consultation for returning patients. </p>
+                        <h4 class="post__title"><a href="#"> Importance of Sleep for Weight Loss​ </a></h4>
+                        <p class="post__desc">Quality sleep influences hormones, metabolism, and psychology, impacting weight loss. Prioritise schedules and stress management for a healthier lifestyle.</p>
                         <a href="blog-single-post.html" class="btn btn__secondary btn__link btn__rounded">
                             <span>Read More</span>
                             <i class="icon-arrow-right"></i>

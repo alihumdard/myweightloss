@@ -43,11 +43,9 @@
                             <span class="post__meta-date">Jan 30, 2022</span>
                             <a class="post__meta-author" href="#">Martin King</a>
                         </div>
-                        <h4 class="post__title"><a href="#">6 Tips to Protect Your Mental Health When You’re Sick</a></h4>
+                        <h4 class="post__title"><a href="#">Beginner's Guide to Crushing Your Weight Loss Goals</a></h4>
 
-                        <p class="post__desc">It’s normal to feel anxiety, worry and grief any time you’re diagnosed with a
-                            condition that’s certainly true if you test positive for COVID-19, or are presumed to be positive...
-                        </p>
+                        <p class="post__desc">Start your weight loss journey with realistic goals and a supportive mindset for lasting success and improved well-being. For more, consult with my weightloss centre!</p>
                         <a href="blog-single-post.html" class="btn btn__secondary btn__link btn__rounded">
                             <span>Read More</span>
                             <i class="icon-arrow-right"></i>
@@ -71,10 +69,8 @@
                             <span class="post__meta-date">Jan 30, 2022</span>
                             <a class="post__meta-author" href="#">John Ezak</a>
                         </div>
-                        <h4 class="post__title"><a href="#">Unsure About Wearing a Face Mask? Here’s How and Why</a></h4>
-                        <p class="post__desc">That means that you should still be following any shelter-in-place orders in your
-                            community. But when you’re venturing out to the grocery store, pharmacy or hospital..
-                        </p>
+                        <h4 class="post__title"><a href="#">5 Weight Loss Myths You Shouldn't Believe</a></h4>
+                        <p class="post__desc">Beware of weight loss myths! Crash diets harm metabolism, cardio isn't the sole solution, not all calories are equal, and supplements aren't magic.</p>
                         <a href="blog-single-post.html" class="btn btn__secondary btn__link btn__rounded">
                             <span>Read More</span>
                             <i class="icon-arrow-right"></i>
@@ -98,11 +94,9 @@
                             <span class="post__meta-date">Jan 28, 2022</span>
                             <a class="post__meta-author" href="#">Saul Wade</a>
                         </div>
-                        <h4 class="post__title"><a href="#">Tips for Eating Healthy When You’re Working From Home </a></h4>
+                        <h4 class="post__title"><a href="#">Sleep Your Way to Slimmer: The Importance of Sleep for Weight Loss</a></h4>
 
-                        <p class="post__desc">It’s normal to feel anxiety, worry and grief any time you’re diagnosed with a
-                            condition that’s certainly true if you test positive for COVID-19, or are presumed to be positive...
-                        </p>
+                        <p class="post__desc">Quality sleep influences hormones, metabolism, and psychology, impacting weight loss. Prioritise schedules and stress management for a healthier lifestyle.</p>
                         <a href="blog-single-post.html" class="btn btn__secondary btn__link btn__rounded">
                             <span>Read More</span>
                             <i class="icon-arrow-right"></i>
