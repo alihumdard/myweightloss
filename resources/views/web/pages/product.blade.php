@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <h1 id="product_title" class="product__title">{{ $product['title'] ?? ''}}</h1>
+                        <h1  class="product__title">{{ $product['title'] ?? ''}}</h1>
                         <div class="product__meta-review mb-20">
                             <span class="product__rating">
                                 <i class="fa fa-star active"></i>
@@ -92,7 +92,8 @@
                                     <span>{{ $product['category']['name'] ?? ''}}</span>
                                 </li>
                                 <li>
-                                    <span>Product Variants :</span>
+                                    <span id="product_title">{{ $product['variants'][0]['title'] }} :</span>
+                         
                                 <li>
                                     @foreach($product['variants'] as $key => $vrr)
                                     <button data-variant_id="{{$vrr['id'] ?? ''}}" data-variant_data="{{ json_encode($vrr) }}" style="height:34px; min-width: 112px !important;border: 2px solid #212529 !important;border-radius: 5px; padding: 0px !important;" class="btn  btn-outline-primary variants">
@@ -198,7 +199,7 @@
             console.log('Variant Data:', variantData);
             $('#product_img').attr('src', image_src + '/' + variantData.image);
             $('#product_stock').attr('max', variantData.inventory);
-            $('#product_title').text(variantData.title)
+            $('#product_title').text(variantData.title + ' :')
             $('#product_price').text(variantData.price + '£ ')
         });
     });
