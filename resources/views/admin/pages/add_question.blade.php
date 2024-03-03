@@ -52,6 +52,7 @@
                                     <option value="mt_choice" {{ ($question['anwser_set'] ?? old('anwser_set')) == 'mt_choice' ? 'selected' : '' }}>Multiple Choice</option>
                                     <option value="yes_no" {{ (($question['anwser_set'] ?? old('anwser_set')) == 'yes_no') ? 'selected' : '' }}>Yes or No</option>
                                     <option value="openbox" {{ ($question['anwser_set'] ?? old('anwser_set')) == 'openbox' ? 'selected' : '' }}>Input Box</option>
+                                    <option value="file" {{ ($question['anwser_set'] ?? old('anwser_set')) == 'file' ? 'selected' : '' }}>File</option>
                                 </select>
                                 <div class="invalid-feedback">Please enter anser Set!</div>
                                 @error('anwser_set')
@@ -160,6 +161,8 @@
                     '<div class="alert-danger text-danger ">{{ $message }}</div>' +
                     '@enderror' +
                     '</div>');
+            } else if (anserset == 'file') {
+                $('.ansewers').html('');
             } else {
                 alert('Select the correct answer set');
             }
