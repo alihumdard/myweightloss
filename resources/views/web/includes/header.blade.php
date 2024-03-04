@@ -79,7 +79,7 @@
                     </li>
 
                     <li class="nav__item">
-                        <a href="{{ route('web.contactUs') }}" class="nav__item-link">Contact</a>
+                        <a href="{{ route('web.contact') }}" class="nav__item-link">Contact</a>
                     </li>
                     <li class="nav__item">
                         <a href="{{ route('web.login') }}" class="nav__item-link">Account </a>

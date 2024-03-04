@@ -40,7 +40,7 @@
                         <div class="col-12 col-md-6 text-bg-primary">
                             <div class="d-flex align-items-center justify-content-center h-100">
                                 <div class="col-10 col-xl-8 py-3">
-                                    <!-- <img class="img-fluid rounded mb-4" loading="lazy" src="{{ asset('/assets/admin/img/weightloss_logo.png') }}" width="245" height="80" alt="BootstrapBrain Logo"> -->
+                                    <img class="img-fluid rounded mb-4" loading="lazy" src="{{ asset('/assets/admin/img/Weighloss_final_logo_white.webp') }}" width="245" height="80" alt="BootstrapBrain Logo">
                                     <hr class="border-primary-subtle mb-4">
                                     <h2 class="h1 mb-4">Start Your Journey with Weight Loss</h2>
                                     <p class="lead m-0">For a happier, more energetic life, start on a transformative weight-loss journey, choosing healthier habits and reaching your fitness objectives.</p>
@@ -174,7 +174,10 @@
                     </div>
 
         </section>
-
+        <div class=" d-flex justify-content-center mb-3">
+          <span class="fz-14">&copy; Copyright 2024 All Rights Design and Developed By
+            <a class="fz-14 color-primary" href="https://techsolutionspro.co.uk/">Tech Solutions Pro</a> </span>
+        </div><!-- /.col-lg-6 -->
         <!-- </div> -->
     </main><!-- End #main -->
 

@@ -67,8 +67,9 @@
             <div class="col-sm-12 col-md-12 col-lg-6 offset-lg-3 " >
                 <div class="heading text-center ">
                     <!-- <h2 class="heading__subtitle">Low Priced Medical Supplies</h2> -->
-                    <h2 class=" heading__title">Start Your Weightloss Journy Today</h2> <hr>
-                    <h3 class="heading__subtitle" style="font-size: 16px; font-weight:700;">The Largest Selections Of Medical Products</h3>
+                    <h2 class="heading__subtitle">Low Price Weightloss Medications.</h2>
+                    <h3 class="heading__title">Start Your Weight Loss Journey Today.</h3>
+                    <hr>
                 </div>
             </div>
         </div>
@@ -120,22 +121,23 @@
             <div class="col-sm-12 col-md-12 col-lg-6">
                 <div class="banner-text">
                     <div class="heading-layout2 heading-light">
-                        <h2 class="heading__title">Committed To Build A Positive, Safe, Patient Focused Culture.</h2>
-                        <p class="heading__desc mb-40"> Weight-loss offers access to the best weight-loss solutions available worldwide, along with a customised weight management program designed by medical professionals. Our team, trained in the newest methods of weight loss, offers online consultations to customise the best course of action for you. </p>
+                        <h2 class="heading__title">Join Us at the Heart of Weight Loss Excellence!</h2>
+                        <p class="heading__desc mb-40"> Weight-loss offers access to the best weight-loss solutions available worldwide, along with a customised weight management program designed by medical professionals. Our team, trained in the newest methods of weight loss, offers online consultations to customise the best course of action for you. <br> <br> Get started on your weight-loss journey with us, where holistic well-being and medical precision collide to provide a personalised and successful strategy for reaching your goals.
+ </p>
                     </div>
                     <ul class="list-items list-items-layout2 list-items-light list-horizontal list-unstyled mb-50">
-                        <li>Fractures and dislocations</li>
-                        <li>Health Assessments</li>
-                        <li>Desensitisation injections</li>
-                        <li>High Quality Care</li>
+                        <li>Virtual Assessment</li>
+                        <li>Evaluation by Our Weight Loss Expert</li>
+                        <li>Get an Online Weight-loss Consultation</li>
+                        <li>Ongoing Patient Care​</li>
                     </ul>
                     <div class="d-flex flex-wrap">
                         <a href="doctors-timetable.html" class="btn btn__white btn__rounded mr-30">
                             <span>Start Free Consultation </span> <i class="icon-arrow-right"></i>
                         </a>
-                        <a href="contact-us.html" class="btn btn__white btn__outlined btn__rounded">
+                        <!-- <a href="contact-us.html" class="btn btn__white btn__outlined btn__rounded">
                             Contact us
-                        </a>
+                        </a> -->
                     </div>
                 </div><!-- /.banner-text -->
             </div>

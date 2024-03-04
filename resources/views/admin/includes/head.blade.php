@@ -5,7 +5,7 @@
 
 <!-- Favicons -->
 <link href="{{asset('assets/admin/img/favicon.png')}}" rel="icon">
-<link href="{{asset('assets/admin/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+<link href="{{asset('assets/admin/img/weightloss_logo.png') }}" rel="apple-touch-icon">
 <!-- jQuery -->
 <script src="{{asset('/assets/admin/plugins/jquery/jquery.min.js') }}"></script>
 

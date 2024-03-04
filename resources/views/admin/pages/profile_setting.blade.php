@@ -1,6 +1,12 @@
 @extends('admin.layouts.default')
 @section('title', 'Profile Setting')
 @section('content')
+
+<style>
+.displaynone{
+  display: none;
+}
+</style>
 <!-- main stated -->
 <main id="main" class="main">
 
@@ -69,17 +75,17 @@
               <h5 class="card-title">Profile Details</h5>
 
               <div class="row">
-                <div class="col-lg-3 col-md-4 label ">Full Name</div>
+                <div class="col-lg-3 col-md-4 label">Full Name</div>
                 <div class="col-lg-9 col-md-8">Kevin Anderson</div>
               </div>
 
               <div class="row">
-                <div class="col-lg-3 col-md-4 label">Company</div>
+                <div class="col-lg-3 col-md-4 label ">Company</div>
                 <div class="col-lg-9 col-md-8">Lueilwitz, Wisoky and Leuschke</div>
               </div>
 
-              <div class="row">
-                <div class="col-lg-3 col-md-4 label">Job</div>
+              <div class="row displaynone">
+                <div class="col-lg-3 col-md-4 label  ">Job</div>
                 <div class="col-lg-9 col-md-8">Web Designer</div>
               </div>
 
@@ -134,15 +140,15 @@
                   </div>
                 </div>
 
-                <div class="row mb-3">
+                <div class="row mb-3 ">
                   <label for="company" class="col-md-4 col-lg-3 col-form-label">Company</label>
                   <div class="col-md-8 col-lg-9">
-                    <input name="company" type="text" class="form-control" id="company" value="Lueilwitz, Wisoky and Leuschke">
+                    <input name="company" type="text" class="form-control " id="company" value="Lueilwitz, Wisoky and Leuschke">
                   </div>
                 </div>
 
-                <div class="row mb-3">
-                  <label for="Job" class="col-md-4 col-lg-3 col-form-label">Job</label>
+                <div class="row mb-3 displaynone">
+                  <label for="Job" class="col-md-4 col-lg-3 col-form-label displaynone">Job</label>
                   <div class="col-md-8 col-lg-9">
                     <input name="job" type="text" class="form-control" id="Job" value="Web Designer">
                   </div>
@@ -176,29 +182,29 @@
                   </div>
                 </div>
 
-                <div class="row mb-3">
-                  <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter Profile</label>
+                <div class="row mb-3 displaynone">
+                  <label for="Twitter" class="col-md-4 col-lg-3 col-form-label ">Twitter Profile</label>
                   <div class="col-md-8 col-lg-9">
                     <input name="twitter" type="text" class="form-control" id="Twitter" value="https://twitter.com/#">
                   </div>
                 </div>
 
-                <div class="row mb-3">
-                  <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Facebook Profile</label>
+                <div class="row mb-3 displaynone">
+                  <label for="Facebook" class="col-md-4 col-lg-3 col-form-label ">Facebook Profile</label>
                   <div class="col-md-8 col-lg-9">
                     <input name="facebook" type="text" class="form-control" id="Facebook" value="https://facebook.com/#">
                   </div>
                 </div>
 
-                <div class="row mb-3">
-                  <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Instagram Profile</label>
+                <div class="row mb-3 displaynone">
+                  <label for="Instagram" class="col-md-4 col-lg-3 col-form-label ">Instagram Profile</label>
                   <div class="col-md-8 col-lg-9">
                     <input name="instagram" type="text" class="form-control" id="Instagram" value="https://instagram.com/#">
                   </div>
                 </div>
 
-                <div class="row mb-3">
-                  <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Linkedin Profile</label>
+                <div class="row mb-3 displaynone">
+                  <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label ">Linkedin Profile</label>
                   <div class="col-md-8 col-lg-9">
                     <input name="linkedin" type="text" class="form-control" id="Linkedin" value="https://linkedin.com/#">
                   </div>

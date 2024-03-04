@@ -32,7 +32,7 @@
                 <div class="post-item">
                     <div class="post__img">
                         <a href="blog-single-post.html">
-                            <img src="{{ asset('/assets/web/images/blog/grid/1.jpg') }}" alt="post image" loading="lazy">
+                            <img src="https://i.ibb.co/Ycd4ZJx/weightloss1.jpg" alt="post image" loading="lazy">
                         </a>
                     </div><!-- /.post__img -->
                     <div class="post__body">
@@ -58,7 +58,7 @@
                 <div class="post-item">
                     <div class="post__img">
                         <a href="blog-single-post.html">
-                            <img src="{{ asset('/assets/web/images/blog/grid/2.jpg') }}" alt="post image" loading="lazy">
+                            <img src="{{ asset('/assets/web/images/tsp/recent-articles/1.png') }}"  alt="post image" loading="lazy">
                         </a>
                     </div><!-- /.post__img -->
                     <div class="post__body">
@@ -83,7 +83,7 @@
                 <div class="post-item">
                     <div class="post__img">
                         <a href="blog-single-post.html">
-                            <img src="{{ asset('/assets/web/images/blog/grid/3.jpg') }}" alt="post image" loading="lazy">
+                            <img src="{{ asset('/assets/web/images/tsp/recent-articles/3.png') }}" alt="post image" loading="lazy">
                         </a>
                     </div><!-- /.post__img -->
                     <div class="post__body">
