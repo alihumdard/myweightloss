@@ -62,6 +62,9 @@
         .box_general {
             padding: 3rem 0 !important;
         }
+        .displaynone{
+            display: none;
+        }
     </style>
 
 </head>
@@ -198,7 +201,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Please tell us about your other reasons for wanting to manage your weight?</h3>
-                                                <p style="margin-bottom: 0;">
+                                                <p style="margin-bottom: 0;" class="displaynone">
                                                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt, corporis.
                                                 </p>
                                             </div>
@@ -246,7 +249,7 @@
                                                             <input id="question_2_ans_1" type="radio" name="question_2" value="Happy" class="required">
                                                             <label for="question_2_ans_1">
                                                                 <img style="height: auto !important;" src="{{ asset('/assets/web/consultation/img/img3.png') }}" alt="happy" class="img-fluid">
-                                                                <strong>Happy</strong>the physical conditon....</label>
+                                                                <strong>Happy</strong></label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4 animated zoomIn delay-normal">
@@ -255,7 +258,7 @@
                                                             <label for="question_2_ans_2">
                                                                 <img style="height: auto !important;" src="{{ asset('/assets/web/consultation/img/img1.png') }}" alt="natural" class="img-fluid">
                                                                 <strong>Neutral</strong>
-                                                                Lorem ipsum dolor sit..</label>
+                                                            </label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4 animated zoomIn delay-medium">
@@ -264,7 +267,7 @@
                                                             <label for="question_2_ans_3">
                                                                 <img style="height: auto !important;" src="{{ asset('/assets/web/consultation/img/img2.png') }}" alt="unhappy" class="img-fluid">
                                                                 <strong>Unhappy</strong>
-                                                                Lorem ipsum dolor sit..</label>
+                                                            </label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -317,7 +320,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Do you have any allergies?</h3>
-                                                <p style="margin-bottom: 0;">
+                                                <p style="margin-bottom: 0;" class="displaynone">
                                                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi, voluptatibus..
                                                 </p>
                                             </div>
@@ -357,7 +360,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Please tell us more about your allergies?</h3>
-                                                <p style="margin-bottom: 0;">
+                                                <p style="margin-bottom: 0;" class="displaynone">
                                                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt, corporis.
                                                 </p>
                                             </div>
@@ -438,7 +441,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>What was the reading / measurement of the last 6 months?</h3>
-                                                <p style="margin-bottom: 0;">
+                                                <p style="margin-bottom: 0;" class="displaynone">
                                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, illum?
                                                 </p>
                                             </div>
@@ -485,7 +488,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Have you been prescribed anything to treat your high blood pressure?</h3>
-                                                <p style="margin-bottom: 0;">
+                                                <p style="margin-bottom: 0;" class="displaynone">
                                                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt, corporis.
                                                 </p>
                                             </div>
@@ -566,7 +569,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>What was the reading / measurement?</h3>
-                                                <p style="margin-bottom: 0;">
+                                                <p style="margin-bottom: 0;" class="displaynone">
                                                     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed, rerum.
                                                 </p>
                                             </div>
@@ -606,7 +609,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Do you have any medical conditions?</h3>
-                                                <p style="margin-bottom: 0;">
+                                                <p style="margin-bottom: 0;" class="displaynone">
                                                     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed, rerum.
                                                 </p>
                                             </div>
@@ -700,7 +703,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Tell us a little more about your medical conditions.</h3>
-                                                <p style="margin-bottom: 0;">
+                                                <p style="margin-bottom: 0;" class="displaynone">
                                                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt, corporis.
                                                 </p>
                                             </div>
@@ -734,7 +737,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Do you take any medication?</h3>
-                                                <p style="margin-bottom: 0;">
+                                                <p style="margin-bottom: 0;" >
                                                     Please include any prescribed or bought medicines, & vitamins/supplements.
                                                 </p>
                                             </div>
@@ -774,7 +777,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Please list the medications or supplements you currently take.</h3>
-                                                <p style="margin-bottom: 0;">
+                                                <p style="margin-bottom: 0;" class="displaynone">
                                                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt, corporis.
                                                 </p>
                                             </div>
@@ -949,7 +952,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Have you ever been told you have any problems with your liver or kidneys?</h3>
-                                                <p style="margin-bottom: 0;">
+                                                <p style="margin-bottom: 0;" class="displaynone">
                                                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus, perspiciatis!.
                                                 </p>
                                             </div>
@@ -989,7 +992,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Have you ever been told you have any problems with your liver or kidneys?</h3>
-                                                <p style="margin-bottom: 0;">
+                                                <p style="margin-bottom: 0;" class="displaynone">
                                                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt, corporis.
                                                 </p>
                                             </div>
@@ -1069,7 +1072,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Please tell us more about you mental health.?</h3>
-                                                <p style="margin-bottom: 0;">
+                                                <p style="margin-bottom: 0;" class="displaynone">
                                                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt, corporis.
                                                 </p>
                                             </div>
@@ -1103,7 +1106,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Have you had any significant weight loss in the last 6 months?</h3>
-                                                <p style="margin-bottom: 0;">
+                                                <p style="margin-bottom: 0;" class="displaynone">
                                                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus, perspiciatis!.
                                                 </p>
                                             </div>
@@ -1143,7 +1146,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Please tell us more about you mental health.?</h3>
-                                                <p style="margin-bottom: 0;">
+                                                <p style="margin-bottom: 0;" class="displaynone">
                                                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt, corporis.
                                                 </p>
                                             </div>

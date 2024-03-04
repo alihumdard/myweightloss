@@ -1,6 +1,11 @@
 @extends('admin.layouts.default')
 @section('title', 'Contact')
 @section('content')
+<style>
+  .displaynone{
+    display: none;
+  }
+</style>
 <!-- main stated -->
 <main id="main" class="main">
 
@@ -54,7 +59,7 @@
 
       </div>
 
-      <div class="col-xl-6">
+      <div class="col-xl-6 displaynone">
         <div class="card p-4">
           <form action="forms/contact.php" method="post" class="php-email-form">
             <div class="row gy-4">
