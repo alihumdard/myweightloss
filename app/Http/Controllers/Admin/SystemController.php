@@ -478,7 +478,7 @@ class SystemController extends Controller
         }
 
         $message = "Data Updated Successfully";
-        return redirect()->back()->with(['msg' => $message, 'category_id'=> $request->category_id]);
+        return redirect()->back()->with(['msg' => $message, 'category_id' => $request->category_id]);
     }
 
     // products managment...
@@ -514,128 +514,122 @@ class SystemController extends Controller
 
     public function store_product(Request $request)
     {
+        $user = auth()->user();
+        $page_name = 'add_product';
+        if (!view_permission($page_name)) {
+            return redirect()->back();
+        }
 
+        $validator = Validator::make($request->all(), [
+            'price'      => 'required',
+            'category_id' => 'required',
+            'main_image' => [
+                'required',
+                'image',
+                'mimes:jpeg,png,jpg,gif,webm,svg,webp',
+                'max:1024',
+                'dimensions:max_width=1000,max_height=1000',
+            ],
+            'qty'        => 'required',
+            'stock'      => 'required',
+            'cnn'        => 'required',
+            'ext_tax'    => 'required',
+            'desc'       => 'required',
+            'title'      => [
+                'required',
+                Rule::unique('products')->ignore($request->id),
+            ],
+        ]);
 
+        if ($validator->fails()) {
+            return response()->json(['status' => 'error', 'message' => $validator->errors()]);
+        }
 
-        // $user = auth()->user();
-        // $page_name = 'add_product';
-        // if (!view_permission($page_name)) {
-        //     return redirect()->back();
-        // }
+        $data['user'] = auth()->user();
+        if ($request->hasFile('main_image')) {
+            $mainImage = $request->file('main_image');
+            $mainImageName = time() . '_' . uniqid('', true) . '.' . $mainImage->getClientOriginalExtension();
+            $mainImage->storeAs('product_images/main_images', $mainImageName, 'public');
+            $mainImagePath = 'product_images/main_images/' . $mainImageName;
+        }
 
-        // $validator = Validator::make($request->all(), [
-        //     'price'      => 'required',
-        //     'category_id' => 'required',
-        //     'main_image' => [
-        //         'required',
-        //         'image',
-        //         'mimes:jpeg,png,jpg,gif',
-        //         'max:1024',
-        //         'dimensions:max_width=1000,max_height=1000',
-        //     ],
-        //     'qty'        => 'required',
-        //     'stock'      => 'required',
-        //     'cnn'        => 'required',
-        //     'ext_tax'    => 'required',
-        //     'desc'       => 'required',
-        //     'title'      => [
-        //         'required',
-        //         Rule::unique('products')->ignore($request->id),
-        //     ],
-        // ]);
+        // Create or update product
+        $product = Product::updateOrCreate(
+            ['id' => $request->id ?? null],
+            [
+                'title'      => ucwords($request->title),
+                'desc'       => $request->desc,
+                'main_image' => $mainImagePath ?? Product::findOrFail($request->id)->main_image,
+                'category_id' => $request->category_id,
+                'ext_tax'    => $request->ext_tax,
+                'cnn'        => $request->cnn,
+                'stock'      => $request->stock,
+                'qty'        => $request->qty,
+                'price'      => $request->price,
+                'status'     => $this->status['Active'],
+                'created_by' => $user->id,
+            ]
+        );
 
-        // if ($validator->fails()) {
-        //     return response()->json(['status' => 'error', 'message' => $validator->errors()]);
-        // }
+        if ($product) {
 
-        // $data['user'] = auth()->user();
-        // if ($request->hasFile('main_image')) {
-        //     $mainImage = $request->file('main_image');
-        //     $mainImageName = time() . '_' . uniqid('', true) . '.' . $mainImage->getClientOriginalExtension();
-        //     $mainImage->storeAs('product_images/main_images', $mainImageName, 'public');
-        //     $mainImagePath = 'product_images/main_images/' . $mainImageName;
-        // }
+            // Handle image uploads
+            $uploadedImages = [];
+            if ($request->hasFile('images')) {
 
-        // // Create or update product
-        // $product = Product::updateOrCreate(
-        //     ['id' => $request->id ?? null],
-        //     [
-        //         'title'      => ucwords($request->title),
-        //         'desc'       => $request->desc,
-        //         'main_image' => $mainImagePath ?? Product::findOrFail($request->id)->main_image,
-        //         'category_id' => $request->category_id,
-        //         'ext_tax'    => $request->ext_tax,
-        //         'cnn'        => $request->cnn,
-        //         'stock'      => $request->stock,
-        //         'qty'        => $request->qty,
-        //         'price'      => $request->price,
-        //         'status'     => $this->status['Active'],
-        //         'created_by' => $user->id,
-        //     ]
-        // );
+                foreach ($request->file('images') as $image) {
+                    $imageName = time() . '_' . $image->getClientOriginalName();
+                    $image->storeAs('product_images', $imageName, 'public'); // Change 'product_images' to your storage folder
+                    $extImagePath = 'product_images/' . $imageName;
 
+                    $uploadedImages[] = $extImagePath;
+                }
 
-        // // Handle image uploads
-        // $uploadedImages = [];
-        // if ($request->hasFile('images')) {
-        //     foreach ($request->file('images') as $image) {
-        //         $imageName = time() . '_' . $image->getClientOriginalName();
-        //         $image->storeAs('product_images', $imageName, 'public'); // Change 'product_images' to your storage folder
-        //         $extImagePath = 'product_images/' . $imageName;
+                // Associate product attributes
+                foreach ($uploadedImages as $uploadedImage) {
+                    $productAttributesData[] = [
+                        'product_id' => $product->id,
+                        'image'      => $uploadedImage,
+                        'status'     => $this->status['Active'],
+                        'created_by' => $user->id,
+                    ];
+                }
 
-        //         $uploadedImages[] = $extImagePath;
-        //     }
-        // }
-
-        // // Associate product attributes
-
-        // foreach ($uploadedImages as $uploadedImage) {
-        //     $productAttributesData[] = [
-        //         'product_id' => $product->id,
-        //         'image'     => $uploadedImage,
-        //         'status'     => $this->status['Active'],
-        //         'created_by' => $user->id,
-        //     ];
-        // }
-
-
-
-        $valueArr = $request['value'];
-        $priceArr = $request['price'];
-        $skuArr = $request['sku'];
-        $nameArr = $request['name'];
-        $barcodeArr = $request['barcode'];
-        $inventoryArr = $request['inventory'];
-        // ProductAttribute::insert($productAttributesData);
-
-        // $p_id = $product->id;
-
-       
-        foreach ($skuArr as $key => $val) {
-
-            $productAttrArr['product_id'] = 1;
-            $productAttrArr['sku'] = $skuArr[$key];
-            $productAttrArr['name'] = $nameArr[$key];
-            $productAttrArr['price'] = $priceArr[$key];
-            $productAttrArr['barcode'] = $barcodeArr[$key];
-            $productAttrArr['inventory'] = $inventoryArr[$key];
-            $productAttrArr['value'] = $valueArr[$key];
-
-
-            if ($request->hasFile("attr_image.$key")) {
-                $rand = rand('1111', '9999');
-                $attr_image = $request->file("attr_image.$key");
-                $ext = $attr_image->extension();
-                $attr_image_name = $rand . '.' . $ext;
-                $request->file("image.$key")->storeAs('/public/product_images', $attr_image_name);
-                $productAttrArr['attr_img'] = $attr_image_name;
+                DB::table('product_attributes')->insert($productAttributesData);
             }
 
-         
 
-             dd($productAttrArr);
 
-            DB::table('product_variants')->insert($productAttrArr);
+            if ($request['vari_value'] ?? NULL) {
+                // handle the product variations .....
+                $valueArr = $request['vari_value'];
+                $priceArr = $request['vari_price'];
+                $skuArr   = $request['vari_sku'];
+                $nameArr  = $request['vari_name'];
+                $barcodeArr   = $request['vari_barcode'];
+                $inventoryArr = $request['vari_inventory'];
+                foreach ($skuArr as $key => $val) {
+
+                    $productAttrArr['product_id'] = $product->id;
+                    $productAttrArr['title'] = $nameArr[$key];
+                    $productAttrArr['price'] = $priceArr[$key];
+                    $productAttrArr['value'] = $valueArr[$key];
+                    $productAttrArr['barcode'] = $barcodeArr[$key];
+                    $productAttrArr['inventory'] = $inventoryArr[$key];
+                    $productAttrArr['sku'] = $skuArr[$key];
+
+                    // Correcting the array key for variant images
+                    if ($request->hasFile("vari_attr_images.$key")) {
+                        $vari_Image = $request->file("vari_attr_images.$key");
+                        $vari_ImageName = time() . '_' . uniqid('', true) . '.' . $vari_Image->getClientOriginalExtension();
+                        $vari_Image->storeAs('product_images/main_images', $vari_ImageName, 'public');
+                        $vari_ImagePath = 'product_images/main_images/' . $vari_ImageName;
+                        $productAttrArr['image'] = $vari_ImagePath;
+                    }
+
+                    DB::table('product_variants')->insert($productAttrArr);
+                }
+            }
         }
 
         $message = "Product " . ($request->id ? "Updated" : "Saved") . " Successfully";

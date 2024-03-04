@@ -107,7 +107,7 @@
                                             </div>
                                             @endif
                                         </div>
-                                        <form class="row g-3 needs-validation" action="{{ route('web.login')}}" method="post" novalidate>
+                                        <form class="row g-3 needs-validation" action="{{ route('login')}}" method="post" novalidate>
                                             @csrf
                                             <div class="col-12">
                                                 <label for="email" class="form-label">Email</label>
