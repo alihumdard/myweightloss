@@ -48,7 +48,7 @@
             <div class="collapse navbar-collapse" id="mainNavigation">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav__item">
-                        <a href="{{ route('web.index') }}" class="nav__item-link active">Home</a>
+                        <a href="{{ route('web.index') }}" class="nav__item-link {{(request()->routeIs(['web.index'])) ? 'active ' : ''}}">Home</a>
                         <!-- <ul class="dropdown-menu">
                             <li class="nav__item">
                                 <a href="{{ route('web.index') }}" class="nav__item-link">Home Main</a>
@@ -56,7 +56,7 @@
                         </ul> -->
                     </li>
                     <li class="nav__item">
-                        <a href="{{ route('web.aboutUs') }}" class="nav__item-link">About Us</a>
+                        <a href="{{ route('web.aboutUs') }}" class="nav__item-link {{(request()->routeIs(['web.aboutUs'])) ? 'active ' : ''}}">About Us</a>
                         <!-- <ul class="dropdown-menu">
                             <li class="nav__item">
                                 <a href="{{ route('web.aboutUs') }}" class="nav__item-link">About Us</a>
@@ -64,7 +64,7 @@
                         </ul> -->
                     </li>
                     <li class="nav__item">
-                        <a href="{{ route('web.products') }}" class="nav__item-link">Products</a>
+                        <a href="{{ route('web.products') }}" class="nav__item-link {{(request()->routeIs(['web.products'])) ? 'active ' : ''}}">Products</a>
                         <!-- <ul class="dropdown-menu"> -->
                         <!-- <li class="nav__item">
                                 <a href="{{ route('web.products') }}" class="nav__item-link">Our Products</a>
@@ -75,14 +75,17 @@
                         <!-- </ul> -->
                     </li>
                     <li class="nav__item ">
-                        <a href="{{ route('web.blogs') }}" class="nav__item-link">Blog</a>
+                        <a href="{{ route('web.blogs') }}" class="nav__item-link {{(request()->routeIs(['web.blogs'])) ? 'active ' : ''}}">Blog</a>
                     </li>
 
                     <li class="nav__item">
-                        <a href="{{ route('web.contactUs') }}" class="nav__item-link">Contact</a>
+                        <a href="{{ route('web.contactUs') }}" class="nav__item-link {{(request()->routeIs(['web.contactUs'])) ? 'active ' : ''}}">Contact</a>
                     </li>
                     <li class="nav__item">
-                        <a href="{{ route('web.login') }}" class="nav__item-link">Account </a>
+                        <a href="{{ route('admin.index') }}" class="nav__item-link {{(request()->routeIs(['admin.index'])) ? 'active ' : ''}}">Account </a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="{{ route('web.cart') }}" class="nav__item-link {{(request()->routeIs(['web.cart'])) ? 'active ' : ''}}">Cart </a>
                     </li>
                 </ul>
                 <!-- <button class="close-mobile-menu d-block d-lg-none"><i class="fas fa-times"></i></button> -->
