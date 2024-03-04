@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('question_id');
             $table->string('category_title');
             $table->text('question_title');
+            $table->integer('is_dependent')->default(0);
             $table->string('status')->default('Active');
             $table->unsignedBigInteger('created_by')->nullable();
             $table->timestamps();

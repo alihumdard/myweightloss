@@ -56,7 +56,7 @@
                     <input type="hidden" name="category_id" value="{{ $category['id'] ?? ''  }}" id="category_id">
                     @csrf
                     @foreach($questions as $key => $question)
-                    <div class="question {{ $loop->first ? 'fade-in' : 'collapse' }} ">
+                    <div class="question {{ $loop->first ? 'fade-in' : 'collapse' }} " data-dependency = "{{$check_dependency[$question['id']]['is_dependent']}}" data-dependency_answer="">
                         <div class=" px-4 mt-5">
                             <h3 class="fw-bold "> <b>{{++$key}}</b>: {{ $question['title'] ?? ''}}?</h3>
                         </div>
@@ -75,19 +75,19 @@
                             @elseif($question['anwser_set'] == 'mt_choice' )
                             <div class="text">
                                 <div class="form-check mt-2 px-5">
-                                    <input class="form-check-input" type="radio" name="qid_{{$question['id']}}" value="{{$question['optA'] ?? ''}}" id="optionA" required='required' >
+                                    <input class="form-check-input optA_{{$category['id'].'_'.$question['id']}}" type="radio" name="qid_{{$question['id']}}" value="{{$question['optA'] ?? ''}}" id="optionA" required='required' >
                                     <label class="form-check-label fw-semibold   w-100" for="optionA">{{$question['optA'] ?? ''}}</label>
                                 </div>
                                 <div class="form-check px-5">
-                                    <input class="form-check-input" type="radio" name="qid_{{$question['id']}}" value="{{$question['optB'] ?? ''}}" id="optionB" required='required' >
+                                    <input class="form-check-input optB_{{$category['id'].'_'.$question['id']}}" type="radio" name="qid_{{$question['id']}}" value="{{$question['optB'] ?? ''}}" id="optionB" required='required' >
                                     <label class="form-check-label fw-semibold w-100" for="optionB">{{$question['optB'] ?? ''}}</label>
                                 </div>
                                 <div class="form-check px-5">
-                                    <input class="form-check-input" type="radio" name="qid_{{$question['id']}}" value="{{$question['optC'] ?? ''}}" id="optionC" required='required' >
+                                    <input class="form-check-input optC_{$category['id'].'_'.$question['id']}}" type="radio" name="qid_{{$question['id']}}" value="{{$question['optC'] ?? ''}}" id="optionC" required='required' >
                                     <label class="form-check-label fw-semibold w-100" for="optionC">{{$question['optC'] ?? ''}}</label>
                                 </div>
                                 <div class="form-check px-5">
-                                    <input class="form-check-input" type="radio" name="qid_{{$question['id']}}" value="{{$question['optD'] ?? ''}}" id="optionD">
+                                    <input class="form-check-input optD_{{$category['id'].'_'.$question['id']}}" type="radio" name="qid_{{$question['id']}}" value="{{$question['optD'] ?? ''}}" id="optionD">
                                     <label class="form-check-label fw-semibold w-100" for="optionD">{{$question['optD'] ?? ''}}</label>
                                 </div>
                             </div>
@@ -148,7 +148,6 @@
 
             nextButton.on('click', function() {
                 prevButton.show();
-
                 questions.eq(currentQuestionIndex).fadeOut(400, function() {
                     $(this).removeClass('show').addClass('collapse');
                     currentQuestionIndex++;

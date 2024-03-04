@@ -31,6 +31,8 @@ use App\Models\Transaction;
 use App\Models\UserBmi;
 use App\Models\UserConsultation;
 use App\Models\Cart;
+use App\Models\QuestionMapping;
+use Illuminate\Support\Facades\DB;
 
 class WebController extends Controller
 {
@@ -135,12 +137,33 @@ class WebController extends Controller
     {
         $data['user'] = auth()->user() ?? [];
         if (auth()->user()) {
-            $data['product'] = Product::with(['category:id,name', 'category.questions'])
+            
+            $data['product'] = Product::with(['category:id,name', 'category.questions', 'assignedQuestions'])
                 ->findOrFail($request->id)
                 ->toArray();
             $data['category'] =  $data['product']['category'];
             $data['questions'] =  $data['product']['category']['questions'];
+            $check_dependency =  $data['product']['assigned_questions'];
+            $data['check_dependency'] = collect($check_dependency)->keyBy('question_id');
+            $data['question_mapping'] = DB::table('assign_questions as aq')
+                                            ->join('question_mapping as qm', function ($join) {
+                                            $join->on('qm.question_id', '=', 'aq.question_id')
+                                                ->on('qm.category_id', '=', 'aq.category_id');
+                                            })
+                                            ->select('qm.*')
+                                            ->where('aq.category_id', $data['category']['id'])
+                                            ->get();
 
+            foreach ($data['question_mapping'] as $mapping) {
+                $currentQuestionIndex = array_search($mapping->question_id, array_column($data['questions'], 'id'));
+                $nextQuestionIndex = array_search($mapping->next_question, array_column($data['questions'], 'id'));
+
+                if ($currentQuestionIndex !== false && $nextQuestionIndex !== false) {
+                    $nextQuestion = array_splice($data['questions'], $nextQuestionIndex, 1)[0];
+                    array_splice($data['questions'], $currentQuestionIndex + 1, 0, [$nextQuestion]);
+                }
+            }
+        // return $data;
             return view('web.pages.product_question', $data);
         } else {
             return view('web.pages.regisration_from', $data);

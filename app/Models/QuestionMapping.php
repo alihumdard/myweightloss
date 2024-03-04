@@ -18,4 +18,9 @@ class QuestionMapping extends Model
         'status',
         'created_by',
     ];
+
+    public function assignQuestion()
+    {
+        return $this->belongsTo(AssignQuestion::class, 'category_id', 'category_id');
+    }
 }

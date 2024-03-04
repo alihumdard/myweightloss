@@ -526,6 +526,10 @@ class SystemController extends Controller
                         'created_by'  => $user->id
                     ]
                 );
+                // Update AssignQuestion model
+                AssignQuestion::where('category_id', $request->category_id)
+                ->where('question_id', $value)
+                ->update(['is_dependent' => 1]);
             }
         }
 
