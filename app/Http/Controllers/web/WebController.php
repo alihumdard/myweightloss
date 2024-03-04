@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Http;
 
 // models ...
 use App\Models\User;
@@ -29,6 +30,7 @@ use App\Models\ProductAttribute;
 use App\Models\Transaction;
 use App\Models\UserBmi;
 use App\Models\UserConsultation;
+use App\Models\Cart;
 
 class WebController extends Controller
 {
@@ -229,14 +231,64 @@ class WebController extends Controller
                 ]);
 
             if ($save) {
-                if($bmi >= 30){
+                if ($bmi >= 30) {
                     return redirect()->route('web.consultationForm');
-                }else{
+                } else {
                     return redirect()->route('web.bmiForm')->with(['status' => 'invalid', 'message' => "You can't proceed futher because You'r bmi is lower than 30."]);
                 }
             }
         } else {
             return view('web.pages.regisration_from', $data);
+        }
+    }
+
+    public function cart(Request $request)
+    {
+        $data['user'] = auth()->user() ?? [];
+
+        if (auth()->user()) {
+            if ($request->id) {
+                $save =  Cart::create([
+                    'user_id' => auth()->user()->id,
+                    'product_id' => $request->id,
+                    'quantity' => 1,
+                    'status' => '1',
+                    'created_by' => auth()->user()->id,
+                ]);
+            }
+            $data['cart'] = Cart::with('product')->where('user_id', auth()->user()->id)->get()->toArray();
+            $data['total'] = 0;
+            return view('web.pages.cart', $data);
+        }
+    }
+
+
+    public function makeCurlRequest(Request $request)
+    {
+        $url = 'https://api.vivapayments.com/checkout/v2/orders';
+        $token = auth()->user()->remember_token;
+        try {
+            $response = Http::post('https://api.vivapayments.com/checkout/v2/orders', [
+                'amount' => 1000,
+                'customerTrns' => 'Description of purchased items/services',
+                // Add other required parameters
+            ], [
+                'headers' => [
+                    'Authorization' => 'Bearer R9T8bWuH0UX50xpGV5wS0bF6639q0E',
+                    'Content-Type' => 'application/json',
+                ],
+            ]);
+
+            $orderData = $response->json();
+            dd($orderData);
+            // Extract relevant data, e.g., $orderCode = $orderData['OrderCode'];
+
+            // Redirect logic
+            // ...
+
+        } catch (\Exception $e) {
+            // Handle errors
+            return back()->withErrors($e->getMessage());
         }
     }
 }

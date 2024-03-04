@@ -16,7 +16,7 @@ use App\Http\Controllers\Admin\DefualtController;
 
 Route::get('/', [HomeController::class, 'index'])->name('web.index');
 
-Route::match(['get','post'],'/login', [DefualtController::class, 'login'])->name('web.login');
+Route::match(['get','post'],'/login', [DefualtController::class, 'login'])->name('login');
 Route::match(['get','post'],'/register', [DefualtController::class, 'user_register'])->name('web.register');
 Route::match(['get','post'],'/regisrationFrom', [WebController::class, 'regisration_from'])->name('web.regisrationFrom');
 Route::match(['get','post'],'/logout', [DefualtController::class, 'logout'])->name('web.logout');
@@ -31,10 +31,8 @@ Route::match(['get','post'],'/bmiUpdate', [WebController::class, 'bmi_update'])-
 Route::match(['get','post'],'/consultationForm', [WebController::class, 'consultation_form'])->name('web.consultationForm');
 Route::match(['get','post'],'/consultationStore', [WebController::class, 'consultation_store'])->name('web.consultationStore');
 Route::match(['get','post'],'/productQuestion/{id}', [WebController::class, 'product_question'])->name('web.productQuestion');
-
-Route::match(['get','post'],'/cart', function(){
-    return view('web.pages.cart');
-})->name('web.cart');
+Route::match(['get','post'],'/cart/{id?}', [WebController::class, 'cart'])->name('web.cart');
+Route::match(['get','post'],'/makeCurlRequest', [WebController::class, 'makeCurlRequest']);
 
 Route::match(['get','post'],'/transactionStore/', [WebController::class, 'transaction_store'])->name('web.transactionStore');
 
