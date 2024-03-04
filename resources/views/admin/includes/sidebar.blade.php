@@ -1,3 +1,9 @@
+<style>
+    .displaynone{
+        display: none;
+    }
+</style>
+
 <!-- ======= Sidebar ======= -->
 <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
@@ -178,8 +184,8 @@
         @endif
 
         @if(view_permission('faq'))
-        <li class="nav-item">
-            <a class="nav-link {{(request()->routeIs('admin.faq')) ? '' : 'collapsed'}} " href="{{route('admin.faq')}}">
+        <li class="nav-item displaynone">
+            <a class="nav-link  {{(request()->routeIs('admin.faq')) ? '' : 'collapsed'}} " href="{{route('admin.faq')}}">
                 <i class="bi bi-question-circle"></i>
                 <span>F.A.Q</span>
             </a>

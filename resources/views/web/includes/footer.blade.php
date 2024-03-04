@@ -102,7 +102,7 @@
             </div>
             <div class="col-md-4">
               <div class="button m-2 ">
-                <a href="https://online-pharmacy4u.co.uk/pages/responsible-pharmacist" target="_blank"><button class=" p-2 px-3 text-light" style="background-color: #21cdc0;  border-radius: 5px;">Online Pharmacy 4U rather then Chemist 4u</button></a>
+                <a href="https://online-pharmacy4u.co.uk/pages/responsible-pharmacist" target="_blank"><button class=" p-2 px-3 text-light" style="background-color: #21cdc0;  border-radius: 5px;">Online Pharmacy 4U</button></a>
               </div>
             </div>
           </div>
