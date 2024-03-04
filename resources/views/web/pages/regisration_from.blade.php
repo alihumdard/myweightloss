@@ -363,7 +363,7 @@
                     <h5 class="modal-title text-center font-weight-bold" id="exampleModalLabel" style="font-family: sans-serif; letter-spacing: 2px;">LogIn</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <form class="row  needs-validation px-5" action="{{ route('web.login')}}" method="post" novalidate>
+                <form class="row  needs-validation px-5" action="{{ route('login')}}" method="post" novalidate>
                     @csrf
                     <div class="modal-body">
                         <div class="col-12 mx-auto">
