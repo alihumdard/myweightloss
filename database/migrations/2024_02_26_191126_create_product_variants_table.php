@@ -16,10 +16,11 @@ return new class extends Migration
         Schema::create('product_variants', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('product_id');
-            $table->string('name')->nullable();
+            $table->string('title')->nullable();
             $table->string('price')->nullable();
             $table->string('value')->nullable();
             $table->string('barcode')->nullable();
+            $table->string('inventory')->nullable();
             $table->string('sku')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();

@@ -26,3 +26,4 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::match(['post','get'],'/deleteUsers', [SystemUserManagmentController::class, 'deleteUsers']);
 
 });
+// Route::middleware('auth:sanctum')->get('/makeCurlRequest', [SystemUserManagmentController::class, 'makeCurlRequest']);

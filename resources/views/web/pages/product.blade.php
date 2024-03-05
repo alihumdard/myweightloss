@@ -4,6 +4,19 @@
 <!-- ========================
        page title 
     =========================== -->
+
+
+<style>
+    .variants {
+        color: #212529 !important;
+    }
+
+    .variants:hover {
+        color: white !important;
+    }
+</style>
+
+
 <section class="page-title pt-30 pb-30">
     <div class="container">
         <div class="row">
@@ -34,11 +47,11 @@
                 <div class="row product-item-single">
                     <div class="col-sm-6">
                         <div class="product__img">
-                            <img src="{{ asset('storage/'.$product['main_image'])}}" class="zoomin" alt="product" loading="lazy">
+                            <img id="product_img" src="{{ asset('storage/'.$product['main_image'])}}" class="zoomin" alt="product" loading="lazy">
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <h1 class="product__title">{{ $product['title'] ?? ''}}</h1>
+                        <h1  class="product__title">{{ $product['title'] ?? ''}}</h1>
                         <div class="product__meta-review mb-20">
                             <span class="product__rating">
                                 <i class="fa fa-star active"></i>
@@ -50,16 +63,16 @@
                             <span>4 Review(s)</span>
                             <a href="#">Add Review</a>
                         </div><!-- /.product-meta-review -->
-                        <span class="product__price mb-20">£ {{ $product['price'] ?? ''}}</span>
+                        <span id="product_price" class="product__price mb-20">£ {{ $product['price'] ?? ''}}</span>
                         <div class="product__desc">
                             <p>
-                            {!! $product['desc'] ?? ''!!}
+                                {!! $product['desc'] ?? ''!!}
                             </p>
                         </div><!-- /.product-desc -->
-                        <div class="product__quantity d-flex mb-30">
+                        <div class="product__quantity d-flex ">
                             <div class="quantity__input-wrap mr-20">
                                 <i class="decrease-qty fa fa-minus"></i>
-                                <input type="number" value="1" class="qty-input">
+                                <input id="product_stock" value="1" type="number" max="{{ $product['stock'] ?? ''}}" min="1" class="qty-input">
                                 <i class="increase-qty fa fa-plus"></i>
                             </div>
                             <!-- <a class="btn btn__secondary btn__rounded" href="#">add to cart</a> -->
@@ -68,60 +81,49 @@
                                 <span>Contsultations</span>
                             </a>
                         </div>
+                        <div class="mb-30">
+                            <!-- <label class="text-success" for="product_stock">available in stock</label> -->
+                        </div>
+
                         <div class="product__meta-details">
                             <ul class="list-unstyled mb-30">
-                                <li>
-                                    <div class="nice-select" tabindex="0"><span class="current">Sort by latest</span>
-                                        <ul class="list">
-                                            <li data-value="0" class="option selected focus">Select Value</li>
-                                             @foreach($product['variants'] as $vrr)
-                                             <li data-value="{{ $vrr['value'] }}" class="option selected focus">{{$vrr['value'] }}</li>
-                                             @endforeach
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li>
-                                    <span>SKU :</span>
-                                    <span>#{{ $product['cnn'] ?? ''}}</span>
-                                </li>
                                 <li>
                                     <span>Category :</span>
                                     <span>{{ $product['category']['name'] ?? ''}}</span>
                                 </li>
-                                <li><span>Tags :</span> <span>Beauty, Supplements</span></li>
+                                <li>
+                                    <span id="product_title">{{ $product['variants'][0]['title'] }} :</span>
+                         
+                                <li>
+                                    @foreach($product['variants'] as $key => $vrr)
+                                    <button data-variant_id="{{$vrr['id'] ?? ''}}" data-variant_data="{{ json_encode($vrr) }}" style="height:34px; min-width: 112px !important;border: 2px solid #212529 !important;border-radius: 5px; padding: 0px !important;" class="btn  btn-outline-primary variants">
+                                        {{ $vrr['value'] }}
+                                    </button>
+                                    @endforeach
+
+                                </li>
+
+                                <!-- <li><span>Tags :</span> <span>Beauty, Supplements</span></li> -->
                             </ul>
                         </div><!-- /.product__meta-details -->
-                        <ul class="social-icons list-unstyled mb-0">
+                        <!-- <ul class="social-icons list-unstyled mb-0">
                             <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                             <li><a href="#"><i class="fab fa-instagram"></i></a></li>
                             <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        </ul><!-- /.social-icons -->
+                        </ul> -->
+                        <!-- /.social-icons -->
                     </div>
                 </div>
                 <div class="product__details mt-100">
                     <nav class="nav nav-tabs">
-                        <a class="nav__link active" data-toggle="tab" href="#Description">Description</a>
-                        <a class="nav__link" data-toggle="tab" href="#Details">Details</a>
+                        <a class="nav__link active" data-toggle="tab" href="#Description">Detail Description</a>
                         <a class="nav__link" data-toggle="tab" href="#Reviews">Reviews (3)</a>
                     </nav>
                     <div class="tab-content mb-50" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="Description">
-                            <p>It doesn’t contain as much as coffee, but enough to produce a response without causing the jittery
-                                effects associated with taking in too much caffeine. Caffeine affects the brain by blocking an
-                                inhibitory neurotransmitter called adenosine. This way, it increases the firing of neurons and the
-                                concentration of neurotransmitters like dopamine and norepinephrine (4Trusted Source, 5). Research
-                                has consistently shown that caffeine can improve various aspects of brain function, including mood,
-                                vigilance, reaction time, and memory (6).</p>
-                        </div>
-                        <div class="tab-pane fade" id="Details">
-                            <p>Yorks is not just about graphic design; it's more than that. We offer integral communication
-                                services, and we're responsible for our process and results. We thank each of our clients and their
-                                portfolios; thanks to them we have grown and built what we are today! After all</p>
-                            <p>as described in Web
-                                Design Trends 2015 & 2016, vision dominates a lot of our subconscious interpretation of the world
-                                around us. On top of that, pleasing images create a better user experience.
-                                At League Agency, we shows only the best websites and portfolios built completely with passion,
-                                simplicity & creativity !</p>
+                            <p>
+                                {!! $product['desc'] ?? ''!!}
+                            </p>
                         </div>
                         <div class="tab-pane fade" id="Reviews">
                             <form class="reviews__form">
@@ -176,6 +178,32 @@
 
 @pushOnce('scripts')
 <script>
+    $(document).ready(function() {
+        $('#product_stock').on('input', function() {
+            var maxValue = parseInt($(this).attr('max'));
+            var minValue = parseInt($(this).attr('min'));
+            var currentValue = parseInt($(this).val());
 
+            if (currentValue > maxValue) {
+                $(this).val(maxValue);
+                alert('Value cannot exceed the maximum allowed value: ' + maxValue);
+            } else if (currentValue < minValue) {
+                $(this).val(minValue);
+                alert('Value cannot be less than the minimum allowed value: ' + minValue);
+            }
+        });
+        $(document).on('click', '.variants', function() {
+            var variantId = $(this).data('variant_id');
+            var variantData = $(this).data('variant_data');
+            var image_src = "{{ asset('storage/') }}";
+            console.log('Variant Data:', variantData);
+            $('#product_img').attr('src', image_src + '/' + variantData.image);
+            $('#product_stock').attr('max', variantData.inventory);
+            $('#product_title').text(variantData.title + ' :')
+            $('#product_price').text(variantData.price + '£ ')
+        });
+    });
 </script>
+
+
 @endPushOnce
