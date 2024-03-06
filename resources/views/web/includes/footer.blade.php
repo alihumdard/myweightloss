@@ -18,7 +18,7 @@
             <h6 class="footer-widget__title">Legal</h6>
             <nav>
               <ul class="list-unstyled">
-                <li><a href="{{ route('web.term&conditions') }}" target="_blank">Terms & Conditions</a></li>
+                <li><a href="{{ route('web.term_conditions') }}" target="_blank">Terms & Conditions</a></li>
                 <li><a href="{{ route('web.privacypolicy') }}" target="_blank">Privacy Policy</a></li>
                 <li><a href="{{route('web.howitworks')}}" target="_blank">How it works</a></li>
                 <li><a href="{{route('web.deliveryReturns')}}" target="_blank">Delivery & Returns</a></li>
