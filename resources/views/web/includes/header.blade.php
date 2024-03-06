@@ -74,16 +74,12 @@
                             </li> -->
                         <!-- </ul> -->
                     </li>
-                    <li class="nav__item ">
+                    <!-- <li class="nav__item ">
                         <a href="{{ route('web.blogs') }}" class="nav__item-link {{(request()->routeIs(['web.blogs'])) ? 'active ' : ''}}">Blog</a>
-                    </li>
+                    </li> -->
 
                     <li class="nav__item">
-
-                        <a href="{{ route('web.contact') }}" class="nav__item-link">Contact</a>
-
                         <a href="{{ route('web.contact') }}" class="nav__item-link {{(request()->routeIs(['web.contact'])) ? 'active ' : ''}}">Contact</a>
-
                     </li>
                     <li class="nav__item">
                         <a href="{{ route('admin.index') }}" class="nav__item-link {{(request()->routeIs(['admin.index'])) ? 'active ' : ''}}">Account </a>

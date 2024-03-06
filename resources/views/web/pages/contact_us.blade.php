@@ -138,13 +138,13 @@
                         <div class="bg-img"><img src="{{ asset('/assets/web/images/banners/1.jpg') }}" alt="banner"></div>
                         <div>
                             <h4 class="contact-panel__title color-white">Quick Contacts</h4>
-                            <p class="contact-panel__desc font-weight-bold color-white mb-30"> Feel free to reach out to us! Thank you for choosing us as your partner in achieving your weight loss goals.</p>
+                            <p class="contact-panel__desc font-weight-bold color-white pb-0"> Feel free to reach out to us! Thank you for choosing us as your partner in achieving your weight loss goals.</p>
                         </div>
                         <div>
-                            <ul class="contact__list list-unstyled mb-30">
-                                <li>
+                            <ul class="contact__list list-unstyled">
+                                <!-- <li>
                                     <i class="icon-phone"></i><a href="tel:+5565454117">Emergency Line:01623 572757</a>
-                                </li>
+                                </li> -->
                                 <li>
                                     <i class="icon-location"></i><a href="#">Location: My WeightLoss Centre
                                         Unit 2, Mansfield Woodhouse Station Gateway, Signal Way
@@ -153,9 +153,9 @@
                                         NG19 9QH,
                                         United Kingdom </a>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <i class="icon-clock"></i><a href="contact-us.html">Mon - Fri: 8:00 am - 7:00 pm</a>
-                                </li>
+                                </li> -->
                             </ul>
                             <a href="#" class="btn btn__white btn__rounded btn__outlined">Contact Us</a>
                         </div>
