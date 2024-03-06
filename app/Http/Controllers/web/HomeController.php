@@ -57,7 +57,13 @@ class HomeController extends Controller
     {
         return view('web.pages.privacy');
     }
-
-
+    public function deliveryReturns(Request $request)
+    {
+        return view('web.pages.deliveryReturns');
+    }
+    public function howitworks(Request $request)
+    {
+        return view('web.pages.howitworks');
+    }
     
 }

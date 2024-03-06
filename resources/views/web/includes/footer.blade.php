@@ -19,10 +19,9 @@
             <nav>
               <ul class="list-unstyled">
                 <li><a href="{{ route('web.term&conditions') }}" target="_blank">Terms & Conditions</a></li>
-
-                <li><a href="#" >Complaints policy</a></li>
-                <li><a href="#">Delivery & Returns</a></li>
                 <li><a href="{{ route('web.privacypolicy') }}" target="_blank">Privacy Policy</a></li>
+                <li><a href="{{route('web.howitworks')}}" target="_blank">How it works</a></li>
+                <li><a href="{{route('web.deliveryReturns')}}" target="_blank">Delivery & Returns</a></li>
                 <li><a href="#">Cookies</a></li>
 
               </ul>
