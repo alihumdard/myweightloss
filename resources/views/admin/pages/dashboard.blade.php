@@ -1,6 +1,11 @@
 @extends('admin.layouts.default')
 @section('title', 'Dashboard')
 @section('content')
+<style>
+    .displaynone{
+        display: none;
+    }
+</style>
 
 <!-- main stated -->
 <main id="main" class="main">
@@ -373,7 +378,7 @@
                             </div>
 
                             <!-- Add another col-md-6 for the fourth box -->
-                            <div class="col-md-6   py-3 pb-2 ml-md-2">
+                            <div class="col-md-6   py-3 pb-2 ml-md-2 displaynone">
                                 <div class="activity-item d-flex align-items-center justify-content-center flex-column h-100" style="background-color: #1aa9dd;">
                                     <div class="activite-label mr-auto text-center">
                                         <div class="activity-content d-flex align-items-center justify-content-center">
@@ -434,13 +439,13 @@
     document.addEventListener("DOMContentLoaded", () => {
         new ApexCharts(document.querySelector("#reportsChart"), {
             series: [{
-                name: 'Sales',
+                name: 'Day',
                 data: [31, 40, 28, 51, 42, 82, 56],
             }, {
-                name: 'Revenue',
+                name: 'Month',
                 data: [11, 32, 45, 32, 34, 52, 41]
             }, {
-                name: 'Customers',
+                name: 'Year',
                 data: [15, 11, 32, 18, 9, 24, 11]
             }],
             chart: {

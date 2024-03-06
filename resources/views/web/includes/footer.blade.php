@@ -8,8 +8,8 @@
       <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-3 mt-5">
           <div class="footer-widget-about mt-5">
-            <img src="{{ asset('/assets/web/images/logo/weightloss_logo.png') }}" alt="logo" class="" style="width: 100px; height: auto;">
-            <p class="color-gray">Dedicated professionals in weight management, drawing from extensive obesity research. We offer holistic support, prescription medicines, and a vibrant community for transformative journeys. Prioritising patient care from pre-treatment to long-term management.</p>
+            <img src="{{ asset('/assets/web/images/logo/Weighloss_final_logo_white.webp') }}" alt="logo" class="" style="width: 100px; height: auto;">
+            <p class="color-gray mt-3">Dedicated professionals in weight management, drawing from extensive obesity research. We offer holistic support, prescription medicines, and a vibrant community for transformative journeys. Prioritising patient care from pre-treatment to long-term management.</p>
 
           </div>
         </div>
@@ -38,7 +38,7 @@
                 <li><a href="{{ route('web.aboutUs') }}">About Us</a></li>
                 <li><a href="{{ route('web.products') }}">Products</a></li>
                 <li><a href="{{ route('web.blogs') }}">Blog</a></li>
-                <li><a href="{{ route('web.contactUs') }}">Contact</a></li>
+                <li><a href="{{ route('web.contact') }}">Contact</a></li>
               </ul>
             </nav>
           </div><!-- /.footer-widget__content -->
@@ -93,7 +93,7 @@
               </div>
             </div>
             <div class="col-md-4">
-              <p class="text-center-md mt-5">Online Pharmacy 4U is our Partner Pharmacy and prescribing services provider</p>
+              <p class="text-center-md mt-5 ">Online Pharmacy 4U is our Partner Pharmacy and prescribing services provider</p>
             </div>
             <div class="col-md-2">
               <div class="image d-flex justify-content-start  align-items-center" style="height: 100%;">
@@ -101,8 +101,8 @@
               </div>
             </div>
             <div class="col-md-4">
-              <div class="button m-2">
-                <a href="https://online-pharmacy4u.co.uk/pages/responsible-pharmacist" target="_blank"><button class=" p-2 px-3" style="background-color: #21cdc0;  border-radius: 5px;">Online Pharmacy 4U rather then Chemist 4u</button></a>
+              <div class="button m-2 ">
+                <a href="https://online-pharmacy4u.co.uk/pages/responsible-pharmacist" target="_blank"><button class=" p-2 px-3 text-light" style="background-color: #21cdc0;  border-radius: 5px;">Online Pharmacy 4U</button></a>
               </div>
             </div>
           </div>

@@ -1,10 +1,16 @@
 @extends('admin.layouts.default')
 @section('title', 'F.A.Q')
 @section('content')
+
+<style>
+  .displaynone{
+    display:  none;
+  }
+</style>
 <!-- main stated -->
 <main id="main" class="main">
 
-  <div class="pagetitle">
+  <div class="pagetitle displaynone">
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -14,7 +20,7 @@
     </nav>
   </div><!-- End Page Title -->
 
-  <section class="section faq">
+  <section class="section faq displaynone" >
     <div class="row">
       <div class="col-lg-6">
 

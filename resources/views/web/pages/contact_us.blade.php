@@ -1,5 +1,5 @@
 @extends('web.layouts.default')
-@section('title', 'Contact Us')
+@section('title', 'Contact')
 @section('content')
 
 
@@ -91,7 +91,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <h4 class="contact-panel__title">How Can We Help? </h4>
-                                <p class="contact-panel__desc mb-30">Welcome to our Weight-Loss Support Centre! We're here to assist you on your wellness journey and provide the support you need. Our dedicated customer care team is available to help you from Monday to Friday between 8:00 am and 7:00 pm. Whether you have questions about our products, need guidance on your weight-loss plan, or require assistance with your order, we're here for you.
+                                <p class="contact-panel__desc mb-30">Welcome to My Weight-Loss Centre! We're here to assist you on your wellness journey and provide the support you need. Our dedicated customer care team is available to help you from Monday to Friday between 08:00 am and 07:00 pm.  Whether you have questions about our products, need guidance on your weight-loss plan, or require assistance with your order, we're here for you.
                                 </p>
                             </div>
                             <div class="col-sm-6 col-md-6 col-lg-6">
@@ -138,7 +138,7 @@
                         <div class="bg-img"><img src="{{ asset('/assets/web/images/banners/1.jpg') }}" alt="banner"></div>
                         <div>
                             <h4 class="contact-panel__title color-white">Quick Contacts</h4>
-                            <p class="contact-panel__desc font-weight-bold color-white mb-30"> Feel free to reach out to us through the provided contact number, and our knowledgeable and friendly team will be more than happy to assist you on your weight-loss journey. Thank you for choosing us as your partner in achieving your health and wellness goals. </p>
+                            <p class="contact-panel__desc font-weight-bold color-white mb-30"> Feel free to reach out to us! Thank you for choosing us as your partner in achieving your weight loss goals.</p>
                         </div>
                         <div>
                             <ul class="contact__list list-unstyled mb-30">
@@ -212,7 +212,6 @@
                             </div><!-- /.testimonial-thumb -->
                             <div>
                                 <h4 class="testimonial__meta-title">Sami Wade</h4>
-                                <p class="testimonial__meta-desc">7oroof Inc</p>
                             </div>
                         </div><!-- /.testimonial-meta -->
                         <div class="testimonial__meta">
@@ -221,7 +220,6 @@
                             </div><!-- /.testimonial-thumb -->
                             <div>
                                 <h4 class="testimonial__meta-title">Ahmed</h4>
-                                <p class="testimonial__meta-desc">Web Inc</p>
                             </div>
                         </div><!-- /.testimonial-meta -->
                         <div class="testimonial__meta">
@@ -230,7 +228,6 @@
                             </div><!-- /.testimonial-thumb -->
                             <div>
                                 <h4 class="testimonial__meta-title">Sonia Blake</h4>
-                                <p class="testimonial__meta-desc">Web Inc</p>
                             </div>
                         </div><!-- /.testimonial-meta -->
                     </div><!-- /.slider-nav -->
