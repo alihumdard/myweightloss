@@ -23,7 +23,8 @@ Route::match(['get','post'],'/logout', [DefualtController::class, 'logout'])->na
 Route::get('/aboutUs', [HomeController::class, 'about_us'])->name('web.aboutUs');
 Route::get('/contact', [HomeController::class, 'contact_us'])->name('web.contact');
 Route::get('/blogs', [HomeController::class, 'blogs'])->name('web.blogs');
-Route::get('/term&conditions', [HomeController::class, 'term&conditions'])->name('web.term&conditions');
+Route::get('/term&conditions', [HomeController::class, 'term'])->name('web.term&conditions');
+Route::get('/privacypolicy', [HomeController::class, 'privacy'])->name('web.privacypolicy');
 Route::get('/products/{cat_id?}', [WebController::class, 'products'])->name('web.products');
 Route::match(['get','post'],'/product/{id}', [WebController::class, 'product'])->name('web.product')->where('id', '[0-9]+');
 Route::match(['get','post'],'/bmiForm', [WebController::class, 'bmi_form'])->name('web.bmiForm');
