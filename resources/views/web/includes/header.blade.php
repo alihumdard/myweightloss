@@ -79,9 +79,7 @@
                     </li> -->
 
                     <li class="nav__item">
-
                         <a href="{{ route('web.contact') }}" class="nav__item-link {{(request()->routeIs(['web.contact'])) ? 'active ' : ''}}">Contact</a>
-
                     </li>
                     <li class="nav__item">
                         <a href="{{ route('admin.index') }}" class="nav__item-link {{(request()->routeIs(['admin.index'])) ? 'active ' : ''}}">Account </a>
