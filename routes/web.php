@@ -21,7 +21,7 @@ Route::match(['get','post'],'/register', [DefualtController::class, 'user_regist
 Route::match(['get','post'],'/regisrationFrom', [WebController::class, 'regisration_from'])->name('web.regisrationFrom');
 Route::match(['get','post'],'/logout', [DefualtController::class, 'logout'])->name('web.logout');
 Route::get('/aboutUs', [HomeController::class, 'about_us'])->name('web.aboutUs');
-Route::get('/contact', [HomeController::class, 'contact_us'])->name('web.contact');
+Route::get('/contact', [HomeController::class, 'contact'])->name('web.contact');
 Route::get('/blogs', [HomeController::class, 'blogs'])->name('web.blogs');
 Route::get('/products/{cat_id?}', [WebController::class, 'products'])->name('web.products');
 Route::match(['get','post'],'/product/{id}', [WebController::class, 'product'])->name('web.product')->where('id', '[0-9]+');

@@ -82,7 +82,7 @@
 
                         <a href="{{ route('web.contact') }}" class="nav__item-link">Contact</a>
 
-                        <a href="{{ route('web.contactUs') }}" class="nav__item-link {{(request()->routeIs(['web.contactUs'])) ? 'active ' : ''}}">Contact</a>
+                        <a href="{{ route('web.contact') }}" class="nav__item-link {{(request()->routeIs(['web.contact'])) ? 'active ' : ''}}">Contact</a>
 
                     </li>
                     <li class="nav__item">

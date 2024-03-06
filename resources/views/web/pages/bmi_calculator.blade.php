@@ -39,7 +39,8 @@
         .c-bmi {
             box-sizing: border-box;
             font-family: ui-sans-serif, system-ui, sans-serif;
-            padding: 1rem;
+            padding: 0rem 1rem 0rem 1rem;
+
             width: 100%;
         }
 
@@ -272,67 +273,71 @@
     </header>
     <!-- /Header -->
     <main>
-        <div class="container py-5">
-            <div class="card">
-                <div class=" btn btn-primary pt-3 question_title">
-                    <h5 class="text-white fw-bold">Calculate/Update Your BMI</h5>
-                </div>
-                <div class="col-12 mx-auto">
-                    @if(session('status') === 'invalid')
-                    <div class="alert alert-danger">
-                        <strong>Error:</strong> {{ session('message') }}
-                    </div>
-                    @endif
-                </div>
-                <div class="card-body pt-4 px-2">
-
-                    <form class="c-bmi" id="bmi_from" method="POST" action="{{ route('web.bmiUpdate') }}">
-                        @csrf
-                        <input type="hidden" name="id" value="{{$bmi_detail['id'] ?? '' }}">
-                        <label for="height" class="c-bmi__label"><strong>Height</strong>
-                            <input class="c-bmi__range form-range mt-1" type="range" name="height" min="20" max="254" step="0.1" value="{{$bmi_detail['height'] ?? 0.0 }}" />
-                            <output name="ho"><output>
-                        </label>
-                        <label class="c-bmi__label"><strong>Weight</strong>
-                            <input class="c-bmi__range form-range mt-1" type="range" name="weight" min="20" max="400" step="0.1" value="{{$bmi_detail['weight'] ?? 0.0 }}" />
-                            <output name="wo"></output>
-                        </label>
-                        <div class="c-bmi__result">
-                            <span style="font-weight: 900;  "> Your BMI Is:</span>
-                            <div class="circle" style="width: 9rem; height:9rem;">
-                                <output name="bmio"></output>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="container py-5">
+                        <div class="card">
+                            <div class=" btn btn-primary pt-1 question_title">
+                                <h5 class="text-white fw-bold">Calculate/Update Your BMI</h5>
                             </div>
-                        </div>
+                            <div class="col-12 mx-auto">
+                                @if(session('status') === 'invalid')
+                                <div class="alert alert-danger">
+                                    <strong>Error:</strong> {{ session('message') }}
+                                </div>
+                                @endif
+                            </div>
+                            <div class="card-body pt-1 px-2">
 
-                        <div class="c-bmi__groups" readonly>
-                            <input type="radio" id="bmi-g0" name="g" />
-                            <label for="bmi-g0">Underweight</label>
-                            <div class="c-bmi__group-text">The WHO regards a BMI of less than 18.5 as underweight and may indicate malnutrition, an eating disorder, or other health problems.</div>
-                            <input type="radio" id="bmi-g1" name="g" checked />
-                            <label for="bmi-g1">Normal</label>
-                            <div class="c-bmi__group-text">A BMI between 18.5 and 25 is considered normal and healthy. </div>
-                            <input type="radio" id="bmi-g2" name="g" />
-                            <label for="bmi-g2">Pre-obesity</label>
-                            <div class="c-bmi__group-text">People who fall into this category may be at risk of developing obesity.<br />This was earlier classified as "overweight".</div>
-                            <input type="radio" id="bmi-g3" name="g" />
-                            <label for="bmi-g3">Obese I</label>
-                            <div class="c-bmi__group-text">People who have BMI equal or over 30 may have obesity, which is defined as an abnormal or excessive accumulation of fat that may harm health.</div>
-                            <input type="radio" id="bmi-g4" name="g" />
-                            <label for="bmi-g4">Obese II</label>
-                            <div class="c-bmi__group-text">People who have BMI equal or over 30 may have obesity, which is defined as an abnormal or excessive accumulation of fat that may harm health.</div>
-                            <input type="radio" id="bmi-g5" name="g" />
-                            <label for="bmi-g5">Obese III</label>
-                            <div class="c-bmi__group-text">People who have BMI equal or over 30 may have obesity, which is defined as an abnormal or excessive accumulation of fat that may harm health.</div>
-                        </div>
-                    </form>
-                    <!-- /middle-wizard -->
-                    <div id="bottom-wizard" style="padding: 5px 0 25px 0;">
-                        <!-- <button type="button" class="btn btn-success px-4">Update</button> -->
-                        <button type="submit" form="bmi_from" class="submit ">Procceed Next </button>
-                    </div>
-                    <!-- /bottom-wizard -->
+                                <form class="c-bmi" id="bmi_from" method="POST" action="{{ route('web.bmiUpdate') }}">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{$bmi_detail['id'] ?? '' }}">
+                                    <label for="height" class="c-bmi__label"><strong>Height</strong>
+                                        <input class="c-bmi__range form-range mt-1 form-control" type="number" name="height" min="20" max="254" step="0.1" value="{{$bmi_detail['height'] ?? 0.0 }}" />
+                                        <output name="ho"><output>
+                                    </label>
+                                    <label class="c-bmi__label"><strong>Weight</strong>
+                                        <input class="c-bmi__range form-range mt-1 form-control" type="number" name="weight" min="20" max="400" step="0.1" value="{{$bmi_detail['weight'] ?? 0.0 }}" />
+                                        <output name="wo"></output>
+                                    </label>
+                                    <div class="c-bmi__result">
+                                        <span style="font-weight: 900;  "> Your BMI Is:</span>
+                                        <div class="circle" style="width: 9rem; height:9rem;">
+                                            <output name="bmio"></output>
+                                        </div>
+                                    </div>
 
-                    <!-- <div class="mx-auto " >
+                                    <div class="c-bmi__groups" readonly>
+                                        <input type="radio" id="bmi-g0" name="g" />
+                                        <label for="bmi-g0">Underweight</label>
+                                        <div class="c-bmi__group-text">The WHO regards a BMI of less than 18.5 as underweight and may indicate malnutrition, an eating disorder, or other health problems.</div>
+                                        <input type="radio" id="bmi-g1" name="g" checked />
+                                        <label for="bmi-g1">Normal</label>
+                                        <div class="c-bmi__group-text">A BMI between 18.5 and 25 is considered normal and healthy. </div>
+                                        <input type="radio" id="bmi-g2" name="g" />
+                                        <label for="bmi-g2">Pre-obesity</label>
+                                        <div class="c-bmi__group-text">People who fall into this category may be at risk of developing obesity.<br />This was earlier classified as "overweight".</div>
+                                        <input type="radio" id="bmi-g3" name="g" />
+                                        <label for="bmi-g3">Obese I</label>
+                                        <div class="c-bmi__group-text">People who have BMI equal or over 30 may have obesity, which is defined as an abnormal or excessive accumulation of fat that may harm health.</div>
+                                        <input type="radio" id="bmi-g4" name="g" />
+                                        <label for="bmi-g4">Obese II</label>
+                                        <div class="c-bmi__group-text">People who have BMI equal or over 30 may have obesity, which is defined as an abnormal or excessive accumulation of fat that may harm health.</div>
+                                        <input type="radio" id="bmi-g5" name="g" />
+                                        <label for="bmi-g5">Obese III</label>
+                                        <div class="c-bmi__group-text">People who have BMI equal or over 30 may have obesity, which is defined as an abnormal or excessive accumulation of fat that may harm health.</div>
+                                    </div>
+                                </form>
+                                <!-- /middle-wizard -->
+                                <div id="bottom-wizard" style="padding: 5px 0 25px 0;">
+                                    <!-- <button type="button" class="btn btn-success px-4">Update</button> -->
+                                    <button type="submit" form="bmi_from" class="submit ">Procceed Next </button>
+                                </div>
+                                <!-- /bottom-wizard -->
+
+                                <!-- <div class="mx-auto " >
                         <form name="example-1" id="wrapped" method="POST" action="{{ route('web.bmiFormStore') }}">
                             @csrf
                             <input id="website" name="website" type="text" value="">
@@ -358,9 +363,14 @@
                         </form>
                     </div> -->
 
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <div class="col-md-2"></div>
             </div>
         </div>
+
         <!-- /Container -->
 
 
