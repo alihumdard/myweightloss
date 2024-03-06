@@ -144,14 +144,16 @@
                         <div class="widget__content">
                             <div id="rangeSlider"></div>
                             <div class="d-flex justify-content-between align-items-center">
-                                <div class="price-output d-flex align-items-center">
+                                <!-- its temporary comment  -->
+                                <!-- <div class="price-output d-flex align-items-center">
                                     <label for="rangeSliderResult">Price: </label>
                                     <input type="text" id="rangeSliderResult" readonly>
-                                </div>
+                                </div> -->
                                 <button class="btn__filter">Filter</button>
                             </div>
                         </div>
-                    </div><!-- /.widget-filter -->
+                    </div>
+                    <!-- /.widget-filter -->
                     <div class="widget widget-tags">
                         <h5 class="widget__title">Tags</h5>
                         <div class="widget-content">

@@ -262,18 +262,13 @@
                             </div>
 
                         </div>
-                        <div class="testimonial-section mt-4">
+                        <div class="testimonial-section mt-4" style="background:#55b5c7;">
                             <div class="testimonial-content">
                                 <div class="testimonial-img text-center">
-                                    <img class="img-fluid form-user-img" src="https://i.ibb.co/KGVbyHz/anime.png" alt="info">
+                                    <img class="img-fluid form-user-img" src="{{ asset('/assets/web/images/tsp/rigistration/registration-img.png') }}" alt="info">
                                 </div>
-                                <div class="testimonial-right-content" style="font-style: italic;">
-                                    <p class="has-text-white its-font-w--600 mb-2">"My Weightloss Centre has access to the market
-                                        leading treatments for weight loss which we have been prescribing to our
-                                        patients for several years now with excellent clinical outcomes. The clinical
-                                        processes and support structures are all designed to give you the opportunity to
-                                        achieve your target weight with many exciting new developments on the way.
-                                        Congratulations on starting your weight loss journey. Together we can do it."
+                                <div class="testimonial-right-content" style="font-style: italic; ">
+                                    <p class="has-text-white its-font-w--600 mb-2">Clients at My Weightloss Centre tell about their transformative experiences. They commend our personalised programs, dedicated staff, and supportive community. <br> Many express gratitude for the motivational environment that fosters lasting lifestyle changes. Our reputation is built on success stories, fostering trust and confidence in our commitment to helping individuals achieve their weight loss goals.
                                     </p>
                                     <span class="has-text-white its-font-w--400">
                                         James O’Loan - PHARMACEUTICAL LEAD, PRESCRIBING PHARMACIST &amp; WEIGHT
@@ -285,7 +280,7 @@
                     <div class="col-12 col-sm-12 col-md-12 col-lg-7">
                         <div class="full-form">
                             <div class="user-text mt-2">
-                                <button class="imbtn"><i class="fa fa-check"></i>I'm new</button>
+                                <button class="imbtn" style="background: #55b5c7;"><i class="fa fa-check"style="background: #1aa9dd;" ></i>I'm new</button>
                                 <button id="btnlogin" class="account-btn" data-toggle="modal" data-target="#loginModal">ٰI have an account</button>
                             </div>
                             <div>
@@ -311,7 +306,7 @@
                                     </div>
 
                                     <label for="dob" class="label d-md-block ">Date of Birth</label>
-                                    <input type="text" id="datepicker" name="dob" class="form-control" placeholder="mm/dd/yy">
+                                    <input type="text" id="datepicker" name="dob" class="form-control" placeholder="mm-dd-yyyy">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -336,7 +331,7 @@
                                         <p style="color: #00e5d2;">* Enter address manually</p>
                                     </div>
                                     <div>
-                                        <button type="submit" class="continue-btn mx-auto">Continue</button>
+                                        <button type="submit" class="continue-btn mx-auto" style="background: #55b5c7;">Continue</button>
                                     </div>
 
                                 </form>

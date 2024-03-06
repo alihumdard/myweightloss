@@ -5,7 +5,7 @@
        page title 
     =========================== -->
 <section class="page-title page-title-layout5 bg-overlay">
-    <div class="bg-img"><img src="{{ asset('/assets/web/images/page-titles/8.jpg') }}" alt="background"></div>
+    <div class="bg-img"><img src="{{ asset('/assets/web/images/tsp/blogpage/8.png') }}" alt="background"></div>
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -109,7 +109,7 @@
                 <div class="post-item">
                     <div class="post__img">
                         <a href="blog-single-post.html">
-                            <img src="{{ asset('/assets/web/images/blog/grid/4.jpg') }}" alt="post image" loading="lazy">
+                            <img src="{{ asset('/assets/web/images/blog/grid/1.png') }}" alt="post image" loading="lazy">
                         </a>
                     </div><!-- /.post__img -->
                     <div class="post__body">
@@ -120,10 +120,8 @@
                             <span class="post__meta-date">Jan 30, 2022</span>
                             <a class="post__meta-author" href="#">Mark Ezak</a>
                         </div>
-                        <h4 class="post__title"><a href="#">Why Coronavirus Cases Among Adults Is Bad News</a></h4>
-                        <p class="post__desc">A new surge of coronavirus cases has spread across the country and while there’s
-                            still so much to learn about virus, how it’s transmitted and its long-term effects
-                        </p>
+                        <h4 class="post__title"><a href="#">How Weight Loss Changes Your Face</a></h4>
+                        <p class="post__desc">Weight loss transforms facial features by reducing fat, defining contours and enhancing overall aesthetics for a radiant, confident appearance. Read more! </p>
                         <a href="blog-single-post.html" class="btn btn__secondary btn__link btn__rounded">
                             <span>Read More</span>
                             <i class="icon-arrow-right"></i>
@@ -136,7 +134,7 @@
                 <div class="post-item">
                     <div class="post__img">
                         <a href="blog-single-post.html">
-                            <img src="{{ asset('/assets/web/images/blog/grid/5.jpg') }}" alt="post image" loading="lazy">
+                            <img src="{{ asset('/assets/web/images/blog/grid/2.png') }}" alt="post image" loading="lazy">
                         </a>
                     </div><!-- /.post__img -->
                     <div class="post__body">
@@ -147,10 +145,8 @@
                             <span class="post__meta-date">Jan 30, 2022</span>
                             <a class="post__meta-author" href="#">Martin King</a>
                         </div>
-                        <h4 class="post__title"><a href="#">Why Do People Get Kidney Stones in the Summer? </a></h4>
-                        <p class="post__desc">Summer may have just officially started, but kidney stone season began a couple of
-                            weeks ago. Doctors see an increase in kidney stone cases when the weather warms up...
-                        </p>
+                        <h4 class="post__title"><a href="#">How health and safety is monitored and maintained </a></h4>
+                        <p class="post__desc">Health and Safety: Preventing harm in the workplace with procedures and rules to avoid injury and illness. A continual process for ongoing improvement.</p>
                         <a href="blog-single-post.html" class="btn btn__secondary btn__link btn__rounded">
                             <span>Read More</span>
                             <i class="icon-arrow-right"></i>
@@ -163,7 +159,7 @@
                 <div class="post-item">
                     <div class="post__img">
                         <a href="blog-single-post.html">
-                            <img src="{{ asset('/assets/web/images/blog/grid/6.jpg') }}" alt="post image" loading="lazy">
+                            <img src="{{ asset('/assets/web/images/blog/grid/3.png') }}" alt="post image" loading="lazy">
                         </a>
                     </div><!-- /.post__img -->
                     <div class="post__body">
@@ -174,10 +170,8 @@
                             <span class="post__meta-date">Feb 07, 2022</span>
                             <a class="post__meta-author" href="#">Marie Black</a>
                         </div>
-                        <h4 class="post__title"><a href="#">Do Any Drugs Really Work to Treat Coronavirus? </a></h4>
-                        <p class="post__desc">While most people who get COVID-19 are able to recover at home, the rush is on to
-                            find a treatment that’s safe and effective against life-threatening cases of the disease...
-                        </p>
+                        <h4 class="post__title"><a href="#">Weight Loss - Effective Diet Without Exercise</a></h4>
+                        <p class="post__desc">Discover effective weight loss strategies through diet alone. Learn how to make simple dietary changes to shed pounds and improve overall health. Read more.</p>
                         <a href="blog-single-post.html" class="btn btn__secondary btn__link btn__rounded">
                             <span>Read More</span>
                             <i class="icon-arrow-right"></i>

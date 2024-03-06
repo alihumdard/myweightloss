@@ -132,7 +132,7 @@
                         <li>Ongoing Patient Care​</li>
                     </ul>
                     <div class="d-flex flex-wrap">
-                        <a href="doctors-timetable.html" class="btn btn__white btn__rounded mr-30">
+                        <a href="{{ route('web.regisrationFrom')}}"  class="btn btn__white btn__rounded mr-30">
                             <span>Start Free Consultation </span> <i class="icon-arrow-right"></i>
                         </a>
                         <!-- <a href="contact-us.html" class="btn btn__white btn__outlined btn__rounded">
