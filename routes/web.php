@@ -48,6 +48,22 @@ Route::match(['get','post'],'/checkout', function(){
     return view('web.pages.checkout');
 })->name('web.checkout');
 
+Route::match(['get','post'],'/terms', function(){
+    return view('web.pages.term');
+})->name('web.term_conditions');
+
+Route::match(['get','post'],'/privacypolicy', function(){
+    return view('web.pages.privacy');
+})->name('web.privacypolicy');
+
+Route::match(['get','post'],'/howitworks', function(){
+    return view('web.pages.howitworks');
+})->name('web.howitworks');
+
+Route::match(['get','post'],'/deliveryReturns', function(){
+    return view('web.pages.deliveryReturns');
+})->name('web.deliveryReturns');
+
 
 
 include __DIR__ .'/admin.php';
