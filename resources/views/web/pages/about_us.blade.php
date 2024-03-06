@@ -298,7 +298,7 @@
                                 <i class="icon-medicine"></i>
                             </div><!-- /.process__icon -->
                             <h4 class="process__title">Get an Online Weight-loss Consultation</h4>
-                            <p class="process__desc">Participate in an online weight-loss consultation to stay connected with our healthcare professional team and to address any queries or concerns.</p>
+                            <p class="process__desc">Participate in an online weight-loss consultation to stay connected with our healthcare professional team and to address any queries or concerns. The most convenient way to discuss your concerns with us. </p>
                             <!-- <a href="#" class="btn btn__secondary btn__link">
                                 <span>Explore Programs</span>
                                 <i class="icon-arrow-right"></i>

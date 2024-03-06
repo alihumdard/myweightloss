@@ -2,7 +2,7 @@
       Footer
     ========================== -->
 
-<footer class="footer" style="font-family:sans-serif">
+<footer class="footer" style="font-family:sans-serif; background:#e5eef3 !important; ">
   <footer class="footer-primary py-4">
     <div class="container">
       <div class="row">
@@ -37,7 +37,7 @@
                 <li><a href="{{ route('web.index') }}">Home</a></li>
                 <li><a href="{{ route('web.aboutUs') }}">About Us</a></li>
                 <li><a href="{{ route('web.products') }}">Products</a></li>
-                <li><a href="{{ route('web.blogs') }}">Blog</a></li>
+                <!-- <li><a href="{{ route('web.blogs') }}">Blog</a></li> -->
                 <li><a href="{{ route('web.contact') }}">Contact</a></li>
               </ul>
             </nav>
@@ -79,7 +79,7 @@
           <div class="row mb-5 align-items-center">
 
             <div class="col-md-12">
-              <p class="text-center-md mt-5">All consultation and prescribing, is carried out by GPhC registered medical practitioners. All dispensing and shipping of medicines is completed by a UK licensed, GPhC registered Pharmacy</p>
+              <p class="text-center-md mt-5">All consultation and prescribing, is carried out by GPHC registered medical practitioners. All dispensing and shipping of medicines is completed by a UK licensed, GPHC registered Pharmacy</p>
             </div>
 
           </div>
@@ -102,7 +102,7 @@
             </div>
             <div class="col-md-4">
               <div class="button m-2 ">
-                <a href="https://online-pharmacy4u.co.uk/pages/responsible-pharmacist" target="_blank"><button class=" p-2 px-3 text-light" style="background-color: #21cdc0;  border-radius: 5px;">Online Pharmacy 4U</button></a>
+                <a href="https://online-pharmacy4u.co.uk/pages/responsible-pharmacist" target="_blank"><button class=" p-2 px-3 text-light" style="background-color: #21cdc0;  border-radius: 5px;">Today’s responsible Pharmacist  at Online Pharmacy 4U</button></a>
               </div>
             </div>
           </div>

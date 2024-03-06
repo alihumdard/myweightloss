@@ -49,7 +49,10 @@ class HomeController extends Controller
     {
         return view('web.pages.about_us');
     }
-
+    public function termsandcondition(Request $request)
+    {
+        return view('web.pages.termsandcondition');
+    }
 
 
 
