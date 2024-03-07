@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('question_id');
-            $table->unsignedBigInteger('answer');
+            $table->string('answer');
             $table->unsignedBigInteger('next_question');
             $table->integer('status')->default(1);
             $table->unsignedBigInteger('created_by')->nullable();

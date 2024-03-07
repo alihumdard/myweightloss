@@ -26,7 +26,6 @@
     </link>
     <!-- custome styling -->
     <link rel="stylesheet" href="{{ asset('/assets/admin/dist/css/style.css') }}">
-    {{-- <link rel="stylesheet" href="{{ asset('/assets/web/consultation/css/style.css') }}"> --}}
 
 
 </head>
@@ -48,57 +47,69 @@
             </div>
         </div>
     </div>
+
     <div class="container-md px-lg-5 container-fluid ">
         <div class="my-5  mx-lg-5 px-lg-5 ">
             <main class="mx-lg-5 px-lg-5 card pb-2">
-                <form action="{{ route('web.transactionStore') }}" method="POST">
-                    <input type="hidden" name="product_id" value="{{ $product['id'] ?? '' }}" id="product_id">
-                    <input type="hidden" name="category_id" value="{{ $category['id'] ?? ''  }}" id="category_id">
+
+                <form action="{{ route('web.transactionStore') }}" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="product_id" value="{{ $product['id']}}" id="product_id">
+                    <input type="hidden" name="category_id" value="{{ $category['id']}}" id="category_id">
                     @csrf
+                    <div class="alert alert-danger fade show alert-dismissible mt-3" role="alert" style="display:none;">
+                        <strong><i class="fa fa-warning" aria-hidden="true"></i></strong> <b>Please</b> Mark the Question Answer.
+                    </div>
                     @foreach($questions as $key => $question)
-                    <div class="question {{ $loop->first ? 'fade-in' : 'collapse' }} " data-dependency = "{{$check_dependency[$question['id']]['is_dependent']}}" data-dependency_answer="">
+                    <div id="question_{{$question['id']}}" class="question {{ $loop->first ? 'fade-in' : 'collapse' }} " data-dependency="{{$check_dependency[$question['id']]['is_dependent']}}" data-dependency_answer="">
                         <div class=" px-4 mt-5">
-                            <h3 class="fw-bold "> <b>{{++$key}}</b>: {{ $question['title'] ?? ''}}?</h3>
+                            <h3 class="fw-bold "> <b>Q</b>. {{ $question['title'] ?? ''}}?</h3>
                         </div>
                         <div class=" p-4" style="margin:0 !important;">
                             @if($question['anwser_set'] == 'openbox' )
                             <p style="font-family: emoji; color: black;">
                             <pre>
                             {{$question['openbox']}}
+
                             </pre>
                             </p>
                             <div class="text">
                                 <div>
-                                    <textarea class="form-control" name="qid_{{$question['id']}}" placeholder="Describe" rows="5" required='required' ></textarea>
+                                    <textarea class="form-control" data-next_question="question_{{ $next_quest_opt[$question['id']]['openbox'] ?? 'no'}}" name="qid_{{$question['id']}}" placeholder="Describe" rows="5"></textarea>
                                 </div>
                             </div>
                             @elseif($question['anwser_set'] == 'mt_choice' )
                             <div class="text">
                                 <div class="form-check mt-2 px-5">
-                                    <input class="form-check-input optA_{{$category['id'].'_'.$question['id']}}" type="radio" name="qid_{{$question['id']}}" value="{{$question['optA'] ?? ''}}" id="optionA" required='required' >
+                                    <input class="form-check-input optA_{{$category['id'].'_'.$question['id']}}" type="radio" name="qid_{{$question['id']}}" value="" data-next_question="question_{{ $next_quest_opt[$question['id']]['optA'] ?? 'no'}}" id="optionA">
                                     <label class="form-check-label fw-semibold   w-100" for="optionA">{{$question['optA'] ?? ''}}</label>
                                 </div>
                                 <div class="form-check px-5">
-                                    <input class="form-check-input optB_{{$category['id'].'_'.$question['id']}}" type="radio" name="qid_{{$question['id']}}" value="{{$question['optB'] ?? ''}}" id="optionB" required='required' >
+                                    <input class="form-check-input optB_{{$category['id'].'_'.$question['id']}}" type="radio" name="qid_{{$question['id']}}" value="" data-next_question="question_{{ $next_quest_opt[$question['id']]['optB'] ?? 'no'}}" id="optionB">
                                     <label class="form-check-label fw-semibold w-100" for="optionB">{{$question['optB'] ?? ''}}</label>
                                 </div>
                                 <div class="form-check px-5">
-                                    <input class="form-check-input optC_{$category['id'].'_'.$question['id']}}" type="radio" name="qid_{{$question['id']}}" value="{{$question['optC'] ?? ''}}" id="optionC" required='required' >
+                                    <input class="form-check-input optC_{$category['id'].'_'.$question['id']}}" type="radio" name="qid_{{$question['id']}}" value="" data-next_question="question_{{ $next_quest_opt[$question['id']]['optC'] ?? 'no'}}" id="optionC">
                                     <label class="form-check-label fw-semibold w-100" for="optionC">{{$question['optC'] ?? ''}}</label>
                                 </div>
                                 <div class="form-check px-5">
-                                    <input class="form-check-input optD_{{$category['id'].'_'.$question['id']}}" type="radio" name="qid_{{$question['id']}}" value="{{$question['optD'] ?? ''}}" id="optionD">
+                                    <input class="form-check-input optD_{{$category['id'].'_'.$question['id']}}" type="radio" name="qid_{{$question['id']}}" value="" data-next_question="question_{{ $next_quest_opt[$question['id']]['optD'] ?? 'no'}}" id="optionD">
                                     <label class="form-check-label fw-semibold w-100" for="optionD">{{$question['optD'] ?? ''}}</label>
+                                </div>
+                            </div>
+                            @elseif($question['anwser_set'] == 'file' )
+                            <div class="text">
+                                <div>
+                                    <input type="file" class="form-control" name="qid_{{$question['id']}}" placeholder="Describe" data-next_question="question_{{ $next_quest_opt[$question['id']]['file'] ?? 'no'}}" />
                                 </div>
                             </div>
                             @else
                             <div class="text">
                                 <div class="form-check mt-2 px-5">
-                                    <input class="form-check-input" type="radio" name="qid_{{$question['id']}}" value="{{$question['yes_lable'] ?? ''}}" id="option_yes" required='required' >
+                                    <input class="form-check-input" type="radio" name="qid_{{$question['id']}}" value="" data-next_question="question_{{ $next_quest_opt[$question['id']]['yes_lable'] ?? 'no'}}" id="option_yes">
                                     <label class="form-check-label fw-semibold   w-100" for="option_yes">{{$question['yes_lable'] ?? ''}}</label>
                                 </div>
                                 <div class="form-check px-5">
-                                    <input class="form-check-input" type="radio" name="qid_{{$question['id']}}" value="{{$question['no_lable'] ?? ''}}" id="option_no" required='required' >
+                                    <input class="form-check-input" type="radio" name="qid_{{$question['id']}}" value="" data-next_question="question_{{ $next_quest_opt[$question['id']]['no_lable'] ?? 'no'}}" id="option_no">
                                     <label class="form-check-label fw-semibold w-100" for="option_no">{{$question['no_lable'] ?? ''}}</label>
                                 </div>
                             </div>
@@ -110,10 +121,14 @@
                         <div class=" progress ">
                             <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
+                        <div class=" consultion_comp text-center my-4 " style="display: none;">
+                            <h2 class="fw-bold">Your Constultion complete Submit You consultation Thank you!</h2>
+                        </div>
+
                         <div class="d-flex justify-content-between ">
-                            <button id="prevButton" type="button" class="btn btn-primary">Previous</button>
-                            <button id="nextButton" type="button" class="btn btn-primary">Next</button>
-                            <button id="submitButton" type="submit" disabled class="btn btn-success">Submit</button>
+
+                            <button id="nextButton" type="button" class="btn btn-primary text-center mx-auto px-5">Next</button>
+                            <button id="submitButton" type="submit" disabled class="btn btn-success text-center mx-auto px-5">Submit</button>
                         </div>
                     </div>
                 </form>
@@ -128,8 +143,9 @@
                 scrollTop: $(document).height()
             }, 0);
 
-            var currentQuestionIndex = 0;
+            var index = 0;
             var questions = $('.question');
+            var currentQuestionIndex = questions.eq(0).attr('id');
             var totalQuestions = questions.length;
             var progress = 0;
             var prevButton = $('#prevButton');
@@ -142,72 +158,91 @@
                 submitButton.prop('disabled', false).show();
             }
 
-            prevButton.hide(); // Hide previous button initially
+            prevButton.hide();
             submitButton.hide();
-            updateProgress(); // Update progress initially
+            updateProgress();
 
             nextButton.on('click', function() {
-                prevButton.show();
-                questions.eq(currentQuestionIndex).fadeOut(400, function() {
-                    $(this).removeClass('show').addClass('collapse');
-                    currentQuestionIndex++;
-                    questions.eq(currentQuestionIndex).fadeIn(600).removeClass('collapse').addClass('slide-in show');
-                    if (currentQuestionIndex === totalQuestions - 1) {
-                        nextButton.hide();
-                        submitButton.prop('disabled', false).show();
+                $('.alert').hide();
+                var inputFields = $('#' + currentQuestionIndex).find('input, textarea, select');
+                var isValid = true;
+
+                inputFields.each(function(index, field) {
+                    if ($(field).is('textarea') && $(field).val() === '') {
+                        isValid = false;
+                        return false; 
+                    } else if ($(field).is('input[type="radio"]') && !$('input[name="' + $(field).attr('name') + '"]:checked').length) {
+                        isValid = false;
+                        return false; 
+                    } else if ($(field).is('input[type="file"]') && !$(field).val()) {
+                        isValid = false;
+                        return false; 
                     }
-                    updateProgress();
-                    $('html, body').animate({
-                        scrollTop: $(document).height()
-                    }, 0);
-
                 });
-            });
 
-            prevButton.on('click', function() {
-                submitButton.prop('disabled', true).hide();
-                nextButton.show(); 
-
-                questions.eq(currentQuestionIndex).fadeOut(400, function() {
-                    $(this).removeClass('show').addClass('collapse');
-                    currentQuestionIndex--;
-                    questions.eq(currentQuestionIndex).fadeIn(600).removeClass('collapse').addClass('slide-in show');
-                    if (currentQuestionIndex === 0) {
-                        prevButton.hide();
-                        submitButton.prop('disabled', true).hide();
+                if (isValid) {
+                    var nextQuestion;
+                    if (inputFields.is('input[type="radio"]')) {
+                        nextQuestion = inputFields.filter(':checked').data('next_question');
+                    } else if (inputFields.is('textarea') || inputFields.is('input[type="file"]')) {
+                        nextQuestion = inputFields.data('next_question');
+                    } else {
+                        // Adjust this part based on your specific input types and logic
+                        nextQuestion = inputFields.data('next_question');
                     }
-                    updateProgress();
-                    $('html, body').animate({
-                        scrollTop: $(document).height()
-                    }, 0);
 
-                });
-            });
+                    $('#' + currentQuestionIndex).fadeOut(400, function() {
+                        $(this).removeClass('show').addClass('collapse');
+                        currentQuestionIndex = nextQuestion;
+                        $('#' + nextQuestion).fadeIn(600).removeClass('collapse').addClass('slide-in show');
+                        index++;
 
-            // Handle radio button change to enable/disable next button and update progress
-            var radios = $('.question input[type="radio"]');
-            radios.on('change', function() {
-                if (currentQuestionIndex === totalQuestions - 1) {
-                    nextButton.hide();
-                    submitButton.prop('disabled', false).show();
+                        updateProgress();
+
+                        if (nextQuestion === 'question_no') {
+                            $('.progress').hide();
+                            $('.consultion_comp').show();
+                            nextButton.hide();
+                            submitButton.prop('disabled', false).show();
+                        } else {
+                            $('.progress').show();
+                            $('.consultion_comp').hide();
+                            nextButton.prop('disabled', false).show();
+                        }
+
+                        $('html, body').animate({
+                            scrollTop: $(document).height()
+                        }, 0);
+                    });
                 } else {
-                    nextButton.prop('disabled', false).show();
+                    // alert('Please fill in all required fields.');
+                    $('.alert').show();
+
                 }
-                updateProgress(); // Update progress
             });
 
             function updateProgress() {
                 var answeredQuestions = 0;
                 questions.each(function(index, question) {
-                    if ($(question).find('input[type="radio"]:checked').length > 0) {
-                        answeredQuestions++;
+                    var inputFields = $(question).find('input, textarea, select');
+
+                    if (inputFields.is('input[type="radio"]')) {
+                        if ($(question).find('input[type="radio"]:checked').length > 0) {
+                            answeredQuestions++;
+                        }
+                    } else if (inputFields.is('textarea') || inputFields.is('input[type="file"]')) {
+                        if (inputFields.val() !== '') {
+                            answeredQuestions++;
+                        }
                     }
                 });
+
                 progress = (answeredQuestions / totalQuestions) * 100;
                 $('.progress-bar').width(progress + '%').attr('aria-valuenow', progress);
             }
         });
     </script>
+
 </body>
 
 </html>
