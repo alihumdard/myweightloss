@@ -269,6 +269,8 @@ class WebController extends Controller
             $data['cart'] = Cart::with('product')->where('user_id', auth()->user()->id)->get()->toArray();
             $data['total'] = 0;
             return view('web.pages.cart', $data);
+        }else{
+            return redirect()->route('login');
         }
     }
 
