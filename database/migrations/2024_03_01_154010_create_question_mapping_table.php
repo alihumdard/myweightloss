@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('assign_questions', function (Blueprint $table) {
+        Schema::create('question_mapping', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('question_id');
-            $table->string('category_title');
-            $table->text('question_title');
-            $table->integer('is_dependent')->default(0);
-            $table->string('status')->default('Active');
+            $table->unsignedBigInteger('answer');
+            $table->unsignedBigInteger('next_question');
+            $table->integer('status')->default(1);
             $table->unsignedBigInteger('created_by')->nullable();
             $table->timestamps();
         });
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assign_questions');
+        Schema::dropIfExists('question_mapping');
     }
 };

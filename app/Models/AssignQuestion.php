@@ -12,6 +12,7 @@ class AssignQuestion extends Model
         'question_id',
         'question_title',
         'category_title',
+        'is_dependent',
         'status',
         'created_by',
     ];
@@ -24,5 +25,10 @@ class AssignQuestion extends Model
     public function question()
     {
         return $this->belongsTo(Question::class, 'question_id');
+    }
+
+    public function questionMappings()
+    {
+        return $this->hasMany(QuestionMapping::class, 'category_id', 'category_id');
     }
 }
