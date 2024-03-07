@@ -395,7 +395,7 @@ header {
 }
 
 main {
-  background: #f8f8f8 url(../img/pattern.svg) repeat;
+  background: #f8f8f8 url('https://miro.medium.com/v2/resize:fit:1400/1*KTs7PMn4rhfsu_oL_2r-ng.jpeg') no-repeat;
 }
 main.plain {
   background: #f8f8f8;
@@ -1281,7 +1281,8 @@ input.qtyminus {
   font-family: "Roboto Condensed", Arial, sans-serif !important;
   font-weight: bold;
   font-size: 28px !important;
-  font-size: 28px !important/16pxrem;
+  font-size: 28px !important;
+  /* font-size: 28px !important/16pxrem; */
   color: #333;
 }
 .rs-tooltip-text:before {

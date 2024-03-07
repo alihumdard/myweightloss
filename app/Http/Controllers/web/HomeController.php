@@ -49,8 +49,21 @@ class HomeController extends Controller
     {
         return view('web.pages.about_us');
     }
-
-
-
-
+    public function term(Request $request)
+    {
+        return view('web.pages.term');
+    }
+    public function privacy(Request $request)
+    {
+        return view('web.pages.privacy');
+    }
+    public function deliveryReturns(Request $request)
+    {
+        return view('web.pages.deliveryReturns');
+    }
+    public function howitworks(Request $request)
+    {
+        return view('web.pages.howitworks');
+    }
+    
 }

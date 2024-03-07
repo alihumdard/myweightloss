@@ -1,7 +1,6 @@
 @extends('web.layouts.default')
 @section('title', 'cart')
 @section('content')
-
 <!-- ========================
        page title 
     =========================== -->
@@ -34,7 +33,7 @@
               <tr>
                 <th>Product</th>
                 <th>Price</th>
-                <!-- <th>Quantity</th> -->
+                <th>Quantity</th>
                 <th>Total</th>
               </tr>
             </thead>
@@ -50,13 +49,13 @@
                   <h5 class="cart-product__title">{{ $value['product']['title'] ?? ''}}/h5>
                 </td>
                 <td class="cart-product__price">{{ $value['product']['price'] ?? ''}}</td>
-                <!-- <td class="cart-product__quantity">
+                <td class="cart-product__quantity">
                   <div class="quantity__input-wrap">
                     <i class="fa fa-minus decrease-qty"></i>
                     <input type="number" value="{{ $value['quantity'] ?? ''}}" class="qty-input">
                     <i class="fa fa-plus increase-qty"></i>
                   </div>
-                </td> -->
+                </td>
                 @php
                 $total += $value['product']['price'];
                 @endphp
@@ -90,7 +89,7 @@
             <li><span>Cart Total :</span><span>£ {{ $total ?? ''}}</span></li>
             <!-- <li><span>Order Total :</span><span>$ 140.00</span></li> -->
           </ul>
-          <a href="#" class="btn btn__primary">Proceed To Checkout</a>
+          <a href="/makeCurlRequest" class="btn btn__primary">Proceed To Checkout</a>
         </div><!-- /.cart__total-amount -->
       </div><!-- /.col-lg-6 -->
     </div><!-- /.row -->

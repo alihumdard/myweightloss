@@ -34,6 +34,16 @@ use App\Models\Cart;
 use App\Models\QuestionMapping;
 use Illuminate\Support\Facades\DB;
 
+use Deyjandi\VivaWallet\Enums\RequestLang;
+use Deyjandi\VivaWallet\Enums\PaymentMethod;
+use Deyjandi\VivaWallet\Facades\VivaWallet;
+use Deyjandi\VivaWallet\Customer;
+use Deyjandi\VivaWallet\Payment;
+
+
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redirect;
+
 class WebController extends Controller
 {
     public function products(Request $request)
@@ -282,36 +292,135 @@ class WebController extends Controller
             $data['cart'] = Cart::with('product')->where('user_id', auth()->user()->id)->get()->toArray();
             $data['total'] = 0;
             return view('web.pages.cart', $data);
+        }else{
+            return redirect()->route('login');
         }
     }
 
 
     public function makeCurlRequest(Request $request)
     {
-        $url = 'https://api.vivapayments.com/checkout/v2/orders';
-        $token = auth()->user()->remember_token;
+        $productPrice = 100;
+        $productName ='health product';
+        $productDescription='it is for testing product philp';
+        
+        // Viva Wallet API credentials
+        $username = 'dkwrul3i0r4pwsgkko3nr8c4vs0h5yn5tunio398ik403.apps.vivapayments.com';
+        $password = 'BuLY8U1pEsXNPBgaqz98y54irE7OpL';
+        $credentials = base64_encode($username . ':' . $password);
+
+        // Obtain Access Token
+        $accessToken = $this->getAccessToken($credentials);
+// dd($accessToken);
+        // Prepare POST fields for creating an order
+        $postFields = [
+            'amount'              => $productPrice,
+            'customerTrns'        => $productDescription,
+            'customer'            => [
+                'email'       => 'alihumdard@gmail.com',
+                'fullName'    => 'George Seferis',
+                'phone'       => '69232323',
+                'countryCode' => 'GB', // United Kingdom country code
+                'requestLang' => 'en-GB', // Request language set to English (United Kingdom)
+            ],
+            'paymentTimeout'      => 1800,
+            'preauth'             => false,
+            'allowRecurring'      => false,
+            'maxInstallments'     => 0,
+            'paymentNotification' => true,
+            'disableExactAmount'  => false,
+            'disableCash'         => false,
+            'disableWallet'       => false,
+            'sourceCode'          => '2399',
+            "merchantTrns" => "Short description of items/services purchased by customer",
+            "tags"=>
+            [
+                "tags for grouping and filtering the transactions",
+                "this tag can be searched on VivaWallet sales dashboard",
+                "Sample tag 1",
+                "Sample tag 2",
+                "Another string"
+            ],
+        ];
+
+        // Make an HTTP request to create an order
+        $response = $this->sendHttpRequest('https://api.vivapayments.com/checkout/v2/orders', $postFields, $accessToken);
+// dd($response);
+
+        // Decode the JSON response
+        $responseData = json_decode($response, true);
+        
+        if (isset($responseData['orderCode'])) {
+            $orderCode = $responseData['orderCode'];
+        
+            // Redirect to the Viva Payments checkout page with the orderCode parameter
+            $redirectUrl = "https://www.vivapayments.com/web/checkout?ref={$orderCode}&color=c50c26";
+        
+            // Redirect to the external URL
+            return redirect()->away($redirectUrl);
+        }
+
+    }
+
+    private function getAccessToken($credentials)
+    {
         try {
-            $response = Http::post('https://api.vivapayments.com/checkout/v2/orders', [
-                'amount' => 1000,
-                'customerTrns' => 'Description of purchased items/services',
-                // Add other required parameters
-            ], [
-                'headers' => [
-                    'Authorization' => 'Bearer R9T8bWuH0UX50xpGV5wS0bF6639q0E',
-                    'Content-Type' => 'application/json',
-                ],
+            // Make an HTTP request to obtain an access token
+            $response = Http::asForm()->withHeaders([
+                'Authorization' => 'Basic ' . $credentials,
+            ])->post('https://accounts.vivapayments.com/connect/token', [
+                'grant_type' => 'client_credentials',
             ]);
 
-            $orderData = $response->json();
-            dd($orderData);
-            // Extract relevant data, e.g., $orderCode = $orderData['OrderCode'];
-
-            // Redirect logic
-            // ...
-
+            // Check if the request was successful (status code 2xx)
+            if ($response->successful()) {
+                return $response->json('access_token');
+            } else {
+                // Log the error response for further investigation
+                Log::error('Error response: ' . $response->body());
+                return null;
+            }
         } catch (\Exception $e) {
-            // Handle errors
-            return back()->withErrors($e->getMessage());
+            // Log any exceptions that occurred during the request
+            Log::error('Exception: ' . $e->getMessage());
+            return null;
         }
     }
+
+    private function sendHttpRequest($url, $postFields, $accessToken)
+    {
+        // Make an HTTP request with Laravel HTTP client
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . $accessToken,
+            'Content-Type'  => 'application/json',
+        ])->post($url, $postFields);
+
+        // Return the response body
+        return $response->body();
+    }
+    
+    //  public function payment(Request $request){
+    //         $customer = new Customer($email = 'ali@gmail.com',$fullName = 'John Doe',$phone = '+442037347770',$countryCode = 'en',$requestLang = RequestLang::Greek);
+
+    //     $payment = new Payment();
+
+    //     $payment
+    //         ->setAmount(25)
+    //         ->setCustomerTrns('short description of the items/services being purchased')
+    //         ->setCustomer($customer)
+    //         ->setMerchantTrns('customer order reference number')
+    //         ->setTags(['tag-1', 'tag-2']);
+        
+    //     $checkoutUrl = VivaWallet::createPaymentOrder($payment);
+    //  }
+     
+     public function completed_order(Request $request){
+         dd('Thank you your payment is completed');
+     }
+     
+    public function unsuccessful_order(Request $request){
+        
+         dd('Opps your payment is not completed');
+     }
+    
 }

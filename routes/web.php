@@ -23,6 +23,10 @@ Route::match(['get','post'],'/logout', [DefualtController::class, 'logout'])->na
 Route::get('/aboutUs', [HomeController::class, 'about_us'])->name('web.aboutUs');
 Route::get('/contact', [HomeController::class, 'contact_us'])->name('web.contact');
 Route::get('/blogs', [HomeController::class, 'blogs'])->name('web.blogs');
+Route::get('/term&conditions', [HomeController::class, 'term'])->name('web.term&conditions');
+Route::get('/privacypolicy', [HomeController::class, 'privacy'])->name('web.privacypolicy');
+Route::get('/deliveryReturns', [HomeController::class, 'deliveryReturns'])->name('web.deliveryReturns');
+Route::get('/howitworks', [HomeController::class, 'howitworks'])->name('web.howitworks');
 Route::get('/products/{cat_id?}', [WebController::class, 'products'])->name('web.products');
 Route::match(['get','post'],'/product/{id}', [WebController::class, 'product'])->name('web.product')->where('id', '[0-9]+');
 Route::match(['get','post'],'/bmiForm', [WebController::class, 'bmi_form'])->name('web.bmiForm');
@@ -34,12 +38,31 @@ Route::match(['get','post'],'/productQuestion/{id}', [WebController::class, 'pro
 Route::match(['get','post'],'/cart/{id?}', [WebController::class, 'cart'])->name('web.cart');
 Route::match(['get','post'],'/makeCurlRequest', [WebController::class, 'makeCurlRequest']);
 
+
+
+
 Route::match(['get','post'],'/transactionStore/', [WebController::class, 'transaction_store'])->name('web.transactionStore');
 
 
 Route::match(['get','post'],'/checkout', function(){
     return view('web.pages.checkout');
 })->name('web.checkout');
+
+Route::match(['get','post'],'/terms', function(){
+    return view('web.pages.term');
+})->name('web.term_conditions');
+
+Route::match(['get','post'],'/privacypolicy', function(){
+    return view('web.pages.privacy');
+})->name('web.privacypolicy');
+
+Route::match(['get','post'],'/howitworks', function(){
+    return view('web.pages.howitworks');
+})->name('web.howitworks');
+
+Route::match(['get','post'],'/deliveryReturns', function(){
+    return view('web.pages.deliveryReturns');
+})->name('web.deliveryReturns');
 
 
 
