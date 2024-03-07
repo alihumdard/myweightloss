@@ -151,28 +151,72 @@ class WebController extends Controller
             $data['product'] = Product::with(['category:id,name', 'category.questions', 'assignedQuestions'])
                 ->findOrFail($request->id)
                 ->toArray();
-            $data['category'] =  $data['product']['category'];
-            $data['questions'] =  $data['product']['category']['questions'];
+                
+            $category =  $data['product']['category'];
+            $questions =  $data['product']['category']['questions'];
             $check_dependency =  $data['product']['assigned_questions'];
             $data['check_dependency'] = collect($check_dependency)->keyBy('question_id');
-            $data['question_mapping'] = DB::table('assign_questions as aq')
-                                            ->join('question_mapping as qm', function ($join) {
-                                            $join->on('qm.question_id', '=', 'aq.question_id')
-                                                ->on('qm.category_id', '=', 'aq.category_id');
-                                            })
-                                            ->select('qm.*')
-                                            ->where('aq.category_id', $data['category']['id'])
-                                            ->get();
+            $question_map_cat = QuestionMapping::select('*')
+            ->where('category_id', $category['id'])
+            ->get()->toArray();
 
-            foreach ($data['question_mapping'] as $mapping) {
-                $currentQuestionIndex = array_search($mapping->question_id, array_column($data['questions'], 'id'));
-                $nextQuestionIndex = array_search($mapping->next_question, array_column($data['questions'], 'id'));
-
-                if ($currentQuestionIndex !== false && $nextQuestionIndex !== false) {
-                    $nextQuestion = array_splice($data['questions'], $nextQuestionIndex, 1)[0];
-                    array_splice($data['questions'], $currentQuestionIndex + 1, 0, [$nextQuestion]);
+            foreach($questions as $key => $quest){
+                $q_id = $quest['id']; 
+                foreach($question_map_cat as $key =>$val){
+                    if($quest['anwser_set'] == "mt_choice"){
+                        if ($val['question_id'] == $q_id && $val['answer'] == 'optA') {
+                            $data['next_quest_opt'][$q_id]['optA'] = $val['next_question'];
+                        } elseif ($val['question_id'] == $q_id && $val['answer'] == 'optB') {
+                            $data['next_quest_opt'][$q_id]['optB'] = $val['next_question'];
+                        } elseif ($val['question_id'] == $q_id && $val['answer'] == 'optC') {
+                            $data['next_quest_opt'][$q_id]['optC'] = $val['next_question'];
+                        } elseif ($val['question_id'] == $q_id && $val['answer'] == 'optD') {
+                            $data['next_quest_opt'][$q_id]['optD'] = $val['next_question'];
+                        }   
+                    }
+                    else if($quest['anwser_set'] == "yes_no"){
+                        if ($val['question_id'] == $q_id && $val['answer'] == 'optY') {
+                            $data['next_quest_opt'][$q_id]['yes_lable'] = $val['next_question'];
+                        } elseif ($val['question_id'] == $q_id && $val['answer'] == 'optN') {
+                            $data['next_quest_opt'][$q_id]['no_lable'] = $val['next_question'];
+                        }
+                    }
+                    else if($quest['anwser_set'] == "file"){
+                        if ($val['question_id'] == $q_id && $val['answer'] == 'file') {
+                            $data['next_quest_opt'][$q_id]['file'] = $val['next_question'];
+                        } 
+                    }
+                    else if($quest['anwser_set'] == "openbox"){
+                        if ($val['question_id'] == $q_id && $val['answer'] == 'openBox') {
+                            $data['next_quest_opt'][$q_id]['openbox'] = $val['next_question'];
+                        } 
+                    }
                 }
             }
+
+            // $data['check_dependency'] = collect($check_dependency)->keyBy('question_id');
+            // $data['question_mapping'] = DB::table('assign_questions as aq')
+            //                                 ->join('question_mapping as qm', function ($join) {
+            //                                 $join->on('qm.question_id', '=', 'aq.question_id')
+            //                                     ->on('qm.category_id', '=', 'aq.category_id');
+            //                                 })
+            //                                 ->select('qm.*')
+            //                                 ->where('aq.category_id', $data['category']['id'])
+            //                                 ->get()->toArray();
+                                            
+            // foreach ($data['question_mapping'] as $mapping) {
+            //     $currentQuestionIndex = array_search($mapping->question_id, array_column($data['questions'], 'id'));
+            //     $nextQuestionIndex = array_search($mapping->next_question, array_column($data['questions'], 'id'));
+
+            //     if ($currentQuestionIndex !== false && $nextQuestionIndex !== false) {
+            //         $nextQuestion = array_splice($data['questions'], $nextQuestionIndex, 1)[0];
+            //         array_splice($data['questions'], $currentQuestionIndex + 1, 0, [$nextQuestion]);
+            //     }
+            // }
+
+            $data['questions'] = $questions;
+            $data['category'] = $category;
+            // dd($data);    
         // return $data;
             return view('web.pages.product_question', $data);
         } else {
