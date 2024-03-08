@@ -225,7 +225,7 @@
                     @enderror
                 </div>
                 <div class="col-md-6">
-                    <label for="qty" class="col-form-label">Qty</label>
+                    <label for="qty" class="col-form-label">Value</label>
 
                     <input type="text" id="qty" name="qty" value="{{  $product['qty'] ?? old('qty') }}" class="form-control" required>
                     <div class="invalid-feedback">Enter product Qty!</div>
@@ -242,7 +242,7 @@
                     @enderror
                 </div>
                 <div class="col-md-6">
-                    <label for="cnn" class="form-label">Barcode (ISBN, UPC, GTIN, etc.)</label>
+                    <label for="cnn" class="col-form-label">Barcode (ISBN, UPC, GTIN, etc.)</label>
                     <input type="number" name="cnn" id="cnn" value="{{  $product['cnn'] ?? old('cnn') }}" class="form-control" required>
                     <div class="invalid-feedback">Enter GTIN number!</div>
                     @error('cnn')
