@@ -169,20 +169,17 @@ class WebController extends Controller
                         } elseif ($val['question_id'] == $q_id && $val['answer'] == 'optD') {
                             $data['next_quest_opt'][$q_id]['optD'] = $val['next_question'];
                         }
-                    } 
-                    else if ($quest['anwser_set'] == "yes_no") {
+                    } else if ($quest['anwser_set'] == "yes_no") {
                         if ($val['question_id'] == $q_id && $val['answer'] == 'optY') {
                             $data['next_quest_opt'][$q_id]['yes_lable'] = $val['next_question'];
                         } elseif ($val['question_id'] == $q_id && $val['answer'] == 'optN') {
                             $data['next_quest_opt'][$q_id]['no_lable']  = $val['next_question'];
                         }
-                    } 
-                    else if ($quest['anwser_set'] == "file") {
+                    } else if ($quest['anwser_set'] == "file") {
                         if ($val['question_id'] == $q_id && $val['answer'] == 'file') {
                             $data['next_quest_opt'][$q_id]['file'] = $val['next_question'];
                         }
-                    }
-                     else if ($quest['anwser_set'] == "openbox") {
+                    } else if ($quest['anwser_set'] == "openbox") {
                         if ($val['question_id'] == $q_id && $val['answer'] == 'openBox') {
                             $data['next_quest_opt'][$q_id]['openbox'] = $val['next_question'];
                         }
@@ -414,6 +411,7 @@ class WebController extends Controller
         return $response->body();
     }
 
+    // extra code payment through the package...
     //  public function payment(Request $request){
     //         $customer = new Customer($email = 'ali@gmail.com',$fullName = 'John Doe',$phone = '+442037347770',$countryCode = 'en',$requestLang = RequestLang::Greek);
 
@@ -431,12 +429,24 @@ class WebController extends Controller
 
     public function completed_order(Request $request)
     {
-        dd('Thank you your payment is completed');
+        $data['user'] = auth()->user() ?? [];
+
+        if (auth()->user()) {
+            return view('web.pages.completed_order', $data);
+        } else {
+            return redirect()->route('login');
+        }
     }
 
     public function unsuccessful_order(Request $request)
     {
 
-        dd('Opps your payment is not completed');
+        $data['user'] = auth()->user() ?? [];
+
+        if (auth()->user()) {
+            return view('web.pages.unsuccessful_order', $data);
+        } else {
+            return redirect()->route('login');
+        }
     }
 }

@@ -37,6 +37,8 @@ Route::match(['get','post'],'/consultationStore', [WebController::class, 'consul
 Route::match(['get','post'],'/productQuestion/{id}', [WebController::class, 'product_question'])->name('web.productQuestion');
 Route::match(['get','post'],'/cart/{id?}', [WebController::class, 'cart'])->name('web.cart');
 Route::match(['get','post'],'/makeCurlRequest', [WebController::class, 'makeCurlRequest']);
+Route::match(['get','post'],'/Completed-order', [WebController::class, 'completed_order']);
+Route::match(['get','post'],'/Unsuccessful-order', [WebController::class, 'unsuccessful_order']);
 
 
 
@@ -44,9 +46,9 @@ Route::match(['get','post'],'/makeCurlRequest', [WebController::class, 'makeCurl
 Route::match(['get','post'],'/transactionStore/', [WebController::class, 'transaction_store'])->name('web.transactionStore');
 
 
-Route::match(['get','post'],'/checkout', function(){
-    return view('web.pages.checkout');
-})->name('web.checkout');
+// Route::match(['get','post'],'/checkout', function(){
+//     return view('web.pages.checkout');
+// })->name('web.checkout');
 
 Route::match(['get','post'],'/terms', function(){
     return view('web.pages.term');
