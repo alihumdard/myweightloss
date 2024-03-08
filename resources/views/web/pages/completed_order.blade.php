@@ -36,9 +36,10 @@
 
     i {
         color: #9ABC66;
-        font-size: 100px;
-        line-height: 200px;
-        margin-left: -15px;
+        font-size: 120px;
+        line-height: 210px;
+        margin-left: -17px;
+        font-weight: bolder;
     }
 
     .card {
@@ -58,7 +59,7 @@
                 <i class="checkmark">✓</i>
             </div>
             <h1>Success</h1>
-            <p>Dear {{$user->name ?? ''}}, We received your purchase request;<br /> we'll be in touch shortly!</p>
+            <p>Dear {{$user->name ?? ''}}, We received your purchase request,<br /> we'll be in touch shortly!</p>
             <a href="{{ route('web.index')}}" class="btn btn-primary rounded-pill px-5 mt-3">Go Home </a>
         </div>
     </div>
