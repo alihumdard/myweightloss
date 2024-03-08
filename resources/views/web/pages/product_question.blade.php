@@ -62,16 +62,13 @@
                     @foreach($questions as $key => $question)
                     <div id="question_{{$question['id']}}" class="question {{ $loop->first ? 'fade-in' : 'collapse' }} " data-dependency="{{$check_dependency[$question['id']]['is_dependent']}}" data-dependency_answer="">
                         <div class=" px-4 mt-5">
-                            <h3 class="fw-bold "> <b>Q</b>. {{ $question['title'] ?? ''}}?</h3>
+                            <h3 class="fw-bold mb-0"> <b>Q</b>. {{ $question['title'] ?? ''}}?</h3>
+                            <p style="font-family: emoji; color: black;" class="ps-5">
+                                {{$question['openbox']}}
+                            </p>
                         </div>
                         <div class=" p-4" style="margin:0 !important;">
                             @if($question['anwser_set'] == 'openbox' )
-                            <p style="font-family: emoji; color: black;">
-                            <pre>
-                            {{$question['openbox']}}
-
-                            </pre>
-                            </p>
                             <div class="text">
                                 <div>
                                     <textarea class="form-control" data-next_question="question_{{ $next_quest_opt[$question['id']]['openbox'] ?? 'no'}}" name="qid_{{$question['id']}}" placeholder="Describe" rows="5"></textarea>
@@ -170,13 +167,13 @@
                 inputFields.each(function(index, field) {
                     if ($(field).is('textarea') && $(field).val() === '') {
                         isValid = false;
-                        return false; 
+                        return false;
                     } else if ($(field).is('input[type="radio"]') && !$('input[name="' + $(field).attr('name') + '"]:checked').length) {
                         isValid = false;
-                        return false; 
+                        return false;
                     } else if ($(field).is('input[type="file"]') && !$(field).val()) {
                         isValid = false;
-                        return false; 
+                        return false;
                     }
                 });
 
