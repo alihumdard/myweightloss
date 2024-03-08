@@ -31,6 +31,8 @@ use App\Models\Transaction;
 use App\Models\UserBmi;
 use App\Models\UserConsultation;
 use App\Models\Cart;
+use App\Models\QuestionMapping;
+use Illuminate\Support\Facades\DB;
 
 use Deyjandi\VivaWallet\Enums\RequestLang;
 use Deyjandi\VivaWallet\Enums\PaymentMethod;
@@ -145,11 +147,45 @@ class WebController extends Controller
     {
         $data['user'] = auth()->user() ?? [];
         if (auth()->user()) {
-            $data['product'] = Product::with(['category:id,name', 'category.questions'])
-                ->findOrFail($request->id)
-                ->toArray();
-            $data['category'] =  $data['product']['category'];
-            $data['questions'] =  $data['product']['category']['questions'];
+
+            $data['product']   = Product::with(['category:id,name', 'category.questions', 'assignedQuestions'])->findOrFail($request->id)->toArray();
+            $data['category']  = $data['product']['category'];
+            $data['questions'] = $data['product']['category']['questions'];
+            $question_map_cat  = QuestionMapping::where('category_id', $data['category']['id'])->get()->toArray();
+            $check_dependency  = $data['product']['assigned_questions'];
+            $data['check_dependency'] = collect($check_dependency)->keyBy('question_id');
+
+            foreach ($data['questions'] as $key => $quest) {
+                $q_id = $quest['id'];
+
+                foreach ($question_map_cat as $key => $val) {
+                    if ($quest['anwser_set'] == "mt_choice") {
+                        if ($val['question_id'] == $q_id && $val['answer'] == 'optA') {
+                            $data['next_quest_opt'][$q_id]['optA'] = $val['next_question'];
+                        } elseif ($val['question_id'] == $q_id && $val['answer'] == 'optB') {
+                            $data['next_quest_opt'][$q_id]['optB'] = $val['next_question'];
+                        } elseif ($val['question_id'] == $q_id && $val['answer'] == 'optC') {
+                            $data['next_quest_opt'][$q_id]['optC'] = $val['next_question'];
+                        } elseif ($val['question_id'] == $q_id && $val['answer'] == 'optD') {
+                            $data['next_quest_opt'][$q_id]['optD'] = $val['next_question'];
+                        }
+                    } else if ($quest['anwser_set'] == "yes_no") {
+                        if ($val['question_id'] == $q_id && $val['answer'] == 'optY') {
+                            $data['next_quest_opt'][$q_id]['yes_lable'] = $val['next_question'];
+                        } elseif ($val['question_id'] == $q_id && $val['answer'] == 'optN') {
+                            $data['next_quest_opt'][$q_id]['no_lable']  = $val['next_question'];
+                        }
+                    } else if ($quest['anwser_set'] == "file") {
+                        if ($val['question_id'] == $q_id && $val['answer'] == 'file') {
+                            $data['next_quest_opt'][$q_id]['file'] = $val['next_question'];
+                        }
+                    } else if ($quest['anwser_set'] == "openbox") {
+                        if ($val['question_id'] == $q_id && $val['answer'] == 'openBox') {
+                            $data['next_quest_opt'][$q_id]['openbox'] = $val['next_question'];
+                        }
+                    }
+                }
+            }
 
             return view('web.pages.product_question', $data);
         } else {
@@ -269,6 +305,8 @@ class WebController extends Controller
             $data['cart'] = Cart::with('product')->where('user_id', auth()->user()->id)->get()->toArray();
             $data['total'] = 0;
             return view('web.pages.cart', $data);
+        } else {
+            return redirect()->route('login');
         }
     }
 
@@ -276,9 +314,9 @@ class WebController extends Controller
     public function makeCurlRequest(Request $request)
     {
         $productPrice = 100;
-        $productName ='health product';
-        $productDescription='it is for testing product philp';
-        
+        $productName = 'health product';
+        $productDescription = 'it is for testing product philp';
+
         // Viva Wallet API credentials
         $username = 'dkwrul3i0r4pwsgkko3nr8c4vs0h5yn5tunio398ik403.apps.vivapayments.com';
         $password = 'BuLY8U1pEsXNPBgaqz98y54irE7OpL';
@@ -286,7 +324,7 @@ class WebController extends Controller
 
         // Obtain Access Token
         $accessToken = $this->getAccessToken($credentials);
-// dd($accessToken);
+        // dd($accessToken);
         // Prepare POST fields for creating an order
         $postFields = [
             'amount'              => $productPrice,
@@ -308,7 +346,7 @@ class WebController extends Controller
             'disableWallet'       => false,
             'sourceCode'          => '2399',
             "merchantTrns" => "Short description of items/services purchased by customer",
-            "tags"=>
+            "tags" =>
             [
                 "tags for grouping and filtering the transactions",
                 "this tag can be searched on VivaWallet sales dashboard",
@@ -320,21 +358,20 @@ class WebController extends Controller
 
         // Make an HTTP request to create an order
         $response = $this->sendHttpRequest('https://api.vivapayments.com/checkout/v2/orders', $postFields, $accessToken);
-// dd($response);
+        // dd($response);
 
         // Decode the JSON response
         $responseData = json_decode($response, true);
-        
+
         if (isset($responseData['orderCode'])) {
             $orderCode = $responseData['orderCode'];
-        
+
             // Redirect to the Viva Payments checkout page with the orderCode parameter
             $redirectUrl = "https://www.vivapayments.com/web/checkout?ref={$orderCode}&color=c50c26";
-        
+
             // Redirect to the external URL
             return redirect()->away($redirectUrl);
         }
-
     }
 
     private function getAccessToken($credentials)
@@ -373,7 +410,8 @@ class WebController extends Controller
         // Return the response body
         return $response->body();
     }
-    
+
+    // extra code payment through the package...
     //  public function payment(Request $request){
     //         $customer = new Customer($email = 'ali@gmail.com',$fullName = 'John Doe',$phone = '+442037347770',$countryCode = 'en',$requestLang = RequestLang::Greek);
 
@@ -385,17 +423,30 @@ class WebController extends Controller
     //         ->setCustomer($customer)
     //         ->setMerchantTrns('customer order reference number')
     //         ->setTags(['tag-1', 'tag-2']);
-        
+
     //     $checkoutUrl = VivaWallet::createPaymentOrder($payment);
     //  }
-     
-     public function completed_order(Request $request){
-         dd('Thank you your payment is completed');
-     }
-     
-    public function unsuccessful_order(Request $request){
-        
-         dd('Opps your payment is not completed');
-     }
-    
+
+    public function completed_order(Request $request)
+    {
+        $data['user'] = auth()->user() ?? [];
+
+        if (auth()->user()) {
+            return view('web.pages.completed_order', $data);
+        } else {
+            return redirect()->route('login');
+        }
+    }
+
+    public function unsuccessful_order(Request $request)
+    {
+
+        $data['user'] = auth()->user() ?? [];
+
+        if (auth()->user()) {
+            return view('web.pages.unsuccessful_order', $data);
+        } else {
+            return redirect()->route('login');
+        }
+    }
 }

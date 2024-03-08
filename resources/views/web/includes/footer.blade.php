@@ -18,9 +18,10 @@
             <h6 class="footer-widget__title">Legal</h6>
             <nav>
               <ul class="list-unstyled">
-                <li><a href="{{ route('web.term&conditions') }}" target="_blank">Terms & Conditions</a></li>
+              <li><a href="{{route('web.howitworks')}}" target="_blank">How it works</a></li>
+                <li><a href="{{ route('web.term_conditions') }}" target="_blank">Terms & Conditions</a></li>
                 <li><a href="{{ route('web.privacypolicy') }}" target="_blank">Privacy Policy</a></li>
-                <li><a href="{{route('web.howitworks')}}" target="_blank">How it works</a></li>
+
                 <li><a href="{{route('web.deliveryReturns')}}" target="_blank">Delivery & Returns</a></li>
                 <li><a href="#">Cookies</a></li>
 
@@ -109,48 +110,43 @@
       </div>
 
     </div>
-    <!-- <div class="container mt-5 ">
-        <div class="row col-8 justify-content-center align-items-center">
-          <div class="col-md-2">
-            <div class="image d-flex justify-content-start  align-items-center">
-              <img src="{{ asset('/assets/web/images/payment-card/paypal2.webp') }}" alt="" >
-              
+    <div class="container mt-5">
+    <div class="row col-12 justify-content-start align-items-center">
+        <!-- <div class="col-md-2 text-center"> -->
+            <div class="image  m-2" style="width: 60px; height: 60px;">
+                <img src="{{ asset('/assets/web/images/payment-card/paypal2.webp') }}" alt="" class="img-fluid">
             </div>
-          </div>
-          <div class="col-md-2">
-            <div class="image d-flex justify-content-start  align-items-center">
-              <img src="{{ asset('/assets/web/images/payment-card/gpay1.png') }}" alt="" class="img-fluid ">
+        <!-- </div> -->
+        <!-- <div class="col-md-2 text-center"> -->
+            <div class="image m-2" style="width: 60px; height: 60px;">
+                <img src="{{ asset('/assets/web/images/payment-card/gpay1.png') }}" alt="" class="img-fluid">
             </div>
-          </div>
-          <div class="col-md-2">
-            <div class="image d-flex justify-content-start  align-items-center">
-              <img src="{{ asset('/assets/web/images/payment-card/payapple1.png') }}" alt=""  class="img-fluid">
+        <!-- </div> -->
+        
+        <!-- <div class="col-md-2 text-center"> -->
+            <div class="image m-2" style="width: 60px; height: 60px;">
+                <img src="{{ asset('/assets/web/images/payment-card/visa.png') }}" alt="" class="img-fluid">
             </div>
-          </div>
-          <div class="col-md-2">
-            <div class="image d-flex justify-content-start  align-items-center">
-              <img src="{{ asset('/assets/web/images/payment-card/visa.png') }}" alt="" class="img-fluid ">
+        <!-- </div> -->
+        <!-- <div class="col-md-2 text-center"> -->
+            <div class="image m-2" style="width: 60px; height: 60px;">
+                <img src="{{ asset('/assets/web/images/payment-card/mastercard.png') }}" alt="" class="img-fluid">
             </div>
-          </div>
-          <div class="col-md-2">
-            <div class="image d-flex justify-content-start  align-items-center">
-              <img src="{{ asset('/assets/web/images/payment-card/mastercard.png') }}" alt="" width="100" height="35" class="img-fluid ">
+        <!-- </div> -->
+        <!-- <div class="col-md-2 text-center"> -->
+            <div class="image m-2" style="width: 60px; height: 60px;">
+                <img src="{{ asset('/assets/web/images/payment-card/american-express.png') }}" alt="" class="img-fluid">
             </div>
-          </div>
-          <div class="col-md-2">
-            <div class="image d-flex justify-content-start  align-items-center">
-              <img src="{{ asset('/assets/web/images/payment-card/american-express.png') }}" alt="" width="100" height="35" class="img-fluid ">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
+        <!-- </div> -->
+    </div>
+</div>
 
-    <div class=" container col-xl-3 col-md-6 col-sm-12 col-12">
+
+    <!-- <div class=" container col-xl-3 col-md-6 col-sm-12 col-12">
       <div class="footer-widget footer-newsletter-widget ">
         <img src="{{ asset('/assets/web/images/payment-card/payment-4.png') }}" alt="Payment Image">
       </div>
-    </div>
+    </div> -->
   </footer>
 
   <div class="footer-secondary text-center py-3">

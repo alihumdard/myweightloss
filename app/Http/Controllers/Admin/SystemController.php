@@ -28,6 +28,7 @@ use App\Models\Product;
 use App\Models\ProductAttribute;
 use App\Models\ProductVariant;
 use Illuminate\Support\Facades\DB;
+use App\Models\QuestionMapping;
 
 class SystemController extends Controller
 {
@@ -479,6 +480,101 @@ class SystemController extends Controller
 
         $message = "Data Updated Successfully";
         return redirect()->back()->with(['msg' => $message, 'category_id' => $request->category_id]);
+    }
+
+    // Question Mapping
+    public function question_mapping(Request $request)
+    {
+        // Question mapping which question is next base on answer
+        $user = auth()->user();
+        $page_name = 'question_mapping';
+
+        // if (!view_permission($page_name)) {
+        //     return redirect()->back();
+        // }
+        
+        $validator = Validator::make($request->all(), [
+            'category_id'   => 'required',
+            'question_id.*' => 'required',
+        ]);
+        
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $data['user'] = auth()->user();
+
+        $options = ['optA', 'optB', 'optC', 'optD', 'optY', 'optN', 'openBox', 'file'];
+
+        foreach ($options as $option) {
+            $value = $request->$option;
+            
+            // Check if the value is not null
+            if ($value !== null && $value !== '') {
+                $response = QuestionMapping::updateOrCreate(
+                    [
+                        'category_id' => $request->category_id,
+                        'question_id' => $request->question_id,
+                        'answer' => $option, // Store the option name in the 'answer' column
+                    ],
+                    [
+                        'category_id' => $request->category_id,
+                        'question_id' => $request->question_id,
+                        'answer'      => $option,
+                        'next_question' => $value, // Store the value in the 'nextquestion' column
+                        'status'      => 1,
+                        'created_by'  => $user->id
+                    ]
+                );
+                // Update AssignQuestion model
+                AssignQuestion::where('category_id', $request->category_id)
+                ->where('question_id', $value)
+                ->update(['is_dependent' => 1]);
+            }
+        }
+
+        $message = "Data Saved Successfully";
+        return redirect()->back()->with(['msg' => $message]);
+    }
+
+    public function question_detail(Request $request)
+    {
+        $question_id = $request->id;
+        $category_id = $request->categoryId;
+        $result['detail'] = Question::findOrFail($question_id)->toArray();
+
+        $result['other_qstn'] = AssignQuestion::join('assign_questions as tbl2', function ($join) use ($question_id)  {
+            $join->on('assign_questions.category_id', '=', 'tbl2.category_id')
+                 ->where('tbl2.question_id', '!=', $question_id);
+        })
+        ->select('tbl2.question_id', 'tbl2.question_title')
+        ->where('assign_questions.question_id', $question_id)
+        ->where('assign_questions.category_id', $category_id)
+        ->pluck('tbl2.question_title', 'tbl2.question_id')
+        ->toArray();
+        // dd(DB::getQueryLog());
+        return response()->json(['status' => 'success', 'result' => $result]);
+    }
+
+    public function get_next_question(Request $request)
+    { // working continue
+        $question_id = $request->id;
+        $category_id = $request->categoryId;
+        $answer = $request->answer;
+        // $user_answer = $re
+        $result['detail'] = Question::findOrFail($question_id)->toArray();
+
+        $result['other_qstn'] = AssignQuestion::join('assign_questions as tbl2', function ($join) use ($question_id)  {
+            $join->on('assign_questions.category_id', '=', 'tbl2.category_id')
+                 ->where('tbl2.question_id', '!=', $question_id);
+        })
+        ->select('tbl2.question_id', 'tbl2.question_title')
+        ->where('assign_questions.question_id', $question_id)
+        ->where('assign_questions.category_id', $category_id)
+        ->pluck('tbl2.question_title', 'tbl2.question_id')
+        ->toArray();
+
+        return response()->json(['status' => 'success', 'result' => $result]);
     }
 
     // products managment...
