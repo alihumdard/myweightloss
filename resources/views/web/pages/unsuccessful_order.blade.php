@@ -39,8 +39,8 @@
         color: #FF6347;
         /* Tomato color for error */
         font-size: 100px;
-        line-height: 200px;
-        margin-left: -15px;
+        line-height: 185px;
+        margin-left: -10px;
     }
 
     .card {
@@ -57,7 +57,7 @@
     <div class="card">
         <div class="card-body">
             <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
-                <i class="checkmark" alt="Error symbol">✘</i> <!-- Use 'X' or any appropriate symbol for error -->
+                <i class="checkmark" alt="Error symbol">✘</i> 
             </div>
             <h1>OOPS! Payment Fail</h1>
             <p>Dear {{$user->name ?? ''}}, Unfortunately, your payment was unsuccessful.<br /> Please try again or contact customer support.</p>
