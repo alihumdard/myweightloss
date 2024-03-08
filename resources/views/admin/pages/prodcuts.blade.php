@@ -70,7 +70,7 @@
                                     <th>#</th>
                                     <th>Details</th>
                                     <th>Price - Ext_Tax </th>
-                                    <th>Stock - Quantity</th>
+                                    <th>Inventory <span class="extra-text">(Available Stock)</span></th>
                                     <th>Category</th>
                                     <th>Status</th>
                                     <th>Actions</th>
@@ -85,7 +85,7 @@
                                             <img src="{{ asset('storage/'.$value['main_image'])}}" class="rounded-circle" alt="no image" style="width: 45px; height: 45px" />
                                             <div class="ms-3">
                                                 <p class="fw-bold mb-1">{{ $value['title'] ?? ''}}</p>
-                                                <p class="text-muted mb-0">{{ $value['cnn'] ?? ''}}</p>
+                                                <p class="text-muted mb-0">{{ $value['barcode'] ?? ''}}</p>
                                             </div>
                                         </div>
 
@@ -94,7 +94,7 @@
                                         <p class="fw-normal mb-1">{{ $value['price'] ?? ''}} - {{ $value['ext_tax'] ?? ''}}</p>
                                     </td>
                                     <td style="vertical-align: middle; text-align: center;" >
-                                        <p class="text-muted mb-0">{{ $value['stock'] ?? ''}} - {{ $value['qty'] ?? ''}}</p>
+                                        <p class="text-muted mb-0">{{ $value['stock'] ?? ''}}</p>
                                     </td>
                                     <td style="vertical-align: middle; text-align: center;" >
                                         <p class="fw-normal mb-1">{{ $value['category']['name'] ?? ''}}</p>

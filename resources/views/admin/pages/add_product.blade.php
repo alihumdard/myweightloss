@@ -179,7 +179,7 @@
                         <div class="col-12 mt-2 produt-main-image">
                             <label for="product_main_image" class="form-label">Upload Main Image</label>
                             <div class="d-flex align-items-center" style="gap: 20px; justify-content: space-between;">
-                                <input type="file" class="form-control w-100" id="product_main_image" name="main_image" value="{{ ($product['main_image'] ?? NULL) ? 'required' : '' }}" onchange="previewMainImage(this)" >
+                                <input type="file" class="form-control w-100" id="product_main_image" name="main_image" value="{{ ($product['main_image'] ?? NULL) ? 'required' : '' }}" onchange="previewMainImage(this)">
                                 <label for="product_main_image" class=" d-block ">
                                     <img id="mainImage_preview" src="{{  $path ?? '' }}" class="rounded-circle" alt="no image" style="width: 45px; height: 45px;  cursor:pointer;   object-fit: cover;">
                                 </label>
@@ -215,9 +215,7 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <div class="col-md-2">
-                        <label for="price" class="col-form-label">Price</label>
-                    </div>
+                    <label for="price" class="col-form-label"> Price <span class="extra-text">(Price in UK Pound)</span></label>
                     <input type="number" name="price" id="price" value="{{  $product['price'] ?? old('price') }}" class="form-control" required>
                     <div class="invalid-feedback">Enter product price!</div>
                     @error('price')
@@ -225,27 +223,26 @@
                     @enderror
                 </div>
                 <div class="col-md-6">
-                    <label for="qty" class="col-form-label">Value</label>
-
-                    <input type="text" id="qty" name="qty" value="{{  $product['qty'] ?? old('qty') }}" class="form-control" required>
-                    <div class="invalid-feedback">Enter product Qty!</div>
-                    @error('qty')
-                    <div class="alert-danger text-danger ">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="col-md-6">
-                    <label for="stock" class="col-form-label">Stock</label>
-                    <input type="number" name="stock" id="stock" value="{{  $product['stock'] ?? old('stock') }}" class="form-control" required>
-                    <div class="invalid-feedback">Enter avialable stock!</div>
+                    <label for="stock" class="col-form-label">Inventory <span class="extra-text">(Available Stock)</span></label>
+                    <input type="number" id="stock" name="stock" value="{{  $product['stock'] ?? old('stock') }}" class="form-control" required>
+                    <div class="invalid-feedback">Enter product stock!</div>
                     @error('stock')
                     <div class="alert-danger text-danger ">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="col-md-6">
-                    <label for="cnn" class="col-form-label">Barcode (ISBN, UPC, GTIN, etc.)</label>
-                    <input type="number" name="cnn" id="cnn" value="{{  $product['cnn'] ?? old('cnn') }}" class="form-control" required>
+                    <label for="stock" class="col-form-label">SKU </label>
+                    <input type="number" name="SKU" id="SKU" value="{{  $product['SKU'] ?? old('SKU') }}" class="form-control" >
+                    <div class="invalid-feedback">Enter avialable stock!</div>
+                    @error('SKU')
+                    <div class="alert-danger text-danger ">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="col-md-6">
+                    <label for="barcode" class="form-label">Barcode (ISBN, UPC, GTIN, etc.)</label>
+                    <input type="number" name="barcode" id="barcode" value="{{  $product['barcode'] ?? old('barcode') }}" class="form-control" >
                     <div class="invalid-feedback">Enter GTIN number!</div>
-                    @error('cnn')
+                    @error('barcode')
                     <div class="alert-danger text-danger ">{{ $message }}</div>
                     @enderror
                 </div>
@@ -253,8 +250,18 @@
             </div>
             <div class="row mb-5">
                 <div class="form-floating col-12  mt-3">
-                    <textarea class="form-control tinymce-editor" name="desc" id="pro_desc" placeholder="Product Description" required=''>{{$product['desc'] ?? ''}}</textarea>
-                    <div class="invalid-feedback">Please write product desc!</div>
+                    <textarea class="form-control tinymce-editor" name="short_desc" id="short_desc" placeholder="Product short Description" required=''>{{$product['short_desc'] ?? ''}}</textarea>
+                    <div class="invalid-feedback">Please write product short desc!</div>
+                    @error('short_desc')
+                    <div class="alert-danger text-danger ">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="row mb-5">
+                <div class="form-floating col-12  mt-3">
+                    <textarea class="form-control tinymce-editor" name="desc" id="pro_desc" placeholder="Product main Description" required=''>{{$product['desc'] ?? ''}}</textarea>
+                    <div class="invalid-feedback">Please write product Main desc!</div>
                     @error('desc')
                     <div class="alert-danger text-danger ">{{ $message }}</div>
                     @enderror
@@ -275,27 +282,6 @@
                 <div id="variant_row">
 
                 </div>
-                <!-- <div class="table-responsive">
-                    <table id="tbl_data" class="table table-bordered table-striped dataTable no-footer dtr-inline table-responsive" aria-describedby="tbl_data_info" data-scroll-x="true">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th class="sorting sorting_asc" tabindex="0" aria-controls="tbl_data" rowspan="1" colspan="1" aria-sort="ascending" aria-label="#: activate to sort column descending">Price</th>
-                                <th class="sorting" tabindex="0" aria-controls="tbl_data" rowspan="1" colspan="1" aria-label="Details: activate to sort column ascending">Variant Name</th>
-                                <th class="sorting" tabindex="0" aria-controls="tbl_data" rowspan="1" colspan="1" aria-label="Price - Ext_Tax : activate to sort column ascending">Variant Value</th>
-                                <th class="sorting" tabindex="0" aria-controls="tbl_data" rowspan="1" colspan="1" aria-label="Stock - Quantity: activate to sort column ascending">Inventory</th>
-                                <th class="sorting" tabindex="0" aria-controls="tbl_data" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending">Barcode</th>
-                                <th class="sorting" tabindex="0" aria-controls="tbl_data" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">SKU </th>
-                                <th class="sorting" tabindex="0" aria-controls="tbl_data" rowspan="1" colspan="1" aria-label="Actions: activate to sort column ascending">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="odd">
-                                <td valign="top" colspan="7" class="dataTables_empty">No data available in table</td>
-                            </tr>
-                        </tbody>
-
-                    </table>
-                </div> -->
             </div>
             <div class="product-btns mt-4 text-end px-4 d-flex d-md-block">
                 <input type="reset" class=" btn btn-secondary rounded-2  px-5 mx-1 fw-bold" value="Cancel">
@@ -474,14 +460,14 @@
                         <div class="col-md-3 col-sm-12">
                             <div class="p-2">
                                 <label for="" class="form-label">Barcode <span class="extra-text">(ISBN, UPC, GTIN, etc.)</span></label>
-                                <input type="number" class="form-control" name="vari_barcode[]" id="" required>
+                                <input type="number" class="form-control" name="vari_barcode[]" id="" >
                                 <div class="invalid-feedback">Enter variant barcode!</div>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-12">
                             <div class="p-2">
                                 <label for="" class="form-label">SKU <span class="extra-text">(Stock Keeping Unit)</span></label>
-                                <input type="number" class="form-control" name="vari_sku[]" id="" required>
+                                <input type="number" class="form-control" name="vari_sku[]" id="" >
                                 <div class="invalid-feedback">Enter variant stock!</div>
                             </div>
                         </div>
