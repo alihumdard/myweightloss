@@ -2,6 +2,11 @@
 @section('title', 'About Us')
 @section('content')
 
+<style>
+    .displaynone{
+        display: none;
+    }
+</style>
 <!-- ========================
        page title 
     =========================== -->
@@ -14,8 +19,8 @@
                 <h1 class="pagetitle__heading">Your Journey to a Healthier You Begins Here.</h1>
                 <p class="pagetitle__desc">With the support of our team of experts and healthcare professionals, begin your weight management journey right now. </p>
                 <div class="d-flex flex-wrap align-items-center">
-                    <a href="appointment.html" class="btn btn__primary btn__rounded mr-30">
-                        <span>Meet our Professionals</span>
+                    <a href="{{ route('web.contact') }}" class="btn btn__primary btn__rounded mr-30">
+                        <span>Contact</span>
                         <i class="icon-arrow-right"></i>
                     </a>
                     <!-- <a href="services.html" class="btn btn__white btn__rounded">
@@ -52,21 +57,23 @@
                     <li>Ongoing Patient Care</li>
                     </ul>
                     <div class="d-flex align-items-center  mb-30">
-                        <a href="doctors-grid.html" class="btn btn__primary btn__outlined btn__rounded mr-30">
-                        Meet our Professionals</a>
+                        <a href="{{ route('web.regisrationFrom')}}" class="btn btn__primary btn__outlined btn__rounded mr-30">
+                        Start Free Consultation</a>
                         <!-- <img src="{{ asset('/assets/web/images/about/singnture.png') }}" alt="singnture"> -->
                     </div>
                 </div>
             </div><!-- /.col-lg-6 -->
             <div class="col-sm-12 col-md-12 col-lg-6">
-                <div class="video-banner">
+                <!-- <div class="video-banner">
                     <img src="{{ asset('/assets/web/images/about/1.jpg') }}" alt="about">
                     <a class="video__btn video__btn-white popup-video" href="https://www.youtube.com/watch?v=nrJtHemSPW4">
                         <div class="video__player">
                             <i class="fa fa-play"></i>
                         </div>
                     </a>
-                </div><!-- /.video-banner -->
+                </div> -->
+                <div class="bg-img"><img src="{{ asset('/assets/web/images/tsp/home-slider/6.png') }}" alt="Team"></div>
+                <!-- /.video-banner -->
             </div><!-- /.col-lg-6 -->
         </div><!-- /.row -->
     </div><!-- /.container -->
@@ -75,7 +82,7 @@
 <!-- ======================
     Features Layout 1
     ========================= -->
-<section class="features-layout1 pt-130 pb-50 mt--70">
+<section class="features-layout1 pt-130 pb-50 mt--70 displaynone">
     <div class="bg-img"><img src="{{ asset('/assets/web/images/backgrounds/1.jpg') }}" alt="background"></div>
     <div class="container">
         <div class="row mb-40">
@@ -236,7 +243,7 @@
 <!-- ======================
      Work Process 
     ========================= -->
-<section class="work-process work-process-carousel  pb-0 bg-overlay bg-overlay-secondary">
+<section class="work-process work-process-carousel bg-overlay bg-overlay-secondary mb-70">
     <div class="bg-img"><img src="{{ asset('/assets/web/images/banners/1.jpg') }}" alt="background"></div>
     <div class="container">
         <div class="row heading-layout2">
@@ -349,7 +356,7 @@
 <!-- ======================
       Team
     ========================= -->
-<section class="team-layout2 pb-80">
+<section class="team-layout2 pb-30 displaynone">
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-6 offset-lg-3">
@@ -511,7 +518,7 @@
 <!-- ========================= 
       Testimonials layout 1
       =========================  -->
-<section class="testimonials-layout1 pt-130 pb-80">
+<section class="testimonials-layout1 pt-170 pb-80">
     <div class="container">
         <div class="testimonials-wrapper">
             <div class="row">

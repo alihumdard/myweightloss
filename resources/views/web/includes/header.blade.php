@@ -18,8 +18,8 @@
 
                         <div class="d-flex justify-content-between align-items-center">
                             <ul class="social-icons list-unstyled d-flex align-items-center">
-                                <li><a href="https://www.facebook.com/people/Online-Pharmacy4U/100083173698028/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="https://www.linkedin.com/company/74292944" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+                                <li><a href="https://www.facebook.com/profile.php?id=61556213788091" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="https://www.instagram.com/official.weightloss_/" target="_blank"><i class="fab fa-instagram"></i></a></li>
                                 <li><a href="https://twitter.com/4uPharmacy" target="_blank"><i class="fab fa-twitter"></i></a></li>
                             </ul>
                             
