@@ -313,7 +313,7 @@
                                     </div>
 
                                     <label for="dob" class="label d-md-block ">Date of Birth</label>
-                                    <input type="text" id="datepicker" name="dob" class="form-control" value="{{ old('dob') }}" required placeholder="mm-dd-yyyy">
+                                    <input type="text" id="datepicker" name="dob" class="form-control" value="{{ old('dob') }}" required placeholder="DD-MM-YYYY">
                                     <div class="invalid-feedback">Please enter your dob!</div>
                                     @error('dob')
                                     <div class="alert-danger text-danger ">{{ $message }}</div>
@@ -479,7 +479,7 @@
 
         $(document).ready(function() {
             $('#datepicker').datepicker({
-                format: 'mm/dd/yyyy',
+                format: 'dd/mm/yyyy',
                 autoclose: true
             });
         });

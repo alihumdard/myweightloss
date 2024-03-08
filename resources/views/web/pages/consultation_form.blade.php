@@ -91,7 +91,7 @@
                     </div> -->
                 </div>
                 <div class="col-9">
-                    <div id="social">
+                    <div id="social" class="displaynone">
                         <ul>
                             <li><a href="#0"><i class="icon-facebook"></i></a></li>
                             <li><a href="#0"><i class="icon-twitter"></i></a></li>

@@ -224,7 +224,6 @@
                 </div>
                 <div class="col-md-6">
                     <label for="stock" class="col-form-label">Inventory <span class="extra-text">(Available Stock)</span></label>
-
                     <input type="number" id="stock" name="stock" value="{{  $product['stock'] ?? old('stock') }}" class="form-control" required>
                     <div class="invalid-feedback">Enter product stock!</div>
                     @error('stock')
