@@ -271,7 +271,7 @@
                                     <p class="has-text-white its-font-w--600 mb-2">Clients at My Weightloss Centre tell about their transformative experiences. They commend our personalised programs, dedicated staff, and supportive community. <br> Many express gratitude for the motivational environment that fosters lasting lifestyle changes. Our reputation is built on success stories, fostering trust and confidence in our commitment to helping individuals achieve their weight loss goals.
                                     </p>
                                     <span class="has-text-white its-font-w--400">
-                                        James O’Loan - PHARMACEUTICAL LEAD, PRESCRIBING PHARMACIST &amp; WEIGHT
+                                        PHARMACEUTICAL LEAD, PRESCRIBING PHARMACIST &amp; WEIGHT
                                         MANAGEMENT EXPERT</span>
                                 </div>
                             </div>
