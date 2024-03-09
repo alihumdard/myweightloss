@@ -43,6 +43,9 @@ Route::match(['get','post'],'/Unsuccessful-order', [WebController::class, 'unsuc
 
 Route::match(['get', 'post'], '/transactionStore/', [WebController::class, 'transaction_store'])->name('web.transactionStore');
 
+Route::get('/getOrder/{id}', [WebController::class, 'get_order']);
+Route::post('/createOrder', [WebController::class, 'create_order']);
+
 // Route::match(['get','post'],'/checkout', function(){
 //     return view('web.pages.checkout');
 // })->name('web.checkout');
