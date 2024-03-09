@@ -2,7 +2,11 @@
 @section('title', 'Profile Setting')
 @section('content')
   
-
+<style>
+  .displaynone{
+    display: none;
+  }
+</style>
 <!-- main stated -->
 <main id="main" class="main">
 
@@ -26,8 +30,7 @@
 
           <img src="{{ asset('assets/admin/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
           <h2>Kevin Anderson</h2>
-          <h3>Web Designer</h3>
-          <div class="social-links mt-2">
+          <div class="social-links mt-2 displaynone">
             <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
             <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
             <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
@@ -65,8 +68,8 @@
           <div class="tab-content pt-2">
 
             <div class="tab-pane fade show active profile-overview" id="profile-overview">
-              <h5 class="card-title">About</h5>
-              <p class="small fst-italic">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</p>
+              <h5 class="card-title displaynone">About</h5>
+              <p class="small fst-italic displaynone">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</p>
 
               <h5 class="card-title">Profile Details</h5>
 
