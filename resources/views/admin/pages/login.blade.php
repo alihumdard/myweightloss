@@ -143,8 +143,8 @@
                                     <div class="col-12">
                                         <hr class="mt-5 mb-4 border-secondary-subtle">
                                         <div class="d-flex  gap-md-4 flex-column flex-md-row justify-content-md-end">
-                                            <a href="#" class="link-secondary text-decoration-none">Create new account</a>
-                                            <a href="#" class="link-secondary text-decoration-none">Forgot password</a>
+                                            <a href="{{route('web.register')}}" class="link-secondary text-decoration-none">Create new account</a>
+                                            <!-- <a href="#" class="link-secondary text-decoration-none">Forgot password</a> -->
                                         </div>
                                     </div>
                                 </div>
