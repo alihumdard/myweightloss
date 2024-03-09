@@ -12,22 +12,21 @@
     =========================== -->
 <section class="page-title page-title-layout1 bg-overlay">
     <!-- <div class="overlay"></div> -->
-    <div class="bg-img"><img src="{{ asset('/assets/web/images/tsp/about-page/2.png') }}" alt="background"></div>
+    <div class="bg-img"><img src="{{ asset('/assets/web/images/tsp/about-page/2.webp') }}" alt="background"></div>
     <div class="container">
         <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-5">
-                <h1 class="pagetitle__heading">Your Journey to a Healthier You Begins Here.</h1>
-                <p class="pagetitle__desc">With the support of our team of experts and healthcare professionals, begin your weight management journey right now. </p>
-                <div class="d-flex flex-wrap align-items-center">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <h1 class="pagetitle__heading">Your Journey to a Healthier <br> You Begins Here.</h1>
+                <!-- <div class="d-flex flex-wrap align-items-center">
                     <a href="{{ route('web.contact') }}" class="btn btn__primary btn__rounded mr-30">
                         <span>Contact</span>
                         <i class="icon-arrow-right"></i>
                     </a>
-                    <!-- <a href="services.html" class="btn btn__white btn__rounded">
+                    <a href="services.html" class="btn btn__white btn__rounded">
                         <span>Our Services</span>
                         <i class="icon-arrow-right"></i>
-                    </a> -->
-                </div>
+                    </a>
+                </div> -->
             </div><!-- /.col-xl-5 -->
         </div><!-- /.row -->
     </div><!-- /.container -->

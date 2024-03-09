@@ -1,11 +1,11 @@
 @extends('admin.layouts.default')
 @section('title', 'Profile Setting')
 @section('content')
-
+  
 <style>
-.displaynone{
-  display: none;
-}
+  .displaynone{
+    display: none;
+  }
 </style>
 <!-- main stated -->
 <main id="main" class="main">
@@ -30,8 +30,7 @@
 
           <img src="{{ asset('assets/admin/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
           <h2>Kevin Anderson</h2>
-          <h3>Web Designer</h3>
-          <div class="social-links mt-2">
+          <div class="social-links mt-2 displaynone">
             <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
             <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
             <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
@@ -69,8 +68,8 @@
           <div class="tab-content pt-2">
 
             <div class="tab-pane fade show active profile-overview" id="profile-overview">
-              <h5 class="card-title">About</h5>
-              <p class="small fst-italic">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</p>
+              <h5 class="card-title displaynone">About</h5>
+              <p class="small fst-italic displaynone">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</p>
 
               <h5 class="card-title">Profile Details</h5>
 
@@ -79,34 +78,36 @@
                 <div class="col-lg-9 col-md-8">Kevin Anderson</div>
               </div>
 
-              <div class="row">
+              <div class="row displaynone">
                 <div class="col-lg-3 col-md-4 label ">Company</div>
                 <div class="col-lg-9 col-md-8">Lueilwitz, Wisoky and Leuschke</div>
               </div>
 
-              <div class="row displaynone">
+              <div class="row displaynone ">
                 <div class="col-lg-3 col-md-4 label  ">Job</div>
                 <div class="col-lg-9 col-md-8">Web Designer</div>
               </div>
 
-              <div class="row">
+              <div class="row displaynone">
                 <div class="col-lg-3 col-md-4 label">Country</div>
                 <div class="col-lg-9 col-md-8">USA</div>
-              </div>
-
-              <div class="row">
-                <div class="col-lg-3 col-md-4 label">Address</div>
-                <div class="col-lg-9 col-md-8">A108 Adam Street, New York, NY 535022</div>
               </div>
 
               <div class="row">
                 <div class="col-lg-3 col-md-4 label">Phone</div>
                 <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
               </div>
-
+              <div class="row">
+                <div class="col-lg-3 col-md-4 label">DOB</div>
+                <div class="col-lg-9 col-md-8">02-03-2003</div>
+              </div>
               <div class="row">
                 <div class="col-lg-3 col-md-4 label">Email</div>
                 <div class="col-lg-9 col-md-8">k.anderson@example.com</div>
+              </div>
+              <div class="row">
+                <div class="col-lg-3 col-md-4 label">Address</div>
+                <div class="col-lg-9 col-md-8">A108 Adam Street, New York, NY 535022</div>
               </div>
 
             </div>
@@ -140,7 +141,7 @@
                   </div>
                 </div>
 
-                <div class="row mb-3 ">
+                <div class="row mb-3 displaynone">
                   <label for="company" class="col-md-4 col-lg-3 col-form-label">Company</label>
                   <div class="col-md-8 col-lg-9">
                     <input name="company" type="text" class="form-control " id="company" value="Lueilwitz, Wisoky and Leuschke">
@@ -154,17 +155,10 @@
                   </div>
                 </div>
 
-                <div class="row mb-3">
+                <div class="row mb-3 displaynone">
                   <label for="Country" class="col-md-4 col-lg-3 col-form-label">Country</label>
                   <div class="col-md-8 col-lg-9">
                     <input name="country" type="text" class="form-control" id="Country" value="USA">
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
-                  <div class="col-md-8 col-lg-9">
-                    <input name="address" type="text" class="form-control" id="Address" value="A108 Adam Street, New York, NY 535022">
                   </div>
                 </div>
 
@@ -176,9 +170,23 @@
                 </div>
 
                 <div class="row mb-3">
+                  <label for="dob" class="col-md-4 col-lg-3 col-form-label">DOB</label>
+                  <div class="col-md-8 col-lg-9">
+                    <input name="dob"  type="text" class="form-control" id="datepicker" value="02-03-2003">
+                  </div>
+                </div>
+
+                <div class="row mb-3">
                   <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                   <div class="col-md-8 col-lg-9">
                     <input name="email" type="email" class="form-control" id="Email" value="k.anderson@example.com">
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
+                  <div class="col-md-8 col-lg-9">
+                    <input name="address" type="text" class="form-control" id="Address" value="A108 Adam Street, New York, NY 535022">
                   </div>
                 </div>
 
