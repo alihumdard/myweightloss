@@ -82,6 +82,52 @@
         </div><!-- /.cart-table -->
       </div><!-- /.col-lg-12 -->
 
+      <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="country" class="control-label form-label">Country/Region</label>
+                <select id="country" name="countryCode" class="form-select" required>
+                    <option value="GB">United Kingdom</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="firstName" class="form-label">First name (optional)</label>
+                <input type="text" id="firstName" name="firstName" class="form-control" placeholder="First name (optional)" aria-label="First name (optional)">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="lastName" class="form-label">Last name</label>
+                <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Last name" required aria-label="Last name">
+            </div>
+            <div class="col-md-6">
+                <label for="address1" class="form-label">Address</label>
+                <input type="text" id="address1" name="address1" class="form-control" placeholder="Address" required aria-label="Address">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="address2" class="form-label">Apartment, suite, etc. (optional)</label>
+                <input type="text" id="address2" name="address2" class="form-control" placeholder="Apartment, suite, etc. (optional)" aria-label="Apartment, suite, etc. (optional)">
+            </div>
+            <div class="col-md-6">
+                <label for="city" class="form-label">City</label>
+                <input type="text" id="city" name="city" class="form-control" placeholder="City" required aria-label="City">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="postalCode" class="form-label">Postcode</label>
+                <input type="text" id="postalCode" name="postalCode" class="form-control" placeholder="Postcode" required aria-label="Postcode">
+            </div>
+            <div class="col-md-6">
+                <label for="phone" class="form-label">Phone</label>
+                <input type="tel" id="phone" name="phone" class="form-control" placeholder="Phone" required aria-label="Phone">
+            </div>
+        </div>
+    </div>
+    
+
       <div class="col-sm-12 col-md-6 col-lg-4">
         <div class="cart__total-amount">
           <h6>Cart Totals</h6>

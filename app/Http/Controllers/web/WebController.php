@@ -44,6 +44,8 @@ use Deyjandi\VivaWallet\Payment;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 
+use GuzzleHttp\Client;
+
 class WebController extends Controller
 {
     public function products(Request $request)
@@ -448,5 +450,49 @@ class WebController extends Controller
         } else {
             return redirect()->route('login');
         }
+    }
+
+    public function get_order(Request $request)
+    {
+        $order_id = $request->id;
+
+        $apiKey = env('ROYAL_MAIL_API_KEY');
+
+        $client = new Client();
+        $response = $client->get('https://api.parcel.royalmail.com/api/v1/orders/'.$order_id, [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $apiKey,
+            ]
+        ]);
+
+        $statusCode = $response->getStatusCode();
+        $body = $response->getBody()->getContents();
+
+        return response()->json([
+            'status_code' => $statusCode,
+            'response' => json_decode($body, true),
+        ]);
+    }
+
+    public function create_order(Request $request)
+    {
+        // response example:  views\web\pages\example.blade.php
+        $apiKey = env('ROYAL_MAIL_API_KEY');
+        $client = new Client();
+        $response = $client->post('https://api.parcel.royalmail.com/api/v1/orders', [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $apiKey,
+                'Content-Type' => 'application/json',
+            ],
+            'json' => $request->all(),
+        ]);
+
+        $statusCode = $response->getStatusCode();
+        $body = $response->getBody()->getContents();
+
+        return response()->json([
+            'status_code' => $statusCode,
+            'response' => json_decode($body, true),
+        ]);
     }
 }
