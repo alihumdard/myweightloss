@@ -100,7 +100,7 @@
                             <div class="widget-content">
                                 <ul class="list-unstyled">
                                     @foreach($product['variants'] as $key => $vrr)
-                                    <li><a data-variant_id="{{$vrr['id'] ?? ''}}" data-variant_data="{{ json_encode($vrr) }}">{{ $vrr['value'] }}</a></li>
+                                    <li><a class="variants" data-variant_id="{{$vrr['id'] ?? ''}}" data-variant_data="{{ json_encode($vrr) }}">{{ $vrr['value'] }}</a></li>
                                     @endforeach
                                 </ul>
                             </div>
