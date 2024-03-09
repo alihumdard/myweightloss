@@ -18,16 +18,22 @@
 
                         <div class="d-flex justify-content-between align-items-center">
                             <ul class="social-icons list-unstyled d-flex align-items-center">
-                                <li><a href="https://www.facebook.com/people/Online-Pharmacy4U/100083173698028/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="https://www.linkedin.com/company/74292944" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+                                <li><a href="https://www.facebook.com/profile.php?id=61556213788091" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="https://www.instagram.com/official.weightloss_/" target="_blank"><i class="fab fa-instagram"></i></a></li>
                                 <li><a href="https://twitter.com/4uPharmacy" target="_blank"><i class="fab fa-twitter"></i></a></li>
                             </ul>
+                            
+                            <!-- <img src="{{ asset('/assets/web/images/tsp/home-section/cart.png') }}" class="cart" style="width: 25px; height: 25px;" alt="logo"> -->
                             <form class="header-topbar__search mb-2">
+                                <!-- <div>
+                                    <i style="font-size:24px" class="fa">&#xf07a;</i>
+                                </div> -->
+
                                 <input type="text" class="form-control" placeholder="Search...">
                                 <button class="header-topbar__search-btn"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
-
+                        
                     </div>
 
 
@@ -78,14 +84,15 @@
                         <a href="{{ route('web.blogs') }}" class="nav__item-link {{(request()->routeIs(['web.blogs'])) ? 'active ' : ''}}">Blog</a>
                     </li> -->
 
-                    <li class="nav__item">
-                        <a href="{{ route('web.contact') }}" class="nav__item-link {{(request()->routeIs(['web.contact'])) ? 'active ' : ''}}">Contact</a>
-                    </li>
+                    
                     <li class="nav__item">
                         <a href="{{ route('admin.index') }}" class="nav__item-link {{(request()->routeIs(['admin.index'])) ? 'active ' : ''}}">Account </a>
                     </li>
                     <li class="nav__item">
                         <a href="{{ route('web.cart') }}" class="nav__item-link {{(request()->routeIs(['web.cart'])) ? 'active ' : ''}}">Cart </a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="{{ route('web.contact') }}" class="nav__item-link {{(request()->routeIs(['web.contact'])) ? 'active ' : ''}}">Contact</a>
                     </li>
                 </ul>
                 <!-- <button class="close-mobile-menu d-block d-lg-none"><i class="fas fa-times"></i></button> -->

@@ -1,3 +1,7 @@
+@extends('web.layouts.default')
+@section('title', 'privacy')
+@section('content')
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,10 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms of Use</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('/assets/web/css/style.css') }}">
     <style>
-        body {
-            padding: 20px;
-        }
 
         table {
             width: 100%;
@@ -35,7 +37,7 @@
 
 <body>
     <div class="container">
-        <h1 class="mt-5">Terms of Use</h1>
+        <h1 class="mt-5 text-center">Terms of Use</h1>
         <p>Terms of use Using My Weight Loss Centre or affiliated websites</p>
         <p>This website (<a href="https://www.myweightlosscentre.co.uk">https://www.myweightlosscentre.co.uk</a>) is wholly owned and operated by United Healthcare 4U Ltd (company registration- 1399146) (“us”, “we”, “our”). By using this and affiliated websites, you agree to be legally bound by the following terms of use (“Terms”, “Terms & Conditions”, “Terms of service”). If you do not agree to be bound by these Terms, you must not use this website. For Terms specific to purchases, delivery of good and purchases additional and separate terms and conditions covering consultations/questionnaires, purchases and the delivery of goods.</p>
         <h2 class="mt-5">Media Links</h2>
@@ -306,3 +308,11 @@
 </body>
 
 </html>
+
+@stop
+
+@pushOnce('scripts')
+<script>
+
+</script>
+@endPushOnce

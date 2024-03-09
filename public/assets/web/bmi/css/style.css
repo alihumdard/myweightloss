@@ -395,7 +395,7 @@ header {
 }
 
 main {
-  background: #f8f8f8 url('https://miro.medium.com/v2/resize:fit:1400/1*KTs7PMn4rhfsu_oL_2r-ng.jpeg') no-repeat;
+  background: #f8f8f8 url('/assets/web/images/main-bmi/main-background.png') no-repeat;
 }
 main.plain {
   background: #f8f8f8;

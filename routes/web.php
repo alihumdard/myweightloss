@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\web\HomeController;
 use App\Http\Controllers\web\WebController;
@@ -16,10 +17,10 @@ use App\Http\Controllers\Admin\DefualtController;
 
 Route::get('/', [HomeController::class, 'index'])->name('web.index');
 
-Route::match(['get','post'],'/login', [DefualtController::class, 'login'])->name('login');
-Route::match(['get','post'],'/register', [DefualtController::class, 'user_register'])->name('web.register');
-Route::match(['get','post'],'/regisrationFrom', [WebController::class, 'regisration_from'])->name('web.regisrationFrom');
-Route::match(['get','post'],'/logout', [DefualtController::class, 'logout'])->name('web.logout');
+Route::match(['get', 'post'], '/login', [DefualtController::class, 'login'])->name('login');
+Route::match(['get', 'post'], '/register', [DefualtController::class, 'user_register'])->name('web.register');
+Route::match(['get', 'post'], '/regisrationFrom', [WebController::class, 'regisration_from'])->name('web.regisrationFrom');
+Route::match(['get', 'post'], '/logout', [DefualtController::class, 'logout'])->name('web.logout');
 Route::get('/aboutUs', [HomeController::class, 'about_us'])->name('web.aboutUs');
 Route::get('/contact', [HomeController::class, 'contact_us'])->name('web.contact');
 Route::get('/blogs', [HomeController::class, 'blogs'])->name('web.blogs');
@@ -37,16 +38,14 @@ Route::match(['get','post'],'/consultationStore', [WebController::class, 'consul
 Route::match(['get','post'],'/productQuestion/{id}', [WebController::class, 'product_question'])->name('web.productQuestion');
 Route::match(['get','post'],'/cart/{id?}', [WebController::class, 'cart'])->name('web.cart');
 Route::match(['get','post'],'/makeCurlRequest', [WebController::class, 'makeCurlRequest']);
+Route::match(['get','post'],'/Completed-order', [WebController::class, 'completed_order']);
+Route::match(['get','post'],'/Unsuccessful-order', [WebController::class, 'unsuccessful_order']);
 
+Route::match(['get', 'post'], '/transactionStore/', [WebController::class, 'transaction_store'])->name('web.transactionStore');
 
-
-
-Route::match(['get','post'],'/transactionStore/', [WebController::class, 'transaction_store'])->name('web.transactionStore');
-
-
-Route::match(['get','post'],'/checkout', function(){
-    return view('web.pages.checkout');
-})->name('web.checkout');
+// Route::match(['get','post'],'/checkout', function(){
+//     return view('web.pages.checkout');
+// })->name('web.checkout');
 
 Route::match(['get','post'],'/terms', function(){
     return view('web.pages.term');
@@ -66,4 +65,4 @@ Route::match(['get','post'],'/deliveryReturns', function(){
 
 
 
-include __DIR__ .'/admin.php';
+include __DIR__ . '/admin.php';

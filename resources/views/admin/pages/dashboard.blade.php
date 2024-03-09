@@ -137,18 +137,16 @@
                     <div class="col-12">
                         <div class="card">
 
-                            <div class="filter">
+                            <!-- <div class="filter">
                                 <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                                     <li class="dropdown-header text-start">
                                         <h6>Filter</h6>
                                     </li>
-
-                                    <li><a class="dropdown-item" href="#">Today</a></li>
                                     <li><a class="dropdown-item" href="#">This Month</a></li>
                                     <li><a class="dropdown-item" href="#">This Year</a></li>
                                 </ul>
-                            </div>
+                            </div> -->
 
                             <div class="card-body">
                                 <h5 class="card-title">BMI<span>/History</span></h5>
@@ -403,21 +401,9 @@
             <!-- start bmi calculator  -->
             <div class="col-12">
                 <div class="card">
-                    <div class="filter">
-                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                            <li class="dropdown-header text-start">
-                                <h6>Filter</h6>
-                            </li>
-
-                            <li><a class="dropdown-item" href="#">Today</a></li>
-                            <li><a class="dropdown-item" href="#">This Month</a></li>
-                            <li><a class="dropdown-item" href="#">This Year</a></li>
-                        </ul>
-                    </div>
 
                     <div class="card-body pb-0">
-                        <h5 class="card-title">Bmi Calculator <span>| Today</span></h5>
+                        <h5 class="card-title fw-bold text-center">Body Mass Index</h5>
 
                         <div id="trafficChart" style="min-height: 400px;" class="echart"></div>
 
@@ -439,14 +425,8 @@
     document.addEventListener("DOMContentLoaded", () => {
         new ApexCharts(document.querySelector("#reportsChart"), {
             series: [{
-                name: 'Day',
-                data: [31, 40, 28, 51, 42, 82, 56],
-            }, {
-                name: 'Month',
-                data: [11, 32, 45, 32, 34, 52, 41]
-            }, {
-                name: 'Year',
-                data: [15, 11, 32, 18, 9, 24, 11]
+                name: 'BMI',
+                data: [ 42, 52, 56],
             }],
             chart: {
                 height: 350,
@@ -458,7 +438,7 @@
             markers: {
                 size: 4
             },
-            colors: ['#4154f1', '#2eca6a', '#ff771d'],
+            colors: [ '#2eca6a'],
             fill: {
                 type: "gradient",
                 gradient: {
@@ -477,7 +457,7 @@
             },
             xaxis: {
                 type: 'datetime',
-                categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
+                categories: [ "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
             },
             tooltip: {
                 x: {
@@ -515,25 +495,21 @@
                     show: false
                 },
                 data: [{
-                        value: 1048,
-                        name: 'Search Engine'
+                        value: 18,
+                        name: 'Under Weight'
                     },
                     {
-                        value: 735,
-                        name: 'Direct'
+                        value: 25,
+                        name: 'Normal'
                     },
                     {
-                        value: 580,
-                        name: 'Email'
+                        value: 30,
+                        name: 'Pre-Obesity'
                     },
                     {
-                        value: 484,
-                        name: 'Union Ads'
+                        value: 100,
+                        name: 'Obese'
                     },
-                    {
-                        value: 300,
-                        name: 'Video Ads'
-                    }
                 ]
             }]
         });
