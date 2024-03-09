@@ -91,18 +91,18 @@
                 </select>
             </div>
             <div class="col-md-6">
-                <label for="firstName" class="form-label">First name (optional)</label>
-                <input type="text" id="firstName" name="firstName" class="form-control" placeholder="First name (optional)" aria-label="First name (optional)">
+                <label for="name" class="form-label">First name</label>
+                <input type="text" id="name" name="name" class="form-control" placeholder="First name" aria-label="First name" value="{{ $user->name ?? '' }}">
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
-                <label for="lastName" class="form-label">Last name</label>
+                <label for="lastName" class="form-label">Last name (optional)</label>
                 <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Last name" required aria-label="Last name">
             </div>
             <div class="col-md-6">
-                <label for="address1" class="form-label">Address</label>
-                <input type="text" id="address1" name="address1" class="form-control" placeholder="Address" required aria-label="Address">
+                <label for="address" class="form-label">Street Address</label>
+                <input type="text" id="address" name="address" class="form-control" placeholder="street address" value="{{ $user->address ?? '' }}" required aria-label="Address">
             </div>
         </div>
         <div class="row">
@@ -112,17 +112,17 @@
             </div>
             <div class="col-md-6">
                 <label for="city" class="form-label">City</label>
-                <input type="text" id="city" name="city" class="form-control" placeholder="City" required aria-label="City">
+                <input type="text" value="{{ $user->city ?? '' }}" id="city" name="city" class="form-control" placeholder="City" required aria-label="city">
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
-                <label for="postalCode" class="form-label">Postcode</label>
-                <input type="text" id="postalCode" name="postalCode" class="form-control" placeholder="Postcode" required aria-label="Postcode">
+                <label for="zip_code" class="form-label">Postcode</label>
+                <input type="text" value="{{ $user->zip_code ?? '' }}" id="zip_code" name="zip_code" class="form-control" placeholder="Postcode" required aria-label="Postcode">
             </div>
             <div class="col-md-6">
                 <label for="phone" class="form-label">Phone</label>
-                <input type="tel" id="phone" name="phone" class="form-control" placeholder="Phone" required aria-label="Phone">
+                <input type="tel" id="phone" name="phone" class="form-control" placeholder="Phone" value="{{ $user->phone ?? '' }}" required aria-label="Phone">
             </div>
         </div>
     </div>
@@ -135,7 +135,12 @@
             <li><span>Cart Total :</span><span>£ {{ $total ?? ''}}</span></li>
             <!-- <li><span>Order Total :</span><span>$ 140.00</span></li> -->
           </ul>
-          <a href="/makeCurlRequest" class="btn btn__primary">Proceed To Checkout</a>
+          <form action="{{ route('payment') }}" method="post">
+            @csrf
+            <input type="hidden" name="total_ammount" value="{{ $total ?? 0}}">
+            <input type="hidden" name="product_desc" value="{{ $value['product']['title'] ?? ''}}">
+            <button  type="submit" class="btn btn__primary">Proceed To Checkout</button>
+          </form>
         </div><!-- /.cart__total-amount -->
       </div><!-- /.col-lg-6 -->
     </div><!-- /.row -->
