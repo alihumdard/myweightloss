@@ -19,7 +19,7 @@
         <div class="row">
             <div class="col-lg-12">
 
-                <div class="card vh-100">
+                <div class="card">
                     <div class="card-body">
                         <!-- Multi Columns Form -->
                         <form class="row g-3 mt-3 needs-validation" method="post" action="{{ route('admin.storeQuestion') }}" novalidate>
@@ -45,7 +45,13 @@
                                 <div class="alert-danger text-danger ">{{ $message }}</div>
                                 @enderror
                             </div>
-
+                            <div class="col-md-12">
+                                <label for="openbox" class="form-label">Question Description? </label>
+                                <textarea name="openbox" class="form-control" cols="10" rows="3" id="openbox"> {{ $question['openbox'] ?? old('openbox') }} </textarea>
+                                @error("openbox")
+                                <div class="alert-danger text-danger ">{{ $message }}</div>
+                                @enderror
+                            </div>
                             <div class="col-md-6 ">
                                 <label for="anwser_set" class="form-label">Anwser Set</label>
                                 <select class="form-select" name="anwser_set" id="anwser_set" required>
@@ -91,12 +97,11 @@
             getoptions(anserset);
         });
 
-        function getoptions(anserset='mt_choice') {
+        function getoptions(anserset = 'mt_choice') {
             let optAValue = "{{ $question['optA'] ?? old('optA') }}";
             let optBValue = "{{ $question['optB'] ?? old('optB') }}";
             let optCValue = "{{ $question['optC'] ?? old('optC') }}";
             let optDValue = "{{ $question['optD'] ?? old('optD') }}";
-            let openboxValue = "{{ $question['openbox'] ?? old('openbox') }}";
             let yesLableValue = "{{ $question['yes_lable'] ?? old('yes_lable') }}";
             let noLableValue = "{{ $question['no_lable'] ?? old('no_lable') }}";
             if (anserset == 'mt_choice') {
@@ -135,14 +140,6 @@
                     '<div class="alert-danger text-danger ">{{ $message }}</div>' +
                     '@enderror' +
                     '</div>');
-            } else if (anserset == 'openbox') {
-                $('.ansewers').html('<div class="col-md-12">' +
-                    '<label for="openbox" class="form-label">Reply Instructions? </label>' +
-                    '<textarea name="openbox" class="form-control" cols="10" rows="7" id="openbox">' + openboxValue + '</textarea>' +
-                    '@error("openbox")' +
-                    '<div class="alert-danger text-danger ">{{ $message }}</div>' +
-                    '@enderror' +
-                    '</div>');
             } else if (anserset == 'yes_no') {
                 $('.ansewers').html('<div class="col-md-6">' +
                     '<label for="yes_lable" class="form-label">Yes Answer Label</label>' +
@@ -161,6 +158,8 @@
                     '<div class="alert-danger text-danger ">{{ $message }}</div>' +
                     '@enderror' +
                     '</div>');
+            } else if (anserset == 'openbox') {
+                $('.ansewers').html('');
             } else if (anserset == 'file') {
                 $('.ansewers').html('');
             } else {

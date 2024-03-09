@@ -40,10 +40,10 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="alert alert-primary d-flex flex-wrap justify-content-between align-items-center mb-40">
+                <!-- <div class="alert alert-primary d-flex flex-wrap justify-content-between align-items-center mb-40">
                     <h3 class="alert__title my-1">“{{ $product['title'] ?? ''}}” has been added to your cart.</h3>
                     <a href="cart.html" class="btn btn__secondary btn__rounded">View Cart</a>
-                </div>
+                </div> -->
                 <div class="row product-item-single">
                     <div class="col-sm-6">
                         <div class="product__img">
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <h1  class="product__title">{{ $product['title'] ?? ''}}</h1>
+                        <h1 class="product__title">{{ $product['title'] ?? ''}}</h1>
                         <div class="product__meta-review mb-20">
                             <span class="product__rating">
                                 <i class="fa fa-star active"></i>
@@ -66,7 +66,7 @@
                         <span id="product_price" class="product__price mb-20">£ {{ $product['price'] ?? ''}}</span>
                         <div class="product__desc">
                             <p>
-                                {!! $product['desc'] ?? ''!!}
+                                {!! $product['short_desc'] ?? ''!!}
                             </p>
                         </div><!-- /.product-desc -->
                         <div class="product__quantity d-flex ">
@@ -91,27 +91,26 @@
                                     <span>Category :</span>
                                     <span>{{ $product['category']['name'] ?? ''}}</span>
                                 </li>
-                                <li>
-                                    <span id="product_title">{{ $product['variants'][0]['title'] }} :</span>
-                         
-                                <li>
-                                    @foreach($product['variants'] as $key => $vrr)
-                                    <button data-variant_id="{{$vrr['id'] ?? ''}}" data-variant_data="{{ json_encode($vrr) }}" style="height:34px; min-width: 112px !important;border: 2px solid #212529 !important;border-radius: 5px; padding: 0px !important;" class="btn  btn-outline-primary variants">
-                                        {{ $vrr['value'] }}
-                                    </button>
-                                    @endforeach
 
-                                </li>
 
                                 <!-- <li><span>Tags :</span> <span>Beauty, Supplements</span></li> -->
-                            </ul>
+                            <li>
+                            <div class="widget widget-tags">
+                            <h5 class="widget__title"><span id="product_title">{{ $product['variants'][0]['title'] ?? ''}} :</span></h5>
+                            <div class="widget-content">
+                                <ul class="list-unstyled">
+                                    @foreach($product['variants'] as $key => $vrr)
+                                    <li><a class="variants" data-variant_id="{{$vrr['id'] ?? ''}}" data-variant_data="{{ json_encode($vrr) }}">{{ $vrr['value'] }}</a></li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                        </li>
+
+                        </ul>
                         </div><!-- /.product__meta-details -->
-                        <!-- <ul class="social-icons list-unstyled mb-0">
-                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        </ul> -->
-                        <!-- /.social-icons -->
+
+                      
                     </div>
                 </div>
                 <div class="product__details mt-100">

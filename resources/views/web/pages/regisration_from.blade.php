@@ -279,7 +279,7 @@
                     <div class="col-12 col-sm-12 col-md-12 col-lg-7">
                         <div class="full-form">
                             <div class="user-text mt-2">
-                                <button class="imbtn" style="background: #55b5c7;"><i class="fa fa-check"style="background: #1aa9dd;" ></i>I'm new</button>
+                                <button class="imbtn" style="background: #55b5c7;"><i class="fa fa-check" style="background: #1aa9dd;"></i>I'm new</button>
                                 <button id="btnlogin" class="account-btn" data-toggle="modal" data-target="#loginModal">ٰI have an account</button>
                             </div>
                             <div>
@@ -289,35 +289,54 @@
                                     <input type="hidden" name="role" required value="{{ user_roles('4')}}">
 
                                     <label for="name" class="label d-md-block mt-3">Name</label>
-                                    <input class="form-control" type="text" name="name" id="name" value="" placeholder="Enter your name">
-                                    <!-- <div class="d-flex gap-3">
-                                        <input class="form-control" type="text" name="user_first_name" value="" placeholder="First name">
-                                        <input class="form-control" type="text" name="user_last_name" value="" placeholder="Last name">
-                                    </div> -->
+                                    <input class="form-control" type="text" name="name" id="name" value="{{ old('name') }}" placeholder="Enter your name" required>
+                                    <div class="invalid-feedback">Please enter your name!</div>
+                                    @error('name')
+                                    <div class="alert-danger text-danger ">{{ $message }}</div>
+                                    @enderror
 
                                     <label for="email" class="label d-md-block mt-3">Email</label>
-                                    <input class="form-control" type="email" name="email" id="email" value="" placeholder="write email address">
-
+                                    <input class="form-control" type="email" name="email" id="email" value="{{ old('email') }}" valuerequired="" placeholder="write email address">
+                                    <div class="invalid-feedback">Please enter your email!</div>
+                                    @error('email')
+                                    <div class="alert-danger text-danger ">{{ $message }}</div>
+                                    @enderror
                                     <label for="password" class="label d-md-block mt-3">Password</label>
-                                    <input class="form-control" type="password" name="password" id="password" value="" placeholder="password">
+                                    <input class="form-control" type="password" name="password" id="password" value="" required placeholder="password">
+                                    <div class="invalid-feedback">Please enter your password!</div>
+                                    @error('password')
+                                    <div class="alert-danger text-danger ">{{ $message }}</div>
+                                    @enderror
                                     <div class="mt-1">
                                         <p style="color: #00e5d2;">* Make a strong password</p>
                                     </div>
 
                                     <label for="dob" class="label d-md-block ">Date of Birth</label>
-                                    <input type="text" id="datepicker" name="dob" class="form-control" placeholder="mm-dd-yyyy">
+                                    <input type="text" id="datepicker" name="dob" class="form-control" value="{{ old('dob') }}" required placeholder="DD-MM-YYYY">
+                                    <div class="invalid-feedback">Please enter your dob!</div>
+                                    @error('dob')
+                                    <div class="alert-danger text-danger ">{{ $message }}</div>
+                                    @enderror
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="phone" class="label d-md-block mt-3">Phone Number</label>
-                                                <input class="form-control" type="number" name="phone" id="phone" value="" placeholder="Contact number">
+                                                <input class="form-control" type="number" name="phone" id="phone" min="99999999999" value="{{ old('phone') }}" required placeholder="Contact number">
                                             </div>
+                                            <div class="invalid-feedback">Please enter Phone Number!</div>
+                                            @error('phone')
+                                            <div class="alert-danger text-danger ">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="zip_code" class="label d-md-block mt-3">Postal Code</label>
-                                                <input class="form-control" type="text" name="zip_code" id="zip_code" value="" placeholder="Enter your Postal code">
-                                                <p style="color: #00e5d2;" class="pt-1">* Enter valid Postal Code</p>
+                                                <input class="form-control" type="text" name="zip_code" id="zip_code" value="{{ old('zip_code') }}" required placeholder="Enter your Postal code">
+                                                <div class="invalid-feedback">Please enter Postal Code!</div>
+                                                @error('zip_code')
+                                                <div class="alert-danger text-danger ">{{ $message }}</div>
+                                                @enderror
+                                                <!-- <p style="color: #00e5d2;" class="pt-1">* Enter valid Postal Code</p> -->
                                             </div>
                                         </div>
                                     </div>
@@ -325,9 +344,13 @@
                                         <p style="color: #00e5d2;">* Enter valid Zip Code</p>
                                     </div> -->
                                     <label for="address" class="label d-md-block ">Address</label>
-                                    <input class="form-control" type="text" name="address" id="address" value="" placeholder="Enter your address">
+                                    <input class="form-control" type="text" name="address" id="address" value="{{ old('address') }}" required placeholder="Enter your street name">
+                                    <div class="invalid-feedback">Please enter your address!</div>
+                                    @error('address')
+                                    <div class="alert-danger text-danger ">{{ $message }}</div>
+                                    @enderror
                                     <div class="mt-1">
-                                        <p style="color: #00e5d2;">* Enter address manually</p>
+                                        <p style="color: #00e5d2;">* Enter your street name.</p>
                                     </div>
                                     <div>
                                         <button type="submit" class="continue-btn mx-auto" style="background: #55b5c7;">Continue</button>
@@ -435,6 +458,11 @@
 
     <script>
         $(document).ready(function() {
+            $(document).on('input', 'input', function() {
+                $(this).closest('div').find('.alert-danger').text('');
+            });
+
+
             $("#btnlogin").click(function() {
                 $("#loginModal").modal('show');
             });
@@ -450,7 +478,7 @@
 
         $(document).ready(function() {
             $('#datepicker').datepicker({
-                format: 'mm/dd/yyyy',
+                format: 'dd/mm/yyyy',
                 autoclose: true
             });
         });
