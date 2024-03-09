@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <h1  class="product__title">{{ $product['title'] ?? ''}}</h1>
+                        <h1 class="product__title">{{ $product['title'] ?? ''}}</h1>
                         <div class="product__meta-review mb-20">
                             <span class="product__rating">
                                 <i class="fa fa-star active"></i>
@@ -91,27 +91,26 @@
                                     <span>Category :</span>
                                     <span>{{ $product['category']['name'] ?? ''}}</span>
                                 </li>
-                                <li>
-                                    <span id="product_title">{{ $product['variants'][0]['title'] ?? ''}} :</span>
-                         
-                                <li>
-                                    @foreach($product['variants'] as $key => $vrr)
-                                    <button data-variant_id="{{$vrr['id'] ?? ''}}" data-variant_data="{{ json_encode($vrr) }}" style="height:34px; min-width: 112px !important;border: 2px solid #212529 !important;border-radius: 5px; padding: 0px !important;" class="btn  btn-outline-primary variants">
-                                        {{ $vrr['value'] }}
-                                    </button>
-                                    @endforeach
 
-                                </li>
 
                                 <!-- <li><span>Tags :</span> <span>Beauty, Supplements</span></li> -->
-                            </ul>
+                            <li>
+                            <div class="widget widget-tags">
+                            <h5 class="widget__title"><span id="product_title">{{ $product['variants'][0]['title'] ?? ''}} :</span></h5>
+                            <div class="widget-content">
+                                <ul class="list-unstyled">
+                                    @foreach($product['variants'] as $key => $vrr)
+                                    <li><a data-variant_id="{{$vrr['id'] ?? ''}}" data-variant_data="{{ json_encode($vrr) }}">{{ $vrr['value'] }}</a></li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                        </li>
+
+                        </ul>
                         </div><!-- /.product__meta-details -->
-                        <!-- <ul class="social-icons list-unstyled mb-0">
-                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        </ul> -->
-                        <!-- /.social-icons -->
+
+                      
                     </div>
                 </div>
                 <div class="product__details mt-100">
