@@ -34,9 +34,9 @@ class Users extends Seeder
     {
         // Create an Super Admin
         User::factory()->create([
-            'name'       => 'Super Admin',
-            'email'      => 'superadmin@gmail.com',
-            'password'   => Hash::make('12345'),
+            'name'       => 'Web Admin',
+            'email'      => 'admin@gmail.com',
+            'password'   => Hash::make('admin@123'),
             'role'       => 'Super Admin',
             'status'     => '1',
             'created_by' => '1',
@@ -48,7 +48,7 @@ class Users extends Seeder
             'email'        => 'dispensary@gmail.com',
             'phone'        => '+923394030',
             'address'      => 'gernal texi stand.',
-            'password'     => Hash::make('12345'),
+            'password'     => Hash::make('admin@123'),
             'role'         => 'Dispensary',
             'status'       => '1',
             'created_by'   => '2'
@@ -60,7 +60,7 @@ class Users extends Seeder
             'email'        => 'doctor@gmail.com',
             'phone'        => '+923394030',
             'address'      => 'gernal texi stand.',
-            'password'     => Hash::make('12345'),
+            'password'     => Hash::make('admin@123'),
             'role'         => 'Doctor',
             'status'       => '1',
             'created_by'   => '3'
@@ -68,12 +68,12 @@ class Users extends Seeder
 
         // Create a User
         User::factory()->create([
-            'name'      => 'User',
-            'email'     => 'user@gmail.com',
+            'name'      => 'Web User',
+            'email'     => 'webuser@gmail.com',
             'dob'       => '02/16/2024',
             'phone'     => '+923394030',
             'address'   => 'gernal texi stand.',
-            'password'  => Hash::make('12345'),
+            'password'  => Hash::make('admin@123'),
             'role'      => 'User',
             'status'    => '1',
             'created_by' => '1'
