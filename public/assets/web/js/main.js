@@ -186,7 +186,7 @@ $(function () {
     $('.increase-qty').on('click', function () {
         var $qty = $(this).parent().find('.qty-input');
         var currentVal = parseInt($qty.val());
-        if (!isNaN(currentVal)) {
+        if (!isNaN(currentVal) && currentVal < 5) {
             $qty.val(currentVal + 1);
         }
     });
