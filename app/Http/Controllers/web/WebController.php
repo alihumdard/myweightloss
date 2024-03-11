@@ -333,6 +333,8 @@ class WebController extends Controller
         $user = auth()->user() ?? [];
 
         if (auth()->user()) {
+            return redirect()->away('/Completed-order'); 
+
             $productPrice = $request->total_ammount * 100;
             $productName = 'health product';
             $productDescription = $request->product_desc;

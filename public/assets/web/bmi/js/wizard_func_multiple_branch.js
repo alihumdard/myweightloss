@@ -30,14 +30,18 @@
 			branchtype: function ($step, action) {
 				// var branch = $step.find(":checked").val();
 				var branch ='';
+				var alert_msg ='Please choose an other option. You can not procceed futher with that option.';
 				// Check if the current step has a radio button selected
 				var checkedRadio = $step.find(":checked");
 				if (checkedRadio.length > 0) {
 					branch = checkedRadio.attr('data-branch_id');
+					alert_msg = checkedRadio.attr('data-alert');
 				} else {
 					// If no radio button is selected, assume it's a text area
 					var textArea = $step.find("textarea");
 					branch = textArea.attr('data-branch_id');
+					alert_msg = textArea.attr('data-alert');
+
 				}
 
 				if (!branch) {
@@ -46,7 +50,7 @@
 
 				// var branch_name = branch.split(' ')[0];
 				if(branch == 'no_branch'){
-					alert('Please choose an other option. You can not procceed futher with that option.');
+					alert(alert_msg);
 				}
 				
 				return branch;

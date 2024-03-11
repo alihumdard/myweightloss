@@ -86,7 +86,7 @@
 
                     
                     <li class="nav__item">
-                        <a href="{{ route('admin.index') }}" class="nav__item-link {{(request()->routeIs(['admin.index'])) ? 'active ' : ''}}">Account </a>
+                        <a href="{{ route('admin.index') }}" class="nav__item-link {{(request()->routeIs(['admin.index'])) ? 'active ' : ''}}"> {{(auth()->user()) ? 'Account':'Login' }} </a>
                     </li>
                     <!-- <li class="nav__item">
                         <a href="{{ route('web.cart') }}" class="nav__item-link {{(request()->routeIs(['web.cart'])) ? 'active ' : ''}}">Cart </a>

@@ -49,7 +49,7 @@
                                 <div class="product__action">
                                     <a href="{{ route('web.product', ['id' => $value['id']]) }}" class="btn btn__primary btn__rounded">
                                         <!-- <i class="icon-cart"></i> <span>Add To Cart</span> -->
-                                        <i class="icon-calendar"></i> <span> {{ ($user && $user->consult_status == 'done' && $user->profile_status == 'done') ? ' Select Treatment' : ' Detail view' }}</span>
+                                        <i class="icon-calendar"></i> <span> {{ ($user && $user->consult_status == 'done' && $user->profile_status == 'done') ? ' Select Treatment' : ' Learn More' }}</span>
                                     </a>
                                 </div>
                             </div>
