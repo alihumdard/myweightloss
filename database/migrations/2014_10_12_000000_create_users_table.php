@@ -36,6 +36,8 @@ return new class extends Migration
             $table->unsignedBigInteger('admin_id')->nullable()->default(null);
             $table->unsignedBigInteger('sadmin_id')->nullable()->default(null);
             $table->unsignedBigInteger('manager_id')->nullable()->default(null);
+            $table->string('profile_status')->default('pending');
+            $table->string('consult_status')->default('pending');
             $table->string('status')->default('2');
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable()->default(null);

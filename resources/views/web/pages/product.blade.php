@@ -76,9 +76,9 @@
                                 <i class="increase-qty fa fa-plus"></i>
                             </div>
                             <!-- <a class="btn btn__secondary btn__rounded" href="#">add to cart</a> -->
-                            <a href="{{ route('web.bmiForm')}}" class="btn btn__primary btn__rounded ml-30">
+                            <a href="{{ route('web.productQuestion', ['id' => $product['id']]) }}" class="btn btn__primary btn__rounded ml-30">
                                 <i class="icon-calendar"></i>
-                                <span>Contsultations</span>
+                                <span>Consultation</span>
                             </a>
                         </div>
                         <div class="mb-30">
@@ -94,23 +94,23 @@
 
 
                                 <!-- <li><span>Tags :</span> <span>Beauty, Supplements</span></li> -->
-                            <li>
-                            <div class="widget widget-tags">
-                            <h5 class="widget__title"><span id="product_title">{{ $product['variants'][0]['title'] ?? ''}} :</span></h5>
-                            <div class="widget-content">
-                                <ul class="list-unstyled">
-                                    @foreach($product['variants'] as $key => $vrr)
-                                    <li><a class="variants" data-variant_id="{{$vrr['id'] ?? ''}}" data-variant_data="{{ json_encode($vrr) }}">{{ $vrr['value'] }}</a></li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                        </li>
+                                <li>
+                                    <div style="padding: 20px;" class="widget widget-tags">
+                                        <h5 class="widget__title" style="margin-bottom: 10px;"><span id="product_title">{{ $product['variants'][0]['title'] ?? ''}} :</span></h5>
+                                        <div class="widget-content">
+                                            <ul class="list-unstyled">
+                                                @foreach($product['variants'] as $key => $vrr)
+                                                <li style="cursor: pointer;"><a class="variants" data-variant_id="{{$vrr['id'] ?? ''}}" data-variant_data="{{ json_encode($vrr) }}">{{ $vrr['value'] }}</a></li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
 
-                        </ul>
+                            </ul>
                         </div><!-- /.product__meta-details -->
 
-                      
+
                     </div>
                 </div>
                 <div class="product__details mt-100">
@@ -140,6 +140,7 @@
                         </div>
                     </div>
                 </div>
+                @if($rel_products ?? [])
                 <h6 class="related__products-title text-center-xs mb-25">Related Products</h6>
                 <div class="row">
                     @foreach($rel_products as $key => $value)
@@ -150,8 +151,9 @@
                                     <img src="{{ asset('storage/'.$value['main_image'])}}" alt=" no image" loading="lazy">
                                 </a>
                                 <div class="product__action">
-                                    <a href="BMI-Calculator/dashboard.html" class="btn btn__primary btn__rounded">
-                                        <i class="icon-cart"></i> <span>Add To Cart</span>
+                                    <a href="{{ route('web.product', ['id' => $value['id']]) }}" class="btn btn__primary btn__rounded">
+                                        <!-- <i class="icon-cart"></i> <span>Add To Cart</span> -->
+                                        <i class="icon-calendar"></i> <span>Detail view</span>
                                     </a>
                                 </div>
                             </div>
@@ -167,6 +169,7 @@
                     </div>
                     @endforeach
                 </div>
+                @endif
             </div>
         </div>
     </div>
@@ -199,7 +202,7 @@
             $('#product_img').attr('src', image_src + '/' + variantData.image);
             $('#product_stock').attr('max', variantData.inventory);
             $('#product_title').text(variantData.title + ' :')
-            $('#product_price').text(variantData.price + '£ ')
+            $('#product_price').text( '£ ' + variantData.price)
         });
     });
 </script>

@@ -10,8 +10,13 @@
     <iframe frameborder="0" height="500" width="100%" src="https://maps.google.com/maps?q=Suite%20100%20San%20Francisco%2C%20LA%2094107%20United%20States&amp;t=m&amp;z=10&amp;output=embed&amp;iwloc=near"></iframe>
 </section> -->
 <!-- /.GoogleMap -->
+<style>
+    .displaynone{
+        display: none;
+    }
+</style>
 
-<section class="page-title page-title-layout1">
+<section class="page-title page-title-layout1 displaynone">
     <div class="bg-img"><img src="{{ asset('/assets/web/images/tsp/home-slider/2.png') }}" alt="background"></div>
     <div class="container">
         <div class="row">
@@ -32,7 +37,7 @@
 
 <!-- section of contact card  -->
 
-<section>
+<section class="displaynone">
     <div class="container">
     <div class="container">
     <div class="row justify-content-center">
@@ -82,7 +87,7 @@
 <!-- ==========================
         contact layout 1
     =========================== -->
-<section class="contact-layout1 pt-0 mt--50">
+<section class="contact-layout1 pt-0 mt--50 displaynone">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -169,7 +174,7 @@
 <!-- ========================= 
       Testimonials layout 2
       =========================  -->
-<section class="testimonials-layout2 pt-40 pb-40">
+<section class="testimonials-layout2 pt-40 pb-40 ">
     <div class="container">
         <div class="testimonials-wrapper">
             <div class="row">

@@ -119,7 +119,7 @@
                             <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <div class=" consultion_comp text-center my-4 " style="display: none;">
-                            <h2 class="fw-bold">Your Constultion complete Submit You consultation Thank you!</h2>
+                            <h2 class="fw-bold">Thank you for completing your consultation , please use the below button to submit this.</h2>
                         </div>
 
                         <div class="d-flex justify-content-between ">

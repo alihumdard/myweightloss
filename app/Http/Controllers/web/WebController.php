@@ -50,6 +50,7 @@ class WebController extends Controller
 {
     public function products(Request $request)
     {
+        session()->forget('pro_id');
         $cat_id = $request->input('cat_id') ?? NULL;
         $data['user'] = auth()->user() ?? [];
         $query = Product::with('category:id,name')->latest('id');
@@ -67,8 +68,8 @@ class WebController extends Controller
     {
         $data['user'] = auth()->user() ?? [];
         $data['product'] = Product::with('category:id,name', 'variants')->findOrFail($request->id)->toArray();
+        $data['rel_products'] = Product::where('category_id', $data['product']['category_id'])->where('id', '!=', $request->id)->take(4)->latest('id')->get()->toArray();
 
-        $data['rel_products'] = Product::where(['category_id' => $data['product']['category_id']])->take(4)->latest('id')->get()->toArray();
         return view('web.pages.product', $data);
     }
 
@@ -130,28 +131,37 @@ class WebController extends Controller
             ]);
 
             if ($save) {
-                return redirect()->route('admin.index');
+                DB::table('users')
+                    ->where('id', auth()->id())
+                    ->update(['consult_status' => 'done']);
+
+                $product_id =  session('pro_id') ?? NULL;
+                if ($product_id) {
+                    return redirect()->route('web.products');
+                } else {
+                    return redirect()->route('admin.index');
+                }
             }
         }
     }
 
-    public function regisration_from(Request $request)
-    {
-        $data['user'] = auth()->user() ?? [];
-        if (auth()->user()) {
-            return redirect()->route('web.bmiForm');
-        } else {
-            return view('web.pages.regisration_from', $data);
-        }
-    }
 
     public function product_question(Request $request)
     {
         $data['user'] = auth()->user() ?? [];
-        if (auth()->user()) {
+        $data['product']   = Product::with(['category:id,name', 'category.questions', 'assignedQuestions'])->findOrFail($request->id)->toArray();
+        $data['category']  = $data['product']['category'];
 
-            $data['product']   = Product::with(['category:id,name', 'category.questions', 'assignedQuestions'])->findOrFail($request->id)->toArray();
-            $data['category']  = $data['product']['category'];
+        if (auth()->user()) {
+            if($data['user']->profile_status != 'done'){
+                session()->put('pro_id', $data['product']['id']);
+                return redirect()->route('web.bmiForm');
+            }
+            else if($data['user']->consult_status != 'done'){
+                session()->put('pro_id', $data['product']['id']);
+                return redirect()->route('web.bmiForm');
+            }
+
             $data['questions'] = $data['product']['category']['questions'];
             $question_map_cat  = QuestionMapping::where('category_id', $data['category']['id'])->get()->toArray();
             $check_dependency  = $data['product']['assigned_questions'];
@@ -191,7 +201,8 @@ class WebController extends Controller
 
             return view('web.pages.product_question', $data);
         } else {
-            return view('web.pages.regisration_from', $data);
+            session()->put('pro_id', $data['product']['id']);
+            return redirect()->route('register');
         }
     }
 
@@ -221,7 +232,7 @@ class WebController extends Controller
             ]);
 
             if ($save) {
-                return redirect()->route('web.products', ['cat_id' => $category_id]);
+                return redirect()->route('web.cart', ['id' => $product_id]);
             }
         } else {
             return view('web.pages.regisration_from', $data);
@@ -250,6 +261,9 @@ class WebController extends Controller
             ]);
 
             if ($save) {
+                DB::table('users')
+                    ->where('id', auth()->id())
+                    ->update(['profile_status' => 'done']);
                 return redirect()->route('web.bmiForm');
             }
         } else {
@@ -304,7 +318,7 @@ class WebController extends Controller
                     'created_by' => auth()->user()->id,
                 ]);
             }
-            $data['cart'] = Cart::with('product')->where('user_id', auth()->user()->id)->get()->toArray();
+            $data['cart'] = Cart::with('product')->where(['user_id' => auth()->user()->id, 'status' => 1])->get()->toArray();
             $data['total'] = 0;
             return view('web.pages.cart', $data);
         } else {
@@ -313,66 +327,75 @@ class WebController extends Controller
     }
 
 
-    public function makeCurlRequest(Request $request)
+    public function payment(Request $request)
     {
-        $productPrice = 100;
-        $productName = 'health product';
-        $productDescription = 'it is for testing product philp';
 
-        // Viva Wallet API credentials
-        $username = 'dkwrul3i0r4pwsgkko3nr8c4vs0h5yn5tunio398ik403.apps.vivapayments.com';
-        $password = 'BuLY8U1pEsXNPBgaqz98y54irE7OpL';
-        $credentials = base64_encode($username . ':' . $password);
+        $user = auth()->user() ?? [];
 
-        // Obtain Access Token
-        $accessToken = $this->getAccessToken($credentials);
-        // dd($accessToken);
-        // Prepare POST fields for creating an order
-        $postFields = [
-            'amount'              => $productPrice,
-            'customerTrns'        => $productDescription,
-            'customer'            => [
-                'email'       => 'alihumdard@gmail.com',
-                'fullName'    => 'George Seferis',
-                'phone'       => '69232323',
-                'countryCode' => 'GB', // United Kingdom country code
-                'requestLang' => 'en-GB', // Request language set to English (United Kingdom)
-            ],
-            'paymentTimeout'      => 1800,
-            'preauth'             => false,
-            'allowRecurring'      => false,
-            'maxInstallments'     => 0,
-            'paymentNotification' => true,
-            'disableExactAmount'  => false,
-            'disableCash'         => false,
-            'disableWallet'       => false,
-            'sourceCode'          => '2399',
-            "merchantTrns" => "Short description of items/services purchased by customer",
-            "tags" =>
-            [
-                "tags for grouping and filtering the transactions",
-                "this tag can be searched on VivaWallet sales dashboard",
-                "Sample tag 1",
-                "Sample tag 2",
-                "Another string"
-            ],
-        ];
+        if (auth()->user()) {
+            return redirect()->away('/Completed-order'); 
 
-        // Make an HTTP request to create an order
-        $response = $this->sendHttpRequest('https://api.vivapayments.com/checkout/v2/orders', $postFields, $accessToken);
-        // dd($response);
+            $productPrice = $request->total_ammount * 100;
+            $productName = 'health product';
+            $productDescription = $request->product_desc;
 
-        // Decode the JSON response
-        $responseData = json_decode($response, true);
+            // Viva Wallet API credentials
+            $username = 'dkwrul3i0r4pwsgkko3nr8c4vs0h5yn5tunio398ik403.apps.vivapayments.com';
+            $password = 'BuLY8U1pEsXNPBgaqz98y54irE7OpL';
+            $credentials = base64_encode($username . ':' . $password);
 
-        if (isset($responseData['orderCode'])) {
-            $orderCode = $responseData['orderCode'];
+            // Obtain Access Token
+            $accessToken = $this->getAccessToken($credentials);
+            // dd($accessToken);
+            // Prepare POST fields for creating an order
+            $postFields = [
+                'amount'              => $productPrice,
+                'customerTrns'        => $productDescription,
+                'customer'            => [
+                    'email'       => $user->email,
+                    'fullName'    => $user->name,
+                    'phone'       => $user->phone,
+                    'countryCode' => 'GB', // United Kingdom country code
+                    'requestLang' => 'en-GB', // Request language set to English (United Kingdom)
+                ],
+                'paymentTimeout'      => 1800,
+                'preauth'             => false,
+                'allowRecurring'      => false,
+                'maxInstallments'     => 0,
+                'paymentNotification' => true,
+                'disableExactAmount'  => false,
+                'disableCash'         => false,
+                'disableWallet'       => false,
+                'sourceCode'          => '2399',
+                "merchantTrns" => "Short description of items/services purchased by customer",
+                "tags" =>
+                [
+                    "tags for grouping and filtering the transactions",
+                    "this tag can be searched on VivaWallet sales dashboard",
+                    "Sample tag 1",
+                    "Sample tag 2",
+                    "Another string"
+                ],
+            ];
 
-            // Redirect to the Viva Payments checkout page with the orderCode parameter
-            $redirectUrl = "https://www.vivapayments.com/web/checkout?ref={$orderCode}&color=c50c26";
+            // Make an HTTP request to create an order
+            $response = $this->sendHttpRequest('https://api.vivapayments.com/checkout/v2/orders', $postFields, $accessToken);
+            // dd($response);
 
-            // Redirect to the external URL
-            return redirect()->away($redirectUrl);
+            // Decode the JSON response
+            $responseData = json_decode($response, true);
+
+            if (isset($responseData['orderCode'])) {
+                $orderCode = $responseData['orderCode'];
+
+                // Redirect to the Viva Payments checkout page with the orderCode parameter
+                $redirectUrl = "https://www.vivapayments.com/web/checkout?ref={$orderCode}&color=c50c26";
+
+                // Redirect to the external URL
+                return redirect()->away($redirectUrl);
+            }
+        } else {
+            return redirect()->route('login');
         }
     }
 
@@ -434,6 +457,9 @@ class WebController extends Controller
         $data['user'] = auth()->user() ?? [];
 
         if (auth()->user()) {
+            Cart::where(['user_id' => auth()->user()->id, 'status' => 1])
+                ->update(['status' => 2]);
+
             return view('web.pages.completed_order', $data);
         } else {
             return redirect()->route('login');
@@ -459,7 +485,7 @@ class WebController extends Controller
         $apiKey = env('ROYAL_MAIL_API_KEY');
 
         $client = new Client();
-        $response = $client->get('https://api.parcel.royalmail.com/api/v1/orders/'.$order_id, [
+        $response = $client->get('https://api.parcel.royalmail.com/api/v1/orders/' . $order_id, [
             'headers' => [
                 'Authorization' => 'Bearer ' . $apiKey,
             ]

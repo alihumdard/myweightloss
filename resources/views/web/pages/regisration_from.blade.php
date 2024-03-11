@@ -271,8 +271,7 @@
                                     <p class="has-text-white its-font-w--600 mb-2">Clients at My Weightloss Centre tell about their transformative experiences. They commend our personalised programs, dedicated staff, and supportive community. <br> Many express gratitude for the motivational environment that fosters lasting lifestyle changes. Our reputation is built on success stories, fostering trust and confidence in our commitment to helping individuals achieve their weight loss goals.
                                     </p>
                                     <span class="has-text-white its-font-w--400">
-                                        James O’Loan - PHARMACEUTICAL LEAD, PRESCRIBING PHARMACIST &amp; WEIGHT
-                                        MANAGEMENT EXPERT</span>
+                                    Many express gratitude for the motivational environment that fosters lasting lifestyle changes. Our reputation is built on success stories, fostering trust and confidence in our commitment to helping individuals achieve their weight loss goals. </span>
                                 </div>
                             </div>
                         </div>
@@ -285,7 +284,7 @@
                             </div>
                             <div>
 
-                                <form class="mt-3 needs-validation" method="post" action="{{ route('web.register') }}" novalidate>
+                                <form class="mt-3 needs-validation" method="post" action="{{ route('web.user_register') }}" novalidate>
                                     @csrf
                                     <input type="hidden" name="role" required value="{{ user_roles('4')}}">
 
@@ -429,7 +428,6 @@
                             </div>
                             @endif
                         </div>
-
                         <div class="form-group mb-2">
                             <label for="user_email" class="font-weight-bold mb-2">Email address</label>
                             <input type="email" name="email" class="form-control" id="user_email" value="{{ session('email') ?? ''}}" required aria-describedby="emailHelp" placeholder="Enter your email">

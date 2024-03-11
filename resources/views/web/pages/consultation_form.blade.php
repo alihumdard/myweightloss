@@ -62,7 +62,8 @@
         .box_general {
             padding: 3rem 0 !important;
         }
-        .displaynone{
+
+        .displaynone {
             display: none;
         }
     </style>
@@ -201,8 +202,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Please tell us about your other reasons for wanting to manage your weight?</h3>
-                                                <p style="margin-bottom: 0;" class="displaynone">
-                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt, corporis.
+                                                <p style="margin-bottom: 0;" >
                                                 </p>
                                             </div>
                                         </div>
@@ -302,7 +302,7 @@
                                                             <small>(Files accepted: jpg,jpeg,.png,Web - Max file size: 150KB for demo limit)</small>
                                                         </label>
                                                         <div class="fileupload mt-1">
-                                                            <input id="question_3_ans_1" type="file" name="question_3" accept="image/*">
+                                                            <input id="question_3_ans_1" type="file" name="question_3" class="icheck required" accept="image/*">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -320,8 +320,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Do you have any allergies?</h3>
-                                                <p style="margin-bottom: 0;" class="displaynone">
-                                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi, voluptatibus..
+                                                <p style="margin-bottom: 0;" >
                                                 </p>
                                             </div>
                                         </div>
@@ -331,14 +330,14 @@
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
                                                         <label for="question_4_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" id="question_4_ans_1" data-branch_id="branch_3" name="question_4" class="icheck required" value="Yes, I have.">
-                                                            Yes, I have.
+                                                            <input type="radio" id="question_4_ans_1" data-branch_id="branch_3" name="question_4" class="icheck required" value="Yes">
+                                                            Yes.
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
                                                         <label for="question_4_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" id="question_4_ans_2" data-branch_id="branch_4" name="question_4" class="icheck required" value="No, I have not.">
-                                                            No, I have not.
+                                                            <input type="radio" id="question_4_ans_2" data-branch_id="branch_4" name="question_4" class="icheck required" value="No">
+                                                            No.
                                                         </label>
                                                     </div>
                                                 </div>
@@ -360,8 +359,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Please tell us more about your allergies?</h3>
-                                                <p style="margin-bottom: 0;" class="displaynone">
-                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt, corporis.
+                                                <p style="margin-bottom: 0;" >
                                                 </p>
                                             </div>
                                         </div>
@@ -441,8 +439,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>What was the reading / measurement of the last 6 months?</h3>
-                                                <p style="margin-bottom: 0;" class="displaynone">
-                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, illum?
+                                                <p style="margin-bottom: 0;" >
                                                 </p>
                                             </div>
                                         </div>
@@ -488,8 +485,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Have you been prescribed anything to treat your high blood pressure?</h3>
-                                                <p style="margin-bottom: 0;" class="displaynone">
-                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt, corporis.
+                                                <p style="margin-bottom: 0;" >
                                                 </p>
                                             </div>
                                         </div>
@@ -569,8 +565,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>What was the reading / measurement?</h3>
-                                                <p style="margin-bottom: 0;" class="displaynone">
-                                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed, rerum.
+                                                <p style="margin-bottom: 0;" >
                                                 </p>
                                             </div>
                                         </div>
@@ -609,8 +604,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Do you have any medical conditions?</h3>
-                                                <p style="margin-bottom: 0;" class="displaynone">
-                                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed, rerum.
+                                                <p style="margin-bottom: 0;" >
                                                 </p>
                                             </div>
                                         </div>
@@ -703,8 +697,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Tell us a little more about your medical conditions.</h3>
-                                                <p style="margin-bottom: 0;" class="displaynone">
-                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt, corporis.
+                                                <p style="margin-bottom: 0;" >
                                                 </p>
                                             </div>
                                         </div>
@@ -737,7 +730,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Do you take any medication?</h3>
-                                                <p style="margin-bottom: 0;" >
+                                                <p style="margin-bottom: 0;">
                                                     Please include any prescribed or bought medicines, & vitamins/supplements.
                                                 </p>
                                             </div>
@@ -777,8 +770,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Please list the medications or supplements you currently take.</h3>
-                                                <p style="margin-bottom: 0;" class="displaynone">
-                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt, corporis.
+                                                <p style="margin-bottom: 0;" >
                                                 </p>
                                             </div>
                                         </div>
@@ -879,7 +871,7 @@
                                                     </div>
                                                     <div class="form-group short">
                                                         <label for="question_17_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="no_branch" id="question_17_ans_2" name="question_17" class="icheck required" value="No, I don't have.">
+                                                            <input type="radio"  data-branch_id="no_branch" data-alert="Please choose an other option. You can not procceed futher with that option." id="question_17_ans_2" name="question_17" class="icheck required" value="No">
                                                             No
                                                         </label>
                                                     </div>
@@ -922,7 +914,7 @@
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
                                                         <label for="question_18_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="no_branch" id="question_18_ans_1" name="question_18" class="icheck required" value="Yes, I have apply.">
+                                                            <input type="radio"  data-branch_id="no_branch" data-alert="Please choose an other option. You can not procceed futher with that option." id="question_18_ans_1" name="question_18" class="icheck required" value="Yes, I have apply.">
                                                             Yes, I have apply.
                                                         </label>
                                                     </div>
@@ -952,8 +944,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Have you ever been told you have any problems with your liver or kidneys?</h3>
-                                                <p style="margin-bottom: 0;" class="displaynone">
-                                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus, perspiciatis!.
+                                                <p style="margin-bottom: 0;" >
                                                 </p>
                                             </div>
                                         </div>
@@ -992,8 +983,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Have you ever been told you have any problems with your liver or kidneys?</h3>
-                                                <p style="margin-bottom: 0;" class="displaynone">
-                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt, corporis.
+                                                <p style="margin-bottom: 0;" >
                                                 </p>
                                             </div>
                                         </div>
@@ -1072,8 +1062,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Please tell us more about you mental health.?</h3>
-                                                <p style="margin-bottom: 0;" class="displaynone">
-                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt, corporis.
+                                                <p style="margin-bottom: 0;" >
                                                 </p>
                                             </div>
                                         </div>
@@ -1106,8 +1095,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Have you had any significant weight loss in the last 6 months?</h3>
-                                                <p style="margin-bottom: 0;" class="displaynone">
-                                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus, perspiciatis!.
+                                                <p style="margin-bottom: 0;" >
                                                 </p>
                                             </div>
                                         </div>
@@ -1146,8 +1134,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Please tell us more about you mental health.?</h3>
-                                                <p style="margin-bottom: 0;" class="displaynone">
-                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt, corporis.
+                                                <p style="margin-bottom: 0;" >
                                                 </p>
                                             </div>
                                         </div>
@@ -1757,7 +1744,7 @@
                                                     </div>
                                                     <div class="form-group short">
                                                         <label for="question_37_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="no_branch" id="question_37_ans_2" name="question_37" class="icheck required" value="No, I don't have.">
+                                                            <input type="radio" data-branch_id="no_branch" data-alert="Please choose an other option. You can not procceed futher with that option." id="question_37_ans_2" name="question_37" class="icheck required" value="No, I don't have.">
                                                             No
                                                         </label>
                                                     </div>
@@ -1836,7 +1823,7 @@
                                                     </div>
                                                     <div class="form-group short">
                                                         <label for="question_39_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="no_branch" id="question_39_ans_2" name="question_39" class="icheck required" value="No, I don't have.">
+                                                            <input type="radio" data-branch_id="no_branch" data-alert="Please choose an other option. You can not procceed futher with that option." id="question_39_ans_2" name="question_39" class="icheck required" value="No, I don't have.">
                                                             No
                                                         </label>
                                                     </div>
@@ -1853,7 +1840,7 @@
                         <!--  ===============  branch_36  =============== -->
                         <div class="branch" id="branch_36" data-state="end">
                             <!-- question  40 -->
-                            <div class="submit step" id="end">
+                            <div class="step" data-state="question_41">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class=" row question_title justify-content-center ">
@@ -1873,14 +1860,50 @@
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
                                                         <label for="question_40_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="no_branch" id="question_40_ans_1" name="question_40" class="icheck required" value="Yes">
+                                                            <input type="radio" id="question_40_ans_1" name="question_40" class="icheck required" value="Yes">
                                                             Yes
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
                                                         <label for="question_40_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="no_branch" id="question_40_ans_2" name="question_40" class="icheck required" value="No, I don't have.">
+                                                            <input type="radio" id="question_40_ans_2" name="question_40" class="icheck required" value="No, I don't have.">
                                                             No
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /step -->
+
+                            <!-- question 41 -->
+                            <div class="step" id="question_41" data-state="branchtype">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class=" row question_title justify-content-center ">
+                                            <div class="col-lg-7 animated zoomIn delay-fast">
+                                                <h3>Would you like us to contact your doctor informing them of what medicine we have provided after your treatment plan is shipped?</h3>
+                                                <p style="margin-bottom: 0;" >
+                                                    This is optional for most conditions, however for some chronic conditions we cannot treat you unless we have permission to inform your NHS GP
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row justify-content-center">
+                                            <div class="col-lg-7 animated zoomIn delay-fast">
+                                                <div class="box_general" style="border:none;">
+                                                    <div class="form-group short">
+                                                        <label for="question_41_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" id="question_41_ans_1" data-branch_id="branch_37" name="question_41" class="icheck required" value="Yes">
+                                                            Yes.
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group short">
+                                                        <label for="question_41_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" id="question_41_ans_2" data-branch_id="no_branch" data-alert='We cannot provide this service or associated treatments without your consent to view your NHS medical record, and update your NHS GP.'  name="question_41" class="icheck required" value="No">
+                                                            No.
                                                         </label>
                                                     </div>
                                                 </div>
@@ -1892,6 +1915,101 @@
                             <!-- /step -->
                         </div>
                         <!-- /branch_36 -->
+
+                        <!--  ===============  branch_37  =============== -->
+                        <div class="branch" id="branch_37">
+
+                            <!-- question 42 -->
+                            <div class="step" id="question_42" data-state="question_43">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class=" row question_title justify-content-center ">
+                                            <div class="col-lg-7 animated zoomIn delay-fast">
+                                                <h3>Please provide the name and address of your GP Surgery?</h3>
+                                                <p style="margin-bottom: 0;" >
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row justify-content-center">
+                                            <div class="col-lg-7 animated zoomIn delay-fast">
+                                                <div class="box_general" style="border:none;">
+                                                    <div class="form-group short">
+                                                        <label for="question_42_ans_1" class="fw-bold w-100">
+                                                            GP Surgery name: address...
+                                                        </label>
+                                                        <textarea id="question_42_ans_1" data-branch_id="branch_2" name="question_42" class="form-control required" style="height:100px; margin-bottom:0; border-radius:10px; " placeholder="Typer here ..."></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /step -->
+
+                            <!-- question 43 -->
+                            <div class="step" data-state="branchtype" id="question_43">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class=" row question_title justify-content-center ">
+                                            <div class="col-lg-7 animated zoomIn delay-fast">
+                                                <h3>Do you consent to our clinicians viewing your NHS medical record
+                                                    through the NHS Summary Care Record Online Service? This can
+                                                    help our clinicians ensure we are providing the right treatment for
+                                                    you.?</h3>
+                                                <p style="margin-bottom: 0;" >
+                                                    This is optional for most conditions, however for some chronic conditions we cannot treat you without seeing this.
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row justify-content-center">
+                                            <div class="col-lg-7 animated zoomIn delay-fast">
+                                                <div class="box_general" style="border:none;">
+                                                    <div class="form-group short">
+                                                        <label for="question_43_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" id="question_43_ans_1" data-branch_id="branch_38" name="question_43" class="icheck required" value="Yes">
+                                                            Yes.
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group short">
+                                                        <label for="question_43_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
+                                                            <input type="radio" id="question_43_ans_2" data-branch_id="no_branch"  data-alert='We cannot provide this service or associated treatments without your consent to view your NHS medical record, and update your NHS GP.'  name="question_43" class="icheck required" value="No">
+                                                            No.
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /step -->
+
+                        </div>
+                        <!-- /branch_37 -->
+
+                        <!--  ===============  branch_38  =============== -->
+                        <div class="branch" id="branch_38" >
+                            <!-- thank you page -->
+                            <div class="step submit" id="end" >
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class=" row question_title justify-content-center ">
+                                            <div class="col-lg-7 animated zoomIn delay-fast">
+                                                <h3 style="padding: 20px 0px; text-align:center; font-weight:400;">
+                                                    Thank you for completing your consultation , please use the below button to submit this.
+                                                </h3>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /step -->
+                        </div>
+                        <!-- /branch_38 -->
 
                     </div>
                     <!-- /middle-wizard -->
