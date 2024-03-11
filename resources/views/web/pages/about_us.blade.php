@@ -56,7 +56,7 @@
                     <li>Ongoing Patient Care</li>
                     </ul>
                     <div class="d-flex align-items-center  mb-30">
-                        <a href="{{ route('web.register')}}" class="btn btn__primary btn__outlined btn__rounded mr-30">
+                        <a href="{{ route('register')}}" class="btn btn__primary btn__outlined btn__rounded mr-30">
                         Start Free Consultation</a>
                         <!-- <img src="{{ asset('/assets/web/images/about/singnture.png') }}" alt="singnture"> -->
                     </div>
