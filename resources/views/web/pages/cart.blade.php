@@ -81,53 +81,7 @@
           </table>
         </div><!-- /.cart-table -->
       </div><!-- /.col-lg-12 -->
-
-      <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <label for="country" class="control-label form-label">Country/Region</label>
-                <select id="country" name="countryCode" class="form-select" required>
-                    <option value="GB">United Kingdom</option>
-                </select>
-            </div>
-            <div class="col-md-6">
-                <label for="name" class="form-label">First name</label>
-                <input type="text" id="name" name="name" class="form-control" placeholder="First name" aria-label="First name" value="{{ $user->name ?? '' }}">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <label for="lastName" class="form-label">Last name (optional)</label>
-                <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Last name" required aria-label="Last name">
-            </div>
-            <div class="col-md-6">
-                <label for="address" class="form-label">Street Address</label>
-                <input type="text" id="address" name="address" class="form-control" placeholder="street address" value="{{ $user->address ?? '' }}" required aria-label="Address">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <label for="address2" class="form-label">Apartment, suite, etc. (optional)</label>
-                <input type="text" id="address2" name="address2" class="form-control" placeholder="Apartment, suite, etc. (optional)" aria-label="Apartment, suite, etc. (optional)">
-            </div>
-            <div class="col-md-6">
-                <label for="city" class="form-label">City</label>
-                <input type="text" value="{{ $user->city ?? '' }}" id="city" name="city" class="form-control" placeholder="City" required aria-label="city">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <label for="zip_code" class="form-label">Postcode</label>
-                <input type="text" value="{{ $user->zip_code ?? '' }}" id="zip_code" name="zip_code" class="form-control" placeholder="Postcode" required aria-label="Postcode">
-            </div>
-            <div class="col-md-6">
-                <label for="phone" class="form-label">Phone</label>
-                <input type="tel" id="phone" name="phone" class="form-control" placeholder="Phone" value="{{ $user->phone ?? '' }}" required aria-label="Phone">
-            </div>
-        </div>
-    </div>
-    
-
+      
       <div class="col-sm-12 col-md-6 col-lg-4">
         <div class="cart__total-amount">
           <h6>Cart Totals</h6>
