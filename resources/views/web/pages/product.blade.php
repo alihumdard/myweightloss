@@ -202,7 +202,7 @@
             $('#product_img').attr('src', image_src + '/' + variantData.image);
             $('#product_stock').attr('max', variantData.inventory);
             $('#product_title').text(variantData.title + ' :')
-            $('#product_price').text(variantData.price + '£ ')
+            $('#product_price').text( '£ ' + variantData.price)
         });
     });
 </script>
