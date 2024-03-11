@@ -47,9 +47,9 @@
                                     <img src="{{ asset('storage/'.$value['main_image'])}}" alt=" no image" loading="lazy">
                                 </a>
                                 <div class="product__action">
-                                    <a href="{{ route('web.cart', ['id' => $value['id']]) }}"class="btn btn__primary btn__rounded">
-                                        <i class="icon-cart"></i> <span>Add to Cart</span>
-                                        <!-- <i class="icon-calendar"></i> <span>Contsultations</span> -->
+                                    <a href="{{ route('web.product', ['id' => $value['id']]) }}" class="btn btn__primary btn__rounded">
+                                        <!-- <i class="icon-cart"></i> <span>Add To Cart</span> -->
+                                        <i class="icon-calendar"></i> <span> {{ ($user && $user->consult_status == 'done' && $user->profile_status == 'done') ? ' Select Treatment' : ' Detail view' }}</span>
                                     </a>
                                 </div>
                             </div>
@@ -138,23 +138,24 @@
                                 @endforeach
                             </ul>
                         </div>
-                    </div><!-- /.widget-categories -->
-                    <div class="widget widget-filter">
+                    </div>
+                    <!-- /.widget-categories -->
+                    <!-- <div class="widget widget-filter">
                         <h5 class="widget__title">Pricing Filter</h5>
                         <div class="widget__content">
                             <div id="rangeSlider"></div>
                             <div class="d-flex justify-content-between align-items-center">
-                                <!-- its temporary comment  -->
-                                <!-- <div class="price-output d-flex align-items-center">
+                                its temporary comment 
+                                <div class="price-output d-flex align-items-center">
                                     <label for="rangeSliderResult">Price: </label>
                                     <input type="text" id="rangeSliderResult" readonly>
-                                </div> -->
+                                </div>
                                 <button class="btn__filter">Filter</button>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- /.widget-filter -->
-                    <div class="widget widget-tags">
+                    <!-- <div class="widget widget-tags">
                         <h5 class="widget__title">Tags</h5>
                         <div class="widget-content">
                             <ul class="list-unstyled">
@@ -165,7 +166,8 @@
                                 <li><a href="#">Business</a></li>
                             </ul>
                         </div>
-                    </div><!-- /.widget-Tags -->
+                    </div> -->
+                    <!-- /.widget-Tags -->
                 </aside><!-- /.sidebar -->
             </div><!-- /.col-lg-3 -->
         </div>

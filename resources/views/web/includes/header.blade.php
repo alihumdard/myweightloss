@@ -119,7 +119,7 @@
                         <a href="department-single.html" class="nav__item-link">Cardiac Clinic</a>
                     </li>
                 </ul> -->
-                <a href="{{ route('web.regisrationFrom')}}" class="btn btn__primary btn__rounded ml-30">
+                <a href="{{ route('register')}}" class="btn btn__primary btn__rounded ml-30">
                     <i class="icon-calendar"></i>
                     <span>Start Free Consultation</span>
                 </a>

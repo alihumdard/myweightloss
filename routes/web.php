@@ -18,8 +18,8 @@ use App\Http\Controllers\Admin\DefualtController;
 Route::get('/', [HomeController::class, 'index'])->name('web.index');
 
 Route::match(['get', 'post'], '/login', [DefualtController::class, 'login'])->name('login');
-Route::match(['get', 'post'], '/register', [DefualtController::class, 'user_register'])->name('web.register');
-Route::match(['get', 'post'], '/regisrationFrom', [WebController::class, 'regisration_from'])->name('web.regisrationFrom');
+Route::match(['get', 'post'], '/register', [DefualtController::class, 'regisration_from'])->name('register');
+Route::match(['get', 'post'], '/regisrationFrom', [DefualtController::class, 'user_register'])->name('web.user_register');
 Route::match(['get', 'post'], '/logout', [DefualtController::class, 'logout'])->name('web.logout');
 Route::get('/aboutUs', [HomeController::class, 'about_us'])->name('web.aboutUs');
 Route::get('/contact', [HomeController::class, 'contact_us'])->name('web.contact');
@@ -37,11 +37,13 @@ Route::match(['get','post'],'/consultationForm', [WebController::class, 'consult
 Route::match(['get','post'],'/consultationStore', [WebController::class, 'consultation_store'])->name('web.consultationStore');
 Route::match(['get','post'],'/productQuestion/{id}', [WebController::class, 'product_question'])->name('web.productQuestion');
 Route::match(['get','post'],'/cart/{id?}', [WebController::class, 'cart'])->name('web.cart');
-Route::match(['get','post'],'/makeCurlRequest', [WebController::class, 'makeCurlRequest']);
+Route::match(['get','post'],'/payment', [WebController::class, 'payment'])->name('payment');
 Route::match(['get','post'],'/Completed-order', [WebController::class, 'completed_order']);
 Route::match(['get','post'],'/Unsuccessful-order', [WebController::class, 'unsuccessful_order']);
-
 Route::match(['get', 'post'], '/transactionStore/', [WebController::class, 'transaction_store'])->name('web.transactionStore');
+
+Route::get('/getOrder/{id}', [WebController::class, 'get_order']);
+Route::post('/createOrder', [WebController::class, 'create_order']);
 
 // Route::match(['get','post'],'/checkout', function(){
 //     return view('web.pages.checkout');
