@@ -427,7 +427,8 @@
             });
             // Append variant images Existing
             $('.variant-image-exist').each(function(index, element) {
-                formData.append('exist_vari_attr_images[]', element.files[0]);
+                var variantId = $(element).closest('.row').find('input[name="exist_vari_id[]"]').val();
+                formData.append('exist_vari_attr_images[' + variantId + ']', element.files[0]);
             });
             // Append images to the FormData object
             for (var i = 0; i < imgArray.length; i++) {

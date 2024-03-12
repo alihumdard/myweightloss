@@ -188,6 +188,9 @@ $(function () {
         var currentVal = parseInt($qty.val());
         if (!isNaN(currentVal) && currentVal < 5) {
             $qty.val(currentVal + 1);
+            var price = $('.cart-product__price').text();
+            var total = price * (currentVal + 1);
+            $('.cart-product__total').text(total);
         }
     });
     // Decrease Value
@@ -196,6 +199,9 @@ $(function () {
         var currentVal = parseInt($qty.val());
         if (!isNaN(currentVal) && currentVal > 1) {
             $qty.val(currentVal - 1);
+            var price = $('.cart-product__price').text();
+            var total = price * (currentVal - 1);
+            $('.cart-product__total').text(total);
         }
     });
 

@@ -738,6 +738,21 @@ class SystemController extends Controller
                 $nameArrExist  = $request['exist_vari_name'];
                 $barcodeArrExist   = $request['exist_vari_barcode'];
                 $inventoryArrExist = $request['exist_vari_inventory'];
+                if ($request->hasFile('exist_vari_attr_images'))
+                {
+                    foreach ($request->file('exist_vari_attr_images') as $variantId => $image) {
+                        if ($image) {
+                            $variImageNameExist = time() . '_' . uniqid('', true) . '.' . $image->getClientOriginalExtension();
+                            $variImagePathExist = $image->storeAs('product_images/main_images', $variImageNameExist, 'public');
+                
+                            $productAttrImage = ['image' => $variImagePathExist];
+                
+                            DB::table('product_variants')
+                                ->where('id', $variantId)
+                                ->update($productAttrImage);
+                        }
+                    }
+                }
                 foreach ($skuArrExist as $key1 => $val1) {
 
                     $id = $idArrExist[$key1];
@@ -747,21 +762,6 @@ class SystemController extends Controller
                     $productAttrArrE['barcode'] = $barcodeArrExist[$key1];
                     $productAttrArrE['inventory'] = $inventoryArrExist[$key1];
                     $productAttrArrE['sku'] = $skuArrExist[$key1];
-// return $request;
-// working continue just image update left
-                    // if ($request->hasFile("exist_vari_attr_images.$key1")) {
-                        
-                    //     $vari_Image_exist = $request->file("exist_vari_attr_images.$key1");
-                    //     $vari_ImageName_exist = time() . '_' . uniqid('', true) . '.' . $vari_Image_exist->getClientOriginalExtension();
-                        
-                    //     $vari_Image_exist->storeAs('product_images/main_images', $vari_ImageName_exist, 'public');
-                    //     $vari_ImagePath_exist = 'product_images/main_images/' . $vari_ImageName_exist;
-                    //     $productAttrImage['image'] = $vari_ImagePath_exist;
-
-                    //     DB::table('product_variants')
-                    //     ->where('id', $id)
-                    //     ->update($productAttrImage);
-                    // }
 
                     DB::table('product_variants')
                         ->where('id', $id)
