@@ -187,7 +187,7 @@
                     <div class="slider-with-navs">
                         <!-- Testimonial #1 -->
                         <div class="testimonial-item">
-                            <h3 class="testimonial__title">“Their doctors include highly qualified practitioners who come from a
+                            <h3 class="testimonial__title">“Include highly qualified practitioners who come from a
                                 range of backgrounds and bring with them a diversity of skills and special interests. They also have
                                 registered nurses on staff who are available to triage any urgent matters, and the administration
                                 and support staff all have exceptional people skills”
@@ -195,7 +195,7 @@
                         </div><!-- /. testimonial-item -->
                         <!-- Testimonial #2 -->
                         <div class="testimonial-item">
-                            <h3 class="testimonial__title">“Their doctors include highly qualified practitioners who come from a
+                            <h3 class="testimonial__title">“Include highly qualified practitioners who come from a
                                 range of backgrounds and bring with them a diversity of skills and special interests. They also have
                                 registered nurses on staff who are available to triage any urgent matters, and the administration
                                 and support staff all have exceptional people skills”
@@ -203,7 +203,7 @@
                         </div><!-- /. testimonial-item -->
                         <!-- Testimonial #3 -->
                         <div class="testimonial-item">
-                            <h3 class="testimonial__title">“Their doctors include highly qualified practitioners who come from a
+                            <h3 class="testimonial__title">“Include highly qualified practitioners who come from a
                                 range of backgrounds and bring with them a diversity of skills and special interests. They also have
                                 registered nurses on staff who are available to triage any urgent matters, and the administration
                                 and support staff all have exceptional people skills”
