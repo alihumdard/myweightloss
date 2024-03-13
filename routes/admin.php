@@ -42,5 +42,8 @@ Route::prefix('admin')->middleware(['check.userAuthCheck'])->group(function () {
     Route::get('/doctorsApproval', [SystemController::class, 'doctors_approval'])->name('admin.doctorsApproval');
     Route::get('/ordersConfrimed', [SystemController::class, 'orders_confrimed'])->name('admin.ordersConfrimed');
     Route::get('/ordersShiped', [SystemController::class, 'orders_shiped'])->name('admin.ordersShiped');
+    Route::get('/orderDetail/{id}', [SystemController::class, 'order_detail'])->name('admin.orderDetail');
+    Route::get('/consultationView/{uid}/{pid}', [SystemController::class, 'consultation_view'])->name('admin.consultationView');
+
 
 });

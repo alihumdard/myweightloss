@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Arr;
 
 // models ...
 use App\Models\User;
@@ -29,6 +30,9 @@ use App\Models\ProductAttribute;
 use App\Models\ProductVariant;
 use Illuminate\Support\Facades\DB;
 use App\Models\QuestionMapping;
+use App\Models\Order;
+use App\Models\Transaction;
+use Illuminate\Support\Facades\Redirect;
 
 class SystemController extends Controller
 {
@@ -492,12 +496,12 @@ class SystemController extends Controller
         // if (!view_permission($page_name)) {
         //     return redirect()->back();
         // }
-        
+
         $validator = Validator::make($request->all(), [
             'category_id'   => 'required',
             'question_id.*' => 'required',
         ]);
-        
+
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
@@ -508,7 +512,7 @@ class SystemController extends Controller
 
         foreach ($options as $option) {
             $value = $request->$option;
-            
+
             // Check if the value is not null
             if ($value !== null && $value !== '') {
                 $response = QuestionMapping::updateOrCreate(
@@ -528,8 +532,8 @@ class SystemController extends Controller
                 );
                 // Update AssignQuestion model
                 AssignQuestion::where('category_id', $request->category_id)
-                ->where('question_id', $value)
-                ->update(['is_dependent' => 1]);
+                    ->where('question_id', $value)
+                    ->update(['is_dependent' => 1]);
             }
         }
 
@@ -543,36 +547,35 @@ class SystemController extends Controller
         $category_id = $request->categoryId;
         $result['detail'] = Question::findOrFail($question_id)->toArray();
 
-        $result['other_qstn'] = AssignQuestion::join('assign_questions as tbl2', function ($join) use ($question_id)  {
+        $result['other_qstn'] = AssignQuestion::join('assign_questions as tbl2', function ($join) use ($question_id) {
             $join->on('assign_questions.category_id', '=', 'tbl2.category_id')
-                 ->where('tbl2.question_id', '!=', $question_id);
+                ->where('tbl2.question_id', '!=', $question_id);
         })
-        ->select('tbl2.question_id', 'tbl2.question_title')
-        ->where('assign_questions.question_id', $question_id)
-        ->where('assign_questions.category_id', $category_id)
-        ->pluck('tbl2.question_title', 'tbl2.question_id')
-        ->toArray();
+            ->select('tbl2.question_id', 'tbl2.question_title')
+            ->where('assign_questions.question_id', $question_id)
+            ->where('assign_questions.category_id', $category_id)
+            ->pluck('tbl2.question_title', 'tbl2.question_id')
+            ->toArray();
         // dd(DB::getQueryLog());
         return response()->json(['status' => 'success', 'result' => $result]);
     }
 
     public function get_next_question(Request $request)
-    { // working continue
+    {
         $question_id = $request->id;
         $category_id = $request->categoryId;
         $answer = $request->answer;
-        // $user_answer = $re
         $result['detail'] = Question::findOrFail($question_id)->toArray();
 
-        $result['other_qstn'] = AssignQuestion::join('assign_questions as tbl2', function ($join) use ($question_id)  {
+        $result['other_qstn'] = AssignQuestion::join('assign_questions as tbl2', function ($join) use ($question_id) {
             $join->on('assign_questions.category_id', '=', 'tbl2.category_id')
-                 ->where('tbl2.question_id', '!=', $question_id);
+                ->where('tbl2.question_id', '!=', $question_id);
         })
-        ->select('tbl2.question_id', 'tbl2.question_title')
-        ->where('assign_questions.question_id', $question_id)
-        ->where('assign_questions.category_id', $category_id)
-        ->pluck('tbl2.question_title', 'tbl2.question_id')
-        ->toArray();
+            ->select('tbl2.question_id', 'tbl2.question_title')
+            ->where('assign_questions.question_id', $question_id)
+            ->where('assign_questions.category_id', $category_id)
+            ->pluck('tbl2.question_title', 'tbl2.question_id')
+            ->toArray();
 
         return response()->json(['status' => 'success', 'result' => $result]);
     }
@@ -656,7 +659,7 @@ class SystemController extends Controller
                 'desc'       => $request->desc,
                 'short_desc' => $request->short_desc,
                 'main_image' => $mainImagePath ?? Product::findOrFail($request->id)->main_image,
-                'category_id'=> $request->category_id,
+                'category_id' => $request->category_id,
                 'ext_tax'    => $request->ext_tax,
                 'barcode'    => $request->barcode,
                 'SKU'        => $request->SKU,
@@ -733,9 +736,82 @@ class SystemController extends Controller
     }
 
     // orders managment ...
+    public function order_detail(Request $request)
+    {
+        $data['user'] = auth()->user();
+        $page_name = 'orders';
+        if (!view_permission($page_name)) {
+            return redirect()->back();
+        }
+        if ($request->id) {
+            $data['order'] = Order::with('user', 'product', 'product.category')->where(['id' => $request->id, 'payment_status' => 'Paid', 'status' => 'Received'])->first()->toArray() ?? [];
+            if ($data['order']) {
+                return view('admin.pages.order_detail', $data);
+            } else {
+                return redirect()->back()->with('error', 'Order not found.');
+            }
+        } else {
+            return redirect()->back()->with('error', 'Order not found.');
+        }
+    }
+
+    public function consultation_view(Request $request)
+    {
+        $data['user'] = auth()->user();
+        $page_name = 'consultation_view';
+        if (!view_permission($page_name)) {
+            return redirect()->back();
+        }
+        if ($request->uid && $request->pid) {
+            $uid = base64_decode($request->uid);
+            $pid = base64_decode($request->pid);
+
+            $transaction = Transaction::where(['user_id' => $uid, 'product_id' => $pid, 'status' => '1'])->latest('created_at')->latest('id')->first();
+            if ($transaction) {
+                $question_ans = json_decode($transaction->question_answers, true);
+                $question_ids = array_keys($question_ans);
+                $questions = Question::whereIn('id', $question_ids)->pluck('title', 'id')->toArray();
+
+                $result = [];
+                foreach ($question_ans as $question_id => $answer) {
+                    if (isset($questions[$question_id])) {
+                        $result[] = [
+                            'id' => $question_id,
+                            'title' => $questions[$question_id],
+                            'answer' => $answer,
+                        ];
+                    }
+                }
+                $data['prodcut_consult'] = $result;
+                return view('admin.pages.consultation_view', $data);
+            } else {
+                return redirect()->back()->with('error', 'Transaction not found.');
+            }
+        } else {
+            return redirect()->back();
+        }
+    }
+
     public function orders_recieved()
     {
-        return view('admin.pages.orders_recieved');
+        $data['user'] = auth()->user();
+        $page_name = 'orders_recieved';
+        if (!view_permission($page_name)) {
+            return redirect()->back();
+        }
+        $orders = Order::with('user')->where(['payment_status' => 'Paid', 'status' => 'Received'])->latest('created_at')->get()->toArray();
+        $userIds = array_unique(Arr::pluck($orders, 'user.id'));
+
+        $userOrdersData = Order::select('id')->whereIn('user_id', $userIds)
+            ->where('id', '!=', $orders[0]['id'])
+            ->select('user_id', 'id')
+            ->get()->toArray();
+
+        $data['order_history'] = $userOrdersData;
+        $data['orders'] = $orders;
+        // dd($userOrdersData);
+
+        return view('admin.pages.orders_recieved', $data);
     }
 
     public function doctors_approval()
