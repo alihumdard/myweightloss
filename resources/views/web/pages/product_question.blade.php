@@ -77,36 +77,36 @@
                             @elseif($question['anwser_set'] == 'mt_choice' )
                             <div class="text">
                                 <div class="form-check mt-2 px-5">
-                                    <input class="form-check-input optA_{{$category['id'].'_'.$question['id']}}" type="radio" name="qid_{{$question['id']}}" value="" data-next_question="question_{{ $next_quest_opt[$question['id']]['optA'] ?? 'no'}}" id="optionA">
+                                    <input class="form-check-input optA_{{$category['id'].'_'.$question['id']}}" type="radio" name="qid_{{$question['id']}}" value="{{$question['optA'] ?? ''}}" data-next_question="question_{{ $next_quest_opt[$question['id']]['optA'] ?? 'no'}}" id="optionA">
                                     <label class="form-check-label fw-semibold   w-100" for="optionA">{{$question['optA'] ?? ''}}</label>
                                 </div>
                                 <div class="form-check px-5">
-                                    <input class="form-check-input optB_{{$category['id'].'_'.$question['id']}}" type="radio" name="qid_{{$question['id']}}" value="" data-next_question="question_{{ $next_quest_opt[$question['id']]['optB'] ?? 'no'}}" id="optionB">
+                                    <input class="form-check-input optB_{{$category['id'].'_'.$question['id']}}" type="radio" name="qid_{{$question['id']}}" value="{{$question['optB'] ?? ''}}" data-next_question="question_{{ $next_quest_opt[$question['id']]['optB'] ?? 'no'}}" id="optionB">
                                     <label class="form-check-label fw-semibold w-100" for="optionB">{{$question['optB'] ?? ''}}</label>
                                 </div>
                                 <div class="form-check px-5">
-                                    <input class="form-check-input optC_{$category['id'].'_'.$question['id']}}" type="radio" name="qid_{{$question['id']}}" value="" data-next_question="question_{{ $next_quest_opt[$question['id']]['optC'] ?? 'no'}}" id="optionC">
+                                    <input class="form-check-input optC_{$category['id'].'_'.$question['id']}}" type="radio" name="qid_{{$question['id']}}" value="{{$question['optC'] ?? ''}}"  data-next_question="question_{{ $next_quest_opt[$question['id']]['optC'] ?? 'no'}}" id="optionC">
                                     <label class="form-check-label fw-semibold w-100" for="optionC">{{$question['optC'] ?? ''}}</label>
                                 </div>
                                 <div class="form-check px-5">
-                                    <input class="form-check-input optD_{{$category['id'].'_'.$question['id']}}" type="radio" name="qid_{{$question['id']}}" value="" data-next_question="question_{{ $next_quest_opt[$question['id']]['optD'] ?? 'no'}}" id="optionD">
+                                    <input class="form-check-input optD_{{$category['id'].'_'.$question['id']}}" type="radio" name="qid_{{$question['id']}}" value="{{$question['optD'] ?? ''}}" data-next_question="question_{{ $next_quest_opt[$question['id']]['optD'] ?? 'no'}}" id="optionD">
                                     <label class="form-check-label fw-semibold w-100" for="optionD">{{$question['optD'] ?? ''}}</label>
                                 </div>
                             </div>
                             @elseif($question['anwser_set'] == 'file' )
                             <div class="text">
                                 <div>
-                                    <input type="file" class="form-control" name="qid_{{$question['id']}}" placeholder="Describe" data-next_question="question_{{ $next_quest_opt[$question['id']]['file'] ?? 'no'}}" />
+                                    <input type="file" class="form-control" name="qfid_{{$question['id']}}" placeholder="Describe" data-next_question="question_{{ $next_quest_opt[$question['id']]['file'] ?? 'no'}}" />
                                 </div>
                             </div>
                             @else
                             <div class="text">
                                 <div class="form-check mt-2 px-5">
-                                    <input class="form-check-input" type="radio" name="qid_{{$question['id']}}" value="" data-next_question="question_{{ $next_quest_opt[$question['id']]['yes_lable'] ?? 'no'}}" id="option_yes">
+                                    <input class="form-check-input" type="radio" name="qid_{{$question['id']}}" value="{{$question['yes_lable'] ?? ''}}" data-next_question="question_{{ $next_quest_opt[$question['id']]['yes_lable'] ?? 'no'}}" id="option_yes">
                                     <label class="form-check-label fw-semibold   w-100" for="option_yes">{{$question['yes_lable'] ?? ''}}</label>
                                 </div>
                                 <div class="form-check px-5">
-                                    <input class="form-check-input" type="radio" name="qid_{{$question['id']}}" value="" data-next_question="question_{{ $next_quest_opt[$question['id']]['no_lable'] ?? 'no'}}" id="option_no">
+                                    <input class="form-check-input" type="radio" name="qid_{{$question['id']}}" value="{{$question['no_lable'] ?? ''}}" data-next_question="question_{{ $next_quest_opt[$question['id']]['no_lable'] ?? 'no'}}" id="option_no">
                                     <label class="form-check-label fw-semibold w-100" for="option_no">{{$question['no_lable'] ?? ''}}</label>
                                 </div>
                             </div>
