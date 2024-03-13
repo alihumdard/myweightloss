@@ -196,7 +196,7 @@
                 Card number is required
               </div>
             </div>
-          </div> --}}
+          </div>
           {{-- <div class="row">
             <div class="col-md-3 mb-3">
               <label for="cc-expiration">Expiration</label>
