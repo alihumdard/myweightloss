@@ -2,7 +2,7 @@
 @section('title', 'cart')
 @section('content')
 <style>
-  .form-control{
+  .form-control {
     height: 30px !important;
     border-radius: 0;
   }
@@ -95,6 +95,9 @@
         <h4 class="mb-3">Billing address</h4>
         <form class="needs-validation" action="{{ route('payment') }}" method="post">
           @csrf
+          <input type="hidden" name="product_id" value="{{ $value['product']['id']?? 0}}">
+          <input type="hidden" name="total_ammount" value="{{ $total ?? 0}}">
+          <input type="hidden" name="product_desc" value="{{ $value['product']['title'] ?? ''}}">
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="firstName">First name</label>
@@ -168,7 +171,7 @@
           </div>
 
           <hr class="mb-4">
-  
+
           <h4 class="mb-3">Payment</h4>
           <div class="row">
             <div class="col-md-6 mb-3">
@@ -204,28 +207,9 @@
             </div>
           </div>
           <hr class="mb-4">
-          <input type="hidden" name="total_ammount" class="total-hidden" value="{{ $total ?? 0}}">
-          <input type="hidden" name="product_desc" value="{{ $value['product']['title'] ?? ''}}">
-          <button  type="submit" class="btn btn__primary checkout-btn">Proceed To Checkout</button>
+          <button type="submit" class="btn btn__primary checkout-btn">Proceed To Checkout</button>
         </form>
       </div>
-      
-      {{-- <div class="col-sm-12 col-md-6 col-lg-4">
-        <div class="cart__total-amount">
-          <h6>Cart Totals</h6>
-          <ul class="list-unstyled mb-30">
-            <li><span>Cart Total :</span><span>£ {{ $total ?? ''}}</span></li>
-            <!-- <li><span>Order Total :</span><span>$ 140.00</span></li> -->
-          </ul>
-          <form action="{{ route('payment') }}" method="post">
-            @csrf
-            <input type="hidden" name="product_id" value="{{ $value['product']['id']?? 0}}">
-            <input type="hidden" name="total_ammount" value="{{ $total ?? 0}}">
-            <input type="hidden" name="product_desc" value="{{ $value['product']['title'] ?? ''}}">
-            <button  type="submit" class="btn btn__primary">Proceed To Checkout</button>
-          </form>
-        </div><!-- /.cart__total-amount -->
-      </div><!-- /.col-lg-6 --> --}}
     </div><!-- /.row -->
   </div><!-- /.container -->
 </section><!-- /.shopping-cart -->
