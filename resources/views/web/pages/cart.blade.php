@@ -95,9 +95,9 @@
         <h4 class="mb-3">Billing address</h4>
         <form class="needs-validation" action="{{ route('payment') }}" method="post">
           @csrf
-          <input type="hidden" name="product_id" value="{{ $value['product']['id']?? 0}}">
+          <input type="hidden" name="product_id" value="{{$value['product']['id']}}">
           <input type="hidden" name="total_ammount" value="{{ $total ?? 0}}">
-          <input type="hidden" name="product_desc" value="{{ $value['product']['title'] ?? ''}}">
+          <input type="hidden" name="product_desc" value="{{ $value['product']['title']}}">
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="firstName">First name</label>
