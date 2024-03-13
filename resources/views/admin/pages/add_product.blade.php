@@ -279,6 +279,77 @@
                         </div>
                     </div>
                 </div>
+                {{-- existing variants --}}
+                <div id="variant_row_existing">
+                    @if(isset($product['variants']))
+                        @foreach ($product['variants'] as $variant)  
+                            <div class="row bg-white rounded-3  mb-4 py-2">
+                                <input type="hidden" value="{{$variant['id']}}" name="exist_vari_id[]">
+                                <div class="col-12">
+                                    <hr class="">
+                                </div>
+                                <div class="col-md-3 col-sm-12">
+                                    <div class="p-2">
+                                        <label for="" class="form-label">Variant Price <span class="extra-text">(Price in UK Pound)</span></label>
+                                        <input type="number" class="form-control" name="exist_vari_price[]" id="" value="{{ $variant['price']}}" required>
+                                        <div class="invalid-feedback">Enter variant price!</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-12">
+                                    <div class="p-2">
+                                        <label for="" class="form-label">Variant Name <span class="extra-text"></span></label>
+                                        <input type="text" class="form-control" name="exist_vari_name[]" id="" value = "{{ $variant['title']}}" required>
+                                        <div class="invalid-feedback">Enter variant title!</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-12 product-md">
+                                    <div class="p-2">
+                                        <label for="" class="form-label">Variant Value <span class="extra-text"></span></label>
+                                        <input type="text" class="form-control" name="exist_vari_value[]" id="" value = "{{ $variant['value']}}" required>
+                                        <div class="invalid-feedback">Enter variant value!</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-12 ">
+                                    <div class="p-2">
+                                        <label for="" class="form-label">Inventory <span class="extra-text">(Available Stock)</span></label>
+                                        <input type="number" class="form-control" name="exist_vari_inventory[]" id="" value = "{{ $variant['inventory']}}" required>
+                                        <div class="invalid-feedback">Enter variant stock!</div>
+                                    </div>
+                                </div>
+            
+                                <div class="col-md-3 col-sm-12">
+                                    <div class="p-2">
+                                        <label for="" class="form-label">Barcode <span class="extra-text">(ISBN, UPC, GTIN, etc.)</span></label>
+                                        <input type="number" class="form-control" name="exist_vari_barcode[]" id="" value = "{{ $variant['barcode']}}">
+                                        <div class="invalid-feedback">Enter variant barcode!</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-12">
+                                    <div class="p-2">
+                                        <label for="" class="form-label">SKU <span class="extra-text">(Stock Keeping Unit)</span></label>
+                                        <input type="number" class="form-control" name="exist_vari_sku[]" id="" value = "{{ $variant['sku']}}">
+                                        <div class="invalid-feedback">Enter variant stock!</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-12 ">
+                                    <div class="p-2">
+                                        <label  class="form-label">Select Image</label>
+                                        <input class="form-control variant-image-exist" name="exist_vari_attr_image[]" type="file" id="">
+                                        <div class="invalid-feedback">Enter variant image!</div>
+                                    </div>
+                                </div>
+                                {{-- <div class="col-md-3 col-sm-12 mt-4 ">
+                                    <div class="p-2 ">
+                                        <button type="button" class="btn remove_row btn-danger"><i class="fa fa-minus"></i> Remove</button>
+                                    </div>
+                                </div> --}}
+                                <div class="col-12">
+                                    <hr class="">
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
                 <div id="variant_row">
 
                 </div>
@@ -353,6 +424,11 @@
             // Append variant images
             $('.variant-image').each(function(index, element) {
                 formData.append('vari_attr_images[]', element.files[0]);
+            });
+            // Append variant images Existing
+            $('.variant-image-exist').each(function(index, element) {
+                var variantId = $(element).closest('.row').find('input[name="exist_vari_id[]"]').val();
+                formData.append('exist_vari_attr_images[' + variantId + ']', element.files[0]);
             });
             // Append images to the FormData object
             for (var i = 0; i < imgArray.length; i++) {

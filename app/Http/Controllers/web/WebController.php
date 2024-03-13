@@ -338,9 +338,7 @@ class WebController extends Controller
     {
 
         $user = auth()->user() ?? [];
-
         if (auth()->user()) {
-
             // creating the order..
             $save =  Order::create([
                 'user_id'        => auth()->user()->id,
@@ -352,7 +350,6 @@ class WebController extends Controller
             ]);
             if ($save) {
                 return redirect()->away('/Completed-order');
-
                 $productPrice = $request->total_ammount * 100;
                 $productName = 'health product';
                 $productDescription = $request->product_desc;

@@ -604,8 +604,9 @@ class SystemController extends Controller
             return redirect()->back();
         }
         $data['categories'] = Category::latest('id')->get()->toArray();
+        $data['product'] = [];
         if ($request->has('id')) {
-            $data['product'] = Product::findOrFail($request->id)->toArray();
+            $data['product'] = Product::with('variants')->findOrFail($request->id)->toArray();
         }
 
         return view('admin.pages.add_product', $data);
@@ -698,7 +699,7 @@ class SystemController extends Controller
             }
 
 
-
+// new variant
             if ($request['vari_value'] ?? NULL) {
                 // handle the product variations .....
                 $valueArr = $request['vari_value'];
@@ -727,6 +728,47 @@ class SystemController extends Controller
                     }
 
                     DB::table('product_variants')->insert($productAttrArr);
+                }
+            }
+
+// update variant
+            if ($request['exist_vari_value'] ?? NULL) {
+                // handle the product variations .....
+                $idArrExist = $request['exist_vari_id'];
+                $valueArrExist = $request['exist_vari_value'];
+                $priceArrExist = $request['exist_vari_price'];
+                $skuArrExist   = $request['exist_vari_sku'];
+                $nameArrExist  = $request['exist_vari_name'];
+                $barcodeArrExist   = $request['exist_vari_barcode'];
+                $inventoryArrExist = $request['exist_vari_inventory'];
+                if ($request->hasFile('exist_vari_attr_images'))
+                {
+                    foreach ($request->file('exist_vari_attr_images') as $variantId => $image) {
+                        if ($image) {
+                            $variImageNameExist = time() . '_' . uniqid('', true) . '.' . $image->getClientOriginalExtension();
+                            $variImagePathExist = $image->storeAs('product_images/main_images', $variImageNameExist, 'public');
+                
+                            $productAttrImage = ['image' => $variImagePathExist];
+                
+                            DB::table('product_variants')
+                                ->where('id', $variantId)
+                                ->update($productAttrImage);
+                        }
+                    }
+                }
+                foreach ($skuArrExist as $key1 => $val1) {
+
+                    $id = $idArrExist[$key1];
+                    $productAttrArrE['title'] = $nameArrExist[$key1];
+                    $productAttrArrE['price'] = $priceArrExist[$key1];
+                    $productAttrArrE['value'] = $valueArrExist[$key1];
+                    $productAttrArrE['barcode'] = $barcodeArrExist[$key1];
+                    $productAttrArrE['inventory'] = $inventoryArrExist[$key1];
+                    $productAttrArrE['sku'] = $skuArrExist[$key1];
+
+                    DB::table('product_variants')
+                        ->where('id', $id)
+                        ->update($productAttrArrE);
                 }
             }
         }
