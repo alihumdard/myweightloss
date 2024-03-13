@@ -69,18 +69,20 @@ function view_permission($page_name)
             switch ($page_name) {
                 case 'dashboard':
                 case 'categories':
-                    case 'add_category':
+                case 'add_category':
                 case 'consultations':
-                    case 'questions':
-                    case 'add_question':
-                    case 'assign_question':
+                case 'questions':
+                case 'add_question':
+                case 'assign_question':
                 case 'prodcuts':
-                    case 'add_product':
+                case 'add_product':
                 case 'orders':
+                case 'consultation_view':
+                case 'orders_recieved':
                 case 'doctors':
-                    case 'add_doctor':
+                case 'add_doctor':
                 case 'dispensaries':
-                    case 'add_dispensary':
+                case 'add_dispensary':
                 case 'users':
                 case 'contact':
                 case 'setting':
@@ -94,6 +96,8 @@ function view_permission($page_name)
             switch ($page_name) {
                 case 'dashboard':
                 case 'orders':
+                case 'orders_recieved':
+                case 'consultation_view':
                 case 'contact':
                 case 'setting':
                 case 'faq':
@@ -106,6 +110,8 @@ function view_permission($page_name)
             switch ($page_name) {
                 case 'dashboard':
                 case 'orders':
+                case 'orders_recieved':
+                case 'consultation_view':
                 case 'contact':
                 case 'setting':
                 case 'faq':
@@ -118,6 +124,7 @@ function view_permission($page_name)
             switch ($page_name) {
                 case 'dashboard':
                 case 'orders':
+                case 'orders_recieved':
                 case 'contact':
                 case 'setting':
                 case 'faq':

@@ -229,6 +229,7 @@
           </ul>
           <form action="{{ route('payment') }}" method="post">
             @csrf
+            <input type="hidden" name="product_id" value="{{ $value['product']['id']?? 0}}">
             <input type="hidden" name="total_ammount" value="{{ $total ?? 0}}">
             <input type="hidden" name="product_desc" value="{{ $value['product']['title'] ?? ''}}">
             <button  type="submit" class="btn btn__primary">Proceed To Checkout</button>
