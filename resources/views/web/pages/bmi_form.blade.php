@@ -189,7 +189,7 @@
                                         </div>
                                         <div class="checkbox_questions">
                                             <input name="terms" type="checkbox" class="icheck required" value="yes">
-                                            <label>Are you sure <a href="#" data-bs-toggle="modal" data-bs-target="#terms-txt"> Enter Correct Data</a>.</label>
+                                            <label>Please tick this box to confirm you provided the correct information.</label>
                                         </div>
                                     </div>
                                     <!-- /box_general -->

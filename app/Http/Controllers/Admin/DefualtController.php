@@ -50,16 +50,17 @@ class DefualtController extends Controller
             }
             session(['user_details' => $user]);
             $data['user']       = $user;
+            $data['role'] = user_role_no($user->role);
             // User roles: 1 for Super Admin, 2 for Admin, 3 for Doctor, 4 User
             if (isset($user->role) && $user->role == user_roles('1')) {
-                return view('admin.pages.dashboard');
+                return view('admin.pages.dashboard', $data);
             } else if (isset($user->role) && $user->role == user_roles('2')) {
-                return view('admin.pages.dashboard');
+                return view('admin.pages.dashboard', $data);
             } else if (isset($user->role) && $user->role == user_roles('3')) {
-                return view('admin.pages.dashboard');
+                return view('admin.pages.dashboard', $data);
             } else if (isset($user->role) && $user->role == user_roles('4')) {
                 // return redirect('/');
-                return view('admin.pages.dashboard');
+                return view('admin.pages.dashboard', $data);
             }
         } else {
             return redirect('/login');
@@ -108,8 +109,23 @@ class DefualtController extends Controller
                                 return  redirect('/admin');
                             } else if (isset($user->role) && $user->role == user_roles('3')) {
                                 return  redirect('/admin');
-                            } else if (isset($user->role) && $user->role == user_roles('4')) {
-                                return redirect()->route('web.bmiForm');
+                            } else if (isset($user->role) && $user->role == user_roles('4')) {     
+                                $product_id =  session('pro_id') ?? NULL;
+                                if($product_id){
+                                    if($user->consult_status != 'done'){
+                                        return redirect()->route('web.bmiForm');
+                                    }
+                                    else{
+                                        return redirect()->route('web.products');
+                                    }        
+                                }else{
+                                    if($user->consult_status != 'done'){
+                                        return redirect()->route('web.bmiForm');
+                                    }
+                                    else{
+                                        return redirect()->route('admin.index');
+                                    }
+                                }
                             }
                             // return redirect()->back()->with(['status' => 'success', 'message' => 'User successfully logged in', 'token' => $token]);
                         } else {
@@ -155,6 +171,15 @@ class DefualtController extends Controller
             return redirect('/login');
         } else if (isset($user->role) && $user->role == user_roles('4')) {
             return redirect('/');
+        }
+    }
+    public function regisration_from(Request $request)
+    {
+        $data['user'] = auth()->user() ?? [];
+        if (auth()->user()) {
+            return redirect()->route('web.bmiForm');
+        } else {
+            return view('web.pages.regisration_from', $data);
         }
     }
 

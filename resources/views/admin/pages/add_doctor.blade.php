@@ -46,7 +46,7 @@
 
                             <div class="col-md-4">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" name="password" class="form-control" id="password" required>
+                                <input type="password" name="password" class="form-control" id="password" {{ $doctor['id'] ?? 'required' }}>
                                 <div class="invalid-feedback">Please enter password!</div>
                                 @error('password')
                                 <div class="alert-danger text-danger ">{{ $message }}</div>
@@ -55,7 +55,7 @@
 
                             <div class="col-md-4">
                                 <label for="speciality" class="form-label">speciality</label>
-                                <input type="text" name="speciality" class="form-control" id="speciality" required>
+                                <input type="text" name="speciality" value="{{ $doctor['speciality'] ?? old('speciality') }}" class="form-control" id="speciality" required>
                                 <div class="invalid-feedback">Please enter Sepcialization!</div>
                                 @error('speciality')
                                 <div class="alert-danger text-danger ">{{ $message }}</div>
@@ -100,7 +100,7 @@
 
                             <div class="col-12">
                                 <label for="short_bio" class="form-label">Short Bio</label>
-                                <textarea rows="4" name="short_bio" class="form-control" id="short_bio" placeholder="write short bio"> </textarea>
+                                <textarea rows="4" name="short_bio" class="form-control" id="short_bio" placeholder="write short bio">{{  $doctor['short_bio'] ?? '' }}</textarea>
                             </div>
 
                             <div class="text-center">

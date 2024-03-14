@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Arr;
 
 // models ...
 use App\Models\User;
@@ -29,6 +30,12 @@ use App\Models\ProductAttribute;
 use App\Models\ProductVariant;
 use Illuminate\Support\Facades\DB;
 use App\Models\QuestionMapping;
+use App\Models\Order;
+use App\Models\Transaction;
+use App\Models\UserConsultation;
+use App\Models\ConsultationQuestion;
+use App\Models\UserBmi;
+use Illuminate\Support\Facades\Redirect;
 
 class SystemController extends Controller
 {
@@ -73,6 +80,7 @@ class SystemController extends Controller
         }
 
         $data['user'] = auth()->user();
+        $data['state_list'] = STATE_LIST();
         if ($request->has('id')) {
             $data['admin'] = User::findOrFail($request->id)->toArray();
         }
@@ -88,7 +96,7 @@ class SystemController extends Controller
             return redirect()->back();
         }
 
-        $validator = Validator::make($request->all(), [
+        $rules = [
             'name'     => 'required',
             'phone'    => 'required',
             'address'  => 'required',
@@ -98,30 +106,37 @@ class SystemController extends Controller
                 'email',
                 Rule::unique('users')->ignore($request->id),
             ],
-            'password' => 'required',
-        ]);
-
+        ];
+        if (!isset($request->id)) {
+            $rules['password'] = 'required';
+        }
+    
+        $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
         $data['user'] = auth()->user();
 
+        $updateData = [
+            'name'       => ucwords($request->name),
+            'email'      => $request->email,
+            'role'       =>  $request->role,
+            'phone'      => $request->phone,
+            'address'    => $request->address,
+            'zip_code'   => $request->zip_code,
+            'city'       => $request->city,
+            'state'      => $request->state,
+            'status'     => $this->status['Active'],
+            'created_by' => $user->id,
+        ];
+        if ($request->password) {
+            $updateData['password'] = Hash::make($request->password);
+        }
+
         $saved = User::updateOrCreate(
             ['id' => $request->id ?? NULL],
-            [
-                'name'       => ucwords($request->name),
-                'email'      => $request->email,
-                'role'       =>  $request->role,
-                'phone'      => $request->phone,
-                'address'    => $request->address,
-                'zip_code'   => $request->zip_code,
-                'city'       => $request->city,
-                'state'      => $request->state,
-                'password'   => Hash::make($request->password),
-                'status'     => $this->status['Active'],
-                'created_by' => $user->id,
-            ]
+            $updateData
         );
         $message = "Admin " . ($request->id ? "Updated" : "Saved") . " Successfully";
         if ($saved) {
@@ -170,7 +185,7 @@ class SystemController extends Controller
             return redirect()->back();
         }
 
-        $validator = Validator::make($request->all(), [
+        $rules = [
             'name'       => 'required',
             'phone'      => 'required',
             'address'    => 'required',
@@ -181,31 +196,39 @@ class SystemController extends Controller
                 'email',
                 Rule::unique('users')->ignore($request->id),
             ],
-            'password' => 'required',
-        ]);
-
+        ];
+        
+        if (!isset($request->id)) {
+            $rules['password'] = 'required';
+        }
+        
+        $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
         $data['user'] = auth()->user();
 
+        $updateData = [
+            'name'       => ucwords($request->name),
+            'email'      => $request->email,
+            'role'       => $request->role,
+            'phone'      => $request->phone,
+            'address'    => $request->address,
+            'speciality' => $request->speciality,
+            'short_bio'  => $request->short_bio,
+            'zip_code'   => $request->zip_code,
+            'city'       => $request->city,
+            'status'     => $this->status['Active'],
+            'created_by' => $user->id,
+        ];
+        if ($request->password) {
+            $updateData['password'] = Hash::make($request->password);
+        }
+
         $saved = User::updateOrCreate(
             ['id' => $request->id ?? NULL],
-            [
-                'name'       => ucwords($request->name),
-                'email'      => $request->email,
-                'role'       =>  $request->role,
-                'phone'      => $request->phone,
-                'address'    => $request->address,
-                'speciality' => $request->speciality,
-                'short_bio'  => $request->short_bio,
-                'zip_code'   => $request->zip_code,
-                'city'       => $request->city,
-                'password'   => Hash::make($request->password),
-                'status'     => $this->status['Active'],
-                'created_by' => $user->id,
-            ]
+            $updateData
         );
         $message = "Doctor " . ($request->id ? "Updated" : "Saved") . " Successfully";
         if ($saved) {
@@ -492,12 +515,12 @@ class SystemController extends Controller
         // if (!view_permission($page_name)) {
         //     return redirect()->back();
         // }
-        
+
         $validator = Validator::make($request->all(), [
             'category_id'   => 'required',
             'question_id.*' => 'required',
         ]);
-        
+
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
@@ -508,7 +531,7 @@ class SystemController extends Controller
 
         foreach ($options as $option) {
             $value = $request->$option;
-            
+
             // Check if the value is not null
             if ($value !== null && $value !== '') {
                 $response = QuestionMapping::updateOrCreate(
@@ -528,8 +551,8 @@ class SystemController extends Controller
                 );
                 // Update AssignQuestion model
                 AssignQuestion::where('category_id', $request->category_id)
-                ->where('question_id', $value)
-                ->update(['is_dependent' => 1]);
+                    ->where('question_id', $value)
+                    ->update(['is_dependent' => 1]);
             }
         }
 
@@ -543,36 +566,35 @@ class SystemController extends Controller
         $category_id = $request->categoryId;
         $result['detail'] = Question::findOrFail($question_id)->toArray();
 
-        $result['other_qstn'] = AssignQuestion::join('assign_questions as tbl2', function ($join) use ($question_id)  {
+        $result['other_qstn'] = AssignQuestion::join('assign_questions as tbl2', function ($join) use ($question_id) {
             $join->on('assign_questions.category_id', '=', 'tbl2.category_id')
-                 ->where('tbl2.question_id', '!=', $question_id);
+                ->where('tbl2.question_id', '!=', $question_id);
         })
-        ->select('tbl2.question_id', 'tbl2.question_title')
-        ->where('assign_questions.question_id', $question_id)
-        ->where('assign_questions.category_id', $category_id)
-        ->pluck('tbl2.question_title', 'tbl2.question_id')
-        ->toArray();
+            ->select('tbl2.question_id', 'tbl2.question_title')
+            ->where('assign_questions.question_id', $question_id)
+            ->where('assign_questions.category_id', $category_id)
+            ->pluck('tbl2.question_title', 'tbl2.question_id')
+            ->toArray();
         // dd(DB::getQueryLog());
         return response()->json(['status' => 'success', 'result' => $result]);
     }
 
     public function get_next_question(Request $request)
-    { // working continue
+    {
         $question_id = $request->id;
         $category_id = $request->categoryId;
         $answer = $request->answer;
-        // $user_answer = $re
         $result['detail'] = Question::findOrFail($question_id)->toArray();
 
-        $result['other_qstn'] = AssignQuestion::join('assign_questions as tbl2', function ($join) use ($question_id)  {
+        $result['other_qstn'] = AssignQuestion::join('assign_questions as tbl2', function ($join) use ($question_id) {
             $join->on('assign_questions.category_id', '=', 'tbl2.category_id')
-                 ->where('tbl2.question_id', '!=', $question_id);
+                ->where('tbl2.question_id', '!=', $question_id);
         })
-        ->select('tbl2.question_id', 'tbl2.question_title')
-        ->where('assign_questions.question_id', $question_id)
-        ->where('assign_questions.category_id', $category_id)
-        ->pluck('tbl2.question_title', 'tbl2.question_id')
-        ->toArray();
+            ->select('tbl2.question_id', 'tbl2.question_title')
+            ->where('assign_questions.question_id', $question_id)
+            ->where('assign_questions.category_id', $category_id)
+            ->pluck('tbl2.question_title', 'tbl2.question_id')
+            ->toArray();
 
         return response()->json(['status' => 'success', 'result' => $result]);
     }
@@ -601,8 +623,9 @@ class SystemController extends Controller
             return redirect()->back();
         }
         $data['categories'] = Category::latest('id')->get()->toArray();
+        $data['product'] = [];
         if ($request->has('id')) {
-            $data['product'] = Product::findOrFail($request->id)->toArray();
+            $data['product'] = Product::with('variants')->findOrFail($request->id)->toArray();
         }
 
         return view('admin.pages.add_product', $data);
@@ -616,16 +639,9 @@ class SystemController extends Controller
             return redirect()->back();
         }
 
-        $validator = Validator::make($request->all(), [
+        $rules = [
             'price'      => 'required',
             'category_id' => 'required',
-            'main_image' => [
-                'required',
-                'image',
-                'mimes:jpeg,png,jpg,gif,webm,svg,webp',
-                'max:1024',
-                'dimensions:max_width=1000,max_height=1000',
-            ],
             'stock'        => 'required',
             'ext_tax'    => 'required',
             'desc'       => 'required',
@@ -634,14 +650,38 @@ class SystemController extends Controller
                 'required',
                 Rule::unique('products')->ignore($request->id),
             ],
-        ]);
+        ];
 
+        if($request->id == null || !$request->id){
+            $rules['main_image'] = [
+                'required',
+                'image',
+                'mimes:jpeg,png,jpg,gif,webm,svg,webp',
+                'max:1024',
+                'dimensions:max_width=1000,max_height=1000',
+            ];
+        }
+
+        $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             return response()->json(['status' => 'error', 'message' => $validator->errors()]);
         }
 
         $data['user'] = auth()->user();
         if ($request->hasFile('main_image')) {
+
+            $rules['main_image'] = [
+                'required',
+                'image',
+                'mimes:jpeg,png,jpg,gif,webm,svg,webp',
+                'max:1024',
+                'dimensions:max_width=1000,max_height=1000',
+            ];
+            $validator = Validator::make($request->all(), $rules);
+            if ($validator->fails()) {
+                return response()->json(['status' => 'error', 'message' => $validator->errors()]);
+            }
+
             $mainImage = $request->file('main_image');
             $mainImageName = time() . '_' . uniqid('', true) . '.' . $mainImage->getClientOriginalExtension();
             $mainImage->storeAs('product_images/main_images', $mainImageName, 'public');
@@ -656,7 +696,7 @@ class SystemController extends Controller
                 'desc'       => $request->desc,
                 'short_desc' => $request->short_desc,
                 'main_image' => $mainImagePath ?? Product::findOrFail($request->id)->main_image,
-                'category_id'=> $request->category_id,
+                'category_id' => $request->category_id,
                 'ext_tax'    => $request->ext_tax,
                 'barcode'    => $request->barcode,
                 'SKU'        => $request->SKU,
@@ -695,7 +735,7 @@ class SystemController extends Controller
             }
 
 
-
+            // new variant
             if ($request['vari_value'] ?? NULL) {
                 // handle the product variations .....
                 $valueArr = $request['vari_value'];
@@ -726,6 +766,46 @@ class SystemController extends Controller
                     DB::table('product_variants')->insert($productAttrArr);
                 }
             }
+
+            // update variant
+            if ($request['exist_vari_value'] ?? NULL) {
+                // handle the product variations .....
+                $idArrExist = $request['exist_vari_id'];
+                $valueArrExist = $request['exist_vari_value'];
+                $priceArrExist = $request['exist_vari_price'];
+                $skuArrExist   = $request['exist_vari_sku'];
+                $nameArrExist  = $request['exist_vari_name'];
+                $barcodeArrExist   = $request['exist_vari_barcode'];
+                $inventoryArrExist = $request['exist_vari_inventory'];
+                if ($request->hasFile('exist_vari_attr_images')) {
+                    foreach ($request->file('exist_vari_attr_images') as $variantId => $image) {
+                        if ($image) {
+                            $variImageNameExist = time() . '_' . uniqid('', true) . '.' . $image->getClientOriginalExtension();
+                            $variImagePathExist = $image->storeAs('product_images/main_images', $variImageNameExist, 'public');
+
+                            $productAttrImage = ['image' => $variImagePathExist];
+
+                            DB::table('product_variants')
+                                ->where('id', $variantId)
+                                ->update($productAttrImage);
+                        }
+                    }
+                }
+                foreach ($skuArrExist as $key1 => $val1) {
+
+                    $id = $idArrExist[$key1];
+                    $productAttrArrE['title'] = $nameArrExist[$key1];
+                    $productAttrArrE['price'] = $priceArrExist[$key1];
+                    $productAttrArrE['value'] = $valueArrExist[$key1];
+                    $productAttrArrE['barcode'] = $barcodeArrExist[$key1];
+                    $productAttrArrE['inventory'] = $inventoryArrExist[$key1];
+                    $productAttrArrE['sku'] = $skuArrExist[$key1];
+
+                    DB::table('product_variants')
+                        ->where('id', $id)
+                        ->update($productAttrArrE);
+                }
+            }
         }
 
         $message = "Product " . ($request->id ? "Updated" : "Saved") . " Successfully";
@@ -733,23 +813,157 @@ class SystemController extends Controller
     }
 
     // orders managment ...
+    public function order_detail(Request $request)
+    {
+        $data['user'] = auth()->user();
+        $page_name = 'orders';
+        if (!view_permission($page_name)) {
+            return redirect()->back();
+        }
+        if ($request->id) {
+            $data['order'] = Order::with('user', 'product', 'product.category')->where(['id' => $request->id, 'payment_status' => 'Paid'])->first()->toArray() ?? [];
+            if ($data['order']) {
+                return view('admin.pages.order_detail', $data);
+            } else {
+                return redirect()->back()->with('error', 'Order not found.');
+            }
+        } else {
+            return redirect()->back()->with('error', 'Order not found.');
+        }
+    }
+
+    public function consultation_view(Request $request)
+    {
+        $data['user'] = auth()->user();
+        $page_name = 'consultation_view';
+        if (!view_permission($page_name)) {
+            return redirect()->back();
+        }
+        if ($request->uid && $request->pid) {
+            $uid = base64_decode($request->uid);
+            $pid = base64_decode($request->pid);
+            $data['order']['id'] = base64_decode($request->oid);
+
+            $userbodyPorfile = UserBmi::with('user')->where(['user_id' => $uid, 'status' => '1'])->latest('created_at')->latest('id')->first();
+            if ($userbodyPorfile) {
+                $data['body_profile'] = $userbodyPorfile;
+                $userConsultation = UserConsultation::where(['user_id' => $uid, 'status' => '1'])->latest('created_at')->latest('id')->first();
+                if ($userConsultation) {
+                    $consutl_quest_ans = json_decode($userConsultation->question_answers, true);
+                    $consult_quest_keys = array_keys(array_filter($consutl_quest_ans, function ($value) {
+                        return $value !== null;
+                    }));
+                    $consult_questions = ConsultationQuestion::whereIn('id', $consult_quest_keys)->pluck('title', 'id')->toArray();
+                    $user_result = [];
+                    foreach ($consutl_quest_ans as $quest_id => $ans) {
+                        if (isset($consult_questions[$quest_id])) {
+                            $user_result[] = [
+                                'id' => $quest_id,
+                                'title' => $consult_questions[$quest_id],
+                                'answer' => $ans,
+                            ];
+                        }
+                    }
+                    $data['user_consult'] = $user_result;
+
+                    $transaction = Transaction::where(['user_id' => $uid, 'product_id' => $pid, 'status' => '1'])->latest('created_at')->latest('id')->first();
+                    if ($transaction) {
+                        $question_ans = json_decode($transaction->question_answers, true);
+                        $question_ids = array_keys($question_ans);
+                        $questions = Question::whereIn('id', $question_ids)->pluck('title', 'id')->toArray();
+
+                        $result = [];
+                        foreach ($question_ans as $question_id => $answer) {
+                            if (isset($questions[$question_id])) {
+                                $result[] = [
+                                    'id' => $question_id,
+                                    'title' => $questions[$question_id],
+                                    'answer' => $answer,
+                                ];
+                            }
+                        }
+                        $data['prodcut_consult'] = $result;
+                        return view('admin.pages.consultation_view', $data);
+                    } else {
+                        return redirect()->back()->with('error', 'Transaction not found.');
+                    }
+                } else {
+                    return redirect()->back()->with('error', 'Transaction not found.');
+                }
+            } else {
+                return redirect('/register');
+            }
+        } else {
+            return redirect()->back();
+        }
+    }
+
     public function orders_recieved()
     {
-        return view('admin.pages.orders_recieved');
+        $data['user'] = auth()->user();
+        $page_name = 'orders_recieved';
+        if (!view_permission($page_name)) {
+            return redirect()->back();
+        }
+        $orders = Order::with('user')->where(['payment_status' => 'Paid', 'status' => 'Received'])->latest('created_at')->get()->toArray();
+        if ($orders) {
+            $userIds = array_unique(Arr::pluck($orders, 'user.id'));
+
+            $userOrdersData = Order::select('id')->whereIn('user_id', $userIds)
+                ->where('id', '!=', $orders[0]['id'])
+                ->select('user_id', 'id')
+                ->get()->toArray();
+
+            $data['order_history'] = $userOrdersData;
+            $data['orders'] = $orders;
+        }
+
+        return view('admin.pages.orders_recieved', $data);
     }
 
     public function doctors_approval()
     {
-        return view('admin.pages.doctors_approval');
-    }
+        $data['user'] = auth()->user();
+        $page_name = 'doctors_approval';
+        if (!view_permission($page_name)) {
+            return redirect()->back();
+        }
+        $orders = Order::with('user')->where('payment_status', 'Paid')->whereIn('status', ['Approved', 'Not_Approved'])->latest('created_at')->get()->toArray();
+        if ($orders) {
+            $userIds = array_unique(Arr::pluck($orders, 'user.id'));
 
-    public function orders_confrimed()
-    {
-        return view('admin.pages.orders_confrimed');
+            $userOrdersData = Order::select('id')->whereIn('user_id', $userIds)
+                ->where('id', '!=', $orders[0]['id'])
+                ->select('user_id', 'id')
+                ->get()->toArray();
+
+            $data['order_history'] = $userOrdersData;
+            $data['orders'] = $orders;
+        }
+        return view('admin.pages.doctors_approval',$data);
     }
 
     public function orders_shiped()
     {
         return view('admin.pages.orders_shiped');
+    }
+
+    public function change_status(Request $request)
+    {
+        $validatedData = $request->validate([
+            'id' => 'required|exists:orders,id',
+            'status' => 'required',
+            'hcp_remarks' => 'required',
+        ]);
+
+        // Retrieve the order
+        $order = Order::findOrFail($validatedData['id']);
+        $order->status = $validatedData['status'];
+        $order->hcp_remarks = $validatedData['hcp_remarks'];
+        $update = $order->save();
+        if ($update) {
+            return redirect()->route('admin.doctorsApproval');
+        }
+        return redirect()->back();
     }
 }

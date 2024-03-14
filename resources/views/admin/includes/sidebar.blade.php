@@ -101,12 +101,7 @@
                 </li>
                 <li>
                     <a class="{{(request()->routeIs(['admin.doctorsApproval'])) ? 'nav-link ' : ''}}" href="{{route('admin.doctorsApproval')}}">
-                        <i class="bi bi-circle"></i><span>Medical Professionals Approval</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="{{(request()->routeIs(['admin.ordersConfrimed'])) ? 'nav-link ' : ''}}" href="{{route('admin.ordersConfrimed')}}">
-                        <i class="bi bi-circle"></i><span>Confirmed Orders</span>
+                        <i class="bi bi-circle"></i><span>Medical Professionals Status</span>
                     </a>
                 </li>
                 <li>

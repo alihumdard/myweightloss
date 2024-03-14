@@ -186,8 +186,14 @@ $(function () {
     $('.increase-qty').on('click', function () {
         var $qty = $(this).parent().find('.qty-input');
         var currentVal = parseInt($qty.val());
-        if (!isNaN(currentVal)) {
+        if (!isNaN(currentVal) && currentVal < 5) {
             $qty.val(currentVal + 1);
+            var shippingCost = $('input[name="shipping_method"]:checked').data('ship');
+            var price = $('.cart-product__price').text();
+            var total = price * (currentVal + 1) + shippingCost;
+            $('.cart-product__total').text(total);
+            $('.total-hidden').val(total);
+            $('.checkout-btn').text('Proceed To Checkout  ($' + total + ')');
         }
     });
     // Decrease Value
@@ -196,6 +202,12 @@ $(function () {
         var currentVal = parseInt($qty.val());
         if (!isNaN(currentVal) && currentVal > 1) {
             $qty.val(currentVal - 1);
+            var shippingCost = $('input[name="shipping_method"]:checked').data('ship');
+            var price = $('.cart-product__price').text();
+            var total = price * (currentVal - 1)  + shippingCost;
+            $('.cart-product__total').text(total);
+            $('.total-hidden').val(total);
+            $('.checkout-btn').text('Proceed To Checkout  ($' + total + ')');
         }
     });
 

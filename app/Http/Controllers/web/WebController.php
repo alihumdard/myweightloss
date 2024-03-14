@@ -31,6 +31,7 @@ use App\Models\Transaction;
 use App\Models\UserBmi;
 use App\Models\UserConsultation;
 use App\Models\Cart;
+use App\Models\Order;
 use App\Models\QuestionMapping;
 use Illuminate\Support\Facades\DB;
 
@@ -44,10 +45,13 @@ use Deyjandi\VivaWallet\Payment;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 
+use GuzzleHttp\Client;
+
 class WebController extends Controller
 {
     public function products(Request $request)
     {
+        session()->forget('pro_id');
         $cat_id = $request->input('cat_id') ?? NULL;
         $data['user'] = auth()->user() ?? [];
         $query = Product::with('category:id,name')->latest('id');
@@ -65,8 +69,8 @@ class WebController extends Controller
     {
         $data['user'] = auth()->user() ?? [];
         $data['product'] = Product::with('category:id,name', 'variants')->findOrFail($request->id)->toArray();
+        $data['rel_products'] = Product::where('category_id', $data['product']['category_id'])->where('id', '!=', $request->id)->take(4)->latest('id')->get()->toArray();
 
-        $data['rel_products'] = Product::where(['category_id' => $data['product']['category_id']])->take(4)->latest('id')->get()->toArray();
         return view('web.pages.product', $data);
     }
 
@@ -113,7 +117,7 @@ class WebController extends Controller
                 if ($key === 'question_3' && $value instanceof \Illuminate\Http\UploadedFile) {
                     // Handle image upload here
                     $imagePath = $value->store('images'); // You may need to customize the storage path
-                    $questionAnswers['question_3'] = $imagePath;
+                    $questionAnswers[3] = $imagePath;
                 } elseif (strpos($key, 'question_') === 0) {
                     $question_id = substr($key, 9); // Extract question_id from the key
                     $questionAnswers[$question_id] = $value;
@@ -122,34 +126,42 @@ class WebController extends Controller
 
             $save =  UserConsultation::create([
                 'user_id' => auth()->user()->id,
-                'question_answers' => json_encode($questionAnswers),
+                'question_answers' => json_encode($questionAnswers, JSON_FORCE_OBJECT),
                 'status' => '1',
                 'created_by' => auth()->user()->id,
             ]);
 
             if ($save) {
-                return redirect()->route('admin.index');
+                DB::table('users')
+                    ->where('id', auth()->id())
+                    ->update(['consult_status' => 'done']);
+
+                $product_id =  session('pro_id') ?? NULL;
+                if ($product_id) {
+                    return redirect()->route('web.products');
+                } else {
+                    return redirect()->route('admin.index');
+                }
             }
         }
     }
 
-    public function regisration_from(Request $request)
-    {
-        $data['user'] = auth()->user() ?? [];
-        if (auth()->user()) {
-            return redirect()->route('web.bmiForm');
-        } else {
-            return view('web.pages.regisration_from', $data);
-        }
-    }
 
     public function product_question(Request $request)
     {
         $data['user'] = auth()->user() ?? [];
-        if (auth()->user()) {
+        $data['product']   = Product::with(['category:id,name', 'category.questions', 'assignedQuestions'])->findOrFail($request->id)->toArray();
+        $data['category']  = $data['product']['category'];
 
-            $data['product']   = Product::with(['category:id,name', 'category.questions', 'assignedQuestions'])->findOrFail($request->id)->toArray();
-            $data['category']  = $data['product']['category'];
+        if (auth()->user()) {
+            if ($data['user']->profile_status != 'done') {
+                session()->put('pro_id', $data['product']['id']);
+                return redirect()->route('web.bmiForm');
+            } else if ($data['user']->consult_status != 'done') {
+                session()->put('pro_id', $data['product']['id']);
+                return redirect()->route('web.bmiForm');
+            }
+
             $data['questions'] = $data['product']['category']['questions'];
             $question_map_cat  = QuestionMapping::where('category_id', $data['category']['id'])->get()->toArray();
             $check_dependency  = $data['product']['assigned_questions'];
@@ -189,7 +201,8 @@ class WebController extends Controller
 
             return view('web.pages.product_question', $data);
         } else {
-            return view('web.pages.regisration_from', $data);
+            session()->put('pro_id', $data['product']['id']);
+            return redirect()->route('register');
         }
     }
 
@@ -200,26 +213,34 @@ class WebController extends Controller
         if (auth()->user()) {
             $product_id = $request->input('product_id');
             $category_id = $request->input('category_id');
-
             $questionAnswers = [];
+
             foreach ($request->all() as $key => $value) {
                 if (strpos($key, 'qid_') === 0) {
                     $question_id = substr($key, 4); // Extract question_id from the key
                     $questionAnswers[$question_id] = $value;
+                } else if (strpos($key, 'qfid_') === 0) {
+                    $question_id = substr($key, 5);
+                    if ($request->hasFile($key)) {
+                        $file = $request->file($key);
+                        $fileName = time() . '_' . uniqid('', true) . '.' . $file->getClientOriginalExtension();
+                        $file->storeAs('consultation/product', $fileName, 'public');
+                        $filePath = 'consultation/product/' . $fileName;
+                        $questionAnswers[$question_id] = $filePath;
+                    }
                 }
             }
-
             $save =  Transaction::create([
                 'user_id' => auth()->user()->id,
                 'product_id' => $product_id,
                 'category_id' => $category_id,
-                'question_answers' => json_encode($questionAnswers),
+                'question_answers' =>  json_encode($questionAnswers, JSON_FORCE_OBJECT),
                 'status' => '1',
                 'created_by' => auth()->user()->id,
             ]);
 
             if ($save) {
-                return redirect()->route('web.products', ['cat_id' => $category_id]);
+                return redirect()->route('web.cart', ['id' => $product_id]);
             }
         } else {
             return view('web.pages.regisration_from', $data);
@@ -248,6 +269,9 @@ class WebController extends Controller
             ]);
 
             if ($save) {
+                DB::table('users')
+                    ->where('id', auth()->id())
+                    ->update(['profile_status' => 'done']);
                 return redirect()->route('web.bmiForm');
             }
         } else {
@@ -294,15 +318,30 @@ class WebController extends Controller
 
         if (auth()->user()) {
             if ($request->id) {
-                $save =  Cart::create([
-                    'user_id' => auth()->user()->id,
-                    'product_id' => $request->id,
-                    'quantity' => 1,
-                    'status' => '1',
-                    'created_by' => auth()->user()->id,
-                ]);
+                $save = Cart::updateOrCreate(
+                    [
+                        'user_id' => auth()->user()->id,
+                        'product_id' => $request->id,
+                        'status' => '1',
+                        'created_by' => auth()->user()->id,
+                    ],
+                    [
+                        'user_id' => auth()->user()->id,
+                        'product_id' => $request->id,
+                        'quantity' => 1,
+                        'status' => '1',
+                        'created_by' => auth()->user()->id,
+                    ]
+                );
+                // $save =  Cart::create([
+                //     'user_id' => auth()->user()->id,
+                //     'product_id' => $request->id,
+                //     'quantity' => 1,
+                //     'status' => '1',
+                //     'created_by' => auth()->user()->id,
+                // ]);
             }
-            $data['cart'] = Cart::with('product')->where('user_id', auth()->user()->id)->get()->toArray();
+            $data['cart'] = Cart::with('product')->where(['user_id' => auth()->user()->id, 'status' => 1])->first()->toArray();
             $data['total'] = 0;
             return view('web.pages.cart', $data);
         } else {
@@ -310,67 +349,84 @@ class WebController extends Controller
         }
     }
 
-
-    public function makeCurlRequest(Request $request)
+    public function payment(Request $request)
     {
-        $productPrice = 100;
-        $productName = 'health product';
-        $productDescription = 'it is for testing product philp';
 
-        // Viva Wallet API credentials
-        $username = 'dkwrul3i0r4pwsgkko3nr8c4vs0h5yn5tunio398ik403.apps.vivapayments.com';
-        $password = 'BuLY8U1pEsXNPBgaqz98y54irE7OpL';
-        $credentials = base64_encode($username . ':' . $password);
+        $user = auth()->user() ?? [];
+        if (auth()->user()) {
+            // creating the order..
+            $save =  Order::create([
+                'user_id'        => auth()->user()->id,
+                'product_id'     => $request->product_id,
+                'coupon_code'    => $request->coupon_code ?? Null,
+                'coupon_value'   => $request->coupon_value ?? Null,
+                'total_ammount'  => $request->total_ammount ?? Null,
+                'created_by'     => auth()->user()->id,
+            ]);
+            if ($save) {
+                return redirect()->away('/Completed-order');
+                $productPrice = $request->total_ammount * 100;
+                $productName = 'health product';
+                $productDescription = $request->product_desc;
 
-        // Obtain Access Token
-        $accessToken = $this->getAccessToken($credentials);
-        // dd($accessToken);
-        // Prepare POST fields for creating an order
-        $postFields = [
-            'amount'              => $productPrice,
-            'customerTrns'        => $productDescription,
-            'customer'            => [
-                'email'       => 'alihumdard@gmail.com',
-                'fullName'    => 'George Seferis',
-                'phone'       => '69232323',
-                'countryCode' => 'GB', // United Kingdom country code
-                'requestLang' => 'en-GB', // Request language set to English (United Kingdom)
-            ],
-            'paymentTimeout'      => 1800,
-            'preauth'             => false,
-            'allowRecurring'      => false,
-            'maxInstallments'     => 0,
-            'paymentNotification' => true,
-            'disableExactAmount'  => false,
-            'disableCash'         => false,
-            'disableWallet'       => false,
-            'sourceCode'          => '2399',
-            "merchantTrns" => "Short description of items/services purchased by customer",
-            "tags" =>
-            [
-                "tags for grouping and filtering the transactions",
-                "this tag can be searched on VivaWallet sales dashboard",
-                "Sample tag 1",
-                "Sample tag 2",
-                "Another string"
-            ],
-        ];
+                // Viva Wallet API credentials
+                $username = 'dkwrul3i0r4pwsgkko3nr8c4vs0h5yn5tunio398ik403.apps.vivapayments.com';
+                $password = 'BuLY8U1pEsXNPBgaqz98y54irE7OpL';
+                $credentials = base64_encode($username . ':' . $password);
 
-        // Make an HTTP request to create an order
-        $response = $this->sendHttpRequest('https://api.vivapayments.com/checkout/v2/orders', $postFields, $accessToken);
-        // dd($response);
+                // Obtain Access Token
+                $accessToken = $this->getAccessToken($credentials);
+                // dd($accessToken);
+                // Prepare POST fields for creating an order
+                $postFields = [
+                    'amount'              => $productPrice,
+                    'customerTrns'        => $productDescription,
+                    'customer'            => [
+                        'email'       => $user->email,
+                        'fullName'    => $user->name,
+                        'phone'       => $user->phone,
+                        'countryCode' => 'GB', // United Kingdom country code
+                        'requestLang' => 'en-GB', // Request language set to English (United Kingdom)
+                    ],
+                    'paymentTimeout'      => 1800,
+                    'preauth'             => false,
+                    'allowRecurring'      => false,
+                    'maxInstallments'     => 0,
+                    'paymentNotification' => true,
+                    'disableExactAmount'  => false,
+                    'disableCash'         => false,
+                    'disableWallet'       => false,
+                    'sourceCode'          => '2399',
+                    "merchantTrns" => "Short description of items/services purchased by customer",
+                    "tags" =>
+                    [
+                        "tags for grouping and filtering the transactions",
+                        "this tag can be searched on VivaWallet sales dashboard",
+                        "Sample tag 1",
+                        "Sample tag 2",
+                        "Another string"
+                    ],
+                ];
 
-        // Decode the JSON response
-        $responseData = json_decode($response, true);
+                // Make an HTTP request to create an order
+                $response = $this->sendHttpRequest('https://api.vivapayments.com/checkout/v2/orders', $postFields, $accessToken);
+                // dd($response);
 
-        if (isset($responseData['orderCode'])) {
-            $orderCode = $responseData['orderCode'];
+                // Decode the JSON response
+                $responseData = json_decode($response, true);
 
-            // Redirect to the Viva Payments checkout page with the orderCode parameter
-            $redirectUrl = "https://www.vivapayments.com/web/checkout?ref={$orderCode}&color=c50c26";
+                if (isset($responseData['orderCode'])) {
+                    $orderCode = $responseData['orderCode'];
 
-            // Redirect to the external URL
-            return redirect()->away($redirectUrl);
+                    // Redirect to the Viva Payments checkout page with the orderCode parameter
+                    $redirectUrl = "https://www.vivapayments.com/web/checkout?ref={$orderCode}&color=c50c26";
+
+                    // Redirect to the external URL
+                    return redirect()->away($redirectUrl);
+                }
+            }
+        } else {
+            return redirect()->route('login');
         }
     }
 
@@ -432,6 +488,12 @@ class WebController extends Controller
         $data['user'] = auth()->user() ?? [];
 
         if (auth()->user()) {
+            Order::where(['user_id' => auth()->user()->id, 'payment_status' => 'Unpaid', 'status' => 'Received'])->latest('created_at')->first()
+                ->update(['payment_status' => 'Paid']);
+
+            Cart::where(['user_id' => auth()->user()->id, 'status' => 1])
+                ->update(['status' => 2]);
+
             return view('web.pages.completed_order', $data);
         } else {
             return redirect()->route('login');
@@ -448,5 +510,49 @@ class WebController extends Controller
         } else {
             return redirect()->route('login');
         }
+    }
+
+    public function get_order(Request $request)
+    {
+        $order_id = $request->id;
+
+        $apiKey = env('ROYAL_MAIL_API_KEY');
+
+        $client = new Client();
+        $response = $client->get('https://api.parcel.royalmail.com/api/v1/orders/' . $order_id, [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $apiKey,
+            ]
+        ]);
+
+        $statusCode = $response->getStatusCode();
+        $body = $response->getBody()->getContents();
+
+        return response()->json([
+            'status_code' => $statusCode,
+            'response' => json_decode($body, true),
+        ]);
+    }
+
+    public function create_order(Request $request)
+    {
+        // response example:  views\web\pages\example.blade.php
+        $apiKey = env('ROYAL_MAIL_API_KEY');
+        $client = new Client();
+        $response = $client->post('https://api.parcel.royalmail.com/api/v1/orders', [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $apiKey,
+                'Content-Type' => 'application/json',
+            ],
+            'json' => $request->all(),
+        ]);
+
+        $statusCode = $response->getStatusCode();
+        $body = $response->getBody()->getContents();
+
+        return response()->json([
+            'status_code' => $statusCode,
+            'response' => json_decode($body, true),
+        ]);
     }
 }

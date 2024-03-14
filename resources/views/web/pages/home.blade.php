@@ -82,9 +82,9 @@
                             <img src="{{ asset('storage/'.$value['main_image'])}}" alt="Product img" loading="lazy">
                         </a>
                         <div class="product__action">
-                            <a href="{{ route('web.bmiForm')}}" class="btn btn__primary btn__rounded">
+                            <a href="{{ route('web.product', ['id' => $value['id']]) }}" class="btn btn__primary btn__rounded">
                                 <!-- <i class="icon-cart"></i> <span>Add To Cart</span> -->
-                                <i class="icon-calendar"></i> <span>Contsultations</span>
+                                <i class="icon-calendar"></i> <span>{{ ($user && $user->consult_status == 'done' && $user->profile_status == 'done') ? ' Select Treatment' : ' Learn More' }}</span>
                             </a>
                         </div>
                     </div>
@@ -132,7 +132,7 @@
                         <li>Ongoing Patient Care​</li>
                     </ul>
                     <div class="d-flex flex-wrap">
-                        <a href="{{ route('web.regisrationFrom')}}"  class="btn btn__white btn__rounded mr-30">
+                        <a href="{{ route('register')}}"  class="btn btn__white btn__rounded mr-30">
                             <span>Start Free Consultation </span> <i class="icon-arrow-right"></i>
                         </a>
                         <!-- <a href="contact-us.html" class="btn btn__white btn__outlined btn__rounded">
