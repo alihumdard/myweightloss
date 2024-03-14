@@ -32,6 +32,9 @@ use Illuminate\Support\Facades\DB;
 use App\Models\QuestionMapping;
 use App\Models\Order;
 use App\Models\Transaction;
+use App\Models\UserConsultation;
+use App\Models\ConsultationQuestion;
+use App\Models\UserBmi;
 use Illuminate\Support\Facades\Redirect;
 
 class SystemController extends Controller
@@ -699,7 +702,7 @@ class SystemController extends Controller
             }
 
 
-// new variant
+            // new variant
             if ($request['vari_value'] ?? NULL) {
                 // handle the product variations .....
                 $valueArr = $request['vari_value'];
@@ -731,7 +734,7 @@ class SystemController extends Controller
                 }
             }
 
-// update variant
+            // update variant
             if ($request['exist_vari_value'] ?? NULL) {
                 // handle the product variations .....
                 $idArrExist = $request['exist_vari_id'];
@@ -741,15 +744,14 @@ class SystemController extends Controller
                 $nameArrExist  = $request['exist_vari_name'];
                 $barcodeArrExist   = $request['exist_vari_barcode'];
                 $inventoryArrExist = $request['exist_vari_inventory'];
-                if ($request->hasFile('exist_vari_attr_images'))
-                {
+                if ($request->hasFile('exist_vari_attr_images')) {
                     foreach ($request->file('exist_vari_attr_images') as $variantId => $image) {
                         if ($image) {
                             $variImageNameExist = time() . '_' . uniqid('', true) . '.' . $image->getClientOriginalExtension();
                             $variImagePathExist = $image->storeAs('product_images/main_images', $variImageNameExist, 'public');
-                
+
                             $productAttrImage = ['image' => $variImagePathExist];
-                
+
                             DB::table('product_variants')
                                 ->where('id', $variantId)
                                 ->update($productAttrImage);
@@ -808,27 +810,55 @@ class SystemController extends Controller
             $uid = base64_decode($request->uid);
             $pid = base64_decode($request->pid);
 
-            $transaction = Transaction::where(['user_id' => $uid, 'product_id' => $pid, 'status' => '1'])->latest('created_at')->latest('id')->first();
-            if ($transaction) {
-                $question_ans = json_decode($transaction->question_answers, true);
-                $question_ids = array_keys($question_ans);
-                $questions = Question::whereIn('id', $question_ids)->pluck('title', 'id')->toArray();
-
-                $result = [];
-                foreach ($question_ans as $question_id => $answer) {
-                    if (isset($questions[$question_id])) {
-                        $result[] = [
-                            'id' => $question_id,
-                            'title' => $questions[$question_id],
-                            'answer' => $answer,
+            $userbodyPorfile = UserBmi::where(['user_id' => $uid, 'status' => '1'])->latest('created_at')->latest('id')->first();
+            if ($userbodyPorfile) {
+                $data['body_profile'] = $userbodyPorfile;
+            $userConsultation = UserConsultation::where(['user_id' => $uid, 'status' => '1'])->latest('created_at')->latest('id')->first();
+            if ($userConsultation) {
+                $consutl_quest_ans = json_decode($userConsultation->question_answers, true);
+                $consult_quest_keys = array_keys(array_filter($consutl_quest_ans, function ($value) {
+                    return $value !== null;
+                }));
+                $consult_questions = ConsultationQuestion::whereIn('id', $consult_quest_keys)->pluck('title', 'id')->toArray();
+                $user_result = [];
+                foreach ($consutl_quest_ans as $quest_id => $ans) {
+                    if (isset($consult_questions[$quest_id])) {
+                        $user_result[] = [
+                            'id' => $quest_id,
+                            'title' => $consult_questions[$quest_id],
+                            'answer' => $ans,
                         ];
                     }
                 }
-                $data['prodcut_consult'] = $result;
-                return view('admin.pages.consultation_view', $data);
+                $data['user_consult'] = $user_result;
+
+                $transaction = Transaction::where(['user_id' => $uid, 'product_id' => $pid, 'status' => '1'])->latest('created_at')->latest('id')->first();
+                if ($transaction) {
+                    $question_ans = json_decode($transaction->question_answers, true);
+                    $question_ids = array_keys($question_ans);
+                    $questions = Question::whereIn('id', $question_ids)->pluck('title', 'id')->toArray();
+
+                    $result = [];
+                    foreach ($question_ans as $question_id => $answer) {
+                        if (isset($questions[$question_id])) {
+                            $result[] = [
+                                'id' => $question_id,
+                                'title' => $questions[$question_id],
+                                'answer' => $answer,
+                            ];
+                        }
+                    }
+                    $data['prodcut_consult'] = $result;
+                    return view('admin.pages.consultation_view', $data);
+                } else {
+                    return redirect()->back()->with('error', 'Transaction not found.');
+                }
             } else {
                 return redirect()->back()->with('error', 'Transaction not found.');
             }
+        } else {
+            return redirect('register');
+        }
         } else {
             return redirect()->back();
         }
