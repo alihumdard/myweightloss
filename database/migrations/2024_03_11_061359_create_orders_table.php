@@ -22,8 +22,10 @@ return new class extends Migration
             $table->integer('total_ammount');
             $table->string('payment_id')->nullable();
             $table->string('payment_status')->default('Unpaid');
+            $table->text('hcp_remarks')->nullable();
             $table->string('status')->default('Received');
             $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('approved_by')->nullable()->default(null);
             $table->unsignedBigInteger('updated_by')->nullable()->default(null);
             $table->timestamps();
         });

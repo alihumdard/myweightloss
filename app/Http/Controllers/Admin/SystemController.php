@@ -821,7 +821,7 @@ class SystemController extends Controller
             return redirect()->back();
         }
         if ($request->id) {
-            $data['order'] = Order::with('user', 'product', 'product.category')->where(['id' => $request->id, 'payment_status' => 'Paid', 'status' => 'Received'])->first()->toArray() ?? [];
+            $data['order'] = Order::with('user', 'product', 'product.category')->where(['id' => $request->id, 'payment_status' => 'Paid'])->first()->toArray() ?? [];
             if ($data['order']) {
                 return view('admin.pages.order_detail', $data);
             } else {
@@ -842,56 +842,57 @@ class SystemController extends Controller
         if ($request->uid && $request->pid) {
             $uid = base64_decode($request->uid);
             $pid = base64_decode($request->pid);
+            $data['order']['id'] = base64_decode($request->oid);
 
             $userbodyPorfile = UserBmi::where(['user_id' => $uid, 'status' => '1'])->latest('created_at')->latest('id')->first();
             if ($userbodyPorfile) {
                 $data['body_profile'] = $userbodyPorfile;
-            $userConsultation = UserConsultation::where(['user_id' => $uid, 'status' => '1'])->latest('created_at')->latest('id')->first();
-            if ($userConsultation) {
-                $consutl_quest_ans = json_decode($userConsultation->question_answers, true);
-                $consult_quest_keys = array_keys(array_filter($consutl_quest_ans, function ($value) {
-                    return $value !== null;
-                }));
-                $consult_questions = ConsultationQuestion::whereIn('id', $consult_quest_keys)->pluck('title', 'id')->toArray();
-                $user_result = [];
-                foreach ($consutl_quest_ans as $quest_id => $ans) {
-                    if (isset($consult_questions[$quest_id])) {
-                        $user_result[] = [
-                            'id' => $quest_id,
-                            'title' => $consult_questions[$quest_id],
-                            'answer' => $ans,
-                        ];
-                    }
-                }
-                $data['user_consult'] = $user_result;
-
-                $transaction = Transaction::where(['user_id' => $uid, 'product_id' => $pid, 'status' => '1'])->latest('created_at')->latest('id')->first();
-                if ($transaction) {
-                    $question_ans = json_decode($transaction->question_answers, true);
-                    $question_ids = array_keys($question_ans);
-                    $questions = Question::whereIn('id', $question_ids)->pluck('title', 'id')->toArray();
-
-                    $result = [];
-                    foreach ($question_ans as $question_id => $answer) {
-                        if (isset($questions[$question_id])) {
-                            $result[] = [
-                                'id' => $question_id,
-                                'title' => $questions[$question_id],
-                                'answer' => $answer,
+                $userConsultation = UserConsultation::where(['user_id' => $uid, 'status' => '1'])->latest('created_at')->latest('id')->first();
+                if ($userConsultation) {
+                    $consutl_quest_ans = json_decode($userConsultation->question_answers, true);
+                    $consult_quest_keys = array_keys(array_filter($consutl_quest_ans, function ($value) {
+                        return $value !== null;
+                    }));
+                    $consult_questions = ConsultationQuestion::whereIn('id', $consult_quest_keys)->pluck('title', 'id')->toArray();
+                    $user_result = [];
+                    foreach ($consutl_quest_ans as $quest_id => $ans) {
+                        if (isset($consult_questions[$quest_id])) {
+                            $user_result[] = [
+                                'id' => $quest_id,
+                                'title' => $consult_questions[$quest_id],
+                                'answer' => $ans,
                             ];
                         }
                     }
-                    $data['prodcut_consult'] = $result;
-                    return view('admin.pages.consultation_view', $data);
+                    $data['user_consult'] = $user_result;
+
+                    $transaction = Transaction::where(['user_id' => $uid, 'product_id' => $pid, 'status' => '1'])->latest('created_at')->latest('id')->first();
+                    if ($transaction) {
+                        $question_ans = json_decode($transaction->question_answers, true);
+                        $question_ids = array_keys($question_ans);
+                        $questions = Question::whereIn('id', $question_ids)->pluck('title', 'id')->toArray();
+
+                        $result = [];
+                        foreach ($question_ans as $question_id => $answer) {
+                            if (isset($questions[$question_id])) {
+                                $result[] = [
+                                    'id' => $question_id,
+                                    'title' => $questions[$question_id],
+                                    'answer' => $answer,
+                                ];
+                            }
+                        }
+                        $data['prodcut_consult'] = $result;
+                        return view('admin.pages.consultation_view', $data);
+                    } else {
+                        return redirect()->back()->with('error', 'Transaction not found.');
+                    }
                 } else {
                     return redirect()->back()->with('error', 'Transaction not found.');
                 }
             } else {
-                return redirect()->back()->with('error', 'Transaction not found.');
+                return redirect('/register');
             }
-        } else {
-            return redirect('register');
-        }
         } else {
             return redirect()->back();
         }
@@ -905,32 +906,64 @@ class SystemController extends Controller
             return redirect()->back();
         }
         $orders = Order::with('user')->where(['payment_status' => 'Paid', 'status' => 'Received'])->latest('created_at')->get()->toArray();
-        $userIds = array_unique(Arr::pluck($orders, 'user.id'));
+        if ($orders) {
+            $userIds = array_unique(Arr::pluck($orders, 'user.id'));
 
-        $userOrdersData = Order::select('id')->whereIn('user_id', $userIds)
-            ->where('id', '!=', $orders[0]['id'])
-            ->select('user_id', 'id')
-            ->get()->toArray();
+            $userOrdersData = Order::select('id')->whereIn('user_id', $userIds)
+                ->where('id', '!=', $orders[0]['id'])
+                ->select('user_id', 'id')
+                ->get()->toArray();
 
-        $data['order_history'] = $userOrdersData;
-        $data['orders'] = $orders;
-        // dd($userOrdersData);
+            $data['order_history'] = $userOrdersData;
+            $data['orders'] = $orders;
+        }
 
         return view('admin.pages.orders_recieved', $data);
     }
 
     public function doctors_approval()
     {
-        return view('admin.pages.doctors_approval');
-    }
+        $data['user'] = auth()->user();
+        $page_name = 'doctors_approval';
+        if (!view_permission($page_name)) {
+            return redirect()->back();
+        }
+        $orders = Order::with('user')->where('payment_status', 'Paid')->whereIn('status', ['Approved', 'Not_Approved'])->latest('created_at')->get()->toArray();
+        if ($orders) {
+            $userIds = array_unique(Arr::pluck($orders, 'user.id'));
 
-    public function orders_confrimed()
-    {
-        return view('admin.pages.orders_confrimed');
+            $userOrdersData = Order::select('id')->whereIn('user_id', $userIds)
+                ->where('id', '!=', $orders[0]['id'])
+                ->select('user_id', 'id')
+                ->get()->toArray();
+
+            $data['order_history'] = $userOrdersData;
+            $data['orders'] = $orders;
+        }
+        return view('admin.pages.doctors_approval',$data);
     }
 
     public function orders_shiped()
     {
         return view('admin.pages.orders_shiped');
+    }
+
+    public function change_status(Request $request)
+    {
+        $validatedData = $request->validate([
+            'id' => 'required|exists:orders,id',
+            'status' => 'required',
+            'hcp_remarks' => 'required',
+        ]);
+
+        // Retrieve the order
+        $order = Order::findOrFail($validatedData['id']);
+        $order->status = $validatedData['status'];
+        $order->hcp_remarks = $validatedData['hcp_remarks'];
+        $update = $order->save();
+        if ($update) {
+            return redirect()->route('admin.doctorsApproval');
+        }
+        return redirect()->back();
     }
 }
