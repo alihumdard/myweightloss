@@ -844,7 +844,7 @@ class SystemController extends Controller
             $pid = base64_decode($request->pid);
             $data['order']['id'] = base64_decode($request->oid);
 
-            $userbodyPorfile = UserBmi::where(['user_id' => $uid, 'status' => '1'])->latest('created_at')->latest('id')->first();
+            $userbodyPorfile = UserBmi::with('user')->where(['user_id' => $uid, 'status' => '1'])->latest('created_at')->latest('id')->first();
             if ($userbodyPorfile) {
                 $data['body_profile'] = $userbodyPorfile;
                 $userConsultation = UserConsultation::where(['user_id' => $uid, 'status' => '1'])->latest('created_at')->latest('id')->first();

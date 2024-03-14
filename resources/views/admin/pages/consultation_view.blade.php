@@ -90,6 +90,11 @@
                                 </tr>
                                 <tr>
                                     <td>#3434</td>
+                                    <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> Costumer DOB </td>
+                                    <td>{{ $body_profile->user->dob}} </td>
+                                </tr>
+                                <tr>
+                                    <td>#3434</td>
                                     <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> Costumer BMI's </td>
                                     <td>{{ $body_profile['bmi']}} </td>
                                 </tr>
