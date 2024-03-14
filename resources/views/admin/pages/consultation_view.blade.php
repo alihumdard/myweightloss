@@ -74,9 +74,30 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="d-none"> </td>
+                                    <td> </td>
+                                    <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center; background-color:aquamarine !important; "> Costumer Body Profile </td>
+                                    <td> </td>
+                                </tr>
+                                <tr>
+                                    <td>#3434</td>
+                                    <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> Costumer Gender </td>
+                                    <td>{{ $body_profile['gender']}} </td>
+                                </tr>
+                                <tr>
+                                    <td>#3434</td>
+                                    <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> Costumer Age </td>
+                                    <td>{{ $body_profile['age']}} </td>
+                                </tr>
+                                <tr>
+                                    <td>#3434</td>
+                                    <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> Costumer BMI's </td>
+                                    <td>{{ $body_profile['bmi']}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td> </td>
                                     <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center; background-color:aquamarine !important; "> Product Constulation </td>
-                                    <td class="d-none"> </td>
+                                    <td> </td>
                                 </tr>
                                 @foreach($prodcut_consult as $key => $val)
                                 <tr>
@@ -87,6 +108,25 @@
                                         <a class="fw-bold btn-link" href="{{ asset('storage/'.$val['answer']) }}" download>See File</a>
                                         @else
                                         <p>{{ $val['answer'] }}</p>
+                                        @endif
+                                    </td>
+                                </tr>
+                                @endforeach
+
+                                <tr>
+                                    <td> </td>
+                                    <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center; background-color:aquamarine !important; "> User Constulation </td>
+                                    <td> </td>
+                                </tr>
+                                @foreach($user_consult as $ind => $value)
+                                <tr>
+                                    <td style="vertical-align: middle; text-align: center;">#3434{{$value['id']}}</td>
+                                    <td>{{$value['title']}}</td>
+                                    <td>
+                                        @if (Str::startsWith($value['answer'], 'consultation/product/'))
+                                        <a class="fw-bold btn-link" href="{{ asset('storage/'.$value['answer']) }}" download>See File</a>
+                                        @else
+                                        <p>{{ $value['answer'] }}</p>
                                         @endif
                                     </td>
                                 </tr>
@@ -109,13 +149,13 @@
 <script>
     $(function() {
         $("#tbl_data").DataTable({
-            "paging": true,
-            "responsive": true,
+            "paging": false,
+            "responsive": false,
             "lengthChange": false,
-            "autoWidth": false,
+            "autoWidth": true,
             "searching": true,
-            "ordering": true,
-            "info": true,
+            "ordering": false,
+            "info": false,
             // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
             "buttons": [{
                     extend: 'pdf',

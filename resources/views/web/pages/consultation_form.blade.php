@@ -142,7 +142,9 @@
                                     <div class=" row question_title justify-content-center ">
                                         <div class="col-lg-7 animated zoomIn delay-fast">
                                             <h3>Why do you want to lose weight?</h3>
-                                            <p style="margin-bottom: 0;">It is important we understand the motives for trying to mange your weight as this can dictate the type of treatment plan we offer and more specifically the advice we give you for length of treatment and goals.</p>
+                                            <p style="margin-bottom: 0;">
+                                                It is important we understand the motives for trying to mange your weight as this can dictate the type of treatment plan we offer and more specifically the advice we give you for length of treatment and goals.
+                                            </p>
                                         </div>
                                     </div>
 
@@ -202,7 +204,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Please tell us about your other reasons for wanting to manage your weight?</h3>
-                                                <p style="margin-bottom: 0;" >
+                                                <p style="margin-bottom: 0;">
                                                 </p>
                                             </div>
                                         </div>
@@ -320,7 +322,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Do you have any allergies?</h3>
-                                                <p style="margin-bottom: 0;" >
+                                                <p style="margin-bottom: 0;">
                                                 </p>
                                             </div>
                                         </div>
@@ -359,7 +361,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Please tell us more about your allergies?</h3>
-                                                <p style="margin-bottom: 0;" >
+                                                <p style="margin-bottom: 0;">
                                                 </p>
                                             </div>
                                         </div>
@@ -439,7 +441,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>What was the reading / measurement of the last 6 months?</h3>
-                                                <p style="margin-bottom: 0;" >
+                                                <p style="margin-bottom: 0;">
                                                 </p>
                                             </div>
                                         </div>
@@ -485,7 +487,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Have you been prescribed anything to treat your high blood pressure?</h3>
-                                                <p style="margin-bottom: 0;" >
+                                                <p style="margin-bottom: 0;">
                                                 </p>
                                             </div>
                                         </div>
@@ -565,7 +567,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>What was the reading / measurement?</h3>
-                                                <p style="margin-bottom: 0;" >
+                                                <p style="margin-bottom: 0;">
                                                 </p>
                                             </div>
                                         </div>
@@ -604,7 +606,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Do you have any medical conditions?</h3>
-                                                <p style="margin-bottom: 0;" >
+                                                <p style="margin-bottom: 0;">
                                                 </p>
                                             </div>
                                         </div>
@@ -697,7 +699,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Tell us a little more about your medical conditions.</h3>
-                                                <p style="margin-bottom: 0;" >
+                                                <p style="margin-bottom: 0;">
                                                 </p>
                                             </div>
                                         </div>
@@ -770,7 +772,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Please list the medications or supplements you currently take.</h3>
-                                                <p style="margin-bottom: 0;" >
+                                                <p style="margin-bottom: 0;">
                                                 </p>
                                             </div>
                                         </div>
@@ -871,7 +873,7 @@
                                                     </div>
                                                     <div class="form-group short">
                                                         <label for="question_17_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio"  data-branch_id="no_branch" data-alert="Please choose an other option. You can not procceed futher with that option." id="question_17_ans_2" name="question_17" class="icheck required" value="No">
+                                                            <input type="radio" data-branch_id="no_branch" data-alert="Please choose an other option. You can not procceed futher with that option." id="question_17_ans_2" name="question_17" class="icheck required" value="No">
                                                             No
                                                         </label>
                                                     </div>
@@ -914,7 +916,7 @@
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
                                                         <label for="question_18_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio"  data-branch_id="no_branch" data-alert="Please choose an other option. You can not procceed futher with that option." id="question_18_ans_1" name="question_18" class="icheck required" value="Yes, I have apply.">
+                                                            <input type="radio" data-branch_id="no_branch" data-alert="Please choose an other option. You can not procceed futher with that option." id="question_18_ans_1" name="question_18" class="icheck required" value="Yes, I have apply.">
                                                             Yes, I have apply.
                                                         </label>
                                                     </div>
@@ -944,7 +946,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Have you ever been told you have any problems with your liver or kidneys?</h3>
-                                                <p style="margin-bottom: 0;" >
+                                                <p style="margin-bottom: 0;">
                                                 </p>
                                             </div>
                                         </div>
@@ -983,7 +985,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Have you ever been told you have any problems with your liver or kidneys?</h3>
-                                                <p style="margin-bottom: 0;" >
+                                                <p style="margin-bottom: 0;">
                                                 </p>
                                             </div>
                                         </div>
@@ -1017,7 +1019,7 @@
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Your mental health can be impacted by your weight. Tell us about your mental health and wellbeing. Which of the below applies to you?</h3>
                                                 <p style="margin-bottom: 0;">
-                                                    (Please select all that apply)
+                                                    <!-- (Please select all that apply) -->
                                                 </p>
                                             </div>
                                         </div>
@@ -1062,7 +1064,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Please tell us more about you mental health.?</h3>
-                                                <p style="margin-bottom: 0;" >
+                                                <p style="margin-bottom: 0;">
                                                 </p>
                                             </div>
                                         </div>
@@ -1095,7 +1097,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Have you had any significant weight loss in the last 6 months?</h3>
-                                                <p style="margin-bottom: 0;" >
+                                                <p style="margin-bottom: 0;">
                                                 </p>
                                             </div>
                                         </div>
@@ -1134,7 +1136,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Please tell us more about you mental health.?</h3>
-                                                <p style="margin-bottom: 0;" >
+                                                <p style="margin-bottom: 0;">
                                                 </p>
                                             </div>
                                         </div>
@@ -1397,7 +1399,7 @@
 
                         <!--  ===============  branch_26  =============== -->
                         <div class="branch" id="branch_26">
-                            <!-- question 29 -->
+                            <!-- question 30 -->
                             <div class="step" data-state="branchtype">
                                 <div class="card">
                                     <div class="card-body">
@@ -1406,7 +1408,6 @@
                                                 <h3>Tell us about Takeaways / Fast food.</h3>
                                                 <p style="margin-bottom: 0;">
                                                     Takeaways and fast food are typically high in fat and salt which can contribute to obesity as well as high blood pressure and heart disease.
-
                                                 </p>
                                             </div>
                                         </div>
@@ -1498,7 +1499,7 @@
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Do you do any moderate exercise?</h3>
                                                 <p style="margin-bottom: 0;">
-                                                    Moderate Exercise - Moderate activity will raise your heart rate, and make you breathe faster and feel warmer. One way to tell if you're working at a moderate intensity level is if you can still talk, but not sing. If the heart rate monitor says you're working at 50 to 60% of your max heart rate, then the exercise is considered moderate I do 75 mins of moderate
+                                                    Moderate Exercise - Moderate activity will raise your heart rate, and make you breathe faster and feel warmer. One way to tell if you're working at a moderate intensity level is if you can still talk, but not sing. If the heart rate monitor says you're working at 50 to 60% of your max heart rate, then the exercise is considered moderate I do 75 mins of moderate.
                                                 </p>
                                             </div>
                                         </div>
@@ -1544,7 +1545,8 @@
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Is your exercise ever vigorous intensity?</h3>
                                                 <p style="margin-bottom: 0;">
-                                                    Vigorous intensity activity makes you breathe hard and fast. If you're working at this level, you will not be able to say more than a few words without pausing for breath. If the heart rate monitor shows that you're working at 70 to 85% of your heart rate then it's vigorous exercise.</ </p>
+                                                    Vigorous intensity activity makes you breathe hard and fast. If you're working at this level, you will not be able to say more than a few words without pausing for breath. If the heart rate monitor shows that you're working at 70 to 85% of your heart rate then it's vigorous exercise.
+                                                </p>
                                             </div>
                                         </div>
 
@@ -1725,10 +1727,11 @@
                                     <div class="card-body">
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
-                                                <h3>Are you aware that you should never take more than one weight management medicine at a time? Do you agree to ensure you stop taking all other weight management medication before initiating myBMI treatment plan?</h3>
+                                                <h3>
+                                                    Are you aware that you should never take more than one weight management medicine at a time? Do you agree to ensure you stop taking all other weight management medication before initiating myBMI treatment plan?
+                                                </h3>
                                                 <p style="margin-bottom: 0;">
                                                     You should never take more than one weight management medicine at one time. Before starting a myBMI treatment plan you should stop taking any other weight management medication. MyBMI treatment plans on their own are enough to manage weight.
-                                                    <!-- Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus, perspiciatis!. -->
                                                 </p>
                                             </div>
                                         </div>
@@ -1885,8 +1888,8 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Would you like us to contact your doctor informing them of what medicine we have provided after your treatment plan is shipped?</h3>
-                                                <p style="margin-bottom: 0;" >
-                                                    This is optional for most conditions, however for some chronic conditions we cannot treat you unless we have permission to inform your NHS GP
+                                                <p style="margin-bottom: 0;">
+                                                    This is optional for most conditions, however for some chronic conditions we cannot treat you unless we have permission to inform your NHS GP.
                                                 </p>
                                             </div>
                                         </div>
@@ -1902,7 +1905,7 @@
                                                     </div>
                                                     <div class="form-group short">
                                                         <label for="question_41_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" id="question_41_ans_2" data-branch_id="no_branch" data-alert='We cannot provide this service or associated treatments without your consent to view your NHS medical record, and update your NHS GP.'  name="question_41" class="icheck required" value="No">
+                                                            <input type="radio" id="question_41_ans_2" data-branch_id="no_branch" data-alert='We cannot provide this service or associated treatments without your consent to view your NHS medical record, and update your NHS GP.' name="question_41" class="icheck required" value="No">
                                                             No.
                                                         </label>
                                                     </div>
@@ -1926,7 +1929,7 @@
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <h3>Please provide the name and address of your GP Surgery?</h3>
-                                                <p style="margin-bottom: 0;" >
+                                                <p style="margin-bottom: 0;">
                                                 </p>
                                             </div>
                                         </div>
@@ -1958,7 +1961,7 @@
                                                     through the NHS Summary Care Record Online Service? This can
                                                     help our clinicians ensure we are providing the right treatment for
                                                     you.?</h3>
-                                                <p style="margin-bottom: 0;" >
+                                                <p style="margin-bottom: 0;">
                                                     This is optional for most conditions, however for some chronic conditions we cannot treat you without seeing this.
                                                 </p>
                                             </div>
@@ -1975,7 +1978,7 @@
                                                     </div>
                                                     <div class="form-group short">
                                                         <label for="question_43_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" id="question_43_ans_2" data-branch_id="no_branch"  data-alert='We cannot provide this service or associated treatments without your consent to view your NHS medical record, and update your NHS GP.'  name="question_43" class="icheck required" value="No">
+                                                            <input type="radio" id="question_43_ans_2" data-branch_id="no_branch" data-alert='We cannot provide this service or associated treatments without your consent to view your NHS medical record, and update your NHS GP.' name="question_43" class="icheck required" value="No">
                                                             No.
                                                         </label>
                                                     </div>
@@ -1991,9 +1994,9 @@
                         <!-- /branch_37 -->
 
                         <!--  ===============  branch_38  =============== -->
-                        <div class="branch" id="branch_38" >
+                        <div class="branch" id="branch_38">
                             <!-- thank you page -->
-                            <div class="step submit" id="end" >
+                            <div class="step submit" id="end">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class=" row question_title justify-content-center ">

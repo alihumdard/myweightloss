@@ -117,7 +117,7 @@ class WebController extends Controller
                 if ($key === 'question_3' && $value instanceof \Illuminate\Http\UploadedFile) {
                     // Handle image upload here
                     $imagePath = $value->store('images'); // You may need to customize the storage path
-                    $questionAnswers['question_3'] = $imagePath;
+                    $questionAnswers[3] = $imagePath;
                 } elseif (strpos($key, 'question_') === 0) {
                     $question_id = substr($key, 9); // Extract question_id from the key
                     $questionAnswers[$question_id] = $value;
@@ -126,7 +126,7 @@ class WebController extends Controller
 
             $save =  UserConsultation::create([
                 'user_id' => auth()->user()->id,
-                'question_answers' => json_encode($questionAnswers),
+                'question_answers' => json_encode($questionAnswers, JSON_FORCE_OBJECT),
                 'status' => '1',
                 'created_by' => auth()->user()->id,
             ]);
