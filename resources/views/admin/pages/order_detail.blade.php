@@ -207,7 +207,7 @@
                                             <hr class="mb-4" style="background-color: #e0e0e0; opacity: 1;">
                                             <div class="row d-flex ">
                                                 <div class="col-lg-12 text-center ">
-                                                    <a target="_blank" href="{{ route('admin.consultationView', ['uid' => base64_encode($order['user']['id']), 'pid' => base64_encode($order['product']['id'])]) }}" class="btn btn-link fw-bold large">
+                                                    <a target="_blank" href="{{ route('admin.consultationView', ['uid' => base64_encode($order['user']['id']), 'pid' => base64_encode($order['product']['id']) ,'oid'=>  base64_encode($order['id'])]) }}" class="btn btn-link fw-bold large">
                                                         See Consultations
                                                     </a>
                                                 </div>

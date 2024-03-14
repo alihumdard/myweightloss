@@ -133,6 +133,14 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="card mt-4">
+                            <div class="card-body d-flex justify-content-center align-items-center py-3">
+                                <button class="btn btn-success rounded-pill px-5 py-2 fw-bold" data-bs-toggle="modal" data-bs-target="#doctor_remarks">
+                                    <i class="bi bi-arrow-right-circle"></i> Proceed Next
+                                </button>
+                            </div>
+                        </div>
+
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -142,7 +150,41 @@
 
 </main>
 <!-- End #main -->
+<div class="modal fade" id="doctor_remarks" tabindex="-1" data-bs-backdrop="false">
+    <div class="modal-dialog  modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-success">
+                <h5 class="modal-title fw-bold text-white">HealthCare Professional Feedback</h5>
+                <button type="button" class="btn-close fw-bold text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form_hcp_remarks"  class="row g-3 mt-1 needs-validation"  novalidate action="{{route('admin.changeStatus')}}" method="POST">
+                    @csrf
+                    <input type="hidden" name="id" required  value="{{$order['id']}}">
+                    <div class="col-12">
+                        <label for="status" class="form-label fw-bold">Order Status :</label>
+                        <select id="status" name="status" class="form-select" required >
+                            <option value="" selected>Choose...</option>
+                            <option value="Approved">Approved</option>
+                            <option value="Not_Approved">Not Approved</option>
+                        </select>
+                        <div class="invalid-feedback">Please select status!</div>
+                    </div>
 
+                    <div class="col-12">
+                        <label for="hcp_remarks" class="form-label fw-bold">Health Care Professional Notes: </label>
+                        <textarea name="hcp_remarks" class="form-control" id="hcp_remarks" rows="4" placeholder="write here..." required ></textarea>
+                        <div class="invalid-feedback">Please write Notes!</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button form="form_hcp_remarks" type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 @stop
 
 @pushOnce('scripts')

@@ -79,6 +79,7 @@ function view_permission($page_name)
                 case 'orders':
                 case 'consultation_view':
                 case 'orders_recieved':
+                case 'doctors_approval':
                 case 'doctors':
                 case 'add_doctor':
                 case 'dispensaries':
@@ -97,6 +98,7 @@ function view_permission($page_name)
                 case 'dashboard':
                 case 'orders':
                 case 'orders_recieved':
+                case 'doctors_approval':
                 case 'consultation_view':
                 case 'contact':
                 case 'setting':
@@ -112,6 +114,7 @@ function view_permission($page_name)
                 case 'orders':
                 case 'orders_recieved':
                 case 'consultation_view':
+                case 'doctors_approval':
                 case 'contact':
                 case 'setting':
                 case 'faq':

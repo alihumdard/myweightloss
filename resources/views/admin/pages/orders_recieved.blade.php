@@ -84,7 +84,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($orders as $key => $val)
+                                @foreach($orders ?? [] as $key => $val)
                                 <tr>
                                     <td>{{ ++$key }}</td>
                                     <td>
