@@ -623,16 +623,9 @@ class SystemController extends Controller
             return redirect()->back();
         }
 
-        $validator = Validator::make($request->all(), [
+        $rules = [
             'price'      => 'required',
             'category_id' => 'required',
-            'main_image' => [
-                'required',
-                'image',
-                'mimes:jpeg,png,jpg,gif,webm,svg,webp',
-                'max:1024',
-                'dimensions:max_width=1000,max_height=1000',
-            ],
             'stock'        => 'required',
             'ext_tax'    => 'required',
             'desc'       => 'required',
@@ -641,14 +634,38 @@ class SystemController extends Controller
                 'required',
                 Rule::unique('products')->ignore($request->id),
             ],
-        ]);
+        ];
 
+        if($request->id == null || !$request->id){
+            $rules['main_image'] = [
+                'required',
+                'image',
+                'mimes:jpeg,png,jpg,gif,webm,svg,webp',
+                'max:1024',
+                'dimensions:max_width=1000,max_height=1000',
+            ];
+        }
+
+        $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             return response()->json(['status' => 'error', 'message' => $validator->errors()]);
         }
 
         $data['user'] = auth()->user();
         if ($request->hasFile('main_image')) {
+
+            $rules['main_image'] = [
+                'required',
+                'image',
+                'mimes:jpeg,png,jpg,gif,webm,svg,webp',
+                'max:1024',
+                'dimensions:max_width=1000,max_height=1000',
+            ];
+            $validator = Validator::make($request->all(), $rules);
+            if ($validator->fails()) {
+                return response()->json(['status' => 'error', 'message' => $validator->errors()]);
+            }
+
             $mainImage = $request->file('main_image');
             $mainImageName = time() . '_' . uniqid('', true) . '.' . $mainImage->getClientOriginalExtension();
             $mainImage->storeAs('product_images/main_images', $mainImageName, 'public');
