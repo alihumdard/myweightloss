@@ -744,13 +744,13 @@
                                                     <div class="form-group short">
                                                         <label for="question_14_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
                                                             <input type="radio" data-branch_id="branch_12" id="question_14_ans_1" name="question_14" class="icheck required" value="Yes, I have.">
-                                                            Yes, I have.
+                                                            Yes, I do
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
                                                         <label for="question_14_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
                                                             <input type="radio" data-branch_id="branch_13" id="question_14_ans_2" name="question_14" class="icheck required" value="No, I don't have.">
-                                                            No, I don't have.
+                                                            No, I don't
                                                         </label>
                                                     </div>
                                                 </div>
@@ -827,13 +827,13 @@
                                                     <div class="form-group short">
                                                         <label for="question_16_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
                                                             <input type="radio" data-branch_id="branch_14" id="question_16_ans_1" name="question_16" class="icheck required" value="Yes, I have apply.">
-                                                            Yes, I have apply.
+                                                            Yes
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
                                                         <label for="question_16_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
                                                             <input type="radio" data-branch_id="branch_L_1" id="question_16_ans_2" name="question_16" class="icheck required" value="No">
-                                                            No, I don't.
+                                                            No
                                                         </label>
                                                     </div>
                                                 </div>
@@ -916,14 +916,19 @@
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
                                                         <label for="question_18_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
+
+                                                            <input type="radio" data-branch_id="no_branch" id="question_18_ans_1" name="question_18" class="icheck required" value="Yes, I have apply.">
+                                                            Yes
+
                                                             <input type="radio" data-branch_id="no_branch" data-alert="Please choose an other option. You can not procceed futher with that option." id="question_18_ans_1" name="question_18" class="icheck required" value="Yes, I have apply.">
-                                                            Yes, I have apply.
+                                                            Yes, I 
+
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
                                                         <label for="question_18_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
                                                             <input type="radio" data-branch_id="branch_15" id="question_18_ans_2" name="question_18" class="icheck required" value="No">
-                                                            No, I don't.
+                                                            No
                                                         </label>
                                                     </div>
                                                 </div>
