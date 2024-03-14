@@ -80,6 +80,7 @@ class SystemController extends Controller
         }
 
         $data['user'] = auth()->user();
+        $data['state_list'] = STATE_LIST();
         if ($request->has('id')) {
             $data['admin'] = User::findOrFail($request->id)->toArray();
         }
@@ -95,7 +96,7 @@ class SystemController extends Controller
             return redirect()->back();
         }
 
-        $validator = Validator::make($request->all(), [
+        $rules = [
             'name'     => 'required',
             'phone'    => 'required',
             'address'  => 'required',
@@ -105,30 +106,37 @@ class SystemController extends Controller
                 'email',
                 Rule::unique('users')->ignore($request->id),
             ],
-            'password' => 'required',
-        ]);
-
+        ];
+        if (!isset($request->id)) {
+            $rules['password'] = 'required';
+        }
+    
+        $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
         $data['user'] = auth()->user();
 
+        $updateData = [
+            'name'       => ucwords($request->name),
+            'email'      => $request->email,
+            'role'       =>  $request->role,
+            'phone'      => $request->phone,
+            'address'    => $request->address,
+            'zip_code'   => $request->zip_code,
+            'city'       => $request->city,
+            'state'      => $request->state,
+            'status'     => $this->status['Active'],
+            'created_by' => $user->id,
+        ];
+        if ($request->password) {
+            $updateData['password'] = Hash::make($request->password);
+        }
+
         $saved = User::updateOrCreate(
             ['id' => $request->id ?? NULL],
-            [
-                'name'       => ucwords($request->name),
-                'email'      => $request->email,
-                'role'       =>  $request->role,
-                'phone'      => $request->phone,
-                'address'    => $request->address,
-                'zip_code'   => $request->zip_code,
-                'city'       => $request->city,
-                'state'      => $request->state,
-                'password'   => Hash::make($request->password),
-                'status'     => $this->status['Active'],
-                'created_by' => $user->id,
-            ]
+            $updateData
         );
         $message = "Admin " . ($request->id ? "Updated" : "Saved") . " Successfully";
         if ($saved) {
@@ -177,7 +185,7 @@ class SystemController extends Controller
             return redirect()->back();
         }
 
-        $validator = Validator::make($request->all(), [
+        $rules = [
             'name'       => 'required',
             'phone'      => 'required',
             'address'    => 'required',
@@ -188,31 +196,39 @@ class SystemController extends Controller
                 'email',
                 Rule::unique('users')->ignore($request->id),
             ],
-            'password' => 'required',
-        ]);
-
+        ];
+        
+        if (!isset($request->id)) {
+            $rules['password'] = 'required';
+        }
+        
+        $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
         $data['user'] = auth()->user();
 
+        $updateData = [
+            'name'       => ucwords($request->name),
+            'email'      => $request->email,
+            'role'       => $request->role,
+            'phone'      => $request->phone,
+            'address'    => $request->address,
+            'speciality' => $request->speciality,
+            'short_bio'  => $request->short_bio,
+            'zip_code'   => $request->zip_code,
+            'city'       => $request->city,
+            'status'     => $this->status['Active'],
+            'created_by' => $user->id,
+        ];
+        if ($request->password) {
+            $updateData['password'] = Hash::make($request->password);
+        }
+
         $saved = User::updateOrCreate(
             ['id' => $request->id ?? NULL],
-            [
-                'name'       => ucwords($request->name),
-                'email'      => $request->email,
-                'role'       =>  $request->role,
-                'phone'      => $request->phone,
-                'address'    => $request->address,
-                'speciality' => $request->speciality,
-                'short_bio'  => $request->short_bio,
-                'zip_code'   => $request->zip_code,
-                'city'       => $request->city,
-                'password'   => Hash::make($request->password),
-                'status'     => $this->status['Active'],
-                'created_by' => $user->id,
-            ]
+            $updateData
         );
         $message = "Doctor " . ($request->id ? "Updated" : "Saved") . " Successfully";
         if ($saved) {

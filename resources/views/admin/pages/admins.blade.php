@@ -119,7 +119,7 @@
 
 </main>
 
-<form  id="edit_form" action="{{route('admin.addCategory')}}" method="post">
+<form  id="edit_form" action="{{route('admin.addAdmin')}}" method="post">
     @csrf
     <input id="edit_form_id_input" type="hidden" value="" name="id">
 </form>
