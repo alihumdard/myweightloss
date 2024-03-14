@@ -1550,3 +1550,9 @@ input[type=file]::-webkit-file-upload-button:focus, input[type=file].invalid::-w
   animation-delay: .9s;
   -webkit-animation-delay: 0.9s;
 }
+
+
+/* Sanader changes */
+.magnifier{
+  display:none !important;
+}
