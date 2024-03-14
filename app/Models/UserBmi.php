@@ -20,4 +20,10 @@ class UserBmi extends Model
         'created_by',
         'updated_by',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
 }
