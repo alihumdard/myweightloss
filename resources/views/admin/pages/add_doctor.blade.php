@@ -1,16 +1,16 @@
 @extends('admin.layouts.default')
-@section('title', 'Add Doctor')
+@section('title', 'Add Health Care Professionals')
 @section('content')
 <!-- main stated -->
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Add Doctor</h1>
+        <h1>Add Health Care Professional</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                 <li class="breadcrumb-item">Pages</li>
-                <li class="breadcrumb-item active">Add Doctor</li>
+                <li class="breadcrumb-item active">Add health care professional</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
