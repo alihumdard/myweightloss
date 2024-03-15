@@ -33,9 +33,9 @@
     <!-- Modernizr -->
 
     <style>
-        .shahrozheight{
+        .shahrozheight {
             /* width: auto; */
-            height:190px !important;
+            height: 190px !important;
         }
     </style>
 
@@ -58,32 +58,14 @@
                     <div id="logo_home">
                         <h1><a href="/">
                                 <img src="{{ asset('/assets/web/bmi/img/Weighloss_final_logo.png') }}" class="bmi-logo" alt="Logo">
-                            </a></h1>
+                            </a>
+                        </h1>
                     </div>
                 </div>
-                <div class="col-9">
-                    <div id="social">
-                        <ul>
-                            <li><a href="#0"><i class="icon-facebook"></i></a></li>
-                            <li><a href="#0"><i class="icon-twitter"></i></a></li>
-                            <li><a href="#0"><i class="icon-google"></i></a></li>
-                            <li><a href="#0"><i class="icon-linkedin"></i></a></li>
-                        </ul>
-                    </div>
-                    <!-- /social -->
-                    <nav>
-                        <ul class="cd-primary-nav">
-                            <li><a href="about.html" class="animated_link">Home</a></li>
-                            <li><a href="contacts.html" class="animated_link">Contacts</a></li>
-                            <li><a href="icon-pack-1.html" class="animated_link">About Us</a></li>
-                            <li><a href="icon-pack-2.html" class="animated_link">Products</a></li>
-                            <li><a href="icon-pack-2.html" class="animated_link">Log Out</a></li>
-                        </ul>
-                    </nav>
-                </div>
+
             </div>
         </div>
-        <!-- /container -->
+
     </header>
     <!-- /Header -->
 
@@ -134,7 +116,7 @@
                                 <div class="col-lg-3 col-md-6 animated zoomIn delay-fast">
                                     <div class="item text-center">
                                         <input id="answer_1" type="radio" name="age" value="18-25" class="required">
-                                        <label for="answer_1" >
+                                        <label for="answer_1">
                                             <img src="{{ asset('/assets/web/bmi/img/11.png') }}" alt="" class="img-fluid mb-2 shahrozheight">
                                             <button type="button" class=" btn btn-sm btn-primary">18-25</button>
                                         </label>
@@ -152,7 +134,7 @@
                                 <div class="col-lg-3 col-md-6 animated zoomIn delay-medium">
                                     <div class="item text-center">
                                         <input id="answer_3" name="age" type="radio" value="36-45" class="required">
-                                        <label for="answer_3" >
+                                        <label for="answer_3">
                                             <img src="{{ asset('/assets/web/bmi/img/10.png') }}" alt="" class="img-fluid mb-2 shahrozheight">
                                             <button type="button" class=" btn btn-sm btn-primary">36-45</button>
                                         </label>
@@ -162,7 +144,7 @@
                                     <div class="item text-center">
                                         <input id="answer_4" name="age" type="radio" value="46+" class="required">
                                         <label for="answer_4">
-                                            <img src="{{ asset('/assets/web/bmi/img/4.png') }}" alt="" class="img-fluid bg-white mb-2 shahrozheight" >
+                                            <img src="{{ asset('/assets/web/bmi/img/4.png') }}" alt="" class="img-fluid bg-white mb-2 shahrozheight">
                                             <button type="button" class=" btn btn-sm btn-primary">46+</button>
                                         </label>
                                     </div>
@@ -182,7 +164,7 @@
                                 <div class="col-lg-5 animated zoomIn delay-fast">
                                     <div class="box_general">
                                         <div class="form-group">
-                                            <input type="number" name="height"  min="20" max="254" step="0.1" class="form-control" placeholder="Your height in (Cm)">
+                                            <input type="number" name="height" min="20" max="254" step="0.1" class="form-control" placeholder="Your height in (Cm)">
                                         </div>
                                         <div class="form-group">
                                             <input type="number" name="weight" min="20" max="400" step="0.1" class="form-control" placeholder="Your weight in (Kg)">
@@ -203,7 +185,7 @@
                     <div id="bottom-wizard">
                         <button type="button" name="backward" class="backward mx-1">Backward </button>
                         <button type="button" name="forward" class="forward mx-1">Forward</button>
-                        <button type="submit"  class="submit mx-1">Submit</button>
+                        <button type="submit" class="submit mx-1">Submit</button>
                     </div>
                     <!-- /bottom-wizard -->
                 </form>
@@ -224,7 +206,7 @@
     </div>
     <!-- /cd-overlay-content -->
 
-    <a href="#0" class="cd-nav-trigger">Menu<span class="cd-icon"></span></a>
+    <!-- <a href="#0" class="cd-nav-trigger ">Menu<span class="cd-icon"></span></a> -->
     <!-- /cd-nav-trigger -->
 
     <!-- Modal terms -->

@@ -224,7 +224,7 @@
                                 <img src="{{ asset('/assets/web/images/testimonials/thumbs/2.png') }}" alt="author thumb">
                             </div><!-- /.testimonial-thumb -->
                             <div>
-                                <h4 class="testimonial__meta-title">Ahmed</h4>
+                                <h4 class="testimonial__meta-title">Alan Harrison </h4>
                             </div>
                         </div><!-- /.testimonial-meta -->
                         <div class="testimonial__meta">
@@ -232,7 +232,7 @@
                                 <img src="{{ asset('/assets/web/images/testimonials/thumbs/3.png') }}" alt="author thumb">
                             </div><!-- /.testimonial-thumb -->
                             <div>
-                                <h4 class="testimonial__meta-title">Sonia Blake</h4>
+                                <h4 class="testimonial__meta-title">Andi Blake </h4>
                             </div>
                         </div><!-- /.testimonial-meta -->
                     </div><!-- /.slider-nav -->

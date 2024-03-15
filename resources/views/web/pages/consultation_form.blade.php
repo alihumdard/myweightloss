@@ -9,7 +9,7 @@
     <title>BMI FORM</title>
 
     <!-- Favicons-->
-    <link rel="shortcut icon" href="{{ asset('/assets/web/bmi/img/favicon.ico')}}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('/assets/web/images/favicon/favicon.png')}}" type="image/x-icon">
     <link rel="apple-touch-icon" type="image/x-icon" href="{{ asset('/assets/web/bmi/img/apple-touch-icon-57x57-precomposed.png')}}">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{{ asset('/assets/web/bmi/img/apple-touch-icon-72x72-precomposed.png')}}">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="{{ asset('/assets/web/bmi/img/apple-touch-icon-114x114-precomposed.png')}}">
@@ -920,8 +920,7 @@
                                                             <input type="radio" data-branch_id="no_branch" id="question_18_ans_1" name="question_18" class="icheck required" value="Yes, I have apply.">
                                                             Yes
 
-                                                            <input type="radio" data-branch_id="no_branch" data-alert="Please choose an other option. You can not procceed futher with that option." id="question_18_ans_1" name="question_18" class="icheck required" value="Yes, I have apply.">
-                                                            Yes, I 
+                                                           
 
                                                         </label>
                                                     </div>

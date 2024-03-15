@@ -248,24 +248,8 @@
                     </div>
                 </div>
                 <div class="col-9">
-                    <div id="social">
-                        <ul>
-                            <li><a href="#0"><i class="icon-facebook"></i></a></li>
-                            <li><a href="#0"><i class="icon-twitter"></i></a></li>
-                            <li><a href="#0"><i class="icon-google"></i></a></li>
-                            <li><a href="#0"><i class="icon-linkedin"></i></a></li>
-                        </ul>
-                    </div>
-                    <!-- /social -->
-                    <nav>
-                        <ul class="cd-primary-nav">
-                            <li><a href="about.html" class="animated_link">Home</a></li>
-                            <li><a href="contacts.html" class="animated_link">Contacts</a></li>
-                            <li><a href="icon-pack-1.html" class="animated_link">About Us</a></li>
-                            <li><a href="icon-pack-2.html" class="animated_link">Products</a></li>
-                            <li><a href="icon-pack-2.html" class="animated_link">Log Out</a></li>
-                        </ul>
-                    </nav>
+                 
+                  
                 </div>
             </div>
         </div>
