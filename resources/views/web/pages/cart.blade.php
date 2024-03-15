@@ -228,14 +228,14 @@
     var shippingCost = $('input[name="shipping_method"]:checked').data('ship');
       var price = (parseInt($('.cart-product__price').text()) * parseInt($('.qty-input').val())) + shippingCost;
       $('.cart-product__total').text(price);
-      $('.checkout-btn').text('Proceed To Checkout  ($' + price + ')');
+      $('.checkout-btn').text('Proceed To Checkout  (£ ' + price + ')');
       $('.total-hidden').val(price);
       
     $('input[name="shipping_method"]').change(function() {
       var shippingCost = $('input[name="shipping_method"]:checked').data('ship');
       var price = (parseInt($('.cart-product__price').text()) * parseInt($('.qty-input').val())) + shippingCost;
       $('.cart-product__total').text(price);
-      $('.checkout-btn').text('Proceed To Checkout  ($' + price + ')');
+      $('.checkout-btn').text('Proceed To Checkout  (£ ' + price + ')');
       $('.total-hidden').val(price);
     });
 
