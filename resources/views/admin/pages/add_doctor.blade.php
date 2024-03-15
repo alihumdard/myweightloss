@@ -53,14 +53,14 @@
                                 @enderror
                             </div>
 
-                            <div class="col-md-4">
+                            <!-- <div class="col-md-4">
                                 <label for="speciality" class="form-label">speciality</label>
                                 <input type="text" name="speciality" value="{{ $doctor['speciality'] ?? old('speciality') }}" class="form-control" id="speciality" required>
                                 <div class="invalid-feedback">Please enter Sepcialization!</div>
                                 @error('speciality')
                                 <div class="alert-danger text-danger ">{{ $message }}</div>
                                 @enderror
-                            </div>
+                            </div> -->
 
                             <div class="col-md-4">
                                 <label for="phone" class="form-label">Phone</label>

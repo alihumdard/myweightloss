@@ -79,7 +79,7 @@
         <div class="row">
             <div class="col">
                 <h3>Orders declined by Specialist</h3>
-                <p>If our specialists decline requests, notification emails are sent, and your payment will be refunded. Refunds take up to 5 days to show in bank accounts. Debits and refunds show as My BMI on your bank statement. An explanation will be posted to your ‘My Account’ area where messages can be exchanged with our specialist team. It is unusual for specialists to decline prescriptions once orders have been made unless you would be more suited to seeing a healthcare professional face to face. Consultations are structured to provide all the necessary information to allow prescriptions to be issued.</p>
+                <p>If our specialists decline requests, notification emails are sent, and your payment will be refunded. Refunds take up to 5 days to show in bank accounts. Debits and refunds show as  Online-Pharmacy4u on your bank statement. An explanation will be posted to your ‘My Account’ area where messages can be exchanged with our specialist team. It is unusual for specialists to decline prescriptions once orders have been made unless you would be more suited to seeing a healthcare professional face to face. Consultations are structured to provide all the necessary information to allow prescriptions to be issued.</p>
             </div>
         </div>
         <div class="row">
