@@ -50,7 +50,10 @@
 
 				// var branch_name = branch.split(' ')[0];
 				if(branch == 'no_branch'){
-					alert(alert_msg);
+					$('#message_popup').text(alert_msg)
+					$('#consult_msg_modal').modal('show');
+
+					// alert(alert_msg);
 				}
 				
 				return branch;

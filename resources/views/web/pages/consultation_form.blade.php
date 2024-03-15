@@ -153,13 +153,13 @@
                                             <div class="box_general" style="border:none;">
                                                 <div class="form-group short">
                                                     <label for="question_1_ans_1" class="btn btn-lg btn-outline-success btn-block w-100 ">
-                                                        <input id="question_1_ans_1" type="radio" data-branch_id="branch_2" name="question_1" class="icheck required" value="General I want to be healthier">
+                                                        <input id="question_1_ans_1" type="radio" data-branch_id="no_branch" data-alert="Please choose an other option. You can not procceed futher with that option." name="question_1" class="icheck required" value="General I want to be healthier">
                                                         General I want to be healthier
                                                     </label>
                                                 </div>
                                                 <div class="form-group short">
                                                     <label for="question_1_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                        <input id="question_1_ans_2" type="radio" data-branch_id="branch_2" name="question_1" class="icheck required" value="Pre IVF I'm planning to have a baby via IVF">
+                                                        <input id="question_1_ans_2" type="radio" data-branch_id="no_branch" data-alert="Please choose an other option. You can not procceed futher with that option." name="question_1" class="icheck required" value="Pre IVF I'm planning to have a baby via IVF">
                                                         Pre- IVF- I'm planning to have a baby via IVF
                                                     </label>
                                                 </div>
@@ -2029,6 +2029,22 @@
         <!-- /Container -->
     </main>
     <!-- /main -->
+
+    <div class="modal fade" id="consult_msg_modal" tabindex="-1" data-bs-backdrop="true">
+        <div class="modal-dialog model-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-success">
+                    <h5 class="modal-title fw-bold text-white">HealthCare Professional Feedback</h5>
+                    <button type="button" class="btn-close fw-bold text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <h1 id="message_popup"> </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- COMMON SCRIPTS -->
     <script src="{{ asset('/assets/web/bmi/js/jquery-3.7.1.min.js') }}"></script>
