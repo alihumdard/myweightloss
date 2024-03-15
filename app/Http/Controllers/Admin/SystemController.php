@@ -559,6 +559,7 @@ class SystemController extends Controller
             ->where('assign_questions.category_id', $category_id)
             ->pluck('tbl2.question_title', 'tbl2.question_id')
             ->toArray();
+        $result['other_qstn']['not_continue'] = 'Stop the user from continuing';
         // dd(DB::getQueryLog());
         return response()->json(['status' => 'success', 'result' => $result]);
     }
@@ -907,7 +908,7 @@ class SystemController extends Controller
             $data['order_history'] = $userOrdersData;
             $data['orders'] = $orders;
         }
-        return view('admin.pages.doctors_approval',$data);
+        return view('admin.pages.doctors_approval', $data);
     }
 
     public function orders_shiped()

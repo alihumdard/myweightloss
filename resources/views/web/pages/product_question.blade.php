@@ -85,7 +85,7 @@
                                     <label class="form-check-label fw-semibold w-100" for="optionB">{{$question['optB'] ?? ''}}</label>
                                 </div>
                                 <div class="form-check px-5">
-                                    <input class="form-check-input optC_{$category['id'].'_'.$question['id']}}" type="radio" name="qid_{{$question['id']}}" value="{{$question['optC'] ?? ''}}"  data-next_question="question_{{ $next_quest_opt[$question['id']]['optC'] ?? 'no'}}" id="optionC">
+                                    <input class="form-check-input optC_{$category['id'].'_'.$question['id']}}" type="radio" name="qid_{{$question['id']}}" value="{{$question['optC'] ?? ''}}" data-next_question="question_{{ $next_quest_opt[$question['id']]['optC'] ?? 'no'}}" id="optionC">
                                     <label class="form-check-label fw-semibold w-100" for="optionC">{{$question['optC'] ?? ''}}</label>
                                 </div>
                                 <div class="form-check px-5">
@@ -130,6 +130,21 @@
                     </div>
                 </form>
             </main>
+        </div>
+    </div>
+    <div class="modal fade" id="product_msg_modal" tabindex="-1" data-bs-backdrop="true">
+        <div class="modal-dialog model-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #5987c3;">
+                    <h5 class="modal-title fw-bold text-white">Unable to Continue</h5>
+                    <button type="button" class="btn-close fw-bold text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <h5 class="fw-bold py-3" id="msg_popup"> </h5>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -186,6 +201,13 @@
                     } else {
                         // Adjust this part based on your specific input types and logic
                         nextQuestion = inputFields.data('next_question');
+                    }
+
+                    if (nextQuestion === 'question_not_continue') {
+                        $('#product_msg_modal').modal('show');
+                        let msg = 'Unfortunately, this consultation cannot proceed because you do not meet the necessary eligibility criteria. Please review your responses to ensure accuracy and completeness.';
+                        $('#msg_popup').text(msg);
+                        return false;
                     }
 
                     $('#' + currentQuestionIndex).fadeOut(400, function() {
