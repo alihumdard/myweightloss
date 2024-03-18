@@ -333,15 +333,30 @@ class WebController extends Controller
 
         if (auth()->user()) {
             if ($request->id) {
-                $save =  Cart::create([
-                    'user_id' => auth()->user()->id,
-                    'product_id' => $request->id,
-                    'quantity' => 1,
-                    'status' => '1',
-                    'created_by' => auth()->user()->id,
-                ]);
+                $save = Cart::updateOrCreate(
+                    [
+                        'user_id' => auth()->user()->id,
+                        'product_id' => $request->id,
+                        'status' => '1',
+                        'created_by' => auth()->user()->id,
+                    ],
+                    [
+                        'user_id' => auth()->user()->id,
+                        'product_id' => $request->id,
+                        'quantity' => 1,
+                        'status' => '1',
+                        'created_by' => auth()->user()->id,
+                    ]
+                );
+                // $save =  Cart::create([
+                //     'user_id' => auth()->user()->id,
+                //     'product_id' => $request->id,
+                //     'quantity' => 1,
+                //     'status' => '1',
+                //     'created_by' => auth()->user()->id,
+                // ]);
             }
-            $data['cart'] = Cart::with('product')->where(['user_id' => auth()->user()->id, 'status' => 1])->get()->toArray();
+            $data['cart'] = Cart::with('product')->where(['user_id' => auth()->user()->id, 'status' => 1])->first()->toArray();
             $data['total'] = 0;
             return view('web.pages.cart', $data);
         } else {

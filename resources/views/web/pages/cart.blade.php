@@ -45,29 +45,29 @@
             </thead>
             <tbody>
 
-              @foreach($cart as $key => $value)
-              <tr class="cart-product">
-                <td class="d-flex align-items-center">
-                  <i class="fas fa-times cart-product__remove"></i>
-                  <div class="cart-product__img">
-                    <img src="{{ asset('storage/'.$value['product']['main_image'])}}" alt="product" />
-                  </div>
-                  <h5 class="cart-product__title">{{ $value['product']['title'] ?? ''}}/h5>
-                </td>
-                <td class="cart-product__price">{{ $value['product']['price'] ?? ''}}</td>
-                <td class="cart-product__quantity">
-                  <div class="quantity__input-wrap">
-                    <i class="fa fa-minus decrease-qty"></i>
-                    <input type="number" value="{{ $value['quantity'] ?? ''}}" class="qty-input">
-                    <i class="fa fa-plus increase-qty"></i>
-                  </div>
-                </td>
-                @php
-                $total += $value['product']['price'];
-                @endphp
-                <td class="cart-product__total">{{ $total ?? ''}}</td>
-              </tr>
-              @endforeach
+              {{-- @foreach($cart as $key => $value) --}}
+                <tr class="cart-product">
+                  <td class="d-flex align-items-center">
+                    <i class="fas fa-times cart-product__remove"></i>
+                    <div class="cart-product__img">
+                      <img src="{{ asset('storage/'.$cart['product']['main_image'])}}" alt="product" />
+                    </div>
+                    <h5 class="cart-product__title">{{ $cart['product']['title'] ?? ''}}/h5>
+                  </td>
+                  <td class="cart-product__price">{{ $cart['product']['price'] ?? ''}}</td>
+                  <td class="cart-product__quantity">
+                    <div class="quantity__input-wrap">
+                      <i class="fa fa-minus decrease-qty"></i>
+                      <input type="number" value="{{ $cart['quantity'] ?? ''}}" class="qty-input">
+                      <i class="fa fa-plus increase-qty"></i>
+                    </div>
+                  </td>
+                  @php
+                  $total += $cart['product']['price'];
+                  @endphp
+                  <td class="cart-product__total">{{ $total ?? ''}}</td>
+                </tr>
+              {{-- @endforeach --}}
               <tr class="cart-product__action">
                 <td colspan="4">
                   <div class="cart-product__action-content d-flex align-items-center justify-content-between">
@@ -96,9 +96,9 @@
         <h6>{{ $user['address'] }}</h6>
         <form class="needs-validation" action="{{ route('payment') }}" method="post">
           @csrf
-          <input type="hidden" name="product_id" value="{{$value['product']['id']}}">
-          <input type="hidden" name="total_ammount" value="{{ $total ?? 0}}">
-          <input type="hidden" name="product_desc" value="{{ $value['product']['title']}}">
+          <input type="hidden" name="product_id" value="{{$cart['product']['id']}}">
+          <input type="hidden" name="total_ammount" class="total-hidden" value="{{ $total ?? 0}}">
+          <input type="hidden" name="product_desc" value="{{ $cart['product']['title']}}">
      
           <div class="form-group">
             <div class="form-check">
@@ -180,39 +180,6 @@
               <div class="ml-4 mb-2 small">(3-5 working days)</div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label for="cc-name">Name on card</label>
-              <input type="text" name="cardName" class="form-control" id="cc-name" placeholder="" required="">
-              <small class="text-muted">Full name as displayed on card</small>
-              <div class="invalid-feedback">
-                Name on card is required
-              </div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <label for="cc-number">Card number</label>
-              <input type="text" name="cardNumber" class="form-control onlyDigitsInput" id="cc-number" required>
-              <div class="invalid-feedback">
-                Card number is required
-              </div>
-            </div>
-          </div>
-          {{-- <div class="row">
-            <div class="col-md-3 mb-3">
-              <label for="cc-expiration">Expiration</label>
-              <input type="text" id="cardExp" name="cardExp" class="form-control" placeholder="MM/YY" required>
-              <div class="invalid-feedback">
-                Expiration date required
-              </div>
-            </div>
-            <div class="col-md-3 mb-3">
-              <label for="cc-cvv">CVV</label>
-              <input type="text" name="cardCvv" class="form-control" id="cc-cvv" required>
-              <div class="invalid-feedback">
-                Security code required
-              </div>
-            </div>
-          </div> --}}
           <hr class="mb-4">
           <button type="submit" class="btn btn__primary checkout-btn">Proceed To Checkout</button>
         </form>

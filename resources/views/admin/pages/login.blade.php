@@ -40,7 +40,9 @@
                         <div class="col-12 col-md-6 text-bg-primary">
                             <div class="d-flex align-items-center justify-content-center h-100">
                                 <div class="col-10 col-xl-8 py-3">
-                                    <img class="img-fluid rounded mb-4" loading="lazy" src="{{ asset('/assets/admin/img/Weighloss_final_logo_white.webp') }}" width="245" height="80" alt="BootstrapBrain Logo">
+                                    <a href="https://myweightlosscentre.co.uk">    
+                                        <img class="img-fluid rounded mb-4" loading="lazy" src="{{ asset('/assets/admin/img/Weighloss_final_logo_white.webp') }}" width="245" height="80" alt="BootstrapBrain Logo">
+                                    </a>
                                     <hr class="border-primary-subtle mb-4">
                                     <h2 class="h1 mb-4">Start Your Journey with Weight Loss</h2>
                                     <p class="lead m-0">For a happier, more energetic life, start on a transformative weight-loss journey, choosing healthier habits and reaching your fitness objectives.</p>
@@ -112,7 +114,7 @@
                                             <div class="col-12">
                                                 <label for="email" class="form-label">Email</label>
                                                 <div class="input-group has-validation">
-                                                    <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                                    <!-- <span class="input-group-text" id="inputGroupPrepend"></span> -->
                                                     <input type="email" name="email" class="form-control" id="email" value="{{ session('email') ?? ''}}" required>
                                                     <div class="invalid-feedback">Please enter valid email.</div>
                                                 </div>
@@ -144,6 +146,10 @@
                                         <hr class="mt-5 mb-4 border-secondary-subtle">
                                         <div class="d-flex  gap-md-4 flex-column flex-md-row justify-content-md-end">
                                             <a href="{{route('register')}}" class="link-secondary text-decoration-none">Create new account</a>
+                                            <!-- <a href="#" class="link-secondary text-decoration-none">Forgot password</a> -->
+                                        </div>
+                                        <div class="d-flex  gap-md-4 flex-column flex-md-row justify-content-md-end">
+                                            <a href="/">Go to the website</a>
                                             <!-- <a href="#" class="link-secondary text-decoration-none">Forgot password</a> -->
                                         </div>
                                     </div>

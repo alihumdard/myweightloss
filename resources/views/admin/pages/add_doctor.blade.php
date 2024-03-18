@@ -1,16 +1,16 @@
 @extends('admin.layouts.default')
-@section('title', 'Add Doctor')
+@section('title', 'Add Health Care Professionals')
 @section('content')
 <!-- main stated -->
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Add Doctor</h1>
+        <h1>Add Health Care Professional</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                 <li class="breadcrumb-item">Pages</li>
-                <li class="breadcrumb-item active">Add Doctor</li>
+                <li class="breadcrumb-item active">Add health care professional</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -46,7 +46,7 @@
 
                             <div class="col-md-4">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" name="password" class="form-control" id="password" required>
+                                <input type="password" name="password" class="form-control" id="password" {{ $doctor['id'] ?? 'required' }}>
                                 <div class="invalid-feedback">Please enter password!</div>
                                 @error('password')
                                 <div class="alert-danger text-danger ">{{ $message }}</div>
@@ -54,8 +54,8 @@
                             </div>
 
                             <div class="col-md-4">
-                                <label for="speciality" class="form-label">speciality</label>
-                                <input type="text" name="speciality" class="form-control" id="speciality" required>
+                                <label for="speciality" class="form-label">Position</label>
+                                <input type="text" name="speciality" value="{{ $doctor['speciality'] ?? old('speciality') }}" class="form-control" id="speciality" required>
                                 <div class="invalid-feedback">Please enter Sepcialization!</div>
                                 @error('speciality')
                                 <div class="alert-danger text-danger ">{{ $message }}</div>
@@ -100,7 +100,7 @@
 
                             <div class="col-12">
                                 <label for="short_bio" class="form-label">Short Bio</label>
-                                <textarea rows="4" name="short_bio" class="form-control" id="short_bio" placeholder="write short bio"> </textarea>
+                                <textarea rows="4" name="short_bio" class="form-control" id="short_bio" placeholder="write short bio">{{  $doctor['short_bio'] ?? '' }}</textarea>
                             </div>
 
                             <div class="text-center">

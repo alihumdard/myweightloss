@@ -76,32 +76,14 @@
                     <div id="logo_home">
                         <h1><a href="/">
                                 <img src="{{ asset('/assets/web/bmi/img/Weighloss_final_logo.png') }}" class="bmi-logo" alt="Logo">
-                            </a></h1>
+                            </a>
+                        </h1>
                     </div>
                 </div>
-                <div class="col-9">
-                    <div id="social">
-                        <ul>
-                            <li><a href="#0"><i class="icon-facebook"></i></a></li>
-                            <li><a href="#0"><i class="icon-twitter"></i></a></li>
-                            <li><a href="#0"><i class="icon-google"></i></a></li>
-                            <li><a href="#0"><i class="icon-linkedin"></i></a></li>
-                        </ul>
-                    </div>
-                    <!-- /social -->
-                    <nav>
-                        <ul class="cd-primary-nav">
-                            <li><a href="about.html" class="animated_link">Home</a></li>
-                            <li><a href="contacts.html" class="animated_link">Contacts</a></li>
-                            <li><a href="icon-pack-1.html" class="animated_link">About Us</a></li>
-                            <li><a href="icon-pack-2.html" class="animated_link">Products</a></li>
-                            <li><a href="icon-pack-2.html" class="animated_link">Log Out</a></li>
-                        </ul>
-                    </nav>
-                </div>
+
             </div>
         </div>
-        <!-- /container -->
+
     </header>
     <!-- /Header -->
 
@@ -262,7 +244,7 @@
     </div>
     <!-- /cd-overlay-content -->
 
-    <a href="#0" class="cd-nav-trigger">Menu<span class="cd-icon"></span></a>
+    <!-- <a href="#0" class="cd-nav-trigger ">Menu<span class="cd-icon"></span></a> -->
     <!-- /cd-nav-trigger -->
 
     <!-- Modal terms -->
