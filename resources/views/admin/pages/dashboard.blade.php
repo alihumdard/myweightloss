@@ -29,7 +29,7 @@
 
                     <!-- Sales Card -->
                     @if($role == 4)
-                        <div class="col-xxl-4 col-md-6">
+                        <!-- <div class="col-xxl-4 col-md-6">
                             <div class="card info-card sales-card">
 
                                 <div class="filter">
@@ -61,12 +61,12 @@
                                 </div>
 
                             </div>
-                        </div>
+                        </div> -->
                         <!-- End Sales Card -->
                     
 
                     <!-- Revenue Card -->
-                    <div class="col-xxl-4 col-md-6">
+                    <!-- <div class="col-xxl-4 col-md-6">
                         <div class="card info-card revenue-card">
 
                             <div class="filter">
@@ -98,7 +98,7 @@
                             </div>
 
                         </div>
-                    </div>
+                    </div> -->
                     <!-- End Revenue Card -->
 
                     <!-- Customers Card -->
