@@ -153,13 +153,13 @@
                                             <div class="box_general" style="border:none;">
                                                 <div class="form-group short">
                                                     <label for="question_1_ans_1" class="btn btn-lg btn-outline-success btn-block w-100 ">
-                                                        <input id="question_1_ans_1" type="radio" data-branch_id="branch_2"  name="question_1" class="icheck required" value="General I want to be healthier">
+                                                        <input id="question_1_ans_1" type="radio" data-branch_id="branch_2" name="question_1" class="icheck required" value="General I want to be healthier">
                                                         General I want to be healthier
                                                     </label>
                                                 </div>
                                                 <div class="form-group short">
                                                     <label for="question_1_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                        <input id="question_1_ans_2" type="radio" data-branch_id="branch_2"  name="question_1" class="icheck required" value="Pre IVF I'm planning to have a baby via IVF">
+                                                        <input id="question_1_ans_2" type="radio" data-branch_id="branch_2" name="question_1" class="icheck required" value="Pre IVF I'm planning to have a baby via IVF">
                                                         Pre- IVF- I'm planning to have a baby via IVF
                                                     </label>
                                                 </div>
@@ -920,7 +920,7 @@
                                                             <input type="radio" data-branch_id="no_branch" id="question_18_ans_1" name="question_18" class="icheck required" value="Yes, I have apply.">
                                                             Yes
 
-                                                           
+
 
                                                         </label>
                                                     </div>
@@ -1845,9 +1845,9 @@
                         <!-- /branch_35 -->
 
                         <!--  ===============  branch_36  =============== -->
-                        <div class="branch" id="branch_36" data-state="end">
+                        <div class="branch" id="branch_36" >
                             <!-- question  40 -->
-                            <div class="step" data-state="question_41">
+                            <div class="step"  data-state="branchtype">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class=" row question_title justify-content-center ">
@@ -1867,13 +1867,13 @@
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
                                                         <label for="question_40_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" id="question_40_ans_1" name="question_40" class="icheck required" value="Yes">
+                                                            <input type="radio" id="question_40_ans_1" data-branch_id="branch_37" name="question_40" class="icheck required" value="Yes">
                                                             Yes
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
                                                         <label for="question_40_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" id="question_40_ans_2" name="question_40" class="icheck required" value="No, I don't have.">
+                                                            <input type="radio" id="question_40_ans_2" data-branch_id="no_branch" data-alert="Please choose an other option." name="question_40" class="icheck required" value="No">
                                                             No
                                                         </label>
                                                     </div>
@@ -1884,7 +1884,11 @@
                                 </div>
                             </div>
                             <!-- /step -->
+                        </div>
+                        <!-- /branch_36 -->
 
+                        <!--  ===============  branch_37  =============== -->
+                        <div class="branch" id="branch_37">
                             <!-- question 41 -->
                             <div class="step" id="question_41" data-state="branchtype">
                                 <div class="card">
@@ -1903,7 +1907,7 @@
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
                                                         <label for="question_41_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" id="question_41_ans_1" data-branch_id="branch_37" name="question_41" class="icheck required" value="Yes">
+                                                            <input type="radio" id="question_41_ans_1" data-branch_id="branch_38" name="question_41" class="icheck required" value="Yes">
                                                             Yes.
                                                         </label>
                                                     </div>
@@ -1921,10 +1925,9 @@
                             </div>
                             <!-- /step -->
                         </div>
-                        <!-- /branch_36 -->
 
-                        <!--  ===============  branch_37  =============== -->
-                        <div class="branch" id="branch_37">
+                        <!--  ===============  branch_38  =============== -->
+                        <div class="branch" id="branch_38">
 
                             <!-- question 42 -->
                             <div class="step" id="question_42" data-state="question_43">
@@ -1945,7 +1948,7 @@
                                                         <label for="question_42_ans_1" class="fw-bold w-100">
                                                             GP Surgery name: address...
                                                         </label>
-                                                        <textarea id="question_42_ans_1" data-branch_id="branch_2" name="question_42" class="form-control required" style="height:100px; margin-bottom:0; border-radius:10px; " placeholder="Typer here ..."></textarea>
+                                                        <textarea id="question_42_ans_1"  name="question_42" class="form-control required" style="height:100px; margin-bottom:0; border-radius:10px; " placeholder="Typer here ..."></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1976,7 +1979,7 @@
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
                                                         <label for="question_43_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" id="question_43_ans_1" data-branch_id="branch_38" name="question_43" class="icheck required" value="Yes">
+                                                            <input type="radio" id="question_43_ans_1" data-branch_id="branch_39" name="question_43" class="icheck required" value="Yes">
                                                             Yes.
                                                         </label>
                                                     </div>
@@ -1997,8 +2000,8 @@
                         </div>
                         <!-- /branch_37 -->
 
-                        <!--  ===============  branch_38  =============== -->
-                        <div class="branch" id="branch_38">
+                        <!--  ===============  branch_39  =============== -->
+                        <div class="branch" id="branch_39">
                             <!-- thank you page -->
                             <div class="step submit" id="end">
                                 <div class="card">
@@ -2037,16 +2040,16 @@
     <div class="modal fade" id="consult_msg_modal" tabindex="-1" data-bs-backdrop="true">
         <div class="modal-dialog model-lg modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header bg-success">
-                    <h5 class="modal-title fw-bold text-white">HealthCare Professional Feedback</h5>
+                <div class="modal-header" style="background-color: #5987c3;">
+                    <h5 class="modal-title fw-bold text-white">My Weightloss centre</h5>
                     <button type="button" class="btn-close fw-bold text-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div>
                         <h5 id="message_popup"> </h5>
                         <p>
-                        We require your consent and agreement to proceed with treating you, if you are not happy to proceed 
-                        please exit the consult, for services in your rea please visit <a target="_blank" href="https:www.nhs.uk/nhs-services/services-near-you/">https://www.nhs.uk/nhs-services/services-near-you/</a>
+                            We require your consent and agreement to proceed with treating you, if you are not happy to proceed
+                            please exit the consult, for services in your rea please visit <a target="_blank" href="https:www.nhs.uk/nhs-services/services-near-you/">https://www.nhs.uk/nhs-services/services-near-you/</a>
                         </p>
                     </div>
                 </div>

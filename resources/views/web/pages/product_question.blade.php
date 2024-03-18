@@ -62,7 +62,7 @@
                     @foreach($questions as $key => $question)
                     <div id="question_{{$question['id']}}" class="question {{ $loop->first ? 'fade-in' : 'collapse' }} " data-dependency="{{$check_dependency[$question['id']]['is_dependent']}}" data-dependency_answer="">
                         <div class=" px-4 mt-5">
-                            <h3 class="fw-bold mb-0"> <b>Q</b>. {{ $question['title'] ?? ''}}?</h3>
+                            <h3 class="fw-bold mb-0">{{ $question['title'] ?? ''}}?</h3>
                             <p style="font-family: emoji; color: black;" class="ps-5">
                                 {{$question['openbox']}}
                             </p>
