@@ -126,8 +126,8 @@ function view_permission($page_name)
         case 'User':
             switch ($page_name) {
                 case 'dashboard':
-                case 'orders':
-                case 'orders_recieved':
+                // case 'orders':
+                // case 'orders_recieved':
                 case 'contact':
                 case 'setting':
                 case 'faq':

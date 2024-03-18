@@ -126,7 +126,6 @@ class SystemController extends Controller
             'address'    => $request->address,
             'zip_code'   => $request->zip_code,
             'city'       => $request->city,
-            'state'      => $request->state,
             'status'     => $this->status['Active'],
             'created_by' => $user->id,
         ];

@@ -67,18 +67,8 @@
                                 <div class="invalid-feedback">Please enter city name!</div>
 
                             </div>
-
-                            <div class="col-md-4">
-                                <label for="state" class="form-label">State</label>
-                                <select id="state" name="state" class="form-select">
-                                    @foreach ($state_list as $value => $label)
-                                        <option value="{{ $value }}" @if ($admin['state'] == $value) selected @endif>{{ $label }}</option>
-                                    @endforeach
-                                </select>
-                                <div class="invalid-feedback">Please select state!</div>
-                            </div>
                             
-                            <div class="col-md-2">
+                            <div class="col-md-6">
                                 <label for="zip_code" class="form-label">Zip Code</label>
                                 <input type="text" name="zip_code" value="{{  $admin['zip_code'] ?? '' }}" class="form-control" id="zip_code" required>
                                 <div class="invalid-feedback">Please enter  zip code.</div>
