@@ -148,6 +148,10 @@
                                             <a href="{{route('register')}}" class="link-secondary text-decoration-none">Create new account</a>
                                             <!-- <a href="#" class="link-secondary text-decoration-none">Forgot password</a> -->
                                         </div>
+                                        <div class="d-flex  gap-md-4 flex-column flex-md-row justify-content-md-end">
+                                            <a href="/">Go to the website</a>
+                                            <!-- <a href="#" class="link-secondary text-decoration-none">Forgot password</a> -->
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- <div class="row">

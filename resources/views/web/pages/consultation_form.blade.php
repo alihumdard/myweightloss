@@ -2044,6 +2044,10 @@
                 <div class="modal-body">
                     <div>
                         <h1 id="message_popup"> </h1>
+                        <p>
+                        We require your consent and agreement to proceed with treating you, if you are not happy to proceed 
+                        please exit the consult, for services in your rea please visit <href="https:www.nhs.uk/nhs-services/services-near-you/">https://www.nhs.uk/nhs-services/services-near-you/</a>
+                        </p>
                     </div>
                 </div>
             </div>
