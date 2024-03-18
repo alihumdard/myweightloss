@@ -268,7 +268,7 @@
                                             <!-- Content -->
                                             <div class="text-center text-light pt-2">
                                                 <h5 class="mb-0">Height</h5>
-                                                <span id="heightValue">0cm</span>
+                                                <span id="heightValue">{{$bodyPorfile->cm }}cm</span>
                                             </div>
                                         </div>
                                     </div>
@@ -283,7 +283,7 @@
                                             </div>
                                             <div class="text-center text-light pt-2">
                                                 <h5 class="mb-0">Weight</h5>
-                                                <span id="weightValue">0kg</span>
+                                                <span id="weightValue">{{$bodyPorfile->weight_kg }}kg</span>
                                             </div>
                                         </div>
                                     </div>
@@ -373,7 +373,7 @@
                                             </div>
                                             <div class="text-center text-light mb-0 pt-3">
                                                 <h5 class="mb-0">BMI</h5>
-                                                <span>0kg</span>
+                                                <span>{{$bodyPorfile->bmi }}kg/m<sup>2</sup></span>
                                             </div>
                                         </div>
                                     </div>

@@ -28,9 +28,6 @@
     <!-- YOUR CUSTOM CSS -->
     <link href="{{ asset('/assets/web/bmi/css/custom.css') }}" rel="stylesheet">
 
-    <script src="{{ asset('/assets/web/bmi/js/modernizr.js') }}"></script>
-    <!-- Modernizr -->
-
 </head>
 
 <body>
@@ -265,8 +262,8 @@
                     </div>
                 </div>
                 <div class="col-9">
-                 
-                  
+
+
                 </div>
             </div>
         </div>
@@ -366,13 +363,9 @@
                                         <div class="c-bmi__group-text">People who have BMI equal or over 30 may have obesity, which is defined as an abnormal or excessive accumulation of fat that may harm health.</div>
                                     </div>
                                 </form>
-
-                                <!-- /middle-wizard -->
                                 <div id="bottom-wizard" style="padding: 5px 0 25px 0;">
-                                    <!-- <button type="button" class="btn btn-success px-4">Update</button> -->
-                                    <button type="submit" form="bmi_from" class="submit ">Procceed Next </button>
+                                    <button class="submit ">Procceed Next </button>
                                 </div>
-                                <!-- /bottom-wizard -->
                             </div>
                         </div>
                     </div>
@@ -403,12 +396,19 @@
 
     <!-- COMMON SCRIPTS -->
     <script src="{{ asset('/assets/web/bmi/js/jquery-3.7.1.min.js') }}"></script>
-    <script src="{{ asset('/assets/web/bmi/js/common_scripts.min.js') }}"></script>
-    <script src="{{ asset('/assets/web/bmi/js/menu.js') }}"></script>
     <script src="{{ asset('/assets/web/bmi/js/main.js') }}"></script>
-    <script src="{{ asset('/assets/web/bmi/js/wizard_func_without_branch.js') }}"></script>
     <script>
         $(document).ready(function() {
+
+            function submitForm() {
+                $('.c-bmi__range').removeAttr('required');
+                $('#bmi_from').submit();
+            }
+
+            $('.submit').click(function() {
+                submitForm();
+            });
+
             // Function to handle metric/imperial toggle
             $('.metric').click(function() {
                 $(this).addClass('btn-logo-active');
@@ -429,8 +429,8 @@
                 const heightCm = parseFloat($('.cm').val());
                 const weightKg = parseFloat($('.weight-kg').val());
                 const heightInches = heightCm * 0.393701,
-                feet = Math.floor(heightInches / 12),
-                inches = Math.round(heightInches % 12);
+                    feet = Math.floor(heightInches / 12),
+                    inches = Math.round(heightInches % 12);
 
                 $('.feet').val(feet);
                 $('.inches').val(inches);
@@ -447,7 +447,7 @@
                 const height_cm = (feet * 12 + inches) * 2.54;
                 const weight_kg = weight_lb * 0.453592;
                 $('.cm').val(height_cm);
-                $('.weight-kg').val(( Math.round(weight_kg.toFixed(2))));
+                $('.weight-kg').val((Math.round(weight_kg.toFixed(2))));
 
                 calulate_bmi(height_cm, weight_kg);
             });
@@ -473,7 +473,6 @@
 
             $('.bmi_result').text(isNaN(bmi) || !isFinite(bmi) ? 0 : Math.min(bmi, 100));
         }
-
     </script>
 </body>
 

@@ -153,13 +153,13 @@
                                             <div class="box_general" style="border:none;">
                                                 <div class="form-group short">
                                                     <label for="question_1_ans_1" class="btn btn-lg btn-outline-success btn-block w-100 ">
-                                                        <input id="question_1_ans_1" type="radio" data-branch_id="no_branch" data-alert="Please choose an other option. You can not procceed futher with that option." name="question_1" class="icheck required" value="General I want to be healthier">
+                                                        <input id="question_1_ans_1" type="radio" data-branch_id="branch_2"  name="question_1" class="icheck required" value="General I want to be healthier">
                                                         General I want to be healthier
                                                     </label>
                                                 </div>
                                                 <div class="form-group short">
                                                     <label for="question_1_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                        <input id="question_1_ans_2" type="radio" data-branch_id="no_branch" data-alert="Please choose an other option. You can not procceed futher with that option." name="question_1" class="icheck required" value="Pre IVF I'm planning to have a baby via IVF">
+                                                        <input id="question_1_ans_2" type="radio" data-branch_id="branch_2"  name="question_1" class="icheck required" value="Pre IVF I'm planning to have a baby via IVF">
                                                         Pre- IVF- I'm planning to have a baby via IVF
                                                     </label>
                                                 </div>
@@ -2043,10 +2043,10 @@
                 </div>
                 <div class="modal-body">
                     <div>
-                        <h1 id="message_popup"> </h1>
+                        <h5 id="message_popup"> </h5>
                         <p>
                         We require your consent and agreement to proceed with treating you, if you are not happy to proceed 
-                        please exit the consult, for services in your rea please visit <href="https:www.nhs.uk/nhs-services/services-near-you/">https://www.nhs.uk/nhs-services/services-near-you/</a>
+                        please exit the consult, for services in your rea please visit <a target="_blank" href="https:www.nhs.uk/nhs-services/services-near-you/">https://www.nhs.uk/nhs-services/services-near-you/</a>
                         </p>
                     </div>
                 </div>
