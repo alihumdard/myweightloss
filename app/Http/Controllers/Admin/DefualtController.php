@@ -70,7 +70,9 @@ class DefualtController extends Controller
 
     public function profile_setting()
     {
-        return view('admin.pages.profile_setting');
+        
+        $data['user'] = auth()->user();
+        return view('admin.pages.profile_setting',$data);
     }
 
     public function faq()
