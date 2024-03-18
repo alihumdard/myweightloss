@@ -114,10 +114,15 @@ class WebController extends Controller
                     continue; // Skip unwanted keys
                 }
 
-                if ($key === 'question_3' && $value instanceof \Illuminate\Http\UploadedFile) {
-                    // Handle image upload here
-                    $imagePath = $value->store('images'); // You may need to customize the storage path
-                    $questionAnswers[3] = $imagePath;
+
+                if ($key === 'question_3') {
+                    if ($request->hasFile('question_3')) {
+                        $file = $request->file('question_3');
+                        $fileName = time() . '_' . uniqid('', true) . '.' . $file->getClientOriginalExtension();
+                        $file->storeAs('consultation/user', $fileName, 'public');
+                        $filePath = 'consultation/user/' . $fileName;
+                        $questionAnswers[3] = $filePath;
+                    }
                 } elseif (strpos($key, 'question_') === 0) {
                     $question_id = substr($key, 9); // Extract question_id from the key
                     $questionAnswers[$question_id] = $value;

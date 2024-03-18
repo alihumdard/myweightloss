@@ -69,37 +69,44 @@
                                 <tr>
                                     <th style="vertical-align: middle; text-align: center;">Question_id</th>
                                     <th>Title</th>
+                                    <th>Description</th>
                                     <th>Answer</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td> </td>
-                                    <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center; background-color:aquamarine !important; "> Costumer Body Profile </td>
+                                    <td> </td>
+                                    <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center; background-color:aquamarine !important; "> Body Profile </td>
                                     <td> </td>
                                 </tr>
                                 <tr>
                                     <td>#3434</td>
-                                    <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> Costumer Gender </td>
+                                    <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> Gender </td>
+                                    <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> </td>
                                     <td>{{ $body_profile['gender']}} </td>
                                 </tr>
                                 <tr>
                                     <td>#3434</td>
-                                    <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> Costumer Age </td>
+                                    <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> Age </td>
+                                    <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> </td>
                                     <td>{{ $body_profile['age']}} </td>
                                 </tr>
                                 <tr>
                                     <td>#3434</td>
-                                    <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> Costumer DOB </td>
+                                    <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> DOB </td>
+                                    <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> </td>
                                     <td>{{ $body_profile->user->dob}} </td>
                                 </tr>
                                 <tr>
                                     <td>#3434</td>
-                                    <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> Costumer BMI's </td>
+                                    <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> BMI's </td>
+                                    <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> </td>
                                     <td>{{ $body_profile['bmi']}} </td>
                                 </tr>
 
                                 <tr>
+                                    <td> </td>
                                     <td> </td>
                                     <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center; background-color:aquamarine !important; "> Product Constulation </td>
                                     <td> </td>
@@ -108,6 +115,7 @@
                                 <tr>
                                     <td style="vertical-align: middle; text-align: center;">#3434{{$val['id']}}</td>
                                     <td>{{$val['title']}}</td>
+                                    <td>{{ implode(' ', array_slice(str_word_count($val['desc'] ?? '', 1), 0, 50)) . (str_word_count($val['desc'] ?? '') > 50 ? '...' : '') }}</td>
                                     <td>
                                         @if (Str::startsWith($val['answer'], 'consultation/product/'))
                                         <a class="fw-bold btn-link" href="{{ asset('storage/'.$val['answer']) }}" download>See File</a>
@@ -120,6 +128,7 @@
 
                                 <tr>
                                     <td> </td>
+                                    <td> </td>
                                     <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center; background-color:aquamarine !important; "> User Constulation </td>
                                     <td> </td>
                                 </tr>
@@ -127,8 +136,9 @@
                                 <tr>
                                     <td style="vertical-align: middle; text-align: center;">#3434{{$value['id']}}</td>
                                     <td>{{$value['title']}}</td>
+                                    <td>{{ Str::limit(strip_tags($value['desc'] ?? ''), 80) }}</td>
                                     <td>
-                                        @if (Str::startsWith($value['answer'], 'consultation/product/'))
+                                        @if (Str::startsWith($value['answer'], 'consultation/user/'))
                                         <a class="fw-bold btn-link" href="{{ asset('storage/'.$value['answer']) }}" download>See File</a>
                                         @else
                                         <p>{{ $value['answer'] }}</p>
@@ -163,12 +173,12 @@
                 <button type="button" class="btn-close fw-bold text-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="form_hcp_remarks"  class="row g-3 mt-1 needs-validation"  novalidate action="{{route('admin.changeStatus')}}" method="POST">
+                <form id="form_hcp_remarks" class="row g-3 mt-1 needs-validation" novalidate action="{{route('admin.changeStatus')}}" method="POST">
                     @csrf
-                    <input type="hidden" name="id" required  value="{{$order['id']}}">
+                    <input type="hidden" name="id" required value="{{$order['id']}}">
                     <div class="col-12">
                         <label for="status" class="form-label fw-bold">Order Status :</label>
-                        <select id="status" name="status" class="form-select" required >
+                        <select id="status" name="status" class="form-select" required>
                             <option value="" selected>Choose...</option>
                             <option value="Approved">Approved</option>
                             <option value="Not_Approved">Not Approved</option>
@@ -178,7 +188,7 @@
 
                     <div class="col-12">
                         <label for="hcp_remarks" class="form-label fw-bold">Health Care Professional Notes: </label>
-                        <textarea name="hcp_remarks" class="form-control" id="hcp_remarks" rows="4" placeholder="write here..." required ></textarea>
+                        <textarea name="hcp_remarks" class="form-control" id="hcp_remarks" rows="4" placeholder="write here..." required></textarea>
                         <div class="invalid-feedback">Please write Notes!</div>
                     </div>
                 </form>
@@ -206,7 +216,7 @@
             // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
             "buttons": [{
                     extend: 'pdf',
-                    text: 'Donwload PDF ',
+                    text: 'Download PDF ',
                     className: 'btn-blue',
                 },
                 // {

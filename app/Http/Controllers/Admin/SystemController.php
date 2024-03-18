@@ -854,13 +854,17 @@ class SystemController extends Controller
                     $consult_quest_keys = array_keys(array_filter($consutl_quest_ans, function ($value) {
                         return $value !== null;
                     }));
-                    $consult_questions = ConsultationQuestion::whereIn('id', $consult_quest_keys)->pluck('title', 'id')->toArray();
+                    $consult_questions = ConsultationQuestion::whereIn('id', $consult_quest_keys)->select('id','title','desc')->get()->toArray();
+                    $consult_questions = collect($consult_questions)->mapWithKeys(function ($item) {
+                        return [$item['id'] => $item];
+                    });
                     $user_result = [];
                     foreach ($consutl_quest_ans as $quest_id => $ans) {
                         if (isset($consult_questions[$quest_id])) {
                             $user_result[] = [
                                 'id' => $quest_id,
-                                'title' => $consult_questions[$quest_id],
+                                'title' => $consult_questions[$quest_id]['title'],
+                                'desc' => $consult_questions[$quest_id]['desc'],
                                 'answer' => $ans,
                             ];
                         }
@@ -871,14 +875,18 @@ class SystemController extends Controller
                     if ($transaction) {
                         $question_ans = json_decode($transaction->question_answers, true);
                         $question_ids = array_keys($question_ans);
-                        $questions = Question::whereIn('id', $question_ids)->pluck('title', 'id')->toArray();
-
+                        $questions = Question::whereIn('id', $question_ids)->select('id','title', 'openbox')->get()->toArray();
+                        
+                        $questions = collect($questions)->mapWithKeys(function ($item) {
+                            return [$item['id'] => $item];
+                        });
                         $result = [];
                         foreach ($question_ans as $question_id => $answer) {
                             if (isset($questions[$question_id])) {
                                 $result[] = [
                                     'id' => $question_id,
-                                    'title' => $questions[$question_id],
+                                    'title' => $questions[$question_id]['title'],
+                                    'desc' => $questions[$question_id]['openbox'],
                                     'answer' => $answer,
                                 ];
                             }
