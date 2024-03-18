@@ -11,7 +11,7 @@
                         <ul class="list-items list-items-layout2 list-items-light list-unstyled d-flex justify-content-between mb-0">
                             <li class="mr-3">Dispensed by Regulated UK Pharmacists</li>
                             <li class="mr-3">100% Discreet Packaging</li>
-                            <li class="mr-3">Free Delivery on orders over £40*</li>
+                            <li class="mr-3">Free Delivery on orders over £40+</li>
                         </ul>
 
 
@@ -20,7 +20,7 @@
                             <ul class="social-icons list-unstyled d-flex align-items-center px-2">
                                 <li><a href="https://www.facebook.com/profile.php?id=61556213788091" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
                                 <li><a href="https://www.instagram.com/official.weightloss_/" target="_blank"><i class="fab fa-instagram"></i></a></li>
-                                <li><a href="https://twitter.com/4uPharmacy" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                                <!-- <li><a href="https://twitter.com/4uPharmacy" target="_blank"><i class="fab fa-twitter"></i></a></li> -->
                                 <li class="mx-5">
                                     <a href="{{ route('web.cart') }}" class=" fas fa-shopping-cart {{(request()->routeIs(['web.cart'])) ? 'active ' : ''}}"></a>
                                 </li>

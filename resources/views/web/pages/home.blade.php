@@ -11,7 +11,7 @@
     <div class="slick-carousel m-slides-0 carousel-arrows-light carousel-dots-light" data-slick='{"slidesToShow": 1, "arrows": true, "dots": false, "speed": 700,"fade": true,"cssEase": "linear"}'>
         <div class="slide-item align-v-h">
             <div class="bg-img">
-                <div class="overlay"></div>
+                <!-- <div class="overlay"></div> -->
                 <img src="{{ asset('/assets/web/images/tsp/home-slider/5.png') }}" alt="slide img">
             </div>
             <div class="container">
@@ -34,7 +34,7 @@
 
         <div class="slide-item align-v-h">
             <div class="bg-img">
-                <div class="overlay"></div> 
+                <!-- <div class="overlay"></div>  -->
                 <img src="{{ asset('/assets/web/images/tsp/home-slider/3.png') }}" alt="slide img">
             </div>
             <div class="container">
@@ -77,7 +77,7 @@
         </div>
         <div class="row">
             @foreach($products as $key => $value)
-            <div class="col-sm-6 col-md-6 col-lg-3">
+            <div class="col-sm-6 col-md-6 col-lg-4">
                 <div class="product-item">
                     <div class="product__img">
                         <a href="{{ route('web.product', ['id' => $value['id']]) }}">
