@@ -61,7 +61,8 @@
                                 </div>
 
                             </div>
-                        </div><!-- End Sales Card -->
+                        </div>
+                        <!-- End Sales Card -->
                     
 
                     <!-- Revenue Card -->
@@ -97,10 +98,11 @@
                             </div>
 
                         </div>
-                    </div><!-- End Revenue Card -->
+                    </div>
+                    <!-- End Revenue Card -->
 
                     <!-- Customers Card -->
-                    <div class="col-xxl-4 col-xl-12">
+                    <!-- <div class="col-xxl-4 col-xl-12">
 
                         <div class="card info-card customers-card">
 
@@ -134,7 +136,8 @@
                             </div>
                         </div>
 
-                    </div><!-- End Customers Card -->
+                    </div> -->
+                    <!-- End Customers Card -->
                     @endif
                     <!-- Reports -->
                     <div class="col-12">
@@ -174,7 +177,7 @@
             <div class="col-lg-5">
                 <!-- order status -->
                 @if($role == 4)
-                    <div class="card" style="max-height: 350px; overflow-y: auto;">
+                    <!-- <div class="card" style="max-height: 350px; overflow-y: auto;">
                         <div class="filter">
                             <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -196,14 +199,14 @@
                                     <div class="activity-content">
                                         Quia quae rerum <a href="#" class="fw-bold text-dark">explicabo officiis</a> beatae
                                     </div>
-                                </div><!-- End activity item-->
+                                </div>
                                 <div class="activity-item d-flex">
                                     <div class="activite-label">56 min</div>
                                     <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
                                     <div class="activity-content">
                                         Voluptatem blanditiis blanditiis eveniet
                                     </div>
-                                </div><!-- End activity item-->
+                                </div>
 
                                 <div class="activity-item d-flex">
                                     <div class="activite-label">2 hrs</div>
@@ -211,7 +214,7 @@
                                     <div class="activity-content">
                                         Voluptates corrupti molestias voluptatem
                                     </div>
-                                </div><!-- End activity item-->
+                                </div>
 
                                 <div class="activity-item d-flex">
                                     <div class="activite-label">1 day</div>
@@ -219,7 +222,7 @@
                                     <div class="activity-content">
                                         Tempore autem saepe <a href="#" class="fw-bold text-dark">occaecati voluptatem</a> tempore
                                     </div>
-                                </div><!-- End activity item-->
+                                </div>
 
                                 <div class="activity-item d-flex">
                                     <div class="activite-label">2 days</div>
@@ -227,7 +230,7 @@
                                     <div class="activity-content">
                                         Est sit eum reiciendis exercitationem
                                     </div>
-                                </div><!-- End activity item-->
+                                </div>
 
                                 <div class="activity-item d-flex">
                                     <div class="activite-label">4 weeks</div>
@@ -235,12 +238,13 @@
                                     <div class="activity-content">
                                         Dicta dolorem harum nulla eius. Ut quidem quidem sit quas
                                     </div>
-                                </div><!-- End activity item-->
+                                </div>
 
 
                             </div>
                         </div>
-                    </div><!-- End order status -->
+                    </div> -->
+                    <!-- End order status -->
                 @endif
 
                 <!-- start  my stats  -->

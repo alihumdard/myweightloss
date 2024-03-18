@@ -55,6 +55,9 @@
             color: #fff;
             font-weight: 600;
         }
+        .item label{
+            border-radius: 30px;
+        }
     </style>
 
 </head>
@@ -208,9 +211,13 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="imperialInput">
+                                        <label for="upload-file" class="c-bmi__label"><strong>Upload File</strong></label>
+                                        <input id="feet" class="c-bmi__range form-range mt-1 form-control feet" type="file" name="feet" step="0.1" required />
+                                        </div>
                                         <div class="checkbox_questions">
                                             <input name="terms" type="checkbox" class="icheck required" value="yes">
-                                            <label style="display: inline;" >Please tick this box to confirm you provided the correct information.</label>
+                                            <label style="display: inline;" >Please tick this box to confirm you provided the correct information.</label>
                                         </div>
                                     </div>
                                 </div>
