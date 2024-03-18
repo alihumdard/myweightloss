@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="STEPS | BMI FORM">
     <meta name="author" content="Ansonika">
-    <title>BMI FORM</title>
+    <title>BMI Calculator</title>
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="{{ asset('/assets/web/bmi/img/favicon.ico')}}" type="image/x-icon">
@@ -14,7 +14,6 @@
     <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{{ asset('/assets/web/bmi/img/apple-touch-icon-72x72-precomposed.png')}}">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="{{ asset('/assets/web/bmi/img/apple-touch-icon-114x114-precomposed.png')}}">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="{{ asset('/assets/web/bmi/img/apple-touch-icon-144x144-precomposed.png')}}">
-
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
 
@@ -36,6 +35,24 @@
 
 <body>
     <style>
+        .btn-outline-logo {
+            border: #5987c3 2px solid;
+            font-weight: 500;
+
+        }
+
+        .btn-logo-active {
+            background-color: #5987c3;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .btn-outline-logo:hover {
+            background-color: #5987c3;
+            color: #fff;
+            font-weight: 600;
+        }
+
         .c-bmi {
             box-sizing: border-box;
             font-family: ui-sans-serif, system-ui, sans-serif;
@@ -290,22 +307,57 @@
                                 @endif
                             </div>
                             <div class="card-body pt-1 px-2">
-
+                                <div class="d-flex align-items-center justify-content-center mb-3">
+                                    <button class="btn btn-outline-logo btn-logo-active mx-2 px-5 metric">Metric</button>
+                                    <button class="btn btn-outline-logo px-5  imperial">Imperial</button>
+                                </div>
                                 <form class="c-bmi" id="bmi_from" method="POST" action="{{ route('web.bmiUpdate') }}">
                                     @csrf
                                     <input type="hidden" name="id" value="{{$bmi_detail['id'] ?? '' }}">
-                                    <label for="height" class="c-bmi__label"><strong>Height</strong>
-                                        <input class="c-bmi__range form-range mt-1 form-control" type="number" name="height" min="20" max="254" step="0.1" value="{{$bmi_detail['height'] ?? 0.0 }}" />
-                                        <output name="ho"><output>
-                                    </label>
-                                    <label class="c-bmi__label"><strong>Weight</strong>
-                                        <input class="c-bmi__range form-range mt-1 form-control" type="number" name="weight" min="20" max="400" step="0.1" value="{{$bmi_detail['weight'] ?? 0.0 }}" />
-                                        <output name="wo"></output>
-                                    </label>
+                                    <div class="metricInput">
+                                        <label for="cm" class="c-bmi__label"><strong>Height(cm)</strong></label>
+                                        <input id="cm" class="c-bmi__range form-range mt-1 form-control cm" type="number" name="cm" min="20" max="254" step="0.1" value="{{$bmi_detail['cm'] ?? old('cm') }}" />
+                                        @error('cm')
+                                        <div class="alert-danger text-danger ">{{ $message }}</div>
+                                        @enderror
+
+                                        <label id="weight_kg" class="c-bmi__label"><strong>Weight(kg)</strong></label>
+                                        <input id="weight_kg" class="c-bmi__range form-range mt-1 form-control weight-kg" type="number" name="weight_kg" min="20" max="400" step="0.1" value="{{$bmi_detail['weight_kg'] ?? old('weight_kg') }}" />
+                                        @error('weight_kg')
+                                        <div class="alert-danger text-danger ">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="imperialInput d-none">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label for="feet" class="c-bmi__label"><strong>Feet</strong></label>
+                                                <input id="feet" class="c-bmi__range form-range mt-1 form-control feet" type="number" name="feet" step="0.1" value="{{$bmi_detail['feet'] ?? old('feet') }}" />
+                                                @error('feet')
+                                                <div class="alert-danger text-danger ">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="inches" class="c-bmi__label"><strong>Inches</strong></label>
+                                                <input id="inches" class="c-bmi__range form-range mt-1 form-control inches" type="number" name="inches" step="0.1" value="{{$bmi_detail['inches'] ?? old('inches') }}" />
+                                                @error('inches')
+                                                <div class="alert-danger text-danger ">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="col-12">
+                                                <label for="weight_lb" class="c-bmi__label"><strong>Weight(lb)</strong></label>
+                                                <input id="weight_lb" class="c-bmi__range form-range mt-1 form-control weight-lb" type="number" name="weight_lb" value="{{$bmi_detail['weight_lb'] ?? old('weight_lb') }}" />
+                                                @error('weight_lb')
+                                                <div class="alert-danger text-danger ">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="c-bmi__result">
                                         <span style="font-weight: 900;  "> Your BMI Is:</span>
                                         <div class="circle" style="width: 9rem; height:9rem;">
-                                            <output name="bmio"></output>
+                                            <output name="bmio" class="bmi_result">{{$bmi_detail['bmi'] ?? 0.0 }}</output>
                                         </div>
                                     </div>
 
@@ -330,39 +382,13 @@
                                         <div class="c-bmi__group-text">People who have BMI equal or over 30 may have obesity, which is defined as an abnormal or excessive accumulation of fat that may harm health.</div>
                                     </div>
                                 </form>
+
                                 <!-- /middle-wizard -->
                                 <div id="bottom-wizard" style="padding: 5px 0 25px 0;">
                                     <!-- <button type="button" class="btn btn-success px-4">Update</button> -->
                                     <button type="submit" form="bmi_from" class="submit ">Procceed Next </button>
                                 </div>
                                 <!-- /bottom-wizard -->
-
-                                <!-- <div class="mx-auto " >
-                        <form name="example-1" id="wrapped" method="POST" action="{{ route('web.bmiFormStore') }}">
-                            @csrf
-                            <input id="website" name="website" type="text" value="">
-                            <div id="middle-wizard" style="padding: 0 10rem ;">
-
-                                <div class="submit step">
-                                    <div class="row justify-content-center">
-                                        <div class="col-lg-10 animated zoomIn delay-fast">
-                                            <div class="form-group">
-                                                <input type="number" name="height" min="20" max="254" class="form-control" placeholder="Your height in (Cm)">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="number" name="weight" min="20" max="400" class="form-control" placeholder="Your weight in (Kg)">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div id="bottom-wizard" style="padding: 5px 0 45px 0;">
-                                    <button type="submit" class="submit">Save</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div> -->
-
                             </div>
                         </div>
                     </div>
@@ -398,39 +424,72 @@
     <script src="{{ asset('/assets/web/bmi/js/main.js') }}"></script>
     <script src="{{ asset('/assets/web/bmi/js/wizard_func_without_branch.js') }}"></script>
     <script>
-        function B() {
-            const e = this.height.valueAsNumber,
-                t = this.weight.valueAsNumber,
-                i = parseFloat(t / (e / 100) ** 2).toFixed(2),
-                height = [
-                    [0, 18.49],
-                    [18.5, 24.99],
-                    [25, 29.99],
-                    [30, 34.99],
-                    [35, 39.99],
-                    [40, 100]
-                ].findIndex(e => e[0] <= i && i < e[1]);
-            let o = (.393700787 * e).toFixed(0);
-            if (i > 0 && i <= 18.49) {
+        $(document).ready(function() {
+            // Function to handle metric/imperial toggle
+            $('.metric').click(function() {
+                $(this).addClass('btn-logo-active');
+                $('.imperial').removeClass('btn-logo-active');
+                $('.imperialInput').addClass('d-none');
+                $('.metricInput').removeClass('d-none');
+            });
+
+            $('.imperial').click(function() {
+                $(this).addClass('btn-logo-active');
+                $('.metric').removeClass('btn-logo-active');
+                $('.metricInput').addClass('d-none');
+                $('.imperialInput').removeClass('d-none');
+            });
+
+            // Event listener for metric input change
+            $('.cm, .weight-kg').on('input', function() {
+                const heightCm = parseFloat($('.cm').val());
+                const weightKg = parseFloat($('.weight-kg').val());
+                const heightInches = heightCm * 0.393701,
+                feet = Math.floor(heightInches / 12),
+                inches = Math.round(heightInches % 12);
+
+                $('.feet').val(feet);
+                $('.inches').val(inches);
+                $('.weight-lb').val((weightKg * 2.20462).toFixed(2));
+
+                calulate_bmi(heightCm, weightKg);
+            });
+
+            // Event listener for imperial input change
+            $('.feet, .inches, .weight-lb').on('input', function() {
+                const feet = parseFloat($('.feet').val());
+                const inches = parseFloat($('.inches').val());
+                const weight_lb = parseFloat($('.weight-lb').val());
+                const height_cm = (feet * 12 + inches) * 2.54;
+                const weight_kg = weight_lb * 0.453592;
+                $('.cm').val(height_cm);
+                $('.weight-kg').val(( Math.round(weight_kg.toFixed(2))));
+
+                calulate_bmi(height_cm, weight_kg);
+            });
+        });
+
+        function calulate_bmi(height_cm, weight_kg) {
+            const bmi = parseFloat(weight_kg / ((height_cm / 100) ** 2)).toFixed(2);
+
+            // Update BMI circle color based on BMI value
+            if (bmi > 0 && bmi <= 18.49) {
                 $('.circle').css('background-color', '#0d6efd')
-            } else if (i > 18.5 && i <= 24.49) {
+            } else if (bmi > 18.5 && bmi <= 24.49) {
                 $('.circle').css('background-color', '#198754')
-            } else if (i > 25 && i <= 29.99) {
-                $('.circle').css('background-color', '#ffc107')
-            } else if (i > 30 && i <= 34.99) {
+            } else if (bmi > 25 && bmi <= 29.99) {
+                $('.circle').css('background-color', '#198754')
+            } else if (bmi > 30 && bmi <= 34.99) {
                 $('.circle').css('background-color', '#fd7e14')
-            } else if (i > 35 && i <= 39.99) {
+            } else if (bmi > 35 && bmi <= 39.99) {
                 $('.circle').css('background-color', '#ff6455')
             } else {
                 $('.circle').css('background-color', '#dc3545');
-
             }
 
-            this.ho.value = `${e} cm / ${Math.floor(o/12)}' ${o%=12}"`, this.wo.value = `${t} kg / ${(2.2046*t).toFixed(2)} lb`, this.g[height].checked = !0, this.bmio.value = i
+            $('.bmi_result').text(isNaN(bmi) || !isFinite(bmi) ? 0 : Math.min(bmi, 100));
         }
-        const bmi = document.querySelector('.c-bmi')
-        bmi.addEventListener('input', B);
-        bmi.dispatchEvent(new Event('input'));
+
     </script>
 </body>
 

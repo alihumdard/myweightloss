@@ -12,8 +12,11 @@ class UserBmi extends Model
     protected $fillable = [
         'user_id',
         'bmi',
-        'weight',
-        'height',
+        'cm',
+        'feet',
+        'inches',
+        'weight_lb',
+        'weight_kg',
         'age',
         'gender',
         'status',

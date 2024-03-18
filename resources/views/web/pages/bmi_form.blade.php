@@ -33,9 +33,27 @@
     <!-- Modernizr -->
 
     <style>
-        .shahrozheight{
+        .shahrozheight {
             /* width: auto; */
-            height:190px !important;
+            height: 190px !important;
+        }
+
+        .btn-outline-logo {
+            border: #5987c3 2px solid;
+            font-weight: 500;
+
+        }
+
+        .btn-logo-active {
+            background-color: #5987c3;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .btn-outline-logo:hover {
+            background-color: #5987c3;
+            color: #fff;
+            font-weight: 600;
         }
     </style>
 
@@ -134,7 +152,7 @@
                                 <div class="col-lg-3 col-md-6 animated zoomIn delay-fast">
                                     <div class="item text-center">
                                         <input id="answer_1" type="radio" name="age" value="18-25" class="required">
-                                        <label for="answer_1" >
+                                        <label for="answer_1">
                                             <img src="{{ asset('/assets/web/bmi/img/11.png') }}" alt="" class="img-fluid mb-2 shahrozheight">
                                             <button type="button" class=" btn btn-sm btn-primary">18-25</button>
                                         </label>
@@ -152,7 +170,7 @@
                                 <div class="col-lg-3 col-md-6 animated zoomIn delay-medium">
                                     <div class="item text-center">
                                         <input id="answer_3" name="age" type="radio" value="36-45" class="required">
-                                        <label for="answer_3" >
+                                        <label for="answer_3">
                                             <img src="{{ asset('/assets/web/bmi/img/10.png') }}" alt="" class="img-fluid mb-2 shahrozheight">
                                             <button type="button" class=" btn btn-sm btn-primary">36-45</button>
                                         </label>
@@ -162,7 +180,7 @@
                                     <div class="item text-center">
                                         <input id="answer_4" name="age" type="radio" value="46+" class="required">
                                         <label for="answer_4">
-                                            <img src="{{ asset('/assets/web/bmi/img/4.png') }}" alt="" class="img-fluid bg-white mb-2 shahrozheight" >
+                                            <img src="{{ asset('/assets/web/bmi/img/4.png') }}" alt="" class="img-fluid bg-white mb-2 shahrozheight">
                                             <button type="button" class=" btn btn-sm btn-primary">46+</button>
                                         </label>
                                     </div>
@@ -181,18 +199,38 @@
                             <div class="row justify-content-center">
                                 <div class="col-lg-5 animated zoomIn delay-fast">
                                     <div class="box_general">
-                                        <div class="form-group">
-                                            <input type="number" name="height"  min="20" max="254" step="0.1" class="form-control" placeholder="Your height in (Cm)">
+                                        <div class="d-flex align-items-center justify-content-center mb-3">
+                                            <label class="btn btn-outline-logo btn-logo-active mx-2 px-5 metric">Metric</label>
+                                            <label class="btn btn-outline-logo px-5  imperial">Imperial</label>
                                         </div>
-                                        <div class="form-group">
-                                            <input type="number" name="weight" min="20" max="400" step="0.1" class="form-control" placeholder="Your weight in (Kg)">
+                                        <div class="metricInput">
+                                            <label for="cm" class="c-bmi__label"><strong>Height(cm)</strong></label>
+                                            <input id="cm" class="c-bmi__range form-range mt-1 form-control cm" type="number" name="cm" min="20" max="254" step="0.1" required />
+
+                                            <label id="weight_kg" class="c-bmi__label"><strong>Weight(kg)</strong></label>
+                                            <input id="weight_kg" class="c-bmi__range form-range mt-1 form-control weight-kg" type="number" name="weight_kg" min="20" max="400" step="0.1" required />
+                                        </div>
+                                        <div class="imperialInput d-none">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label for="feet" class="c-bmi__label"><strong>Feet</strong></label>
+                                                    <input id="feet" class="c-bmi__range form-range mt-1 form-control feet" type="number" name="feet" step="0.1" required />
+                                                </div>
+                                                <div class="col-6">
+                                                    <label for="inches" class="c-bmi__label"><strong>Inches</strong></label>
+                                                    <input id="inches" class="c-bmi__range form-range mt-1 form-control inches" type="number" name="inches" step="0.1" required />
+                                                </div>
+                                                <div class="col-12">
+                                                    <label for="weight_lb" class="c-bmi__label"><strong>Weight(lb)</strong></label>
+                                                    <input id="weight_lb" class="c-bmi__range form-range mt-1 form-control weight-lb" type="number" name="weight_lb" required />
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="checkbox_questions">
                                             <input name="terms" type="checkbox" class="icheck required" value="yes">
-                                            <label>Please tick this box to confirm you provided the correct information.</label>
+                                            <label style="display: inline;" >Please tick this box to confirm you provided the correct information.</label>
                                         </div>
                                     </div>
-                                    <!-- /box_general -->
                                 </div>
                             </div>
                             <!-- /row -->
@@ -203,7 +241,7 @@
                     <div id="bottom-wizard">
                         <button type="button" name="backward" class="backward mx-1">Backward </button>
                         <button type="button" name="forward" class="forward mx-1">Forward</button>
-                        <button type="submit"  class="submit mx-1">Submit</button>
+                        <button type="submit" class="submit mx-1">Submit</button>
                     </div>
                     <!-- /bottom-wizard -->
                 </form>
@@ -251,7 +289,48 @@
     <script src="{{ asset('/assets/web/bmi/js/menu.js') }}"></script>
     <script src="{{ asset('/assets/web/bmi/js/main.js') }}"></script>
     <script src="{{ asset('/assets/web/bmi/js/wizard_func_without_branch.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            // Function to handle metric/imperial toggle
+            $('.metric').click(function() {
+                $(this).addClass('btn-logo-active');
+                $('.imperial').removeClass('btn-logo-active');
+                $('.imperialInput').addClass('d-none');
+                $('.metricInput').removeClass('d-none');
+            });
 
+            $('.imperial').click(function() {
+                $(this).addClass('btn-logo-active');
+                $('.metric').removeClass('btn-logo-active');
+                $('.metricInput').addClass('d-none');
+                $('.imperialInput').removeClass('d-none');
+            });
+
+            // Event listener for metric input change
+            $('.cm, .weight-kg').on('input', function() {
+                const heightCm = parseFloat($('.cm').val());
+                const weightKg = parseFloat($('.weight-kg').val());
+                const heightInches = heightCm * 0.393701,
+                feet = Math.floor(heightInches / 12),
+                inches = Math.round(heightInches % 12);
+
+                $('.feet').val(feet);
+                $('.inches').val(inches);
+                $('.weight-lb').val((weightKg * 2.20462).toFixed(2));
+            });
+
+            // Event listener for imperial input change
+            $('.feet, .inches, .weight-lb').on('input', function() {
+                const feet = parseFloat($('.feet').val());
+                const inches = parseFloat($('.inches').val());
+                const weight_lb = parseFloat($('.weight-lb').val());
+                const height_cm = (feet * 12 + inches) * 2.54;
+                const weight_kg = weight_lb * 0.453592;
+                $('.cm').val(height_cm);
+                $('.weight-kg').val(( Math.round(weight_kg.toFixed(2))));
+            });
+        });
+    </script>
 </body>
 
 </html>

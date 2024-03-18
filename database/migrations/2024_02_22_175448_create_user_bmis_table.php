@@ -18,8 +18,11 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('gender');
             $table->string('age');
-            $table->string('height');
-            $table->string('weight');
+            $table->string('cm');
+            $table->string('weight_kg');
+            $table->string('feet');
+            $table->string('inches');
+            $table->string('weight_lb');
             $table->string('bmi');
             $table->string('status')->default('1');
             $table->unsignedBigInteger('created_by')->nullable();
