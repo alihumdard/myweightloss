@@ -89,7 +89,7 @@ class WebController extends Controller
                 return view('web.pages.bmi_form', $data);
             }
         } else {
-            return redirect()->route('web.regisrationFrom');
+            return redirect()->route('register');
         }
     }
 
@@ -252,15 +252,18 @@ class WebController extends Controller
         $data['user'] = auth()->user() ?? [];
 
         if (auth()->user()) {
-            $weight = $request->weight;
-            $height = $request->height / 100;
+            $weight = $request->weight_kg;
+            $height = $request->cm / 100;
             $bmi = $weight / ($height * $height);
             $bmi = round($bmi, 1);
 
             $save =  UserBmi::create([
                 'user_id' => auth()->user()->id,
-                'weight' => $request->weight,
-                'height' => $request->height,
+                'cm' => $request->cm,
+                'feet' => $request->feet,
+                'inches' => $request->inches,
+                'weight_lb' => $request->weight_lb,
+                'weight_kg' => $request->weight_kg,
                 'age' => $request->age,
                 'gender' => $request->gender,
                 'bmi' => $bmi,
@@ -283,34 +286,46 @@ class WebController extends Controller
     {
         $data['user'] = auth()->user() ?? [];
 
-        if (auth()->user()) {
-            // dd($request->all());
-            $weight = $request->weight;
-            $height = $request->height / 100;
-            $bmi = $weight / ($height * $height);
-            $bmi = round($bmi, 1);
+        // Define validation rules
+        $rules = [
+            'cm' => 'required|numeric|min:20|max:254',
+            'weight_kg' => 'required|numeric|min:20|max:400',
+            'id' => 'required|exists:user_bmis,id',
+        ];
 
-            $save =  UserBmi::where('id', $request->id)
-                ->update([
-                    'user_id' => auth()->user()->id,
-                    'weight' => $request->weight,
-                    'height' => $request->height,
-                    'bmi' => $bmi,
-                    'status' => '1',
-                    'created_by' => auth()->user()->id,
-                ]);
+        $validator = Validator::make($request->all(), $rules);
 
-            if ($save) {
-                if ($bmi >= 30) {
-                    return redirect()->route('web.consultationForm');
-                } else {
-                    return redirect()->route('web.bmiForm')->with(['status' => 'invalid', 'message' => "You can't proceed futher because You'r bmi is lower than 30."]);
-                }
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+
+        $weight = $request->weight_kg;
+        $height = $request->cm / 100;
+        $bmi = $weight / ($height * $height);
+        $bmi = round($bmi, 1);
+
+        $save = UserBmi::where('id', $request->id)
+            ->update([
+                'cm' => $request->cm,
+                'feet' => $request->feet,
+                'inches' => $request->inches,
+                'weight_lb' => $request->weight_lb,
+                'weight_kg' => $request->weight_kg,
+                'bmi' => $bmi,
+                'status' => '1',
+                'created_by' => auth()->user()->id,
+            ]);
+
+        if ($save) {
+            if ($bmi >= 30) {
+                return redirect()->route('web.consultationForm');
+            } else {
+                return redirect()->route('web.bmiForm')->with(['status' => 'invalid', 'message' => "You can't proceed further because Your BMI is lower than 30."]);
             }
-        } else {
-            return view('web.pages.regisration_from', $data);
         }
     }
+
 
     public function cart(Request $request)
     {
