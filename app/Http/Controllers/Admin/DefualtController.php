@@ -26,6 +26,7 @@ use App\Models\Question;
 use App\Models\AssignQuestion;
 use App\Models\Product;
 use App\Models\ProductAttribute;
+use App\Models\UserBmi;
 
 
 class DefualtController extends Controller
@@ -59,7 +60,7 @@ class DefualtController extends Controller
             } else if (isset($user->role) && $user->role == user_roles('3')) {
                 return view('admin.pages.dashboard', $data);
             } else if (isset($user->role) && $user->role == user_roles('4')) {
-                // return redirect('/');
+                $data['bodyPorfile'] = UserBmi::with('user')->where(['user_id' => $user->id, 'status' => '1'])->latest('created_at')->latest('id')->first();
                 return view('admin.pages.dashboard', $data);
             }
         } else {
