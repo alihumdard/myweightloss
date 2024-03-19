@@ -51,11 +51,12 @@
         }
 
         .btn-outline-logo:hover {
-            background-color: #5987c3;
+            background-color: #4287e2;
             color: #fff;
             font-weight: 600;
         }
-        .item label{
+
+        .item label {
             border-radius: 30px;
         }
     </style>
@@ -93,7 +94,7 @@
     <main>
         <div class="container">
             <div id="wizard_container">
-                <form name="example-1" id="wrapped" method="POST" action="{{ route('web.bmiFormStore') }}">
+                <form name="example-1" id="wrapped" method="POST" action="{{ route('web.bmiFormStore') }}" enctype="multipart/form-data">
                     @csrf
                     <input id="website" name="website" type="text" value="">
                     <!-- Leave for security protection, read docs for details -->
@@ -195,6 +196,7 @@
                                             <label id="weight_kg" class="c-bmi__label"><strong>Weight(kg)</strong></label>
                                             <input id="weight_kg" class="c-bmi__range form-range mt-1 form-control weight-kg" type="number" name="weight_kg" min="20" max="400" step="0.1" required />
                                         </div>
+
                                         <div class="imperialInput d-none">
                                             <div class="row">
                                                 <div class="col-6">
@@ -205,19 +207,24 @@
                                                     <label for="inches" class="c-bmi__label"><strong>Inches</strong></label>
                                                     <input id="inches" class="c-bmi__range form-range mt-1 form-control inches" type="number" name="inches" step="0.1" required />
                                                 </div>
-                                                <div class="col-12">
+                                                <div class="col-6">
+                                                    <label for="weight_st" class="c-bmi__label"><strong>Weight(St)</strong></label>
+                                                    <input id="weight_st" class="c-bmi__range form-range mt-1 form-control weight_st" type="number" name="weight_st" required />
+                                                </div>
+                                                <div class="col-6">
                                                     <label for="weight_lb" class="c-bmi__label"><strong>Weight(lb)</strong></label>
                                                     <input id="weight_lb" class="c-bmi__range form-range mt-1 form-control weight-lb" type="number" name="weight_lb" required />
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="imperialInput">
-                                        <label for="upload-file" class="c-bmi__label"><strong>Upload File</strong></label>
-                                        <input id="feet" class="c-bmi__range form-range mt-1 form-control feet" type="file" name="feet" step="0.1" required />
+
+                                        <div>
+                                            <label for="weight_pic" class="c-bmi__label"><strong style="font-size: small;">Please upload a photo of yourself on a scale to verify your weight </strong></label> <small style="float: right;"> (<a href="#" data-bs-toggle="modal" data-bs-target="#weight-img">view example</a>)</small>
+                                            <input id="weight_pic" class="c-bmi__range  mt-1 form-control " type="file" name="weight_pic" accept="image/*" required />
                                         </div>
                                         <div class="checkbox_questions">
                                             <input name="terms" type="checkbox" class="icheck required" value="yes">
-                                            <label style="display: inline;" >Please tick this box to confirm you provided the correct information.</label>
+                                            <label style="display: inline;">Please tick this box to confirm you provided the correct information.</label>
                                         </div>
                                     </div>
                                 </div>
@@ -272,6 +279,22 @@
     </div>
     <!-- /Modal terms -->
 
+    <!-- image Modal -->
+    <div class="modal fade" id="weight-img" tabindex="-1" data-bs-backdrop="true">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #5987c3;">
+                    <h5 class="modal-title fw-bold text-white">My Weightloss Centre</h5>
+                    <button type="button" class="btn-close fw-bold text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="{{ url('images/weight_scale1.jpg') }}" class="img-fluid" alt="Weight Scale Image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <!-- COMMON SCRIPTS -->
     <script src="{{ asset('/assets/web/bmi/js/jquery-3.7.1.min.js') }}"></script>
     <script src="{{ asset('/assets/web/bmi/js/common_scripts.min.js') }}"></script>
@@ -280,7 +303,6 @@
     <script src="{{ asset('/assets/web/bmi/js/wizard_func_without_branch.js') }}"></script>
     <script>
         $(document).ready(function() {
-            // Function to handle metric/imperial toggle
             $('.metric').click(function() {
                 $(this).addClass('btn-logo-active');
                 $('.imperial').removeClass('btn-logo-active');
@@ -295,29 +317,53 @@
                 $('.imperialInput').removeClass('d-none');
             });
 
-            // Event listener for metric input change
+            // Function to handle weight input in stones
+            $('.weight_st').on('input', function() {
+                const weightSt = parseFloat($('.weight_st').val());
+                const weightLb = weightSt * 14.000;
+                const weightKg = weightLb * 0.453592;
+                $('.weight-lb').val(weightLb.toFixed(2));
+                $('.weight-kg').val(weightKg.toFixed(2));
+            });
+
+            // Function to handle weight input in pounds
+            $('.weight-lb').on('input', function() {
+                const weightLb = parseFloat($('.weight-lb').val());
+                const weightKg = weightLb * 0.453592;
+                const weightSt = weightLb / 14;
+                $('.weight-kg').val(weightKg.toFixed(2));
+                $('.weight_st').val(weightSt.toFixed(2));
+            });
+
+            // Function to handle metric input change
             $('.cm, .weight-kg').on('input', function() {
                 const heightCm = parseFloat($('.cm').val());
                 const weightKg = parseFloat($('.weight-kg').val());
-                const heightInches = heightCm * 0.393701,
-                feet = Math.floor(heightInches / 12),
-                inches = Math.round(heightInches % 12);
-
+                const heightInches = heightCm * 0.393701;
+                const feet = Math.floor(heightInches / 12);
+                const inches = Math.round(heightInches % 12);
                 $('.feet').val(feet);
                 $('.inches').val(inches);
-                $('.weight-lb').val((weightKg * 2.20462).toFixed(2));
+                const weightLb = weightKg * 2.20462;
+                const weightSt = weightKg * 0.157473;
+                $('.weight-lb').val(weightLb.toFixed(2));
+                $('.weight_st').val(weightSt.toFixed(2));
+
             });
 
-            // Event listener for imperial input change
-            $('.feet, .inches, .weight-lb').on('input', function() {
+            // Function to handle height input in feet and inches
+            $('.feet, .inches').on('input', function() {
                 const feet = parseFloat($('.feet').val());
-                const inches = parseFloat($('.inches').val());
-                const weight_lb = parseFloat($('.weight-lb').val());
+                let inches = parseFloat($('.inches').val());
+                if (isNaN(inches)) {
+                    inches = 0;
+                }
                 const height_cm = (feet * 12 + inches) * 2.54;
-                const weight_kg = weight_lb * 0.453592;
-                $('.cm').val(height_cm);
-                $('.weight-kg').val(( Math.round(weight_kg.toFixed(2))));
+                const rounded_height_cm = height_cm.toFixed(2);
+                $('.cm').val(rounded_height_cm);
             });
+
+
         });
     </script>
 </body>

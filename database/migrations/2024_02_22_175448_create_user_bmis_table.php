@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('feet');
             $table->string('inches');
             $table->string('weight_lb');
+            $table->string('weight_pic');
+            $table->string('weight_st');
             $table->string('bmi');
             $table->string('status')->default('1');
             $table->unsignedBigInteger('created_by')->nullable();

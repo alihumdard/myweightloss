@@ -262,6 +262,13 @@ class WebController extends Controller
             $bmi = $weight / ($height * $height);
             $bmi = round($bmi, 1);
 
+            if ($request->hasFile('weight_pic')) {
+                $file = $request->file('weight_pic');
+                $fileName = time() . '_' . uniqid('', true) . '.' . $file->getClientOriginalExtension();
+                $file->storeAs('consultation/user', $fileName, 'public');
+                $filePath = 'consultation/user/' . $fileName;
+            }
+
             $save =  UserBmi::create([
                 'user_id' => auth()->user()->id,
                 'cm' => $request->cm,
@@ -269,6 +276,8 @@ class WebController extends Controller
                 'inches' => $request->inches,
                 'weight_lb' => $request->weight_lb,
                 'weight_kg' => $request->weight_kg,
+                'weight_st' => $request->weight_st,
+                'weight_pic' => $filePath,
                 'age' => $request->age,
                 'gender' => $request->gender,
                 'bmi' => $bmi,

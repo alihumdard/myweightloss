@@ -17,6 +17,8 @@ class UserBmi extends Model
         'inches',
         'weight_lb',
         'weight_kg',
+        'weight_st',
+        'weight_pic',
         'age',
         'gender',
         'status',
