@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="STEPS | BMI FORM">
-    <meta name="author" content="Ansonika">
+    <meta name="author" content="My Weight Loss Centre">
     <title>BMI FORM</title>
 
     <!-- Favicons-->
-    <link rel="shortcut icon" href="{{ asset('/assets/web/bmi/img/favicon.ico')}}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('/assets/web/images/favicon/favicon.png')}}" type="image/x-icon">
     <link rel="apple-touch-icon" type="image/x-icon" href="{{ asset('/assets/web/bmi/img/apple-touch-icon-57x57-precomposed.png')}}">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{{ asset('/assets/web/bmi/img/apple-touch-icon-72x72-precomposed.png')}}">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="{{ asset('/assets/web/bmi/img/apple-touch-icon-114x114-precomposed.png')}}">
@@ -130,7 +130,7 @@
 
                         <div class="step">
                             <div class="question_title">
-                                <h3>PERSONALIZED WORKOUT PLAN</h3>
+                                <h3>PERSONALISED WEIGHT LOSS PLAN</h3>
                                 <p>ACCORDING TO YOUR AGE</p>
                             </div>
                             <div class="row justify-content-center">
@@ -138,7 +138,7 @@
                                     <div class="item text-center">
                                         <input id="answer_1" type="radio" name="age" value="18-25" class="required">
                                         <label for="answer_1">
-                                            <img src="{{ asset('/assets/web/bmi/img/11.png') }}" alt="" class="img-fluid mb-2 shahrozheight">
+                                            <img src="{{ asset('/assets/web/bmi/img/weightloss/18-25.png') }}" alt="" class="img-fluid mb-2 shahrozheight">
                                             <button type="button" class=" btn btn-sm btn-primary">18-25</button>
                                         </label>
                                     </div>
@@ -147,7 +147,7 @@
                                     <div class="item text-center">
                                         <input id="answer_2" name="age" type="radio" value="26-35" class="required">
                                         <label for="answer_2">
-                                            <img src="{{ asset('/assets/web/bmi/img/7.png') }}" alt="" class="img-fluid mb-2 shahrozheight">
+                                            <img src="{{ asset('/assets/web/bmi/img/weightloss/26-35.png') }}" alt="" class="img-fluid mb-2 shahrozheight">
                                             <button type="button" class=" btn btn-sm btn-primary">26-35</button>
                                         </label>
                                     </div>
@@ -156,7 +156,7 @@
                                     <div class="item text-center">
                                         <input id="answer_3" name="age" type="radio" value="36-45" class="required">
                                         <label for="answer_3">
-                                            <img src="{{ asset('/assets/web/bmi/img/10.png') }}" alt="" class="img-fluid mb-2 shahrozheight">
+                                            <img src="{{ asset('/assets/web/bmi/img/weightloss/36-45.png') }}" alt="" class="img-fluid mb-2 shahrozheight">
                                             <button type="button" class=" btn btn-sm btn-primary">36-45</button>
                                         </label>
                                     </div>
@@ -165,7 +165,7 @@
                                     <div class="item text-center">
                                         <input id="answer_4" name="age" type="radio" value="46+" class="required">
                                         <label for="answer_4">
-                                            <img src="{{ asset('/assets/web/bmi/img/4.png') }}" alt="" class="img-fluid bg-white mb-2 shahrozheight">
+                                            <img src="{{ asset('/assets/web/bmi/img/weightloss/46-pluls.png') }}" alt="" class="img-fluid bg-white mb-2 shahrozheight">
                                             <button type="button" class=" btn btn-sm btn-primary">46+</button>
                                         </label>
                                     </div>
