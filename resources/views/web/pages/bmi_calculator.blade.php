@@ -409,7 +409,7 @@
             $(document).on('input','input',function(){
                 $('.alert-danger').text('');
             });
-
+            calulate_bmi(@json($bmi_detail['bmi'] ?? 0.0))
             function submitForm() {
                 $('.c-bmi__range').removeAttr('required');
                 $('#bmi_from').submit();
