@@ -278,7 +278,7 @@
                     <div class="container py-5">
                         <div class="card">
                             <div class=" btn btn-primary pt-1 question_title">
-                                <h5 class="text-white fw-bold">Calculate/Update Your BMI</h5>
+                                <h5 class="text-white fw-bold pt-2">Calculate/Update Your BMI</h5>
                             </div>
                             <div class="col-12 mx-auto">
                                 @if(session('status') === 'invalid')
@@ -325,7 +325,14 @@
                                                 <div class="alert-danger text-danger ">{{ $message }}</div>
                                                 @enderror
                                             </div>
-                                            <div class="col-12">
+                                            <div class="col-6">
+                                                <label for="weight_st" class="c-bmi__label"><strong>Weight(st)</strong></label>
+                                                <input id="weight_st" class="c-bmi__range form-range mt-1 form-control weight_st" type="number" name="weight_st" value="{{$bmi_detail['weight_st'] ?? old('weight_st') }}" />
+                                                @error('weight_st')
+                                                <div class="alert-danger text-danger ">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="col-6">
                                                 <label for="weight_lb" class="c-bmi__label"><strong>Weight(lb)</strong></label>
                                                 <input id="weight_lb" class="c-bmi__range form-range mt-1 form-control weight-lb" type="number" name="weight_lb" value="{{$bmi_detail['weight_lb'] ?? old('weight_lb') }}" />
                                                 @error('weight_lb')
@@ -343,22 +350,22 @@
                                     </div>
 
                                     <div class="c-bmi__groups" readonly>
-                                        <input type="radio" id="bmi-g0" name="g" />
+                                        <input type="radio" id="bmi_1-18" name="g" />
                                         <label for="bmi-g0">Underweight</label>
                                         <div class="c-bmi__group-text">The WHO regards a BMI of less than 18.5 as underweight and may indicate malnutrition, an eating disorder, or other health problems.</div>
-                                        <input type="radio" id="bmi-g1" name="g" checked />
+                                        <input type="radio" id="bmi_18-25" name="g" />
                                         <label for="bmi-g1">Normal</label>
                                         <div class="c-bmi__group-text">A BMI between 18.5 and 25 is considered normal and healthy. </div>
-                                        <input type="radio" id="bmi-g2" name="g" />
+                                        <input type="radio" id="bmi_25-30" name="g" />
                                         <label for="bmi-g2">Pre-obesity</label>
                                         <div class="c-bmi__group-text">People who fall into this category may be at risk of developing obesity.<br />This was earlier classified as "overweight".</div>
-                                        <input type="radio" id="bmi-g3" name="g" />
+                                        <input type="radio" id="bmi_30-35" name="g" />
                                         <label for="bmi-g3">Obese I</label>
                                         <div class="c-bmi__group-text">People who have BMI equal or over 30 may have obesity, which is defined as an abnormal or excessive accumulation of fat that may harm health.</div>
-                                        <input type="radio" id="bmi-g4" name="g" />
+                                        <input type="radio" id="bmi_35-40" name="g" />
                                         <label for="bmi-g4">Obese II</label>
                                         <div class="c-bmi__group-text">People who have BMI equal or over 30 may have obesity, which is defined as an abnormal or excessive accumulation of fat that may harm health.</div>
-                                        <input type="radio" id="bmi-g5" name="g" />
+                                        <input type="radio" id="bmi_40-100" name="g" />
                                         <label for="bmi-g5">Obese III</label>
                                         <div class="c-bmi__group-text">People who have BMI equal or over 30 may have obesity, which is defined as an abnormal or excessive accumulation of fat that may harm health.</div>
                                     </div>
@@ -399,6 +406,9 @@
     <script src="{{ asset('/assets/web/bmi/js/main.js') }}"></script>
     <script>
         $(document).ready(function() {
+            $(document).on('input','input',function(){
+                $('.alert-danger').text('');
+            });
 
             function submitForm() {
                 $('.c-bmi__range').removeAttr('required');
@@ -424,54 +434,100 @@
                 $('.imperialInput').removeClass('d-none');
             });
 
-            // Event listener for metric input change
+            // Function to handle weight input in stones
+            $('.weight_st').on('input', function() {
+                const weightSt = parseFloat($('.weight_st').val());
+                const weightLb = weightSt * 14.000;
+                const weightKg = weightLb * 0.453592;
+                $('.weight-lb').val(weightLb.toFixed(2));
+                $('.weight-kg').val(weightKg.toFixed(2));
+                calulate_bmi()
+            });
+
+            // Function to handle weight input in pounds
+            $('.weight-lb').on('input', function() {
+                const weightLb = parseFloat($('.weight-lb').val());
+                const weightKg = weightLb * 0.453592;
+                const weightSt = weightLb / 14;
+                $('.weight-kg').val(weightKg.toFixed(2));
+                $('.weight_st').val(weightSt.toFixed(2));
+                calulate_bmi()
+            });
+
+            // Function to handle metric input change
             $('.cm, .weight-kg').on('input', function() {
                 const heightCm = parseFloat($('.cm').val());
                 const weightKg = parseFloat($('.weight-kg').val());
-                const heightInches = heightCm * 0.393701,
-                    feet = Math.floor(heightInches / 12),
-                    inches = Math.round(heightInches % 12);
-
+                const heightInches = heightCm * 0.393701;
+                const feet = Math.floor(heightInches / 12);
+                const inches = Math.round(heightInches % 12);
                 $('.feet').val(feet);
                 $('.inches').val(inches);
-                $('.weight-lb').val((weightKg * 2.20462).toFixed(2));
-
-                calulate_bmi(heightCm, weightKg);
+                const weightLb = weightKg * 2.20462;
+                const weightSt = weightKg * 0.157473;
+                $('.weight-lb').val(weightLb.toFixed(2));
+                $('.weight_st').val(weightSt.toFixed(2));
+                calulate_bmi()
             });
 
-            // Event listener for imperial input change
-            $('.feet, .inches, .weight-lb').on('input', function() {
+            // Function to handle height input in feet and inches
+            $('.feet, .inches').on('input', function() {
                 const feet = parseFloat($('.feet').val());
-                const inches = parseFloat($('.inches').val());
-                const weight_lb = parseFloat($('.weight-lb').val());
+                let inches = parseFloat($('.inches').val());
+                if (isNaN(inches)) {
+                    inches = 0;
+                }
                 const height_cm = (feet * 12 + inches) * 2.54;
-                const weight_kg = weight_lb * 0.453592;
-                $('.cm').val(height_cm);
-                $('.weight-kg').val((Math.round(weight_kg.toFixed(2))));
-
-                calulate_bmi(height_cm, weight_kg);
+                const rounded_height_cm = height_cm.toFixed(2);
+                $('.cm').val(rounded_height_cm);
+                calulate_bmi();
             });
+
+
         });
 
-        function calulate_bmi(height_cm, weight_kg) {
-            const bmi = parseFloat(weight_kg / ((height_cm / 100) ** 2)).toFixed(2);
+        function calulate_bmi() {
+            const weight_kg = parseFloat($('.weight-kg').val());
+            const height_cm = parseFloat($('.cm').val());
 
-            // Update BMI circle color based on BMI value
-            if (bmi > 0 && bmi <= 18.49) {
-                $('.circle').css('background-color', '#0d6efd')
-            } else if (bmi > 18.5 && bmi <= 24.49) {
-                $('.circle').css('background-color', '#198754')
-            } else if (bmi > 25 && bmi <= 29.99) {
-                $('.circle').css('background-color', '#198754')
-            } else if (bmi > 30 && bmi <= 34.99) {
-                $('.circle').css('background-color', '#fd7e14')
-            } else if (bmi > 35 && bmi <= 39.99) {
-                $('.circle').css('background-color', '#ff6455')
+            if (!isNaN(weight_kg) && !isNaN(height_cm) && weight_kg !== 0 && height_cm !== 0) {
+                const bmi = parseFloat(weight_kg / ((height_cm / 100) ** 2)).toFixed(2);
+                // Update BMI circle color based on BMI value
+                if (bmi > 0 && bmi <= 17.99) {
+                    $('.circle').css('background-color', '#0d6efd');
+                } else if (bmi > 18 && bmi <= 24.99) {
+                    $('.circle').css('background-color', '#198754')
+                } else if (bmi > 25 && bmi <= 29.99) {
+                    $('.circle').css('background-color', '#febf18')
+                } else if (bmi > 30 && bmi <= 34.99) {
+                    $('.circle').css('background-color', '#fd7e14')
+                } else if (bmi > 35 && bmi <= 39.99) {
+                    $('.circle').css('background-color', '#ff6455')
+                } else {
+                    $('.circle').css('background-color', '#dc3545');
+                }
+                update_tracker(bmi)
+                $('.bmi_result').text(isNaN(bmi) || !isFinite(bmi) ? 0 : Math.min(bmi, 100));
             } else {
-                $('.circle').css('background-color', '#dc3545');
+                $('.bmi_result').text('0');
+                $('.circle').css('background-color', '#ccc');
             }
+        }
 
-            $('.bmi_result').text(isNaN(bmi) || !isFinite(bmi) ? 0 : Math.min(bmi, 100));
+        function update_tracker(bmi) {
+            if (bmi > 0 && bmi <= 17.99) {
+                $('#bmi_1-18').prop('checked', true);
+            } else if (bmi > 18 && bmi <= 24.99) {
+                $('#bmi_18-25').prop('checked', true);
+            } else if (bmi > 25 && bmi <= 29.99) {
+                $('#bmi_25-30').prop('checked', true);
+            } else if (bmi > 30 && bmi <= 34.99) {
+                $('#bmi_30-35').prop('checked', true);
+            } else if (bmi > 35 && bmi <= 39.99) {
+                $('#bmi_35-40').prop('checked', true);
+            } else {
+                $('#bmi_40-100').prop('checked', true);
+            }
         }
     </script>
 </body>
