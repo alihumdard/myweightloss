@@ -8,7 +8,8 @@ use App\Http\Controllers\Admin\SystemController;
 Route::get('/admin', [DefualtController::class, 'index'])->name('admin.index');
 
 Route::prefix('admin')->middleware(['check.userAuthCheck'])->group(function () {
-    Route::get('/setting', [DefualtController::class, 'profile_setting'])->name('admin.profileSetting');
+    Route::match(['get','post'], '/setting', [DefualtController::class, 'profile_setting'])->name('admin.profileSetting');
+    Route::match(['get','post'], '/passwordChange', [DefualtController::class, 'password_change'])->name('admin.passwordChange');
     Route::get('/faq', [DefualtController::class, 'faq'])->name('admin.faq');
     Route::get('/contact', [DefualtController::class, 'contact'])->name('admin.contact');
 
