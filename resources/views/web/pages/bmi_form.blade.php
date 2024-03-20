@@ -139,7 +139,7 @@
                                     <div class="item text-center">
                                         <input id="answer_1" type="radio" name="age" value="18-25" class="required">
                                         <label for="answer_1">
-                                            <img src="{{ asset('/assets/web/bmi/img/weightloss/18-25.png') }}" alt="" class="img-fluid mb-2 shahrozheight">
+                                            <img src="{{ asset('/assets/web/bmi/img/18-25.png') }}" alt="" class="img-fluid mb-2 shahrozheight">
                                             <button type="button" class=" btn btn-sm btn-primary">18-25</button>
                                         </label>
                                     </div>
@@ -148,7 +148,7 @@
                                     <div class="item text-center">
                                         <input id="answer_2" name="age" type="radio" value="26-35" class="required">
                                         <label for="answer_2">
-                                            <img src="{{ asset('/assets/web/bmi/img/weightloss/26-35.png') }}" alt="" class="img-fluid mb-2 shahrozheight">
+                                            <img src="{{ asset('/assets/web/bmi/img/26-35.png') }}" alt="" class="img-fluid mb-2 shahrozheight">
                                             <button type="button" class=" btn btn-sm btn-primary">26-35</button>
                                         </label>
                                     </div>
@@ -157,7 +157,7 @@
                                     <div class="item text-center">
                                         <input id="answer_3" name="age" type="radio" value="36-45" class="required">
                                         <label for="answer_3">
-                                            <img src="{{ asset('/assets/web/bmi/img/weightloss/36-45.png') }}" alt="" class="img-fluid mb-2 shahrozheight">
+                                            <img src="{{ asset('/assets/web/bmi/img/36-45.png') }}" alt="" class="img-fluid mb-2 shahrozheight">
                                             <button type="button" class=" btn btn-sm btn-primary">36-45</button>
                                         </label>
                                     </div>
@@ -166,7 +166,7 @@
                                     <div class="item text-center">
                                         <input id="answer_4" name="age" type="radio" value="46+" class="required">
                                         <label for="answer_4">
-                                            <img src="{{ asset('/assets/web/bmi/img/weightloss/46-pluls.png') }}" alt="" class="img-fluid bg-white mb-2 shahrozheight">
+                                            <img src="{{ asset('/assets/web/bmi/img/46-pluls.png') }}" alt="" class="img-fluid bg-white mb-2 shahrozheight">
                                             <button type="button" class=" btn btn-sm btn-primary">46+</button>
                                         </label>
                                     </div>
