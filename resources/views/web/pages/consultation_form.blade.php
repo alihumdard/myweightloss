@@ -2044,7 +2044,7 @@
                         <p>
                             We require your consent and agreement to proceed with treating you, if you are not happy to proceed
                             please exit the consult, for services in your read please.
-                            <br> <b>Visit: </b> <a target="_blank" href="https:www.nhs.uk/nhs-services/services-near-you/">https://www.nhs.uk/nhs-services/services-near-you/</a>
+                            <br> <b>Visit: </b> <a target="_blank" href="{{ url()->to('https://www.nhs.uk/nhs-services/services-near-you/') }}">https://www.nhs.uk/nhs-services/services-near-you/</a>
                         </p>
                     </div>
                 </div>
