@@ -615,12 +615,6 @@
                                             <div class="col-lg-7 animated zoomIn delay-fast">
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
-                                                        <label for="question_12_ans_1" class="btn btn-lg btn-outline-success btn-block w-100">
-                                                            <input type="radio" data-branch_id="branch_10" id="question_12_ans_1" name="question_12" class="icheck required" value="Do you have any medical conditions?">
-                                                            Do you have any medical conditions?
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-group short">
                                                         <label for="question_12_ans_2" class="btn btn-lg btn-outline-success btn-block w-100">
                                                             <input type="radio" data-branch_id="branch_10" id="question_12_ans_2" name="question_12" class="icheck required" value="No - No medical conditions">
                                                             No - No medical conditions
@@ -999,7 +993,7 @@
                                                 <div class="box_general" style="border:none;">
                                                     <div class="form-group short">
                                                         <label for="question_20_ans_1" class="fw-bold w-100">
-                                                            Please provide details.
+                                                            Please Explain the Problem you had with your Liver or Kidneys below.
                                                         </label>
                                                         <textarea id="question_20_ans_1" data-branch_id="branch_17" name="question_20" class="form-control required" style="height:150px; margin-bottom:0; border-radius:10px; " placeholder="Typer here ..." name="cms_development_notes"></textarea>
                                                     </div>
@@ -1209,7 +1203,7 @@
                                                     <div class="form-group short">
                                                         <label for="question_25_ans_5" class="btn btn-lg btn-outline-success btn-block w-100">
                                                             <input type="radio" data-branch_id="branch_23" id="question_25_ans_5" name="question_25" class="icheck required" value="Inflamed gall bladder or gallstones">
-                                                            My weight make me depressed.
+                                                            My weight makes me depressed
                                                         </label>
                                                     </div>
                                                     <div class="form-group short">
@@ -1845,9 +1839,9 @@
                         <!-- /branch_35 -->
 
                         <!--  ===============  branch_36  =============== -->
-                        <div class="branch" id="branch_36" >
+                        <div class="branch" id="branch_36">
                             <!-- question  40 -->
-                            <div class="step"  data-state="branchtype">
+                            <div class="step" data-state="branchtype">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class=" row question_title justify-content-center ">
@@ -1948,7 +1942,7 @@
                                                         <label for="question_42_ans_1" class="fw-bold w-100">
                                                             GP Surgery name: address...
                                                         </label>
-                                                        <textarea id="question_42_ans_1"  name="question_42" class="form-control required" style="height:100px; margin-bottom:0; border-radius:10px; " placeholder="Typer here ..."></textarea>
+                                                        <textarea id="question_42_ans_1" name="question_42" class="form-control required" style="height:100px; margin-bottom:0; border-radius:10px; " placeholder="Typer here ..."></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2041,7 +2035,7 @@
         <div class="modal-dialog model-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #5987c3;">
-                    <h5 class="modal-title fw-bold text-white">My Weightloss centre</h5>
+                    <h5 class="modal-title fw-bold text-white">My Weightloss Centre</h5>
                     <button type="button" class="btn-close fw-bold text-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -2049,7 +2043,8 @@
                         <h5 id="message_popup"> </h5>
                         <p>
                             We require your consent and agreement to proceed with treating you, if you are not happy to proceed
-                            please exit the consult, for services in your rea please visit <a target="_blank" href="https:www.nhs.uk/nhs-services/services-near-you/">https://www.nhs.uk/nhs-services/services-near-you/</a>
+                            please exit the consult, for services in your read please.
+                            <br> <b>Visit: </b> <a target="_blank" href="https:www.nhs.uk/nhs-services/services-near-you/">https://www.nhs.uk/nhs-services/services-near-you/</a>
                         </p>
                     </div>
                 </div>

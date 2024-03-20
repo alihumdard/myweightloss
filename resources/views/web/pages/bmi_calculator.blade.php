@@ -277,7 +277,7 @@
                 <div class="col-md-8">
                     <div class="container py-5">
                         <div class="card">
-                            <div class=" btn btn-primary pt-1 question_title">
+                            <div class=" btn btn-primary pt-1 question_title" style="background-color: #0a58ca;">
                                 <h5 class="text-white fw-bold pt-2">Calculate/Update Your BMI</h5>
                             </div>
                             <div class="col-12 mx-auto">
@@ -397,7 +397,7 @@
     </div>
     <!-- /cd-overlay-content -->
 
-    <a href="#0" class="cd-nav-trigger">Menu<span class="cd-icon"></span></a>
+    <!-- <a href="#0" class="cd-nav-trigger">Menu<span class="cd-icon"></span></a> -->
     <!-- /cd-nav-trigger -->
 
 

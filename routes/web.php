@@ -18,6 +18,10 @@ use App\Http\Controllers\Admin\DefualtController;
 Route::get('/', [HomeController::class, 'index'])->name('web.index');
 
 Route::match(['get', 'post'], '/login', [DefualtController::class, 'login'])->name('login');
+Route::match(['get', 'post'], '/forgotPassword', [DefualtController::class, 'forgot_password'])->name('forgotPassword');
+Route::match(['get', 'post'], '/sendOtp', [DefualtController::class, 'send_otp'])->name('sendOtp');
+Route::match(['get', 'post'], '/verifyOtp', [DefualtController::class, 'verify_otp'])->name('verifyOtp');
+Route::match(['get', 'post'], '/changePassword', [DefualtController::class, 'change_password'])->name('changePassword');
 Route::match(['get', 'post'], '/register', [DefualtController::class, 'regisration_from'])->name('register');
 Route::match(['get', 'post'], '/regisrationFrom', [DefualtController::class, 'user_register'])->name('web.user_register');
 Route::match(['get', 'post'], '/logout', [DefualtController::class, 'logout'])->name('web.logout');

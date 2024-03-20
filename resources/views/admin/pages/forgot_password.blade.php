@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>login</title>
+    <title>Forgot Password</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
     <!-- Favicons -->
@@ -36,34 +36,28 @@
         <section class="p-3 p-md-4 p-xl-5">
             <div class="container">
                 <div class="card border-light-subtle shadow-sm">
-                    <div class="row g-0">
-                        <div class="col-12 col-md-6 text-bg-primary">
-                            <div class="d-flex align-items-center justify-content-center h-100">
-                                <div class="col-10 col-xl-8 py-3">
+                    <div class="row d-flex align-items-center justify-content-center">
+                        <div class="col-lg-12  ">
+                            <div class="w-100 d-flex align-items-center justify-content-center text-bg-primary" style="border-top-left-radius: 0.4rem; border-top-right-radius: 0.4rem;">
+                                <div style="height: 8rem; width:8rem;">
                                     <a href="https://myweightlosscentre.co.uk">
-                                        <img class="img-fluid rounded mb-4" loading="lazy" src="{{ asset('/assets/admin/img/Weighloss_final_logo_white.webp') }}" width="245" height="80" alt="BootstrapBrain Logo">
+                                        <img class="img-fluid rounded" loading="lazy" src="{{ asset('/assets/admin/img/Weighloss_final_logo_white.webp') }}" alt="Logo">
                                     </a>
-                                    <hr class="border-primary-subtle mb-4">
-                                    <h2 class="h1 mb-4">Start Your Journey with Weight Loss</h2>
-                                    <p class="lead m-0">For a happier, more energetic life, start on a transformative weight-loss journey, choosing healthier habits and reaching your fitness objectives.</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-6">
+
+                        <div class="col-lg-6 col-md-8 col-sm-12  d-flex justify-content-center ">
                             <div class="card-body p-3 p-md-4 p-xl-5">
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="mb-3 text-center">
-                                            <h3 class="fw-bold" >LogIn</h3>
+                                            <h3 class="fw-bold">Forgot Password </h3>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card">
-
                                     <div class="card-body">
-
-
-
                                         <div class="col-12 mx-auto">
                                             <!-- Display Validation Errors -->
                                             @if(session('status') === 'error')
@@ -109,35 +103,23 @@
                                             </div>
                                             @endif
                                         </div>
-                                        <form class="row g-3 needs-validation" action="{{ route('login')}}" method="post" novalidate>
+                                        <form class="row g-3 needs-validation" action="{{ route('sendOtp')}}" method="post" novalidate>
                                             @csrf
                                             <div class="col-12">
                                                 <label for="email" class="form-label">Email</label>
                                                 <div class="input-group has-validation">
-                                                    <!-- <span class="input-group-text" id="inputGroupPrepend"></span> -->
-                                                    <input type="email" name="email" class="form-control" id="email" value="{{ session('email') ?? ''}}" required>
+                                                    <input type="email" name="email" class="form-control w-100 " id="email" value="{{ session('email') ?? old('email') }}" placeholder="write your email" required>
                                                     <div class="invalid-feedback">Please enter valid email.</div>
+                                                    @error('email')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
 
                                             <div class="col-12">
-                                                <label for="yourPassword" class="form-label">Password</label>
-                                                <input type="password" name="password" class="form-control" id="yourPassword" required>
-                                                <div class="invalid-feedback">Please enter your password!</div>
-                                            </div>
-
-                                            <div class="col-12">
-                                                <div class="form-group">
-                                                    <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
-                                                    <label class="form-check-label" for="rememberMe">Remember me</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-12">
-                                                <button class="btn btn-primary w-100" type="submit">Login</button>
+                                                <button class="btn btn-primary w-100" type="submit">Send OTP</button>
                                             </div>
                                             <div class="col-12 ">
-                                                <a href="{{route('forgotPassword')}}" class=" fw-bold link-danger"> Forgot Password ?</a>
                                                 <div class="mt-4 mb-3 d-flex justify-content-between"> <!-- Change justify-content-end to justify-content-between -->
                                                     <a href="{{route('register')}}" class="link-primary fw-bold">Create new account</a>
                                                     <a href="{{route('web.index')}}" class="link-primary fw-bold"> <span>Go to Home</span> </a>
@@ -145,24 +127,15 @@
 
                                             </div>
                                         </form>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                     </div>
-
         </section>
-        <div class=" d-flex justify-content-center mb-3">
-            <span class="fz-14">&copy; Copyright 2024 All Rights Design and Developed By
-                <a class="fz-14 color-primary" href="https://techsolutionspro.co.uk/">Tech Solutions Pro</a> </span>
-        </div><!-- /.col-lg-6 -->
-        <!-- </div> -->
+
     </main><!-- End #main -->
-
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
     <!-- Vendor JS Files -->
 
     <script src="{{asset('/assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
