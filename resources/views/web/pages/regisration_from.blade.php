@@ -271,7 +271,7 @@
                                     <p class="has-text-white its-font-w--600 mb-2">Clients at My Weightloss Centre tell about their transformative experiences. They commend our personalised programs, dedicated staff, and supportive community. <br> Many express gratitude for the motivational environment that fosters lasting lifestyle changes. Our reputation is built on success stories, fostering trust and confidence in our commitment to helping individuals achieve their weight loss goals.
                                     </p>
                                     <span class="has-text-white its-font-w--400">
-                                    Many express gratitude for the motivational environment that fosters lasting lifestyle changes. Our reputation is built on success stories, fostering trust and confidence in our commitment to helping individuals achieve their weight loss goals. </span>
+                                        Many express gratitude for the motivational environment that fosters lasting lifestyle changes. Our reputation is built on success stories, fostering trust and confidence in our commitment to helping individuals achieve their weight loss goals. </span>
                                 </div>
                             </div>
                         </div>
@@ -288,19 +288,76 @@
                                     @csrf
                                     <input type="hidden" name="role" required value="{{ user_roles('4')}}">
 
-                                    <label for="name" class="label d-md-block mt-3">Name</label>
-                                    <input class="form-control" type="text" name="name" id="name" value="{{ old('name') }}" placeholder="Enter your name" required>
-                                    <div class="invalid-feedback">Please enter your name!</div>
-                                    @error('name')
-                                    <div class="alert-danger text-danger ">{{ $message }}</div>
-                                    @enderror
-
                                     <label for="email" class="label d-md-block mt-3">Email</label>
-                                    <input class="form-control" type="email" name="email" id="email" value="{{ old('email') }}" valuerequired="" placeholder="write email address">
+                                    <input class="form-control" type="email" name="email" id="email" value="{{ old('email') }}" valuerequired="" placeholder="Email">
                                     <div class="invalid-feedback">Please enter your email!</div>
                                     @error('email')
                                     <div class="alert-danger text-danger ">{{ $message }}</div>
                                     @enderror
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="name" class="label d-md-block mt-3">Name</label>
+                                                <input class="form-control" type="text" name="name" id="name" value="{{ old('name') }}" placeholder="Full name" required>
+                                                <div class="invalid-feedback">Please enter your name!</div>
+                                                @error('name')
+                                                <div class="alert-danger text-danger ">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="phone" class="label d-md-block mt-3">Phone Number</label>
+                                                <input class="form-control" type="number" name="phone" id="phone" min="99999999999" value="{{ old('phone') }}" required placeholder="Contact number">
+                                            </div>
+                                            <div class="invalid-feedback">Please enter Phone Number!</div>
+                                            @error('phone')
+                                            <div class="alert-danger text-danger ">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row mt-2">
+                                        <div class="col-12 mb-2">
+                                            <label for="dob" class="label d-md-block">Date of Birth</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select name="day" class="form-control" required>
+                                                <option value="" disabled selected>Day</option>
+                                                @for ($i = 1; $i <= 31; $i++) <option value="{{ $i }}" {{ old('day') == $i ? 'selected' : '' }} >{{ $i }}</option>@endfor
+                                            </select>
+                                            <div class="invalid-feedback">Please select the day!</div>
+                                            @error('day')
+                                            <div class="alert-danger text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select name="month" class="form-control" required>
+                                                <option value="" disabled selected>Month</option>
+                                                @for ($i = 1; $i <= 12; $i++) <option value="{{ $i }}" {{ old('month') == $i ? 'selected' : '' }} >{{ date('F', mktime(0, 0, 0, $i, 1)) }}</option>
+                                                    @endfor
+                                            </select>
+                                            <div class="invalid-feedback">Please select the month!</div>
+                                            @error('month')
+                                            <div class="alert-danger text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select name="year" class="form-control" required>
+                                                <option value="" disabled selected>Year</option>
+                                                @for ($i = 2006; $i >= 1900; $i--)
+                                                <option value="{{ $i }}" {{ old('year') == $i ? 'selected' : '' }} >{{ $i }}</option>
+                                                @endfor
+                                            </select>
+                                            <div class="invalid-feedback">Please select the year!</div>
+                                            @error('year')
+                                            <div class="alert-danger text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
                                     <label for="password" class="label d-md-block mt-3">Password</label>
                                     <input class="form-control" type="password" name="password" id="password" value="" required placeholder="password">
                                     <div class="invalid-feedback">Please enter your password!</div>
@@ -311,20 +368,14 @@
                                         <p style="color: #00e5d2;">* Make a strong password</p>
                                     </div>
 
-                                    <label for="dob" class="label d-md-block ">Date of Birth</label>
-                                    <input type="text" id="datepicker" name="dob" class="form-control" value="{{ old('dob') }}" required placeholder="DD-MM-YYYY">
-                                    <div class="invalid-feedback">Please enter your dob!</div>
-                                    @error('dob')
-                                    <div class="alert-danger text-danger ">{{ $message }}</div>
-                                    @enderror
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="phone" class="label d-md-block mt-3">Phone Number</label>
-                                                <input class="form-control" type="number" name="phone" id="phone" min="99999999999" value="{{ old('phone') }}" required placeholder="Contact number">
+                                                <label for="city" class="label d-md-block mt-2">City</label>
+                                                <input class="form-control" type="text" name="city" id="city" value="{{ old('city') }}" required placeholder="City Name">
                                             </div>
-                                            <div class="invalid-feedback">Please enter Phone Number!</div>
-                                            @error('phone')
+                                            <div class="invalid-feedback">Please enter city name!</div>
+                                            @error('city')
                                             <div class="alert-danger text-danger ">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -340,18 +391,16 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <div class="mt-1">
-                                        <p style="color: #00e5d2;">* Enter valid Zip Code</p>
-                                    </div> -->
-                                    <label for="address" class="label d-md-block ">Address</label>
+                                    <label for="address" class="label d-md-block mt-2 ">Address</label>
                                     <input class="form-control" type="text" name="address" id="address" value="{{ old('address') }}" required placeholder="Enter your street name">
                                     <div class="invalid-feedback">Please enter your address!</div>
                                     @error('address')
                                     <div class="alert-danger text-danger ">{{ $message }}</div>
                                     @enderror
                                     <div class="mt-1">
-                                        <p style="color: #00e5d2;">* Enter your street name.</p>
+                                        <p style="color: #00e5d2;">* Enter your street name. <span style="background-color: #1aa4cc;" class="btn btn-primary py-0 addApartment">+ Add Apartment </span></p>
                                     </div>
+                                    <input class="form-control {{ (old('apartment')) ? '' : 'd-none'}} " type="text" name="apartment" id="apartment" value="{{ old('apartment') }}" required placeholder="Apartment number">
                                     <div>
                                         <button type="submit" class="continue-btn mx-auto" style="background: #55b5c7;">Continue</button>
                                     </div>
@@ -457,6 +506,16 @@
 
     <script>
         $(document).ready(function() {
+            $('.addApartment').click(function() {
+                $('#apartment').toggleClass('d-none');
+                if ($('#apartment').hasClass('d-none')) {
+                    $('.addApartment').css('background-color', '#1aa4cc').css('border', '1px solid #1aa4cc').text('+ Add Apartment');
+                } else {
+                    $('.addApartment').css('background-color', '#dc3545').css('border', '1px solid  #dc3545').text('- Remove Apartment');
+                    $('#apartment').val('');
+                }
+            });
+
             $(document).on('input', 'input', function() {
                 $(this).closest('div').find('.alert-danger').text('');
             });

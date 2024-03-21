@@ -1,5 +1,5 @@
 <style>
-    .displaynone{
+    .displaynone {
         display: none;
     }
 </style>
@@ -7,6 +7,15 @@
 <!-- ======= Sidebar ======= -->
 <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
+        
+        @if(view_permission('select_treatment'))
+        <li class="nav-item">
+            <a class="btn btn-success w-100 mb-1 fw-bold" href="{{route('web.products')}}">
+                <i class="bx bxs-store large"></i>
+                <span>Select Treatments</span>
+            </a>
+        </li>
+        @endif
 
         @if(view_permission('dashboard'))
         <li class="nav-item">

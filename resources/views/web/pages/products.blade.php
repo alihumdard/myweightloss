@@ -27,8 +27,8 @@
 <section class="shop-grid">
     <div class="container">
         <div class="row">
-            <div class="col-sm-12 col-md-8 col-lg-9">
-                <div class="sorting-options d-flex flex-wrap justify-content-between align-items-center mb-30">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <!-- <div class="sorting-options d-flex flex-wrap justify-content-between align-items-center mb-30">
                     <span>Showing 1:9 of 45 product</span>
                     <select>
                         <option selected="" value="0">Sort by latest</option>
@@ -36,11 +36,11 @@
                         <option value="2">Sort by highest Price </option>
                         <option value="3">Sort by lowest Price </option>
                     </select>
-                </div>
+                </div> -->
 
                 <div class="row">
                     @foreach($products as $key => $value)
-                    <div class="col-sm-6 col-md-6 col-lg-4">
+                    <div class="col-sm-12 col-md-4 col-lg-3">
                         <div class="product-item">
                             <div class="product__img">
                                 <a href="{{ route('web.product', ['id' => $value['id']]) }}">
@@ -66,7 +66,7 @@
                     @endforeach
                 </div>
 
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-sm-12 col-md-12 col-lg-12 text-center">
                         <nav class="pagination-area">
                             <ul class="pagination justify-content-center">
@@ -76,9 +76,9 @@
                             </ul>
                         </nav>
                     </div>
-                </div>
+                </div> -->
             </div>
-            <div class="col-sm-12 col-md-4 col-lg-3">
+            <!-- <div class="col-sm-12 col-md-4 col-lg-3">
                 <aside class="sidebar-layout2">
                     <div class="widget widget-search">
                         <h5 class="widget__title">Search</h5>
@@ -88,7 +88,7 @@
                                 <button class="btn" type="submit"><i class="icon-search"></i></button>
                             </form>
                         </div>
-                    </div><!-- /.widget-search -->
+                    </div>
                     
                     <div class="widget widget-categories">
                         <h5 class="widget__title">Categories</h5>
@@ -105,8 +105,7 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- /.widget-categories -->
-                    <!-- <div class="widget widget-filter">
+                    <div class="widget widget-filter">
                         <h5 class="widget__title">Pricing Filter</h5>
                         <div class="widget__content">
                             <div id="rangeSlider"></div>
@@ -119,9 +118,9 @@
                                 <button class="btn__filter">Filter</button>
                             </div>
                         </div>
-                    </div> -->
-                    <!-- /.widget-filter -->
-                    <!-- <div class="widget widget-tags">
+                    </div>
+
+                    <div class="widget widget-tags">
                         <h5 class="widget__title">Tags</h5>
                         <div class="widget-content">
                             <ul class="list-unstyled">
@@ -132,13 +131,13 @@
                                 <li><a href="#">Business</a></li>
                             </ul>
                         </div>
-                    </div> -->
-                    <!-- /.widget-Tags -->
-                </aside><!-- /.sidebar -->
-            </div><!-- /.col-lg-3 -->
+                    </div>
+                    
+                </aside>
+            </div> -->
         </div>
-    </div><!-- /.container -->
-</section><!-- /.shop -->
+    </div>
+</section> 
 
 
 @stop

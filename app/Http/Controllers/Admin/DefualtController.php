@@ -61,8 +61,16 @@ class DefualtController extends Controller
             } else if (isset($user->role) && $user->role == user_roles('3')) {
                 return view('admin.pages.dashboard', $data);
             } else if (isset($user->role) && $user->role == user_roles('4')) {
-                $data['bodyPorfile'] = UserBmi::with('user')->where(['user_id' => $user->id, 'status' => '1'])->latest('created_at')->latest('id')->first();
-                return view('admin.pages.dashboard', $data);
+                if($user->profile_status == 'done'){
+                    if($user->consult_status != 'done'){
+                        $data['bodyPorfile'] = UserBmi::with('user')->where(['user_id' => $user->id, 'status' => '1'])->latest('created_at')->latest('id')->first();
+                        return view('admin.pages.dashboard', $data);
+                    }else{
+                        return redirect()->route('web.bmiForm');
+                    }
+                }else{
+                    return redirect()->route('web.bmiForm');
+                }
             }
         } else {
             return redirect('/login');
@@ -168,8 +176,6 @@ class DefualtController extends Controller
         $data['user'] = $user;
         return view('admin.pages.profile_setting', $data);
     }
-
-
     public function faq()
     {
         return view('admin.pages.faq');
@@ -284,6 +290,7 @@ class DefualtController extends Controller
     {
         $user = auth()->user();
         if (!$user) {
+
             $validator = Validator::make(
                 $request->all(),
                 [
@@ -291,7 +298,10 @@ class DefualtController extends Controller
                     'phone'    => 'required|digits:11',
                     'address'  => 'required',
                     'role'     => 'required',
-                    'dob'     => 'required',
+                    'day'     => 'required',
+                    'month'     => 'required',
+                    'year'     => 'required',
+                    'city'     => 'required',
                     'zip_code'     => 'required',
                     'email'    => [
                         'required',
@@ -310,16 +320,18 @@ class DefualtController extends Controller
             }
 
             $data['user'] = auth()->user();
-
+            $dob = $request->day.'-'.$request->month.'-'.$request->year;
             $saved = User::updateOrCreate(
                 ['id' => $request->id ?? NULL],
                 [
                     'name'       => ucwords($request->name),
                     'email'      => $request->email,
-                    'dob'        => $request->dob,
+                    'dob'        => $dob,
+                    'apartment'  => $request->apartment,
                     'role'       => $request->role,
                     'phone'      => $request->phone,
                     'address'    => $request->address,
+                    'apartment'  => $request->apartment,
                     'zip_code'   => $request->zip_code,
                     'city'       => $request->city ?? '',
                     'state'      => $request->state ?? '',

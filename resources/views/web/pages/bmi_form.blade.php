@@ -219,7 +219,8 @@
                                         </div>
 
                                         <div>
-                                            <label for="weight_pic" class="c-bmi__label"><strong style="font-size: small;">Please upload a photo of yourself on a scale to verify your weight </strong></label> <small style="float: right;"> (<a href="#" data-bs-toggle="modal" data-bs-target="#weight-img">view example</a>)</small>
+                                            <label for="weight_pic" class="c-bmi__label"><strong style="font-size: medium;">Please upload a photo of yourself on a scale to verify your weight </strong></label>
+                                            <small style="float: right;"> <a style="background: #5987c3;color: white;margin-bottom: 0.9rem;font-weight: 600;" class="btn btn-outline-primary py-0" data-bs-toggle="modal" data-bs-target="#weight-img">View Example</a></small>
                                             <input id="weight_pic" class="c-bmi__range  mt-1 form-control " type="file" name="weight_pic" accept="image/*" required />
                                         </div>
                                         <div class="checkbox_questions">
