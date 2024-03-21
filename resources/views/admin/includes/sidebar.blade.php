@@ -10,7 +10,7 @@
         
         @if(view_permission('select_treatment'))
         <li class="nav-item">
-            <a class="btn btn-success w-100 mb-1 fw-bold" href="{{route('web.products')}}">
+            <a class="btn btn-primary w-100 mb-1 fw-bold" href="{{route('web.products')}}">
                 <i class="bx bxs-store large"></i>
                 <span>Select Treatments</span>
             </a>
