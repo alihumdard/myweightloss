@@ -5,6 +5,23 @@
 <main id="main" class="main">
 
     <style>
+        .read-more-btn {
+            color: #0d6efd !important;
+            font-weight: 600;
+            padding: 0 !important;
+            margin: 0 !important;
+            background-color: #ffff !important;
+        }
+
+        .read-less-btn {
+            color: #dc3545 !important;
+            font-weight: 600;
+            padding: 0 !important;
+            margin: 0 !important;
+            background-color: #ffff !important;
+
+        }
+
         .edit i {
             color: #4154F1;
             font-size: 20px;
@@ -81,25 +98,25 @@
                                     <td> </td>
                                 </tr>
                                 <tr>
-                                    <td>#3434</td>
+                                    <td>#0024001</td>
                                     <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> Gender </td>
                                     <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> </td>
                                     <td>{{ $body_profile['gender']}} </td>
                                 </tr>
                                 <tr>
-                                    <td>#3434</td>
+                                    <td>#0024001</td>
                                     <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> Age </td>
                                     <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> </td>
                                     <td>{{ $body_profile['age']}} </td>
                                 </tr>
                                 <tr>
-                                    <td>#3434</td>
+                                    <td>#0024001</td>
                                     <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> DOB </td>
                                     <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> </td>
                                     <td>{{ $body_profile->user->dob}} </td>
                                 </tr>
                                 <tr>
-                                    <td>#3434</td>
+                                    <td>#0024001</td>
                                     <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> BMI's </td>
                                     <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> </td>
                                     <td>{{ $body_profile['bmi']}} </td>
@@ -113,9 +130,22 @@
                                 </tr>
                                 @foreach($prodcut_consult as $key => $val)
                                 <tr>
-                                    <td style="vertical-align: middle; text-align: center;">#3434{{$val['id']}}</td>
+                                    <td style="vertical-align: middle; text-align: center;">#0024001{{$val['id']}}</td>
                                     <td>{{$val['title']}}</td>
-                                    <td>{{ implode(' ', array_slice(str_word_count($val['desc'] ?? '', 1), 0, 50)) . (str_word_count($val['desc'] ?? '') > 50 ? '...' : '') }}</td>
+                                    <td>
+                                        @if($val['desc'])
+                                        @if(strlen(strip_tags($val['desc'])) > 80)
+                                        <span class="description-preview">{!! Str::limit(strip_tags($val['desc'] ?? ''), 80) !!}</span>
+                                        <span class="description-full" style="display: none;">{!! $val['desc'] ?? '' !!}</span>
+                                        <button class="btn btn-link read-more-btn">Read More</button>
+                                        @else
+                                        <span class="description-full">{!! $val['desc'] ?? '' !!}</span>
+                                        @endif
+                                        @else
+                                        <span class="text-center"></span>
+                                        @endif
+
+                                    </td>
                                     <td>
                                         @if (Str::startsWith($val['answer'], 'consultation/product/'))
                                         <a class="fw-bold btn-link" href="{{ asset('storage/'.$val['answer']) }}" download>See File</a>
@@ -134,9 +164,24 @@
                                 </tr>
                                 @foreach($user_consult as $ind => $value)
                                 <tr>
-                                    <td style="vertical-align: middle; text-align: center;">#3434{{$value['id']}}</td>
+                                    <td style="vertical-align: middle; text-align: center;">#0024001{{$value['id']}}</td>
                                     <td>{{$value['title']}}</td>
-                                    <td>{{ Str::limit(strip_tags($value['desc'] ?? ''), 80) }}</td>
+                                    <td>
+                                        @if($value['desc'])
+                                        @if(strlen(strip_tags($value['desc'])) > 80)
+                                        <span class="description-preview">{!! Str::limit(strip_tags($value['desc'] ?? ''), 80) !!}</span>
+                                        <span class="description-full" style="display: none;">{!! $value['desc'] ?? '' !!}</span>
+                                        <button class="btn btn-link read-more-btn">Read More</button>
+                                        @else
+                                        <span class="description-full">{!! $value['desc'] ?? '' !!}</span>
+                                        @endif
+                                        @else
+                                        <span class="text-center"></span>
+                                        @endif
+
+
+                                    </td>
+
                                     <td>
                                         @if (Str::startsWith($value['answer'], 'consultation/user/'))
                                         <a class="fw-bold btn-link" href="{{ asset('storage/'.$value['answer']) }}" download>See File</a>
@@ -204,6 +249,23 @@
 
 @pushOnce('scripts')
 <script>
+    $(document).ready(function() {
+        $('.read-more-btn').click(function() {
+            var $descriptionPreview = $(this).siblings('.description-preview');
+            var $descriptionFull = $(this).siblings('.description-full');
+
+            if ($descriptionPreview.is(':visible')) {
+                $descriptionPreview.hide();
+                $descriptionFull.show();
+                $(this).removeClass('btn-primary').addClass('read-less-btn').text('Read Less');
+            } else {
+                $descriptionPreview.show();
+                $descriptionFull.hide();
+                $(this).removeClass('read-less-btn').addClass('btn-primary').text('Read More');
+            }
+        });
+    });
+
     $(function() {
         $("#tbl_data").DataTable({
             "paging": false,

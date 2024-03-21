@@ -89,14 +89,14 @@
                                     <td>{{ ++$key }}</td>
                                     <td>
                                         <a target="_blank" href="{{ route('admin.orderDetail',['id'=> $val['id']]) }}" class="text-primary mb-0 font-weight-semibold fw-bold" style="font-size: smaller; display:flex; ">
-                                            #3434{{ $val['id'] }}
+                                            #0024001{{ $val['id'] }}
                                         </a>
                                     </td>
                                     <td>
                                         @foreach($order_history as $ind => $value)
                                         @if($value['user_id'] == $val['user_id'])
                                         <a target="_blank" href="{{ route('admin.orderDetail',['id'=> $value['id']]) }}" class="text-primary mb-0 font-weight-semibold fw-bold" style="font-size: smaller; display:flex;">
-                                            #3434{{$value['id']}}
+                                            #0024001{{$value['id']}}
                                         </a>
                                         @endif
                                         @endforeach

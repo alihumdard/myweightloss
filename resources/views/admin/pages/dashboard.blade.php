@@ -275,8 +275,8 @@
                                         <!-- Content -->
                                         <div class="text-center text-light pt-2">
                                             <h5 class="mb-0">Height</h5>
-                                            <span id="heightcm">{{$bodyPorfile->cm }}cm</span>
-                                            <span id="heightfeetInch" class="d-none">{{$bodyPorfile->feet }}' {{$bodyPorfile->inches}}" </span>
+                                            <span id="heightcm">{{$bodyPorfile->cm ?? ''}}cm</span>
+                                            <span id="heightfeetInch" class="d-none">{{$bodyPorfile->feet ?? ''}}' {{$bodyPorfile->inches ?? ''}}" </span>
                                         </div>
                                     </div>
                                 </div>
@@ -291,9 +291,9 @@
                                         </div>
                                         <div class="text-center text-light pt-2">
                                             <h5 class="mb-0">Weight</h5>
-                                            <span id="weightkg">{{$bodyPorfile->weight_kg }}kg</span>
-                                            <span id="weightst" class="d-none">{{$bodyPorfile->weight_st }}st</span>
-                                            <span id="weightlb" class="d-none">, {{$bodyPorfile->weight_lb }}lb</span>
+                                            <span id="weightkg">{{$bodyPorfile->weight_kg ?? '' }}kg</span>
+                                            <span id="weightst" class="d-none">{{$bodyPorfile->weight_st ?? '' }}st</span>
+                                            <span id="weightlb" class="d-none">, {{$bodyPorfile->weight_lb ?? ''}}lb</span>
                                         </div>
                                     </div>
                                 </div>
@@ -331,7 +331,7 @@
                                         </div>
                                         <div class="text-center text-light mb-0 pt-3">
                                             <h5 class="mb-0">BMI</h5>
-                                            <span>{{$bodyPorfile->bmi }}kg/m<sup>2</sup></span>
+                                            <span>{{$bodyPorfile->bmi ?? ''}}kg/m<sup>2</sup></span>
                                         </div>
                                     </div>
                                 </div>

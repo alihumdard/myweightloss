@@ -31,8 +31,15 @@ return [
         ],
         [
             'id' => 3,
-            'title' => 'Can you please upload a photograph of yourself?',
-            'desc' => 'So we can make an assessment of the suitability of the requested treatment. We ideally need an image showing the entire body.You can be fully clothed, as long as the clothing is not too loose fitting.',
+            'title' => 'Identity Verification',
+            'desc' => 'Due to the new policy, you are required to upload one of the documents mentioned below. Please take a photo of yourself holding the identity document and ensure the document is clear and legible. If not, it may be refused and your order may be delayed or cancelled.
+            Accepted Documentation.</br>
+            Please upload one of the following documents, by doing so we will verify these documents with 3rd party agencies to validate you. 
+            </br>
+            . Birth Certificate
+            . Full / Provisional Driving License
+            . UK / EU Passport
+            ',
             'created_by' => 1
         ],        [
             'id' => 4,
@@ -226,21 +233,23 @@ return [
         [
             'id' => 39,
             'title' => 'Are you aware of these potential effects of GLP1 weight loss injections and tablets?',
-            'desc' => '<p>GLP1 treatments include Wegovy, Saxenda and other injections and tablets that contain Semaglutide. GLP1/GIP Treatments include Mounjaro.</p><br>
-        <p>GLP1 and GLP1/GIP treatments, as one of their actions, slow down gastric emptying, which can help make you feel full. This can cause nausea and acid reflux. But if you experience severe stomach pains, vomiting, nausea, and feeling very full long after a meal is finished, then this may be a sign of gastroparesis, or ‘stomach paralysis’. This is an uncommon side effect of weight loss injections, but you should stop using this treatment if this occurs and seek medical attention.</p><br>
-        <p>These injections can cause acid reflux as one of their side effects. If you suffer from gastric conditions such as gastritis, Barrett’s oesophagus or a hiatus hernia, these symptoms could be more significant. If affected by these conditions, please discuss starting weight loss injections with your GP or specialist before commencing treatment.</p><br>
-        <p>Acute pancreatitis is an uncommon side effect of this treatment. Patients should look out for the signs of pancreatitis whilst using this injection. These include severe, persistent abdominal pain that radiates to the back, tenderness when touching the abdomen, rapid heartbeat, fever, nausea and vomiting. If you suspect pancreatitis, stop using this treatment and seek medical attention.</p><br>',
+            'desc' => '<p>GLP1 treatments include Wegovy, Saxenda and other injections and tablets that contain Semaglutide. GLP1/GIP Treatments include Mounjaro.<br>
+                            GLP1 and GLP1/GIP treatments, as one of their actions, slow down gastric emptying, which can help make you feel full. This can cause nausea and acid reflux. But if you experience severe stomach pains, vomiting, nausea, and feeling very full long after a meal is finished, then this may be a sign of gastroparesis, or ‘stomach paralysis’. This is an uncommon side effect of weight loss injections, but you should stop using this treatment if this occurs and seek medical attention.<br>
+                            These injections can cause acid reflux as one of their side effects. If you suffer from gastric conditions such as gastritis, Barrett’s oesophagus or a hiatus hernia, these symptoms could be more significant. If affected by these conditions, please discuss starting weight loss injections with your GP or specialist before commencing treatment.<br>
+                            Acute pancreatitis is an uncommon side effect of this treatment. 
+                            Patients should look out for the signs of pancreatitis whilst using this injection. 
+                            These include severe, persistent abdominal pain that radiates to the back, tenderness when touching the abdomen, rapid heartbeat, fever, nausea and vomiting. If you suspect pancreatitis, stop using this treatment and seek medical attention.</p>',
             'created_by' => 1
         ],
         [
             'id' => 40,
             'title' => 'Do you agree to the following?',
-            'desc' => '<h3>Do you agree to the following?</h3>
-        <p>You will read the "Patient Information Leaflet" supplied with your medication.</p><br>
-        <p>You have answered all of the questions accurately and truthfully.</p><br>
-        <p>You have the capacity to make decisions about your own care and are not under the guardianship of anyone.</p><br>
-        <p>You have read our privacy policy and our Terms & Conditions.</p><br>
-        <p>You have ensured that the delivery address you will select is safe to accept medicines by post, with no access for children, vulnerable adults or pets.</p>',
+            'desc' => '
+                        <p>You will read the "Patient Information Leaflet" supplied with your medication.<br>
+                        You have answered all of the questions accurately and truthfully.<br>
+                        You have the capacity to make decisions about your own care and are not under the guardianship of anyone.<br>
+                        You have read our privacy policy and our Terms & Conditions.<br>
+                        You have ensured that the delivery address you will select is safe to accept medicines by post, with no access for children, vulnerable adults or pets.</p>',
             'created_by' => 1
         ],
         [

@@ -27,6 +27,7 @@ class User extends Authenticatable
         'address',
         'user_pic',
         'zip_code',
+        'apartment',
         'city',
         'state',
         'status',

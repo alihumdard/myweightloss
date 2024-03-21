@@ -287,24 +287,32 @@
                                     <div class="card-body">
                                         <div class=" row question_title justify-content-center ">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
-                                                <h3>Can you please upload a photograph of yourself?</h3>
+                                                <h3>Identity Verification</h3>
                                                 <p style="margin-bottom: 0;">
-                                                    So we can make an assessment of the suitability of the requested treatment. We ideally need an image showing the entire body.You can be fully clothed, as long as the clothing is not too loose fitting.
+                                                    Due to the new policy, you are required to upload one of the documents mentioned below. Please take a photo of yourself holding the identity document and ensure the document is clear and legible. If not, it may be refused and your order may be delayed or cancelled.
+                                                    Accepted Documentation<br>
+                                                    Please upload one of the following documents, by doing so we will verify these documents with 3rd party agencies to validate you.
+                                                    </br>
+                                                    <ul>
+                                                        <li>Birth Certificate</li>
+                                                        <li>Full / Provisional Driving License</li>
+                                                        <li>UK / EU Passport</li>
+                                                    </ul>
                                                 </p>
                                             </div>
                                         </div>
 
                                         <div class="row justify-content-center">
                                             <div class="col-lg-7 animated zoomIn delay-fast">
-                                                <div class="box_general" style="border:none;">
+                                                <div class="box_general" style=" padding: 1.5rem 0 3rem 0 !important; border:none;">
                                                     <hr style="margin-top: 0 !important;">
                                                     <div class="form-group add_bottom_30">
                                                         <label for="question_3_ans_1" class="w-100">
-                                                            <span class="fw-bold">Optional File upload.</span><br>
-                                                            <small>(Files accepted: jpg,jpeg,.png,Web - Max file size: 150KB for demo limit)</small>
+                                                            <span class="fw-bold">Please Upload Document:</span><br>
+                                                            <!-- <small>(Files accepted: jpg,jpeg,.png,Web - Max file size: 150KB for demo limit)</small> -->
                                                         </label>
                                                         <div class="fileupload mt-1">
-                                                            <input id="question_3_ans_1" type="file" name="question_3" class="icheck required" accept="image/*">
+                                                            <input id="question_3_ans_1" type="file" name="question_3" class="icheck required" >
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2044,7 +2052,7 @@
                         <p>
                             We require your consent and agreement to proceed with treating you, if you are not happy to proceed
                             please exit the consult, for services in your read please.
-                            <br> <b>Visit: </b> <a target="_blank" href="https:www.nhs.uk/nhs-services/services-near-you/">https://www.nhs.uk/nhs-services/services-near-you/</a>
+                            <br> <b>Visit: </b> <a target="_blank" href="{{ url()->to('https://www.nhs.uk/nhs-services/services-near-you/') }}">https://www.nhs.uk/nhs-services/services-near-you/</a>
                         </p>
                     </div>
                 </div>

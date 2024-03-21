@@ -102,7 +102,7 @@
                         <div class="text">
                             <h4 class="fw-bold ">Customer Details</h4>
                             <span><b>Name: </b> {{$order['user']['name'] }} </span> <br>
-                            <span><b>Order Id: </b> #3434{{$order['user']['id'] }} </span>
+                            <span><b>Order Id: </b> #0024001{{$order['user']['id'] }} </span>
                         </div>
                         <div class="text">
                             <p class="pr-2">
