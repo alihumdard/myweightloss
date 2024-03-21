@@ -62,7 +62,7 @@ class DefualtController extends Controller
                 return view('admin.pages.dashboard', $data);
             } else if (isset($user->role) && $user->role == user_roles('4')) {
                 if($user->profile_status == 'done'){
-                    if($user->consult_status != 'done'){
+                    if($user->consult_status == 'done'){
                         $data['bodyPorfile'] = UserBmi::with('user')->where(['user_id' => $user->id, 'status' => '1'])->latest('created_at')->latest('id')->first();
                         return view('admin.pages.dashboard', $data);
                     }else{
