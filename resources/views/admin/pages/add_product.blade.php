@@ -201,7 +201,7 @@
                                 <label for="ext_tax" class="col-form-label">Extra Tax <span class="extra-text"></span>:</label>
                             </div>
                             <div class="col-md-12">
-                                <input type="number" name="ext_tax" value="{{  $product['ext_tax'] ?? old('ext_tax') }}" class="form-control me-2" required>
+                                <input type="number" name="ext_tax" value="{{  $product['ext_tax'] ?? old('ext_tax') }}" min="0.1" class="form-control me-2" >
 
                                 <div class="invalid-feedback">Enter extra tax!</div>
                                 @error('ext_tax')
@@ -216,7 +216,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <label for="price" class="col-form-label"> Price <span class="extra-text">(Price in UK Pound)</span></label>
-                    <input type="number" name="price" id="price" value="{{  $product['price'] ?? old('price') }}" class="form-control" required>
+                    <input type="text" name="price" id="price"  value="{{  $product['price'] ?? old('price') }}" class="form-control" required>
                     <div class="invalid-feedback">Enter product price!</div>
                     @error('price')
                     <div class="alert-danger text-danger ">{{ $message }}</div>
@@ -291,7 +291,7 @@
                                 <div class="col-md-3 col-sm-12">
                                     <div class="p-2">
                                         <label for="" class="form-label">Variant Price <span class="extra-text">(Price in UK Pound)</span></label>
-                                        <input type="number" class="form-control" name="exist_vari_price[]" id="" value="{{ $variant['price']}}" required>
+                                        <input type="text" class="form-control" name="exist_vari_price[]" id="" value="{{ $variant['price']}}" required>
                                         <div class="invalid-feedback">Enter variant price!</div>
                                     </div>
                                 </div>
@@ -507,7 +507,7 @@
                         <div class="col-md-3 col-sm-12">
                             <div class="p-2">
                                 <label for="" class="form-label">Variant Price <span class="extra-text">(Price in UK Pound)</span></label>
-                                <input type="number" class="form-control" name="vari_price[]" id="" required>
+                                <input type="text" class="form-control" name="vari_price[]"   id="" required>
                                 <div class="invalid-feedback">Enter variant price!</div>
                             </div>
                         </div>

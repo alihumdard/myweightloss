@@ -642,8 +642,7 @@ class SystemController extends Controller
         $rules = [
             'price'      => 'required',
             'category_id' => 'required',
-            'stock'        => 'required',
-            'ext_tax'    => 'required',
+            'stock'      => 'required',
             'desc'       => 'required',
             'short_desc' => 'required',
             'title'      => [
@@ -697,7 +696,7 @@ class SystemController extends Controller
                 'short_desc' => $request->short_desc,
                 'main_image' => $mainImagePath ?? Product::findOrFail($request->id)->main_image,
                 'category_id' => $request->category_id,
-                'ext_tax'    => $request->ext_tax,
+                'ext_tax'    => $request->ext_tax ?? '',
                 'barcode'    => $request->barcode,
                 'SKU'        => $request->SKU,
                 'stock'      => $request->stock,
@@ -821,8 +820,16 @@ class SystemController extends Controller
             return redirect()->back();
         }
         if ($request->id) {
-            $data['order'] = Order::with('user', 'product', 'product.category')->where(['id' => $request->id, 'payment_status' => 'Paid'])->first()->toArray() ?? [];
-            if ($data['order']) {
+            $id = base64_decode($request->id);
+            $order = Order::with('user','shipingdetails', 'product','variant', 'product.category')->where(['id' => $id, 'payment_status' => 'Paid'])->first();
+            if ($order) {
+                $data['userOrders'] = Order::select('id')
+                ->where('user_id', $order->user->id)
+                ->where('id', '!=', $order->id)
+                ->get()
+                ->toArray();
+                $data['order']  = $order->toArray() ?? [];
+                // dd($data);
                 return view('admin.pages.order_detail', $data);
             } else {
                 return redirect()->back()->with('error', 'Order not found.');
@@ -916,12 +923,11 @@ class SystemController extends Controller
         $orders = Order::with('user')->where(['payment_status' => 'Paid', 'status' => 'Received'])->latest('created_at')->get()->toArray();
         if ($orders) {
             $userIds = array_unique(Arr::pluck($orders, 'user.id'));
-
-            $userOrdersData = Order::select('id')->whereIn('user_id', $userIds)
-                ->where('id', '!=', $orders[0]['id'])
-                ->select('user_id', 'id')
-                ->get()->toArray();
-
+            $userOrdersData = Order::select('user_id', DB::raw('count(*) as total_orders'))
+            ->whereIn('user_id', $userIds)
+            ->groupBy('user_id')
+            ->get()
+            ->toArray();
             $data['order_history'] = $userOrdersData;
             $data['orders'] = $orders;
         }

@@ -72,17 +72,22 @@
                         <div class="product__quantity d-flex ">
                             <div class="quantity__input-wrap mr-20">
                                 <i class="decrease-qty fa fa-minus"></i>
-                                <input id="product_stock" value="1" type="number" max="{{ $product['stock'] ?? ''}}" min="1" class="qty-input">
+                                <input id="product_quantaty" value="1" type="number" max="5" min="1" class="qty-input">
                                 <i class="increase-qty fa fa-plus"></i>
                             </div>
-                            <!-- <a class="btn btn__secondary btn__rounded" href="#">add to cart</a> -->
-                            <a href="{{ route('web.productQuestion', ['id' => $product['id']]) }}" class="btn btn__primary btn__rounded ml-30">
+                            <form action="{{ route('web.productQuestion') }}" id="from_product" method="POST">
+                                @csrf
+                                <input type="hidden" id="product_id" name="product_id" value="{{$product['id']}}" required>
+                                <input type="hidden" id="variant_id" name="variant_id" value="">
+                                <input type="hidden" id="quantity" name="quantity" value="1">
+                            </form>
+                            <button  form="from_product" type="submit" class="btn btn__primary btn__rounded ml-30">
                                 <i class="icon-calendar"></i>
                                 <span>Consultation</span>
-                            </a>
+                            </button>
                         </div>
                         <div class="mb-30">
-                            <!-- <label class="text-success" for="product_stock">available in stock</label> -->
+                            <label class="text-danger d-none" id="error_quantity" for="product_quantaty">Not available in stock</label>
                         </div>
 
                         <div class="product__meta-details">
@@ -181,30 +186,58 @@
 @pushOnce('scripts')
 <script>
     $(document).ready(function() {
-        $('#product_stock').on('input', function() {
-            var maxValue = parseInt($(this).attr('max'));
-            var minValue = parseInt($(this).attr('min'));
-            var currentValue = parseInt($(this).val());
-
-            if (currentValue > maxValue) {
-                $(this).val(maxValue);
-                alert('Value cannot exceed the maximum allowed value: ' + maxValue);
-            } else if (currentValue < minValue) {
-                $(this).val(minValue);
-                alert('Value cannot be less than the minimum allowed value: ' + minValue);
-            }
-        });
         $(document).on('click', '.variants', function() {
-            var variantId = $(this).data('variant_id');
-            var variantData = $(this).data('variant_data');
-            var image_src = "{{ asset('storage/') }}";
-            console.log('Variant Data:', variantData);
+            let variantId = $(this).data('variant_id');
+            $('#variant_id').val(variantId);
+            let variantData = $(this).data('variant_data');
+            let image_src = "{{ asset('storage/') }}";
             $('#product_img').attr('src', image_src + '/' + variantData.image);
-            $('#product_stock').attr('max', variantData.inventory);
+            $('#product_quantaty').attr('max', variantData.inventory);
             $('#product_title').text(variantData.title + ' :')
-            $('#product_price').text( '£ ' + variantData.price)
+            $('#product_price').text('£ ' + variantData.price)
+        });
+
+        $('#product_quantaty').on('input', function() {
+            handleQuantityInput();
+        });
+
+        $('.increase-qty').on('click', function() {
+            if (!parseInt($('#product_quantaty').val())) {
+                $('#product_quantaty').val(1)
+            }
+            handleQuantityInput();
+        });
+
+        $('.decrease-qty').on('click', function() {
+            if (!parseInt($('#product_quantaty').val())) {
+                $('#product_quantaty').val(1)
+            }
+            handleQuantityInput();
         });
     });
+
+
+    function handleQuantityInput() {
+        let qyt = parseInt($('#product_quantaty').val());
+        if(!qyt){
+            $('#error_quantity').text('enter quantity').removeClass('d-none');
+            $('#quantity').val(1);
+            return false;
+        }
+        $('#error_quantity').addClass('d-none');
+        var maxValue = 5;
+        var minValue = 1;
+
+        if (qyt > maxValue) {
+            $('#product_quantaty').val(maxValue);
+        } else if (qyt < minValue) {
+            $('#product_quantaty').val(minValue);
+            $('#error_quantity').removeClass('d-none').text('min product should be 1');
+        }
+        if (parseInt($('#product_quantaty').val())) {
+            $('#quantity').val(parseInt($('#product_quantaty').val()));
+        } 
+    }
 </script>
 
 

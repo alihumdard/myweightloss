@@ -98,25 +98,25 @@
                                     <td> </td>
                                 </tr>
                                 <tr>
-                                    <td>#0024001</td>
+                                    <td>#00</td>
                                     <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> Gender </td>
                                     <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> </td>
                                     <td>{{ $body_profile['gender']}} </td>
                                 </tr>
                                 <tr>
-                                    <td>#0024001</td>
+                                    <td>#00</td>
                                     <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> Age </td>
                                     <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> </td>
                                     <td>{{ $body_profile['age']}} </td>
                                 </tr>
                                 <tr>
-                                    <td>#0024001</td>
+                                    <td>#00</td>
                                     <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> DOB </td>
                                     <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> </td>
                                     <td>{{ $body_profile->user->dob}} </td>
                                 </tr>
                                 <tr>
-                                    <td>#0024001</td>
+                                    <td>#00</td>
                                     <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> BMI's </td>
                                     <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> </td>
                                     <td>{{ $body_profile['bmi']}} </td>
@@ -130,7 +130,7 @@
                                 </tr>
                                 @foreach($prodcut_consult as $key => $val)
                                 <tr>
-                                    <td style="vertical-align: middle; text-align: center;">#0024001{{$val['id']}}</td>
+                                    <td style="vertical-align: middle; text-align: center;">#00{{$val['id']}}</td>
                                     <td>{{$val['title']}}</td>
                                     <td>
                                         @if($val['desc'])
@@ -164,7 +164,7 @@
                                 </tr>
                                 @foreach($user_consult as $ind => $value)
                                 <tr>
-                                    <td style="vertical-align: middle; text-align: center;">#0024001{{$value['id']}}</td>
+                                    <td style="vertical-align: middle; text-align: center;">#00{{$value['id']}}</td>
                                     <td>{{$value['title']}}</td>
                                     <td>
                                         @if($value['desc'])

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('variant_id')->nullable();
             $table->string('quantity');
             $table->string('status')->default('1');
             $table->unsignedBigInteger('created_by')->nullable();
