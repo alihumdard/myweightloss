@@ -39,15 +39,15 @@ Route::match(['get','post'],'/bmiFormStore', [WebController::class, 'bmi_formSto
 Route::match(['get','post'],'/bmiUpdate', [WebController::class, 'bmi_update'])->name('web.bmiUpdate');
 Route::match(['get','post'],'/consultationForm', [WebController::class, 'consultation_form'])->name('web.consultationForm');
 Route::match(['get','post'],'/consultationStore', [WebController::class, 'consultation_store'])->name('web.consultationStore');
-Route::match(['get','post'],'/productQuestion/{id}', [WebController::class, 'product_question'])->name('web.productQuestion');
-Route::match(['get','post'],'/cart/{id?}', [WebController::class, 'cart'])->name('web.cart');
+Route::match(['get','post'],'/productQuestion', [WebController::class, 'product_question'])->name('web.productQuestion');
+Route::match(['get','post'],'/cart', [WebController::class, 'cart'])->name('web.cart');
 Route::match(['get','post'],'/payment', [WebController::class, 'payment'])->name('payment');
 Route::match(['get','post'],'/Completed-order', [WebController::class, 'completed_order']);
 Route::match(['get','post'],'/Unsuccessful-order', [WebController::class, 'unsuccessful_order']);
 Route::match(['get', 'post'], '/transactionStore/', [WebController::class, 'transaction_store'])->name('web.transactionStore');
 
-Route::get('/getOrder/{id}', [WebController::class, 'get_order']);
-Route::post('/createOrder', [WebController::class, 'create_order']);
+Route::get('/getOrder', [WebController::class, 'get_order']);
+Route::match(['get', 'post'],'/createOrder', [WebController::class, 'create_order']);
 
 // Route::match(['get','post'],'/checkout', function(){
 //     return view('web.pages.checkout');

@@ -12,7 +12,7 @@ class Order extends Model
         'created_at',
     ];
 
-    protected $fillable = ['user_id','product_id','coupon_value','coupon_code','total_ammount','payment_id' ,'payment_status', 'status','created_by','updated_by'];
+    protected $fillable = ['user_id', 'product_id', 'variant_id', 'quantity', 'note', 'shiping_cost', 'coupon_value', 'coupon_code', 'total_ammount', 'payment_id', 'payment_status', 'status', 'created_by', 'updated_by'];
 
     public function user()
     {
@@ -24,4 +24,13 @@ class Order extends Model
         return $this->belongsTo(Product::class, 'product_id');
     }
 
+    public function shipingdetails()
+    {
+        return $this->hasOne(ShipingDetail::class, 'order_id');
+    }
+
+    public function variant()
+    {
+        return $this->belongsTo(ProductVariant::class, 'variant_id');
+    }
 }

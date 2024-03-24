@@ -47,27 +47,27 @@
 
               <tr class="cart-product">
                 <td class="d-flex align-items-center">
-                  <i class="fas fa-times cart-product__remove"></i>
+                  <!-- <i class="fas fa-times cart-product__remove"></i> -->
                   <div class="cart-product__img">
-                    <img src="{{ asset('storage/'.$cart['product']['main_image'])}}" alt="product" />
+                    @if($cart['img'] ?? '')
+                    <img src="{{ asset('storage/'.$cart['img'])}}" alt="product img" />
+                    @endif
                   </div>
-                  <h5 class="cart-product__title">{{ $cart['product']['title'] ?? ''}}
+                  <h5 class="cart-product__title">{{ $cart['title'] ?? ''}}
                 </td>
-                <td class="cart-product__price">{{ $cart['product']['price'] ?? ''}}</td>
-                <td class="cart-product__quantity">
+                <td class="cart-product__price">£ <span class="product-price">{{ $cart['price'] ?? 0}} </span> </td>
+                <td class="cart-product__quantity d-block">
                   <div class="quantity__input-wrap">
                     <i class="fa fa-minus decrease-qty"></i>
-                    <input type="number" value="{{ $cart['quantity'] ?? ''}}" class="qty-input">
+                    <input type="number" id="product_quantaty" max="5" min="1" value="{{ $cart['quantity'] ?? ''}}" class="qty-input">
                     <i class="fa fa-plus increase-qty"></i>
                   </div>
+                  <label class="text-danger d-none " id="error_quantity" for="product_quantaty">Not available in stock</label>
                 </td>
-                @php
-                $total += $cart['product']['price'];
-                @endphp
-                <td class="cart-product__total">{{ $total ?? ''}}</td>
+                <td class="cart-product__total">{{ $cart['total'] ?? 0}}</td>
               </tr>
 
-              <tr class="cart-product__action">
+              <!-- <tr class="cart-product__action">
                 <td colspan="4">
                   <div class="cart-product__action-content d-flex align-items-center justify-content-between">
                     <form class="d-flex flex-wrap">
@@ -77,28 +77,37 @@
                     </form>
                     <div>
                       <a class="btn btn__secondary mr-10" href="#">update cart</a>
-                      <!-- <a class="btn btn__secondary" href="#">Checkout</a> -->
+                      <a class="btn btn__secondary" href="#">Checkout</a>
                     </div>
                   </div>
                 </td>
-              </tr>
+              </tr> -->
             </tbody>
           </table>
         </div><!-- /.cart-table -->
       </div><!-- /.col-lg-12 -->
 
       <div class="col-md-8 order-md-1">
-        <h4 class="mb-3">Shipping address</h4>
-        <h6>{{ $user['address'] }}</h6>
         <form class="needs-validation" action="{{ route('payment') }}" method="post">
           @csrf
-          <input type="hidden" name="product_id" value="{{$cart['product']['id']}}">
-          <input type="hidden" name="total_ammount" class="total-hidden" value="{{ $total ?? 0}}">
-          <input type="hidden" name="product_desc" value="{{ $cart['product']['title']}}">
-
-          <div class="form-group">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="use_different_address">
+          <input type="hidden" name="product_id" value="{{$cart['product_id']}}">
+          <input type="hidden" id="quantity" name="quantity" value="{{$cart['quantity']}}">
+          <input type="hidden" name="variant_id" value="{{$cart['variant_id'] ?? ''}}">
+          <input type="hidden" class="total-hidden" name="total" value="{{ $cart['total'] ?? 0}}">
+          <input type="hidden" class="shiping_cost" name="cost" value="4.95">
+          <input type="hidden" name="title" value="{{ $cart['title'] }}">
+          <h4 class="mb-3">Shipping address</h4>
+          <div class="form-group mb-3">
+            <label class="form-label mb-1" for="use_different_address">Current shipping address</label>
+            <input class="form-control" id="old_address" disabled type="text" value="{{$user['address'] }}">
+          </div>
+          <div class="form-group mb-3">
+            <label for="note" class="form-label mb-1" for="use_different_address">Special Note for Order (Optional)</label>
+            <textarea class="form-control" id="note" name="note"> </textarea>
+          </div>
+          <div class="form-group mt-1">
+            <div class="form-check ">
+              <input class="form-check-input" type="checkbox" name="old_address" value="no" id="use_different_address">
               <label class="form-check-label" for="use_different_address">Use a different shipping address</label>
             </div>
           </div>
@@ -106,44 +115,49 @@
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="firstName">First name</label>
-                <input type="text" name="firstName" class="form-control" id="firstName">
+                <input type="text" name="firstName" class="form-control" id="firstName" required>
                 <div class="invalid-feedback">
                   Valid first name is required.
                 </div>
               </div>
               <div class="col-md-6 mb-3">
                 <label for="lastName">Last name</label>
-                <input type="text" name="lastName" class="form-control" id="lastName">
+                <input type="text" name="lastName" class="form-control" id="lastName" required>
                 <div class="invalid-feedback">
                   Valid last name is required.
                 </div>
               </div>
             </div>
-
-            <div class="mb-3">
-              <label for="email">Email <span class="text-muted">(Optional)</span></label>
-              <input type="email" name="email" class="form-control" id="email" placeholder="you@example.com">
-              <div class="invalid-feedback">
-                Please enter a valid email address for shipping updates.
+            <div class="row">
+              <div class="mb-3 col-md-6">
+                <label for="phone">Phone</label>
+                <input id="phone" type="number" name="phone" max="99999999999" class="form-control" placeholder="" required>
+              </div>
+              <div class="mb-3 col-md-6">
+                <label for="mobile">City</label>
+                <input type="text" name="city" class="form-control" id="city" placeholder="" required>
               </div>
             </div>
 
-            <div class="mb-3">
-              <label for="address">Address</label>
-              <input type="text" name="address" class="form-control" id="address" placeholder="1234 Main St">
-              <div class="invalid-feedback">
-                Please enter your shipping address.
+            <div class="row">
+              <div class="mb-3 col-md-6">
+                <label for="address">Address</label>
+                <input type="text" name="address" class="form-control" id="address" placeholder="Main St ...." required>
+                <div class="invalid-feedback">
+                  Please enter your shipping address.
+                </div>
+              </div>
+
+              <div class="mb-3 col-md-6">
+                <label for="mobile">Postal Code</label>
+                <input type="text" name="zip_code" class="form-control" id="city" placeholder="" required>
               </div>
             </div>
+
 
             <div class="mb-3">
               <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-              <input type="text" name="address2" class="form-control" id="address2" placeholder="Apartment or suite">
-            </div>
-
-            <div class="mb-3">
-              <label for="mobile">Mobile</label>
-              <input type="text" name="mobile" class="form-control" id="mobile" placeholder="Mobile Number">
+              <input type="text" name="address2" class="form-control" id="address2" placeholder="Apartment or suite ....">
             </div>
           </div>
           <hr class="mb-4">
@@ -151,7 +165,7 @@
             <h4>Shipping Method</h4>
             <div class="form-check">
               <div class="custom-control">
-                <input class="form-check-input" type="radio" name="shipping_method" id="express_delivery" value="express" checked data-ship="3.95">
+                <input class="form-check-input" type="radio" name="shipping_method" id="express_delivery" value="express" checked data-ship="4.95">
                 <label class="form-check-label" for="express_delivery">Royal Mail Tracked 24</label>
                 <span class="float-right">£4.95</span>
               </div>
@@ -159,7 +173,7 @@
             </div>
             <div class="form-check">
               <div class="custom-control">
-                <input class="form-check-input" type="radio" name="shipping_method" id="fast_delivery" value="fast" data-ship="4.95">
+                <input class="form-check-input" type="radio" name="shipping_method" id="fast_delivery" value="fast" data-ship="3.95">
                 <label class="form-check-label" for="fast_delivery">Royal Mail Tracked 48</label>
                 <span class="float-right">£3.95</span>
               </div>
@@ -178,18 +192,21 @@
 @pushOnce('scripts')
 <script>
   $(document).ready(function() {
-    var shippingCost = $('input[name="shipping_method"]:checked').data('ship');
-    var price = (parseInt($('.cart-product__price').text()) * parseInt($('.qty-input').val())) + shippingCost;
-    $('.cart-product__total').text(price);
+    let shippingCost = $('input[name="shipping_method"]:checked').data('ship');
+    let price = (parseInt($('.product-price').text()) * parseInt($('.qty-input').val())) + shippingCost;
+    $('.cart-product__total').text('£ ' + price);
     $('.checkout-btn').text('Proceed To Checkout  (£ ' + price + ')');
     $('.total-hidden').val(price);
+    $('.shiping_cost').val(shippingCost);
 
     $('input[name="shipping_method"]').change(function() {
-      var shippingCost = $('input[name="shipping_method"]:checked').data('ship');
-      var price = (parseInt($('.cart-product__price').text()) * parseInt($('.qty-input').val())) + shippingCost;
-      $('.cart-product__total').text(price);
+      let shippingCost = $('input[name="shipping_method"]:checked').data('ship');
+      let price = (parseInt($('.product-price').text()) * parseInt($('.qty-input').val())) + shippingCost;
+      $('.cart-product__total').text('£ ' + price);
       $('.checkout-btn').text('Proceed To Checkout  (£ ' + price + ')');
       $('.total-hidden').val(price);
+      $('.shiping_cost').val(shippingCost);
+
     });
 
     $('#use_different_address').change(function() {
@@ -207,12 +224,58 @@
     });
 
     $('.onlyDigitsInput').on('keypress', function(event) {
-      // Check if the key pressed is a digit or the backspace key
       if (event.which < 48 || event.which > 57) {
-        // Prevent default action if the key pressed is not a digit or backspace
         event.preventDefault();
       }
     });
+
+    $('#product_quantaty').on('input', function() {
+      handleQuantityInput();
+    });
+
+    $('.increase-qty').on('click', function() {
+      if (!parseInt($('#product_quantaty').val())) {
+        $('#product_quantaty').val(1)
+      }
+      handleQuantityInput();
+    });
+
+    $('.decrease-qty').on('click', function() {
+      if (!parseInt($('#product_quantaty').val())) {
+        $('#product_quantaty').val(1)
+      }
+      handleQuantityInput();
+    });
   });
+
+  function handleQuantityInput() {
+    let qyt = parseInt($('#product_quantaty').val());
+    if (!qyt) {
+      $('#error_quantity').text('enter quantity').removeClass('d-none');
+      $('#quantity').val(1);
+      return false;
+    }
+    $('#error_quantity').addClass('d-none');
+    var maxValue = 5;
+    var minValue = 1;
+
+    if (qyt > maxValue) {
+      $('#product_quantaty').val(maxValue);
+    } else if (qyt < minValue) {
+      $('#product_quantaty').val(minValue);
+      $('#error_quantity').removeClass('d-none').text('min product should be 1');
+    }
+    if (parseInt($('#product_quantaty').val())) {
+      let quatnty = parseInt($('#product_quantaty').val());
+      let shippingCost = $('input[name="shipping_method"]:checked').data('ship');
+      let price = parseInt($('.product-price').text());
+      let total = (price * quatnty) + shippingCost;
+      $('.cart-product__total').text('£ ' + total);
+      $('.total-hidden').val(total);
+      $('.shiping_cost').val(shippingCost);
+      $('.checkout-btn').text('Proceed To Checkout  (£ ' + total + ')');
+      $('#quantity').val(parseInt($('#product_quantaty').val()));
+    }
+  }
 </script>
 @endPushOnce

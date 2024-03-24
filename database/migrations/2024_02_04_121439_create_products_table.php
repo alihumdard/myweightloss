@@ -19,11 +19,11 @@ return new class extends Migration
             $table->text('short_desc');
             $table->text('desc');
             $table->text('main_image');
-            $table->integer('price');
-            $table->string('stock');
+            $table->string('price')->nullable();
+            $table->string('stock')->nullable();
             $table->string('SKU')->nullable();
             $table->string('barcode')->nullable();
-            $table->string('ext_tax');
+            $table->string('ext_tax')->nullable();
             $table->string('status')->default('1');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('created_by')->nullable();
