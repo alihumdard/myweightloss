@@ -93,8 +93,8 @@
                             <tbody>
                                 <tr>
                                     <td> </td>
-                                    <td> </td>
                                     <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center; background-color:aquamarine !important; "> Body Profile </td>
+                                    <td> </td>
                                     <td> </td>
                                 </tr>
                                 <tr>
@@ -121,11 +121,17 @@
                                     <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> </td>
                                     <td>{{ $body_profile['bmi']}} </td>
                                 </tr>
+                                <tr>
+                                    <td>#00</td>
+                                    <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> User Weight Pic </td>
+                                    <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center;"> </td>
+                                    <td><a class="fw-bold btn-link" href="{{ asset('storage/'.$body_profile['weight_pic']) }}" download>See File</a></td>
+                                </tr>
 
                                 <tr>
                                     <td> </td>
-                                    <td> </td>
                                     <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center; background-color:aquamarine !important; "> Product Constulation </td>
+                                    <td> </td>
                                     <td> </td>
                                 </tr>
                                 @foreach($prodcut_consult as $key => $val)
@@ -158,8 +164,8 @@
 
                                 <tr>
                                     <td> </td>
-                                    <td> </td>
                                     <td class=" fw-bold text-center" style="vertical-align: middle; text-align: center; background-color:aquamarine !important; "> User Constulation </td>
+                                    <td> </td>
                                     <td> </td>
                                 </tr>
                                 @foreach($user_consult as $ind => $value)
