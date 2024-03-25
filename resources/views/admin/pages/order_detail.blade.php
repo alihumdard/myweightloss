@@ -364,7 +364,7 @@
     });
 
     $(document).ready(function() {
-        setInterval(comments, 20000);
+        setInterval(comments, 10000);
         comments();
         // get comments  data in through the api...
         function comments() {
