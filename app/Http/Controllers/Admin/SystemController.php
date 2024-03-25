@@ -36,6 +36,7 @@ use App\Models\UserConsultation;
 use App\Models\ConsultationQuestion;
 use App\Models\UserBmi;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\Comment;
 
 class SystemController extends Controller
 {
@@ -821,13 +822,13 @@ class SystemController extends Controller
         }
         if ($request->id) {
             $id = base64_decode($request->id);
-            $order = Order::with('user','shipingdetails', 'product','variant', 'product.category')->where(['id' => $id, 'payment_status' => 'Paid'])->first();
+            $order = Order::with('user', 'shipingdetails', 'product', 'variant', 'product.category')->where(['id' => $id, 'payment_status' => 'Paid'])->first();
             if ($order) {
                 $data['userOrders'] = Order::select('id')
-                ->where('user_id', $order->user->id)
-                ->where('id', '!=', $order->id)
-                ->get()
-                ->toArray();
+                    ->where('user_id', $order->user->id)
+                    ->where('id', '!=', $order->id)
+                    ->get()
+                    ->toArray();
                 $data['order']  = $order->toArray() ?? [];
                 // dd($data);
                 return view('admin.pages.order_detail', $data);
@@ -860,7 +861,7 @@ class SystemController extends Controller
                     $consult_quest_keys = array_keys(array_filter($consutl_quest_ans, function ($value) {
                         return $value !== null;
                     }));
-                    $consult_questions = ConsultationQuestion::whereIn('id', $consult_quest_keys)->select('id','title','desc')->get()->toArray();
+                    $consult_questions = ConsultationQuestion::whereIn('id', $consult_quest_keys)->select('id', 'title', 'desc')->get()->toArray();
                     $consult_questions = collect($consult_questions)->mapWithKeys(function ($item) {
                         return [$item['id'] => $item];
                     });
@@ -881,8 +882,8 @@ class SystemController extends Controller
                     if ($transaction) {
                         $question_ans = json_decode($transaction->question_answers, true);
                         $question_ids = array_keys($question_ans);
-                        $questions = Question::whereIn('id', $question_ids)->select('id','title', 'openbox')->get()->toArray();
-                        
+                        $questions = Question::whereIn('id', $question_ids)->select('id', 'title', 'openbox')->get()->toArray();
+
                         $questions = collect($questions)->mapWithKeys(function ($item) {
                             return [$item['id'] => $item];
                         });
@@ -924,10 +925,10 @@ class SystemController extends Controller
         if ($orders) {
             $userIds = array_unique(Arr::pluck($orders, 'user.id'));
             $userOrdersData = Order::select('user_id', DB::raw('count(*) as total_orders'))
-            ->whereIn('user_id', $userIds)
-            ->groupBy('user_id')
-            ->get()
-            ->toArray();
+                ->whereIn('user_id', $userIds)
+                ->groupBy('user_id')
+                ->get()
+                ->toArray();
             $data['order_history'] = $userOrdersData;
             $data['orders'] = $orders;
         }
@@ -979,5 +980,45 @@ class SystemController extends Controller
             return redirect()->route('admin.doctorsApproval');
         }
         return redirect()->back();
+    }
+
+    // comments
+    public function comments(Request $request)
+    {
+        try {
+            $data = Comment::where(['comment_for' => 'Orders', 'comment_for_id' => $request->id])->get()->toArray();
+            $message = 'Comments retirved  successfully';
+
+            return response()->json(['status' => 'success', 'message' => $message, 'data' => $data]);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => 'Error geting comments', 'error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function comment_store(Request $request): JsonResponse
+    {
+        $data['user'] = auth()->user();
+        $page_name = 'orders_recieved';
+        if (!view_permission($page_name)) {
+            return redirect()->back();
+        }
+
+        try {
+
+            $comment = new Comment();
+            $comment->comment_for    = 'Orders';
+            $comment->comment_for_id = $request->comment_for_id;
+            $comment->user_id        = Auth::user()->id;
+            $comment->user_name  = Auth::user()->name;
+            $comment->user_pic   = (Auth::user()->user_pic) ? asset('storage/'.Auth::user()->user_pic) : asset('assets/admin/img/profile-img1.png');
+            $comment->comment    = $request->comment;
+            $comment->created_by = Auth::id();;
+            $save = $comment->save();
+
+            $message = 'Comment added successfully';
+            return response()->json(['status' => 'success', 'message' => $message, 'data' => $save]);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => 'Error storing Invoice', 'error' => $e->getMessage()], 500);
+        }
     }
 }

@@ -293,43 +293,46 @@
             </style>
             <div class="col-lg-12">
                 <div class="w-100 ">
-                    <div class="card mt-3">
+                    <div class="card mt-3 ">
                         <div class="d-flex flex-row justify-content-center pt-2 adiv text-white">
                             <span class=" fw-bold ">Comment Here</span>
                         </div>
-                        <div class="d-flex flex-row p-3">
-                            <img src="https://img.icons8.com/color/48/000000/circled-user-female-skin-type-7.png" width="50" height="50">
-                            <div class="chat ml-2 p-3">Hello and thankyou for visiting birdlymind. Please click the video above</div>
+                        <div class="comment_data px-2 py-4">
+                            <!-- <div class="d-flex flex-row p-3">
+                                <div class="bg-white mr-2 p-3">Hello and thankyou for visiting birdlymind. Please click the video above</div>
+                                <img src="https://img.icons8.com/color/48/000000/circled-user-female-skin-type-7.png" width="50" height="50">
+                            </div> -->
                         </div>
 
-                        <div class="d-flex flex-row p-3">
-                            <div class="bg-white mr-2 p-3"><span class="text-muted">Hello and thankyou for visiting birdlynind.</span></div>
-                            <img src="https://img.icons8.com/color/48/000000/circled-user-male-skin-type-7.png" width="50" height="50">
+                        <div class="no_comment px-2 py-4">
+                            <div class="d-flex flex-row p-3">
+                                <div class="bg-white mx-auto pt-2 pb-1 px-3">
+                                    <h4 class="text-center"> No comment yet! Against that order</h4>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="d-flex flex-row p-3">
-                            <img src="https://img.icons8.com/color/48/000000/circled-user-female-skin-type-7.png" width="50" height="50">
-                            <div class="myvideo ml-2"><img src="https://imgur.com/GOxU1jx.png" width="200"></div>
-                        </div>
-
-                        <div class="d-flex flex-row p-3">
-                            <img src="https://img.icons8.com/color/48/000000/circled-user-female-skin-type-7.png" width="50" height="50">
-                            <div class="chat ml-2 p-3"><span class="text-muted dot">. . .</span></div>
-                        </div>
-
-                        <div class="form-group px-3 mb-2">
-                            <textarea class="form-control" rows="4" placeholder="Type your message"></textarea>
-                        </div>
-                        <div class="form-group  mb-4 d-flex flex-row justify-content-end px-3">
-                            <input type="submit" class="btn btn-primary fw-bold" value="Push You'r Comment">
-                        </div>
+                        <form class="row px-2  needs-validation" action="{{ route('admin.commentStore') }}" id="commentform" method="POST" novalidate>
+                            @csrf
+                            <input type="hidden" id="comment_for_id" name="comment_for_id" value="{{$order['id']}}">
+                            <input type="hidden" id="comment_for" name="comment_for" value="Orders">
+                            <div class="form-group px-3 mb-2">
+                                <textarea class="form-control" rows="4" id="comment" name="comment" placeholder="Type your message" required></textarea>
+                            </div>
+                            <div class="form-group  mb-4 d-flex flex-row justify-content-end px-3">
+                                <button type="submit" id="btn_comment" class="btn btn-primary fw-bold">
+                                    <div class="spinner-border spinner-border-sm text-white d-none" id="spinner_coment"></div>
+                                    <span id="coment_btn">Push You'r Comment </span>
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
 
             </div>
         </div>
     </section>
-
+<input type="hidden" id="user_id" value="{{auth()->user()->id}}">
 </main>
 <!-- End #main -->
 
@@ -346,18 +349,11 @@
             "searching": true,
             "ordering": true,
             "info": true,
-            // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
             "buttons": [{
                     extend: 'pdf',
                     text: 'Download PDF ',
                     className: 'btn-blue',
                 },
-                // {
-                //     extend: 'excel',
-                //     text: 'Donwload Excel ',
-                //     className: 'btn-blue', 
-                // },
-
                 {
                     extend: 'print',
                     text: 'Print Out',
@@ -365,6 +361,105 @@
                 }
             ]
         }).buttons().container().appendTo('#tbl_buttons');
+    });
+
+    $(document).ready(function() {
+        setInterval(comments, 20000);
+        comments();
+        // get comments  data in through the api...
+        function comments() {
+            var apiurl = @json(route('admin.comments', ['id' => $order['id']]));
+            var user_id = parseInt($('#user_id').val());
+            $.ajax({
+                url: apiurl,
+                type: 'GET',
+                beforeSend: function() {
+
+                },
+                success: function(response) {
+                    if (response.status === 'success') {
+                        var comment_html = '';
+
+                        if (response.data && response.data.length > 0) {
+                            $('.no_comment').addClass('d-none');
+                            response.data.forEach(function(data) {
+                                let createdDate = new Date(data.created_at);
+                                let formattedDate = createdDate.toLocaleString();
+                                formattedDate = formattedDate.replace(/\//g, '-');
+                                let user_pic = data.user_pic ?? '/assets/admin/img/profile-img1.png';
+                                let comment_data = '';
+                                if (user_id == data.user_id) {
+                                    comment_data = `<div class="d-flex flex-row p-3">
+                                    <img class="img-fuild " src="${user_pic}" width="45" height="45" style="border-radius:50% !important">
+                                    <div class=" chat ml-2 p-3"><span class="text-muted">${data.comment}</span></div>
+                                    </div>`;
+                                } else {
+                                    comment_data = `<div class="d-flex flex-row p-3">
+                                    <div class=" bg-white mr-2 p-3"><span class="text-muted">${data.comment}</span></div>
+                                    <img class="img-fuild " src="${user_pic}" width="45" height="45" style="border-radius:50% !important">
+                                    </div>`;
+                                }
+                                comment_html += comment_data;
+                            });
+                        } else {
+                            $('.no_comment').removeClass('d-none');
+                        }
+
+                        $('.comment_data').html(comment_html);
+                    } else {
+                        alert('contact to developer');
+                        console.log(response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    alert('contact to developer');
+                    console.log(status);
+                    showAlert("Error", 'Request Can not Proceed', 'Cannot proceed further');
+                }
+            });
+        }
+        // Adding  comment in through the api...
+        $('#commentform').on('submit', function(e) {
+            e.preventDefault();
+            var apiname = $(this).attr('action');
+            var apiurl = apiname;
+            var formData = new FormData(this);
+            var comment = formData.get('comment');
+            var user_pic = "{{ ($user->user_pic ?? '') ? asset('storage/'.$user->user_pic) : asset('assets/admin/img/profile-img1.png') }}";
+            if (comment) {
+                $.ajax({
+                    url: apiurl,
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function() {
+                        $('#spinner_coment').removeClass('d-none');
+                        $('#coment_btn').addClass('d-none');
+                    },
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            $('.no_comment').addClass('d-none');
+                            comments();
+                            $('#comment').val('');
+                            $('#spinner_coment').addClass('d-none');
+                            $('#coment_btn').removeClass('d-none').prop('disabled', false);
+                        } else if (response.status === 'error') {
+                            alert('contact to developer');
+                            console.log(response.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        alert('contact to developer');
+                        console.log(status);
+                        $('#spinner_coment').addClass('d-none');
+                        $('#coment_btn').removeClass('d-none').prop('disabled', false);
+                    }
+                });
+            }
+        });
+
+
     });
 </script>
 @endPushOnce
