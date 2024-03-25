@@ -17,6 +17,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
+use App\Models\Comment;
 
 class SystemUserManagmentController extends Controller
 {
@@ -287,4 +288,39 @@ class SystemUserManagmentController extends Controller
             return response()->json(['status' => 'warning', 'message' => 'Error storing user', 'error' => $e->getMessage()], 500);
         }
     }
+
+    // comments
+    public function comments(Request $request): JsonResponse
+    {
+        try {
+
+            $data = Comment::where(['comment_for' => $request->comment_for, 'comment_for_id' => $request->comment_for_id])->get()->toArray();
+            $message = 'Comments retirved  successfully';
+
+            return response()->json(['status' => 'success', 'message' => $message, 'data' => $data]);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => 'Error geting comments', 'error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function comment_store(Request $request): JsonResponse
+    {
+        try {
+            $comment = new Comment();
+            $comment->comment_for    = 'Orders';
+            $comment->comment_for_id = $request->comment_for_id;
+            $comment->user_id        = Auth::user()->di;
+            $comment->user_name  = Auth::user()->name;
+            $comment->user_pic   = Auth::user()->user_pic ?? NULL;
+            $comment->comment    = $request->comment;
+            $comment->created_by = Auth::id();;
+            $save = $comment->save();
+
+            $message = 'Comment added successfully';
+            return response()->json(['status' => 'success', 'message' => $message, 'data' => $save]);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => 'Error storing Invoice', 'error' => $e->getMessage()], 500);
+        }
+    }
+
 }
