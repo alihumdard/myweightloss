@@ -92,13 +92,27 @@
 
     <section class="section">
         <div class="row">
+
+            <!-- Display Success Message -->
+            @if(session('status') == 'ShippingFail')
+            <div class="alert alert-danger">
+                <strong>Error:</strong> {{ session('msg') }}
+            </div>
+            @endif
+
+            @if(session('status'))
+            <div class="alert alert-success">
+                <strong>Success:</strong> {{ session('msg') }}
+            </div>
+            @endif
+
             <div class="col-md-4">
                 <div class="card  d-flex flex-column">
                     <div class="card-header mt-2" style="border: 0 !important; border-color: transparent !important;"></div>
                     <div class="card-body flex-grow-1">
                         <div class="text">
                             <h4 class="fw-bold">Customer Details</h4>
-                            <span><b>Name: </b>{{ ($order['shipingdetails']['firstName']) ? $order['shipingdetails']['firstName'].''.$order['shipingdetails']['lastName'] : $order['user']['name'] }}</span><br>
+                            <span><b>Name: </b>{{ ($order['shipingdetails']['firstName']) ? $order['shipingdetails']['firstName'].' '.$order['shipingdetails']['lastName'] : $order['user']['name'] }}</span><br>
                             <span><b>Order Id: </b><span class="text-primary">#00{{$order['id']}}</span></span>
                         </div>
                         <div class="text">
@@ -219,6 +233,12 @@
                                     <p class="fw-bold mb-0">Order Status: </p>
                                     <p class="mb-0 fw-bold text-success">{{$order['status']}} </p>
                                 </div>
+                                @if($order['status'] != 'Recieved')
+                                <div class="d-flex justify-content-between pt-2">
+                                    <p class="fw-bold mb-0 ">Health Care Professional Notes:</p>
+                                    <p class="mb-0">{{$order['hcp_remarks']}} </p>
+                                </div>
+                                @endif
                                 <div class="d-flex justify-content-between pt-2">
                                     <p class="fw-bold mb-0">Subtotal: </p>
                                     <p class="text-muted mb-0">£ {{$order['total_ammount'] - $order['shiping_cost']}}</p>
@@ -236,6 +256,19 @@
                                     <h5 class="d-flex align-items-center justify-content-end text-white text-uppercase mb-0">Total
                                         paid: <span class="h2 mb-0 ms-2">£ {{$order['total_ammount']}}</span></h5>
                                 </div>
+                                @if($order['status'] == 'Approved' || $order['status'] == 'ShippingFail' )
+                                <form id="form_shiping_now" action="{{route('admin.createShippingOrder')}}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="id" required value="{{$order['id']}}">
+                                </form>
+                                <div class="card  mt-1">
+                                    <div class="card-body d-flex justify-content-center align-items-center py-3">
+                                        <button form="form_shiping_now" type="submit" class="btn btn-primary rounded-pill px-5 py-2 fw-bold">
+                                            <i class="bi bi-arrow-right-circle"></i> Ship Now
+                                        </button>
+                                    </div>
+                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -332,7 +365,7 @@
             </div>
         </div>
     </section>
-<input type="hidden" id="user_id" value="{{auth()->user()->id}}">
+    <input type="hidden" id="user_id" value="{{auth()->user()->id}}">
 </main>
 <!-- End #main -->
 

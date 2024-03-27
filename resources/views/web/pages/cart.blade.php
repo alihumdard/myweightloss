@@ -115,14 +115,14 @@
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="firstName">First name</label>
-                <input type="text" name="firstName" class="form-control" id="firstName" required>
+                <input type="text" name="firstName" class="form-control" id="firstName">
                 <div class="invalid-feedback">
                   Valid first name is required.
                 </div>
               </div>
               <div class="col-md-6 mb-3">
                 <label for="lastName">Last name</label>
-                <input type="text" name="lastName" class="form-control" id="lastName" required>
+                <input type="text" name="lastName" class="form-control" id="lastName">
                 <div class="invalid-feedback">
                   Valid last name is required.
                 </div>
@@ -131,18 +131,18 @@
             <div class="row">
               <div class="mb-3 col-md-6">
                 <label for="phone">Phone</label>
-                <input id="phone" type="number" name="phone" max="99999999999" class="form-control" placeholder="" required>
+                <input id="phone" type="number" name="phone" max="99999999999" class="form-control" placeholder="">
               </div>
               <div class="mb-3 col-md-6">
                 <label for="mobile">City</label>
-                <input type="text" name="city" class="form-control" id="city" placeholder="" required>
+                <input type="text" name="city" class="form-control" id="city" placeholder="">
               </div>
             </div>
 
             <div class="row">
               <div class="mb-3 col-md-6">
                 <label for="address">Address</label>
-                <input type="text" name="address" class="form-control" id="address" placeholder="Main St ...." required>
+                <input type="text" name="address" class="form-control" id="address" placeholder="Main St ....">
                 <div class="invalid-feedback">
                   Please enter your shipping address.
                 </div>
@@ -150,7 +150,7 @@
 
               <div class="mb-3 col-md-6">
                 <label for="mobile">Postal Code</label>
-                <input type="text" name="zip_code" class="form-control" id="city" placeholder="" required>
+                <input type="text" name="zip_code" class="form-control" id="city" placeholder="">
               </div>
             </div>
 

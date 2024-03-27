@@ -95,7 +95,7 @@ function view_permission($page_name)
 
         case 'Dispensary':
             switch ($page_name) {
-                case 'dashboard':
+                case 'dashboard':    
                 case 'orders':
                 case 'orders_recieved':
                 case 'doctors_approval':
@@ -127,8 +127,6 @@ function view_permission($page_name)
             switch ($page_name) {
                 case 'dashboard':
                 case 'select_treatment':
-                // case 'orders':
-                // case 'orders_recieved':
                 case 'contact':
                 case 'setting':
                 case 'faq':
