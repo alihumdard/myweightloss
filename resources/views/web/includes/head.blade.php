@@ -7,3 +7,16 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
 <link rel="stylesheet" href="{{ asset('/assets/web/css/libraries.css') }}">
 <link rel="stylesheet" href="{{ asset('/assets/web/css/style.css') }}">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WCPCZG70VQ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-WCPCZG70VQ');
+</script>
