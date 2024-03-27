@@ -1159,7 +1159,7 @@ class SystemController extends Controller
                                     "quantity" => $order['quantity'],
                                     "unitValue" => 999,
                                     "unitWeightInGrams" => 200,
-                                    "customsDescription" => $order['product']['title'],
+                                    "customsDescription" => 'it is medical product.',
                                     "extendedCustomsDescription" => "",
                                     "customsCode" => 'ali' . $order['id'],
                                     "originCountryCode" => "GB",
