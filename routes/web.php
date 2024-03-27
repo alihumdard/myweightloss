@@ -46,12 +46,6 @@ Route::match(['get','post'],'/Completed-order', [WebController::class, 'complete
 Route::match(['get','post'],'/Unsuccessful-order', [WebController::class, 'unsuccessful_order']);
 Route::match(['get', 'post'], '/transactionStore/', [WebController::class, 'transaction_store'])->name('web.transactionStore');
 
-Route::get('/getOrder', [WebController::class, 'get_order']);
-Route::match(['get', 'post'],'/createOrder', [WebController::class, 'create_order']);
-
-// Route::match(['get','post'],'/checkout', function(){
-//     return view('web.pages.checkout');
-// })->name('web.checkout');
 
 Route::match(['get','post'],'/terms', function(){
     return view('web.pages.term');

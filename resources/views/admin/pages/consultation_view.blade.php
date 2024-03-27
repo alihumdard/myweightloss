@@ -219,7 +219,7 @@
 <div class="modal fade" id="doctor_remarks" tabindex="-1" data-bs-backdrop="false">
     <div class="modal-dialog  modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header bg-success">
+            <div class="modal-header" style="background: #20B2AA;">
                 <h5 class="modal-title fw-bold text-white">HealthCare Professional Feedback</h5>
                 <button type="button" class="btn-close fw-bold text-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -246,7 +246,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button form="form_hcp_remarks" type="submit" class="btn btn-primary">Save changes</button>
+                <button form="form_hcp_remarks" type="submit" class="btn text-white fw-bold" style="background: #20B2AA;">Save changes</button>
             </div>
         </div>
     </div>

@@ -19,6 +19,8 @@ use Carbon\Carbon;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Arr;
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Redirect;
 
 // models ...
 use App\Models\User;
@@ -35,8 +37,8 @@ use App\Models\Transaction;
 use App\Models\UserConsultation;
 use App\Models\ConsultationQuestion;
 use App\Models\UserBmi;
-use Illuminate\Support\Facades\Redirect;
 use App\Models\Comment;
+use App\Models\shippedOrder;
 
 class SystemController extends Controller
 {
@@ -111,7 +113,7 @@ class SystemController extends Controller
         if (!isset($request->id)) {
             $rules['password'] = 'required';
         }
-    
+
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
@@ -197,11 +199,11 @@ class SystemController extends Controller
                 Rule::unique('users')->ignore($request->id),
             ],
         ];
-        
+
         if (!isset($request->id)) {
             $rules['password'] = 'required';
         }
-        
+
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
@@ -652,7 +654,7 @@ class SystemController extends Controller
             ],
         ];
 
-        if($request->id == null || !$request->id){
+        if ($request->id == null || !$request->id) {
             $rules['main_image'] = [
                 'required',
                 'image',
@@ -946,12 +948,11 @@ class SystemController extends Controller
         $orders = Order::with('user')->where('payment_status', 'Paid')->whereIn('status', ['Approved', 'Not_Approved'])->latest('created_at')->get()->toArray();
         if ($orders) {
             $userIds = array_unique(Arr::pluck($orders, 'user.id'));
-
-            $userOrdersData = Order::select('id')->whereIn('user_id', $userIds)
-                ->where('id', '!=', $orders[0]['id'])
-                ->select('user_id', 'id')
-                ->get()->toArray();
-
+            $userOrdersData = Order::select('user_id', DB::raw('count(*) as total_orders'))
+                ->whereIn('user_id', $userIds)
+                ->groupBy('user_id')
+                ->get()
+                ->toArray();
             $data['order_history'] = $userOrdersData;
             $data['orders'] = $orders;
         }
@@ -965,6 +966,12 @@ class SystemController extends Controller
 
     public function change_status(Request $request)
     {
+        $data['user'] = auth()->user();
+        $page_name = 'orders';
+        if (!view_permission($page_name)) {
+            return redirect()->back();
+        }
+
         $validatedData = $request->validate([
             'id' => 'required|exists:orders,id',
             'status' => 'required',
@@ -977,9 +984,235 @@ class SystemController extends Controller
         $order->hcp_remarks = $validatedData['hcp_remarks'];
         $update = $order->save();
         if ($update) {
-            return redirect()->route('admin.doctorsApproval');
+            return redirect()->route('admin.orderDetail', ['id' => base64_encode($validatedData['id'])]);
         }
         return redirect()->back();
+    }
+
+
+
+    // shiping the orders
+    public function create_shiping_order(Request $request)
+    {
+        $user = auth()->user();
+        $page_name = 'orders';
+        if (!view_permission($page_name)) {
+            return redirect()->back();
+        }
+
+        $validatedData = $request->validate([
+            'id' => 'required|exists:orders,id'
+        ]);
+
+        $order = Order::with('user', 'shipingdetails', 'product', 'variant', 'product.category')->where(['id' => $request->id, 'payment_status' => 'Paid', 'status' => 'Approved'])->first();
+
+        if ($order) {
+
+            try {
+                $order = $order->toArray() ?? [];
+                $payload = $this->make_shiping_payload($order);
+                $apiKey = env('ROYAL_MAIL_API_KEY');
+                $client = new Client();
+                $response = $client->post('https://api.parcel.royalmail.com/api/v1/orders', [
+                    'headers' => [
+                        'Authorization' => 'Bearer ' . $apiKey,
+                        'Content-Type' => 'application/json',
+                    ],
+                    'json' => $payload,
+                ]);
+
+                $statusCode = $response->getStatusCode();
+                $body = $response->getBody()->getContents();
+                if ($statusCode == 200) {
+                    $response = json_decode($body, true);
+                    $shipped = [];
+                    if ($response['createdOrders']) {
+                        foreach ($response['createdOrders'] as $key => $val) {
+                            $shipped[] = shippedOrder::create([
+                                'user_id' => $order['user']['id'],
+                                'order_id' => $order['id'],
+                                'product_id' => $order['product']['id'],
+                                'variant_id' => $order['variant']['id'] ?? NULL,
+                                'order_identifier' => $val['orderIdentifier'],
+                                'order_date' => $val['orderDate'],
+                                'quantity' => $order['quantity'],
+                                'cost' => $order['shiping_cost'],
+                                'errors' => json_encode($val['errors'] ?? []) ?? NULL,
+                                'status' => 'Shipped',
+                                'created_by' => $user->id,
+                            ]);
+                        }
+                    } 
+                    if ($response['failedOrders']) {
+                        foreach ($response['failedOrders'] as $key => $val) {
+                            $shipped[] = shippedOrder::create([
+                                'user_id' => $order['user']['id'],
+                                'order_id' => $order['id'],
+                                'product_id' => $order['product']['id'],
+                                'variant_id' => $order['variant']['id'],
+                                'order_identifier' => $val['orderIdentifier']  ?? NULL,
+                                'order_date' => $val['orderDate'] ?? NULL,
+                                'quantity' => $order['quantity'],
+                                'cost' => $order['shiping_cost'],
+                                'errors' => json_encode($val['errors'] ?? []),
+                                'status' => 'ShippingFail',
+                                'created_by' => $user->id,
+                            ]);
+                        }
+                    }
+                    $order = Order::findOrFail($order['id']);
+                    $order->shipped_order_id = $shipped[0]->id;
+                    $order->status = $shipped[0]->status;
+                    $update = $order->save();
+                    $msg = ($shipped[0]->status == 'Shipped') ? 'Order is shipped' : 'Order shiping failed';
+                    return redirect()->route('admin.orderDetail', ['id' => base64_encode($validatedData['id'])])->with('status',$shipped[0]->status)->with('msg' , $msg );
+
+                    // return redirect()->route('admin.getShippingOrder', ['id' => $shipped[0]->order_identifier])->with(['msg' =>$msg ,'status'=>$shipped[0]->status]);
+                } else {
+                    echo "contact to developer";
+                }
+            } catch (\Exception $e) {
+                dd($e);
+            }
+        }
+        return redirect()->back();
+    }
+
+    public function get_shiping_order(Request $request)
+    {
+        $order_id = $request->id;
+
+        $apiKey = env('ROYAL_MAIL_API_KEY');
+
+        $client = new Client();
+        $response = $client->get('https://api.parcel.royalmail.com/api/v1/orders/' . $order_id, [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $apiKey,
+            ]
+        ]);
+
+        $statusCode = $response->getStatusCode();
+        $body = $response->getBody()->getContents();
+
+        return response()->json([
+            'status_code' => $statusCode,
+            'response' => json_decode($body, true),
+        ]);
+    }
+
+    private function make_shiping_payload($order)
+    { 
+        $payload = [
+            "items" => [
+                [
+                    "orderReference" => null,
+                    "recipient" => [
+                        "address" => [
+                            "fullName" => ($order['shipingdetails']['firstName']) ? $order['shipingdetails']['firstName'] . ' ' . $order['shipingdetails']['lastName'] : $order['user']['name'],
+                            "companyName" => "My WeightLoss",
+                            "addressLine1" => $order['shipingdetails']['address'] ?? $order['user']['address'],
+                            "addressLine2" => $order['shipingdetails']['address2'] ?? $order['user']['apartment'],
+                            "addressLine3" => null,
+                            "city" => $order['shipingdetails']['city'] ?? $order['user']['city'],
+                            "county" => "United Kingdom",
+                            "postcode" => $order['shipingdetails']['zip_code'] ?? $order['user']['zip_code'],
+                            "countryCode" => "GB"
+                        ],
+                        "phoneNumber" => $order['shipingdetails']['phone'] ?? $order['user']['phone'],
+                        "emailAddress" => $order['user']['email'],
+                        "addressBookReference" => null
+                    ],
+                    "sender" => [
+                        "tradingName" => null,
+                        "phoneNumber" => null,
+                        "emailAddress" => null
+                    ],
+                    "billing" => [
+                        "address" => [
+                            "fullName" => ($order['shipingdetails']['firstName']) ? $order['shipingdetails']['firstName'] . ' ' . $order['shipingdetails']['lastName'] : $order['user']['name'],
+                            "companyName" => "My WeightLoss",
+                            "addressLine1" => $order['shipingdetails']['address'] ?? $order['user']['address'],
+                            "addressLine2" => $order['shipingdetails']['address2'] ?? $order['user']['apartment'],
+                            "addressLine3" => null,
+                            "city" => $order['shipingdetails']['city'] ?? $order['user']['city'],
+                            "county" => "United Kingdom",
+                            "postcode" => $order['shipingdetails']['zip_code'] ?? $order['user']['zip_code'],
+                            "countryCode" => "GB"
+                        ],
+                        "phoneNumber" => $order['shipingdetails']['phone'] ?? $order['user']['phone'],
+                        "emailAddress" => $order['user']['email']
+                    ],
+                    "packages" => [
+                        [
+                            "weightInGrams" => 200,
+                            "packageFormatIdentifier" => "parcel",
+                            "customPackageFormatIdentifier" => "",
+                            "dimensions" => [
+                                "heightInMms" => 10,
+                                "widthInMms" => 20,
+                                "depthInMms" => 30
+                            ],
+                            "contents" => [
+                                [
+                                    "name" => $order['product']['title'],
+                                    "SKU" => $order['variant']['SKU'] ?? $order['product']['SKU'],
+                                    "quantity" => $order['quantity'],
+                                    "unitValue" => 999,
+                                    "unitWeightInGrams" => 200,
+                                    "customsDescription" => $order['product']['title'],
+                                    "extendedCustomsDescription" => "",
+                                    "customsCode" => 'ali' . $order['id'],
+                                    "originCountryCode" => "GB",
+                                    "customsDeclarationCategory" => null,
+                                    "requiresExportLicence" => null,
+                                    "stockLocation" => null
+                                ]
+                            ]
+                        ]
+                    ],
+                    "orderDate" => $order['created_at'],
+                    "plannedDespatchDate" => null,
+                    "specialInstructions" => $order['note'],
+                    "subtotal" => $order['total_ammount'] - $order['shiping_cost'],
+                    "shippingCostCharged" => $order['shiping_cost'],
+                    "otherCosts" => 0,
+                    "customsDutyCosts" => null,
+                    "total" => $order['total_ammount'],
+                    "currencyCode" => "GBP",
+                    "postageDetails" => [
+                        "sendNotificationsTo" => "sender",
+                        "serviceCode" => null,
+                        "serviceRegisterCode" => null,
+                        "consequentialLoss" => 0,
+                        "receiveEmailNotification" => null,
+                        "receiveSmsNotification" => null,
+                        "guaranteedSaturdayDelivery" => null,
+                        "requestSignatureUponDelivery" => null,
+                        "isLocalCollect" => null,
+                        "safePlace" => null,
+                        "department" => null,
+                        "AIRNumber" => null,
+                        "IOSSNumber" => null,
+                        "requiresExportLicense" => null,
+                        "commercialInvoiceNumber" => null,
+                        "commercialInvoiceDate" => null
+                    ],
+                    "tags" => [
+                        [
+                            "key" => "medicins",
+                            "value" => "medicins"
+                        ]
+                    ],
+                    "label" => [
+                        "includeLabelInResponse" => true,
+                        "includeCN" => null,
+                        "includeReturnsLabel" => null
+                    ],
+                    "orderTax" => $order['ext_tax'][''] ?? $order['product']['ext_tax']
+                ]
+            ]
+        ];
+        return       $payload;
     }
 
     // comments
@@ -1010,7 +1243,7 @@ class SystemController extends Controller
             $comment->comment_for_id = $request->comment_for_id;
             $comment->user_id        = Auth::user()->id;
             $comment->user_name  = Auth::user()->name;
-            $comment->user_pic   = (Auth::user()->user_pic) ? asset('storage/'.Auth::user()->user_pic) : asset('assets/admin/img/profile-img1.png');
+            $comment->user_pic   = (Auth::user()->user_pic) ? asset('storage/' . Auth::user()->user_pic) : asset('assets/admin/img/profile-img1.png');
             $comment->comment    = $request->comment;
             $comment->created_by = Auth::id();;
             $save = $comment->save();

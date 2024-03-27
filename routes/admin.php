@@ -47,6 +47,7 @@ Route::prefix('admin')->middleware(['check.userAuthCheck'])->group(function () {
     Route::get('/orderDetail/{id}', [SystemController::class, 'order_detail'])->name('admin.orderDetail');
     Route::get('/consultationView/{uid}/{pid}/{oid}', [SystemController::class, 'consultation_view'])->name('admin.consultationView');
     Route::match(['get','post'], '/changeStatus', [SystemController::class, 'change_status'])->name('admin.changeStatus');
-
+    Route::match(['get', 'post'],'/createShippingOrder', [SystemController::class, 'create_shiping_order'])->name('admin.createShippingOrder');
+    Route::match(['get','post'], '/getShippingOrder/{id}', [SystemController::class, 'get_shiping_order'])->name('admin.getShippingOrder');
 
 });
