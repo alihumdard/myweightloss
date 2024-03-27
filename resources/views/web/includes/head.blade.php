@@ -19,4 +19,15 @@
     gtag('js', new Date());
 
     gtag('config', 'G-WCPCZG70VQ');
+    
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WCPCZG70VQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WCPCZG70VQ');
 </script>
