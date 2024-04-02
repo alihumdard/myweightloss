@@ -1,3 +1,7 @@
+<!-- Event snippet for Leads / TYP conversion page -->
+<script>
+  gtag('event', 'conversion', {'send_to': 'AW-16510588172/UcjwCIXWxqEZEIyq7sA9'});
+</script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
