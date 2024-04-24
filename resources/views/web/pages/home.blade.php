@@ -1,5 +1,6 @@
 @extends('web.layouts.default')
-@section('title', 'Home')
+<!-- @section('title', 'Home') -->
+ @section('title', 'My Weight Loss Center | Fat transfer Uk')  
 @section('content')
 
 

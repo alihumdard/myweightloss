@@ -90,8 +90,12 @@
                         <a href="{{ route('web.cart') }}" class="nav__item-link {{(request()->routeIs(['web.cart'])) ? 'active ' : ''}}">Cart </a>
                     </li> -->
                     <li class="nav__item">
+                        <a href="{{ route('web.blogs') }}" class="nav__item-link {{(request()->routeIs(['web.blogs'])) ? 'active ' : ''}}">Blogs</a>
+                    </li>
+                    <li class="nav__item">
                         <a href="{{ route('web.contact') }}" class="nav__item-link {{(request()->routeIs(['web.contact'])) ? 'active ' : ''}}">Contact</a>
                     </li>
+                   
                 </ul>
                 <!-- <button class="close-mobile-menu d-block d-lg-none"><i class="fas fa-times"></i></button> -->
             </div>
