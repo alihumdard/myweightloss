@@ -43,11 +43,11 @@
                     <div class="col-sm-12 col-md-4 col-lg-3">
                         <div class="product-item">
                             <div class="product__img">
-                                <a href="{{ route('web.product', ['id' => $value['id']]) }}">
+                                <a href="{{ route('web.product', ['id' => $value['slug']]) }}">
                                     <img src="{{ asset('storage/'.$value['main_image'])}}" alt=" no image" loading="lazy">
                                 </a>
                                 <div class="product__action">
-                                    <a href="{{ route('web.product', ['id' => $value['id']]) }}" class="btn btn__primary btn__rounded">
+                                    <a href="{{ route('web.product', ['id' => $value['slug']]) }}" class="btn btn__primary btn__rounded">
                                         <!-- <i class="icon-cart"></i> <span>Add To Cart</span> -->
                                         <i class="icon-calendar"></i> <span> {{ ($user && $user->consult_status == 'done' && $user->profile_status == 'done') ? ' Select Treatment' : ' Learn More' }}</span>
                                     </a>
@@ -55,7 +55,7 @@
                             </div>
                             <div class="product__info">
                                 <h4 class="product__title">
-                                    <a href="{{ route('web.product', ['id' => $value['id']]) }}">
+                                    <a href="{{ route('web.product', ['id' => $value['slug']]) }}">
                                         {{ $value['title'] ?? ''}}
                                     </a>
                                 </h4>

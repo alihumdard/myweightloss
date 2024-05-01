@@ -152,11 +152,11 @@
                     <div class="col-sm-6 col-md-6 col-lg-3">
                         <div class="product-item">
                             <div class="product__img">
-                                <a href="{{ route('web.product', ['id' => $value['id']]) }}">
+                                <a href="{{ route('web.product', ['id' => $value['slug']]) }}">
                                     <img src="{{ asset('storage/'.$value['main_image'])}}" alt=" no image" loading="lazy">
                                 </a>
                                 <div class="product__action">
-                                    <a href="{{ route('web.product', ['id' => $value['id']]) }}" class="btn btn__primary btn__rounded">
+                                    <a href="{{ route('web.product', ['id' => $value['slug']]) }}" class="btn btn__primary btn__rounded">
                                         <!-- <i class="icon-cart"></i> <span>Add To Cart</span> -->
                                         <i class="icon-calendar"></i> <span>Detail view</span>
                                     </a>
@@ -164,7 +164,7 @@
                             </div>
                             <div class="product__info">
                                 <h4 class="product__title">
-                                    <a href="{{ route('web.product', ['id' => $value['id']]) }}">
+                                    <a href="{{ route('web.product', ['id' => $value['slug']]) }}">
                                         {{ $value['title'] ?? ''}}
                                     </a>
                                 </h4>
@@ -195,6 +195,13 @@
             $('#product_quantaty').attr('max', variantData.inventory);
             $('#product_title').text(variantData.title + ' :')
             $('#product_price').text('£ ' + variantData.price)
+
+            // update url according to variant start
+            var current_variant_slug = variantData.slug;
+            var currentUrl = window.location.href;
+            var newUrl = updateUrlParameter(currentUrl, 'variant', current_variant_slug);
+            history.pushState({}, '', newUrl);
+            // update url according to variant end
         });
 
         $('#product_quantaty').on('input', function() {
@@ -237,6 +244,26 @@
         if (parseInt($('#product_quantaty').val())) {
             $('#quantity').val(parseInt($('#product_quantaty').val()));
         } 
+    }
+
+    function updateUrlParameter(url, key, value) {
+        // function for update url when variant change
+        var urlParts = url.split('?');
+        if (urlParts.length >= 2) {
+            var prefix = encodeURIComponent(key) + '=';
+            var params = urlParts[1].split(/[&;]/g);
+
+            for (var i = 0; i < params.length; i++) {
+                if (params[i].startsWith(prefix)) {
+                    params[i] = prefix + encodeURIComponent(value);
+                    return urlParts[0] + '?' + params.join('&');
+                }
+            }
+            url += '&' + prefix + encodeURIComponent(value);
+        } else {
+            url += '?' + encodeURIComponent(key) + '=' + encodeURIComponent(value);
+        }
+        return url;
     }
 </script>
 

@@ -34,7 +34,7 @@ Route::get('/deliveryReturns', [HomeController::class, 'deliveryReturns'])->name
 Route::get('/howitworks', [HomeController::class, 'howitworks'])->name('web.howitworks');
 Route::get('/blogs', [HomeController::class, 'blogs'])->name('web.blogs');
 Route::get('/products/{cat_id?}', [WebController::class, 'products'])->name('web.products');
-Route::match(['get','post'],'/product/{id}', [WebController::class, 'product'])->name('web.product')->where('id', '[0-9]+');
+Route::match(['get','post'],'/product/{id:slug}', [WebController::class, 'product'])->name('web.product');
 Route::match(['get','post'],'/bmiForm', [WebController::class, 'bmi_form'])->name('web.bmiForm');
 Route::match(['get','post'],'/bmiFormStore', [WebController::class, 'bmi_formStore'])->name('web.bmiFormStore');
 Route::match(['get','post'],'/bmiUpdate', [WebController::class, 'bmi_update'])->name('web.bmiUpdate');
@@ -64,6 +64,8 @@ Route::match(['get','post'],'/deliveryReturns', function(){
     return view('web.pages.deliveryReturns');
 })->name('web.deliveryReturns');
 
+Route::get('generate_slug_existing', [WebController::class, 'generate_slug_existing']);
+Route::get('generate_slug_variants_existing', [WebController::class, 'generate_slug_variants_existing']);
 
 
 include __DIR__ . '/admin.php';

@@ -48,6 +48,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 
 use GuzzleHttp\Client;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
+use App\Models\ProductVariant;
 
 class WebController extends Controller
 {
@@ -66,11 +68,11 @@ class WebController extends Controller
         return view('web.pages.products', $data);
     }
 
-    public function product(Request $request)
+    public function product(Request $request, $slug)
     {
         $data['user'] = auth()->user() ?? [];
-        $data['product'] = Product::with('category:id,name', 'variants')->findOrFail($request->id)->toArray();
-        $data['rel_products'] = Product::where('category_id', $data['product']['category_id'])->where('id', '!=', $request->id)->take(4)->latest('id')->get()->toArray();
+        $data['product'] = Product::with('category:id,name', 'variants')->where('slug', $slug)->firstOrFail()->toArray();
+        $data['rel_products'] = Product::where('category_id', $data['product']['category_id'])->where('slug', '!=', $slug)->take(4)->latest('id')->get()->toArray();
 
         return view('web.pages.product', $data);
     }
@@ -582,5 +584,31 @@ class WebController extends Controller
         } else {
             return redirect()->route('login');
         }
+    }
+
+    public function generate_slug_existing()
+    {
+        // generate slugs for existing products
+        $needSlugs = Product::where('slug', null)->get();
+
+        foreach($needSlugs as $slug){
+            $slug->update([
+                'slug' => SlugService::createSlug(Product::class, 'slug', $slug->title)
+            ]);
+        }
+        return 1;
+    }
+
+    public function generate_slug_variants_existing()
+    {
+        // generate slugs for existing product variants
+        $needSlugs = ProductVariant::with('product')->where('slug', null)->get();
+
+        foreach($needSlugs as $slug){
+            $slug->update([
+                'slug' => SlugService::createSlug(ProductVariant::class, 'slug', $slug->product->title.' '.$slug->value)
+            ]);
+        }
+        return 1;
     }
 }
