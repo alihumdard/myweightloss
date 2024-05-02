@@ -39,6 +39,7 @@ use App\Models\ConsultationQuestion;
 use App\Models\UserBmi;
 use App\Models\Comment;
 use App\Models\shippedOrder;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class SystemController extends Controller
 {
@@ -752,6 +753,7 @@ class SystemController extends Controller
                     $productAttrArr['title'] = $nameArr[$key];
                     $productAttrArr['price'] = $priceArr[$key];
                     $productAttrArr['value'] = $valueArr[$key];
+                    $productAttrArr['slug'] = SlugService::createSlug(ProductVariant::class, 'slug', $request->title.' '.$valueArr[$key], ['unique' => false]);
                     $productAttrArr['barcode'] = $barcodeArr[$key];
                     $productAttrArr['inventory'] = $inventoryArr[$key];
                     $productAttrArr['sku'] = $skuArr[$key];
@@ -799,6 +801,7 @@ class SystemController extends Controller
                     $productAttrArrE['title'] = $nameArrExist[$key1];
                     $productAttrArrE['price'] = $priceArrExist[$key1];
                     $productAttrArrE['value'] = $valueArrExist[$key1];
+                    $productAttrArrE['slug'] = SlugService::createSlug(ProductVariant::class, 'slug', $request->title.' '.$valueArrExist[$key1], ['unique' => false]);
                     $productAttrArrE['barcode'] = $barcodeArrExist[$key1];
                     $productAttrArrE['inventory'] = $inventoryArrExist[$key1];
                     $productAttrArrE['sku'] = $skuArrExist[$key1];
